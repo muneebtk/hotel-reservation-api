@@ -1,0 +1,10 @@
+{% extends 'accounts/base_email_template.html' %}
+
+{% block title %}New Amenity Request{% endblock %}
+
+{% block content %}
+    <h2>Request Details</h2>
+    <p><strong>Amenity Name:</strong> {{ amenity_name }}</p>
+    <p><strong>Purpose:</strong> {{ purpose }}</p>
+    <p><strong>Vendor email:</strong> {{request_user}}</p>
+{% endblock %}

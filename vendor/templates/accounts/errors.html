@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+  <title>ERROR</title>
+  <style>
+    /* Main Container */
+.container-scroller {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cccfd1; /* Background color for the full screen */
+}
+* {
+      font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+      }
+
+.container-fluid.page-body-wrapper.full-page-wrapper {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 600px; 
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; 
+}
+
+.error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Error Message Styling */
+.error-page h1 {
+    font-size: 10rem;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.error-page h2 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.error-page h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 20px 0 0;
+}
+
+/* Link Styling */
+a.text-white.font-weight-medium {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+a.text-white.font-weight-medium:hover {
+    text-decoration: underline;
+}
+
+/* Copyright Text */
+.text-white.font-weight-medium.text-center {
+    margin-top: 30px;
+    font-size: 1rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .error-page h1 {
+        font-size: 7rem;
+    }
+
+    .error-page h2 {
+        font-size: 2.5rem;
+    }
+
+    .error-page h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .error-page h1 {
+        font-size: 5rem;
+    }
+
+    .error-page h2 {
+        font-size: 2rem;
+    }
+
+    .error-page h3 {
+        font-size: 1rem;
+    }
+}
+
+  </style>
+  
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center text-center error-page bg-primary">
+        <div class="row flex-grow">
+          <div class="col-lg-7 mx-auto text-white">
+            <div class="row align-items-center d-flex flex-row">
+              <div class="col-lg-6 text-lg-right pr-lg-4">
+               {% if error.code %}
+                <h1 class="display-1 mb-0">{{error.code}}</h1>
+               {% else %}
+                <h1 class="display-1 mb-0">500</h1>
+               {% endif %}
+              </div>
+              <div class="col-lg-6 error-page-divider text-lg-left pl-lg-4">
+                <h2>SORRY!</h2>
+                {% if error.message %}
+                <h3 class="font-weight-light">{{error.message}}</h3>
+                {% else %}
+                <h3 class="font-weight-light">Some thing went wrong!</h3>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-12 text-center mt-xl-2">
+                <a class="text-white font-weight-medium" href="{%url 'loginn'%}">Back to home</a>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-12 mt-xl-2">
+                <p class="text-white font-weight-medium text-center">Copyright &copy; 2025  All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+
+</html>

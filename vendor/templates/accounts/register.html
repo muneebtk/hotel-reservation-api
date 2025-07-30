@@ -1,0 +1,270 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Login {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">
+            Create Account
+          </h4>
+        </div>
+        <div class="card-body">
+
+          <!-- <h6 class="card-category">
+              {% if msg %}
+                <span class="text-danger">{{ msg | safe }}</span>
+              {% else %}
+                Add your credentials
+              {% endif %}  
+          </h6> -->
+          <h6 class="card-category"> Hotel Owner Registration Form</h6>      
+          <hr>    
+          <br />
+
+          {% if success %}
+
+            <p class="">
+              Please <a href="{% url 'login' %}" class="text-black text-small">authenticate</a> using the new account.
+            </p>  
+
+          {% else %}
+            <form role="form" method="post" action="{% url 'register' %}">
+                
+              {% csrf_token %} 
+
+              <div class="container container-fluid">
+                <div class="row">
+              
+                  <div class="col-md-6">
+                    <div>
+                      <label for="hotelOwnerName">Hotel Owner Name</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="text" id="hotelOwnerName" name="hotelOwnerName"
+                        placeholder="Enter Hotel Owner Name" required>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-6 ">
+                    <div>
+                      <label for="hotelOwnerEmail">Hotel Owner Email</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="text" id="hotelOwnerEmail" name="hotelOwnerEmail"
+                        placeholder="Enter Hotel Owner Email">
+                    </div>
+                  </div>
+              
+                 
+                  <div class="col-md-6 mt-3">
+                    <div>
+                      <label for="officenumber">GSM Number</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="Number" id="gsmnumber" name="gsmnumber"
+                        placeholder="Enter GSM Number">
+                    </div>
+              
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+
+               
+
+                  <div class="col-md-6 mt-4">
+                    <div>
+                      <label for="password1">Password</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="password" id="password1" name="password1"
+                        placeholder="enter Password">
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-4">
+                    <div>
+                      <label for="password2">Confirm Password</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="password" id="password2" name="password2"
+                        placeholder="Confirm password">
+                    </div>
+                  </div>
+              
+                  <div class="col-md-6 mt-5">
+                    <div>
+                      <label for="hotelName">Hotel Name</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="text" id="hotelName" name="hotelName"
+                        placeholder="Enter Hotel Name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mt-5 ">
+                    <div>
+                      <label for="officenumber">Office Number</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="Number" id="officenumber" name="officenumber"
+                        placeholder="Enter Office Number">
+                    </div>
+              
+                  </div>
+
+
+                  <div class="col-md-12 mt-5">
+                    <div>
+                      <label for="hotelAddress">Hotel Address</label>
+                    </div>
+                    <div class="form-group">
+                      <textarea class="form-control custom-input rounded-pill" id="hotelAddress" name="hotelAddress" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="country">Country</label>
+                      <select class="form-control" id="country" name="country">
+                        <option>Oman</option>
+                        <option>India</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="stateProvince">State/province</label>
+                      <select class="form-control" id="stateProvince" name="stateProvince">
+                        <option>Muscat Governorate</option>
+                        <option>California</option>
+                      </select>
+                    </div>
+                  </div>
+              
+              
+              
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <select class="form-control" id="city" name="city">
+                        <option>Muscat</option>
+                        <option>Haima</option>
+                      </select>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="postalZIPCode">Postal/ZIP Code</label>
+                      <select class="form-control" id="postalZIPCode" name ="postalZIPCode">
+                        <option>114</option>
+                        <option>115</option>
+                      </select>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-6 ">
+                    <div>
+                      <label for="roomnumber">Number of Rooms</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="number" id="roomnumber" name="roomnumber"
+                        placeholder="Enter Number of Rooms" required>
+                    </div>
+                  </div>
+              
+              
+                  <div class="col-md-6 ">
+                    <div>
+                      <label for="">Room Types</label>
+                    </div>
+                    <div>
+                      <select class="form-control" id="roomtypes" name ="roomtypes">
+                        {% for type in room_type %}
+                            <option value={{type}}>{{type}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+              
+              
+                  <div class="col-md-6">
+                    <br>
+                    <div class="form-group">
+                      <label for="">Hotel Rating</label>
+                      <select class="form-control" id="hotelrating" name="hotelrating">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+              
+                  <div class="col-md-6 mt-3">
+                    <br>
+                    <div>
+                      <label for="">CR Number </label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="number" id="crnumber" name="crnumber"
+                        placeholder="Enter the CR Number " required>
+                    </div>
+                  </div>
+              
+              
+                  <div class="col-md-6 ">
+                    <br>
+                    <div>
+                      <label for="">Date of Expiry</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="date" id="expiry" name="expiry"
+                        placeholder="Enter Date of Expiry " required>
+                    </div>
+                  </div>
+              
+              
+                  <div class="col-md-6 ">
+                    <br>
+                    <div>
+                      <label for="">VAT Number</label>
+                    </div>
+                    <div>
+                      <input class="form-control custom-input rounded-pill" type="number" id="vatnumber" name="vatnumber" placeholder="Enter VAT Number"
+                        required>
+                    </div>
+                  </div>
+              
+                  <div class="text-center">
+                    <br>
+                    <div class="mx-auto" style="width: fit-content;">
+                      <button type="submit" class="btn btn-danger rounded-pill">Submit</button>
+                    </div>
+                  </div>
+                </div>
+
+
+              <span class="pull-right">
+                Have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
+              </span>
+
+              <div class="clearfix"></div>
+
+            </form>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

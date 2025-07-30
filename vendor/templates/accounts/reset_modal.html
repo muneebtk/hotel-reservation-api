@@ -1,0 +1,52 @@
+{% load static %}
+<!-- {% if reset_modal %}
+<div id="resetModal" class="modal_message" style="display: block;">
+    <div class="modal_content_message_error">
+        <div>
+            <img src="{% static 'icons/Vector.png' %}" width="30px" height="35px" alt="">
+        </div>
+        <div>
+            <h2>Password Incorrect</h2>
+            <p>Please enter valid password</p>
+        </div>
+        
+    </div>
+</div>
+ <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="{% static 'icons/Vector.png' %}" width="30px" height="35px" class="rounded me-2" alt="...">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Password Incorrect
+      </div>
+    </div>
+  </div> 
+{% endif %} -->
+{% if hotel_modal %}
+<div id="resetModal" class="modal_message" style="display: block;">
+    <div class="modal_content_message">
+        <p>Hotel is not approved yet.</p>
+        <button id="okButtonReset" class="ok-button">OK</button>
+    </div>
+</div>
+{% endif %}
+
+{% if hotel_not_found %}
+<div id="resetModal" class="modal_message" style="display: block;">
+    <div class="modal_content_message">
+        <p>No associated hotel found</p>
+        <button id="okButtonReset" class="ok-button">OK</button>
+    </div>
+</div>
+{% endif %}
+{% if emailformat %}
+<div id="resetModal" class="modal_message" style="display: block;">
+    <div class="modal_content_message">
+        <p style=" text-align: center;">Invalid email format</p>
+        <button id="okButtonReset" class="ok-button">OK</button>
+    </div>
+</div>
+{% endif %}

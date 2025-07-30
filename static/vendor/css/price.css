@@ -1,0 +1,427 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f4f4f4;
+    font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 80%;
+    overflow-y: auto;
+
+    @media (max-width:768px) {
+        width: 80%;
+    }
+
+    @media (max-width:640px) {
+        width: 100%;
+        height: 90%;
+    }
+}
+
+/* Progress bar styles */
+.progress-bar-container {
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.circle.active {
+    border-color: #85080C;
+    background-color: #85080C;
+    color: #fff;
+}
+
+.circle.active i {
+    display: inline-block;
+    color: #fff;
+}
+
+.step-number {
+    display: none;
+}
+
+.step.active .step-number {
+    display: block;
+    color: #85080C;
+}
+
+.label {
+    margin-top: 10px;
+    color: #888;
+}
+
+.step.active .label {
+    color: #333;
+}
+
+.line {
+    height: 2px;
+    background-color: #ddd;
+    flex-grow: 1;
+    z-index: 0;
+    position: relative;
+    top: -10px;
+    margin: 0 10px;
+}
+
+.line.active {
+    background-color: #85080C;
+}
+
+.inner-container {
+    padding: 0 5rem;
+
+    @media (max-width:640px) {
+        padding: 0;
+    }
+}
+
+.title {
+    margin-right: 85%;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.buttons button {
+    padding: 12px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #85080C;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #85080C;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .progress-bar {
+        flex-direction: column;
+    }
+
+    .line {
+        width: 2px;
+        height: 40px;
+        margin: 10px 0;
+        top: 0;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-div {
+    background-color: #f1f5f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.price-item {
+    display: flex;
+    align-items: center;
+    padding: .6rem;;
+    border-radius: .5rem;
+    margin-bottom: 10px;
+    background-color: #fff;
+    justify-content: space-between;
+}
+
+.price-item label {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.price-item input[type="text"] {
+    width: 100%;
+    padding: .5rem;
+    background-color: #f1f5f9;
+    border-radius: .4rem;
+    margin-left: 10px;
+    border: 1px solid #EDF0F9;
+}
+
+.price-item input[type="text"]:focus {
+    border: 1px solid #EDF0F9;
+    outline: none;
+}
+
+
+.checkbox input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+.checkbox input[type="checkbox"]:checked {
+    border-color: #85080C;
+    background-color: #85080C;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: block; /* Display error message in block format */
+    margin-top: 5px; /* Adjust margin as needed */  
+    margin-bottom: 8%;
+}
+
+.input-field.error {
+    border: 1px solid red; /* Example of error styling */
+}
+
+main.main-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-subtitle{
+    margin: .8rem 0;
+}
+.label-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0rem;
+}
+.error-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.header-title{
+    margin-bottom: 2rem;
+}
+
+.tax-info-container {
+    margin-top: 4rem;
+
+    .tax-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width:640px) {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+    }
+
+    .accept-switch {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+
+        span {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .accept-toggle-container {
+            position: relative;
+            width: 60px;
+            height: 34px;
+
+            .toggle-input {
+                display: none;
+            }
+
+            .toggle-label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #e0e0e0;
+                border-radius: 34px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .toggle-label::before {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                right: auto;
+                width: 30px;
+                height: 30px;
+                background-color: white;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .toggle-input:checked+.toggle-label {
+                background-color: #85080c;
+            }
+
+            .toggle-input:checked+.toggle-label::before {
+                /* transform: translateX(26px); */
+                left: auto;
+                right: 2px;
+            }
+        }
+    }
+
+    .tax-input-fields {
+        width: 100%;
+        place-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+
+        @media (max-width:640px) {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .input-item-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+
+            label {
+                font-size: .9rem;
+            }
+
+            input {
+                width: 100%;
+                border: none;
+                background-color: #f1f5f9;
+                padding: 1rem 1rem;
+                border-radius: .4rem;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+    .custom-checkbox-container {
+        position: relative;
+
+        .custom-checkbox-input {
+            display: none;
+        }
+
+        .custom-checkbox-label {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #cecece;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .custom-checkbox-label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 5px;
+            border: 2px solid white;
+            border-top: none;
+            border-right: none;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .custom-checkbox-input:checked+.custom-checkbox-label {
+            background-color: #85080c;
+            border-color: #85080c;
+        }
+
+        .custom-checkbox-input:checked+.custom-checkbox-label::after {
+            opacity: 1;
+        }
+    }
+    .payment{
+        margin-top: 2.5rem;
+    }
+
+    .accept-payment-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.3rem;
+        width: 100%;
+        flex-wrap: wrap;
+
+        .check-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+        }
+    }

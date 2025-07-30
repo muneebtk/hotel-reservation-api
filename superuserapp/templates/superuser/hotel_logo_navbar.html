@@ -1,0 +1,80 @@
+{% load static%}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/dashboard-sidebar.css' %}">
+</head>
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-collapse w3-top w3-large w3-padding" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topright nav-close-btn">
+        <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+    </a>
+
+    <div class="w3-container w3-padding-16">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <img src="{% static 'icons/1929+3 (1).png' %}" alt="1929 Logo" style="height: 80px; width: 80px;">
+        </div>
+    </div>
+    
+    <div class="w3-bar-block nav-items">
+        <a href="{% url 'dashboard_overview' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'dashboard_overview' %} active {% endif %}">
+            <img src="{% static 'icons/ri_dashboard-fill .png' %}" alt="Dashboard Icon">&nbsp; &nbsp;<span>{% trans 'Dashboard' %}</span>
+        </a>
+        <a href="{% url 'super_hotel_table_list' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'super_hotel_table_list' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (9).png' %}"  alt="Dashboard Icon">&nbsp; &nbsp;<span>{% trans 'Registration Request' %}</span>
+        </a>
+        <a href="{% url 'super_booking' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'super_booking' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group .png' %}" alt="Dashboard Icon">&nbsp; &nbsp;<span>{% trans 'Reservations' %} </span>
+        </a>
+        <a href="{% url 'amenity_list' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'amenity_list' %} active {% endif %}">
+            <img src="{% static 'icons/ant-design_pull-request-outlined.png' %}" alt="Dashboard Icon">&nbsp; &nbsp;<span>{% trans 'Amenities' %}</span>
+        </a>
+        <a href="{% url 'review_rating' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'review_rating' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (6).png' %}" alt="Transaction Icon">&nbsp; &nbsp;<span>{% trans "Reviews and Ratings" %}</span>
+        </a>
+        <a href="{% url 'superuser_offers' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'superuser_offers' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (3).png' %}" alt="Room Management Icon">&nbsp; &nbsp;<span>{% trans "Offers and Promotional Campaigns" %} </span>
+        </a>
+        <a href="{% url 'super_transaction_detail' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'super_transaction_detail' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (2).png' %}" alt="Booking Icon">&nbsp; &nbsp;<span>{% trans "Transaction Details" %}</span>
+        </a>
+        <a href="{% url 'add_policy' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'add_policy' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (2).png' %}" alt="Booking Icon">&nbsp; &nbsp;<span>{% trans "Policies" %}</span> 
+        </a>
+        <a href="{% url 'commission_list' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'commission_list' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (2).png' %}" alt="Booking Icon">&nbsp; &nbsp;<span>{% trans "Commission" %} </span>
+        </a>
+
+        <a href="{% url 'user-management' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'user-management' %} active {% endif %}">
+            <img src="{% static 'icons/usermanagement.png' %}" alt="User Management Icon">&nbsp; &nbsp;<span>{% trans "User Management" %}</span>
+        </a>
+
+        {% comment %} chalet type  {% endcomment %} 
+        <a href="{% url 'chalet_type' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_type' %} active {% endif %}">
+            <img src="{% static 'icons/chalet-type.png' %}" alt="Chalet Type Icon">&nbsp; &nbsp;<span>{% trans "Chalet Type" %}</span>
+        </a>
+
+        {% comment %} hotel type  {% endcomment %} 
+        <a href="{% url 'hotel_type' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'hotel_type' %} active {% endif %}">
+            <img src="{% static 'icons/chalet-type.png' %}" alt="Hotel Type Icon">&nbsp; &nbsp;<span>{% trans "Hotel Type" %}</span>
+        </a>
+
+        <a href="{% url 'room_types_management' %}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'room_types_management' %} active {% endif %}">
+            <img src="{% static 'icons/Roomtype_management.png' %}" alt="RoomType  Management Icon">&nbsp; &nbsp;<span>{% trans "Room type" %}</span>
+        </a> 
+        
+
+    </div>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebarItems = document.querySelectorAll(".w3-bar-item");
+        const currentUrl = window.location.pathname;
+
+        sidebarItems.forEach(item => {
+            const link = item.getAttribute("href");
+            if (link && currentUrl.startsWith(link)) {
+                item.classList.add("active");
+            }
+        });
+    });
+</script>

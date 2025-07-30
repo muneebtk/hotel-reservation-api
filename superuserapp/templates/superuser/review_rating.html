@@ -1,0 +1,204 @@
+{% load i18n %}
+{%load static%}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/review_rating.css' %}">    
+</head>
+<body>
+   <!-- Sidebar/menu -->
+   {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <div class="w3-main main-section">
+        <div class="container container-box">
+            <div class="row justify-content-center">
+                <div class="row-main" id="hotelTable">
+                    <div class="row ">
+                        <form method="post" id="filterForm">
+                            <div class="col-md-4">
+                                <input ondblclick="resetDate('datePicker')" type="text" id="datePicker"
+                                    class="form-select select_fromdate fs12 text-black from_date"
+                                    name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4">
+                                <input ondblclick="resetDate('datePicker1')" type="text" id="datePicker1" class="form-select select_todate fs12 text-black to_date"
+                                    name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4">
+                                <select aria-label="Default select example" class="form-select select fs12 text-black white"
+                                    id="review_rating" name="room_type">
+                                    <option value="">{% trans "Rating" %}</option>
+                                    {%for rating in ratings %}
+                                    <option value="{{rating.0}}">{{rating.1}}</option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select aria-label="Default select example" class="form-select select fs12 text-black white"
+                                        id="category" name="category">
+                                    <option value="HOTEL" selected>{% trans "HOTEL" %}</option>
+                                    <option value="CHALET">{% trans "CHALET" %}</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <button class=" btn-blue px-3 f" type="button" id="review_search">
+                                    <i class="fa-solid fa-magnifying-glass"></i>{% trans "Search" %} 
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <div class="table-responsive table-container">
+                            <table class="w3-table text-center responsive-table">
+                                <thead class=" bg-table-head">
+                                    <tr>
+                                        <th class="border-right">{%trans 'Sl. No.'%}</th>
+                                        <th class="border-right">{% trans "User Name" %}</th>
+                                        <th class="border-right">{% trans "Rating" %}</th>
+                                        <th class="border-right">{% trans "Date" %}</th>
+                                        <th class="border-right">{% trans "Property" %}</th>
+                                        <th class="">{% trans "Review Text" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fs12 table-body-color">
+                                    {%if reviews%}
+                                    {% for review in reviews %}
+                                    <tr>
+                                        <td class="border-right">{{ forloop.counter }}</td>
+                                        <td class="border-right">{{ review.username|capfirst }}</td>
+                                        <td class="border-right">{{ review.rating }}/5</td>
+                                        <td class="border-right">{{ review.date }}</td>
+                                        <td class="border-right">
+                                            {% if reviews_type == 'hotel' %}
+                                                {{ review.hotel.name }}
+                                            {% else %}
+                                                {{ review.chalet.name }}
+                                            {% endif %}
+                                        </td>
+                                        <td class="">
+                                            {% if review.review_text|length > 10 %}
+                                                {{ review.review_text|slice:":20" }}...
+                                                <a href="javascript:void(0)" onclick="openModal(this)" style="text-decoration: none; color: #007bff;">{% trans 'See more' %}</a>
+                                                <span class="full-text" style="display: none;">{{ review.review_text|escapejs }}</span>                                            {% else %}
+                                                {{ review.review_text }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {%else%}
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;">{% trans "No data found" %}</td>
+                                    </tr>
+                                    {%endif%}
+                                    
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no_data_found hidden"></div>
+        {%if  reviews%}
+                        <div class="pagination">
+                            <!-- Previous Button -->
+                            {% if  reviews.has_previous %}
+                            <a href="#" class="previous-page pagination-link" data-page="{{  reviews.previous_page_number }}" title="Previous Page">
+                                <span class="previous-button">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <span class="disabled-button disabled-button-prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                            {% endif %}                
+                                            
+                        <div class="page-numbers">
+                            {% for num in  reviews.paginator.page_range %}
+                                {% if  reviews.paginator.num_pages > 3 %}
+                                    {% if num >=  reviews.number and num <  reviews.number|add:3 %}
+                                        {% if num ==  reviews.number %}
+                                            <span class="current-page">{{ num }}</span>
+                                        {% else %}
+                                            <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    {% if num ==  reviews.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    
+                        <!-- Next Button -->
+                        {% if  reviews.has_next %}
+                        <a href="#" class="next-page pagination-link" data-page="{{  reviews.next_page_number }}" title="Next Page">
+                            <span class="next-button">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        {% else %}
+                            <span class="disabled-button disabled-button-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        {% endif %}
+                    </div>
+                    {%else%}
+                    <div></div>
+                    {% endif %}            
+    </div>    
+
+    <!--  Respond modal -->
+    <div class="main-modal" id="main-modal" >
+        <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:50%">
+            <div class="w3-center">
+                <br>
+                <span onclick="closeModal()"
+                      class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                      title="Close Modal">&times;</span>
+            </div>
+            <div id="newModalContent" class="w3-container" style="padding: 20px; text-align: left;">
+                <!-- Full review text will appear here -->
+            </div>
+        </div>
+    </div>
+    
+ </div>
+    </div>
+    </div>
+
+    <!-- </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+    <script src="{% static 'admin/js/review_rating.js' %}"></script> 
+</body>
+</html>

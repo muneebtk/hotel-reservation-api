@@ -1,0 +1,3757 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-12 15:52+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:35
+#: templates/chalets_accounts/edit_chalet.html:48
+msgid "Edit Chalet Policies"
+msgstr "سياسات الشاليهات"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:37
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:75
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:97
+msgid "Add New Policy"
+msgstr "إضافة سياسة جديدة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:46
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:112
+msgid "Edit Policy"
+msgstr "تحرير السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:49
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:138
+msgid "Delete Policy"
+msgstr "حذف السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:66
+msgid "No policies available."
+msgstr "لا توجد سياسات متاحة."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:80
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:117
+#: templates/chalets_accounts/chalet_offer_promotion.html:261
+#: templates/chalets_accounts/chalet_offer_promotion.html:473
+msgid "Category"
+msgstr "فئة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:81
+msgid "Enter or select the policy category"
+msgstr "أدخل أو حدد فئة السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:90
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:122
+#: templates/chalets_accounts/amenties.html:351
+#: templates/chalets_accounts/final_step.html:440
+#: templates/chalets_accounts/final_step.html:447
+#: templates/chalets_accounts/price.html:35
+msgid "Policies"
+msgstr "السياسات"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:92
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:173
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:358
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:429
+msgid "Enter the policy"
+msgstr "أدخل السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:101
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:129
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:142
+#: templates/chalets_accounts/chalet_detail_view.html:267
+#: templates/chalets_accounts/chalet_management.html:184
+#: templates/chalets_accounts/chalet_management.html:348
+#: templates/chalets_accounts/chalet_offer_promotion.html:416
+#: templates/chalets_accounts/chalet_offer_promotion.html:644
+#: templates/chalets_accounts/chalet_review_rating.html:234
+#: templates/chalets_accounts/chalet_review_rating.html:285
+#: templates/chalets_accounts/chalet_review_rating.html:340
+#: templates/chalets_accounts/edit_chalet_amentiy.html:200
+#: templates/chalets_accounts/property.html:141
+#: templates/chalets_accounts/property.html:300
+msgid "Cancel"
+msgstr "يلغي"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:102
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:130
+#: templates/chalets_accounts/chalet_detail_view.html:268
+#: templates/chalets_accounts/chalet_manage_promo_code.html:494
+#: templates/chalets_accounts/chalet_manage_promo_code.html:613
+#: templates/chalets_accounts/chalet_management.html:349
+#: templates/chalets_accounts/chalet_offer_promotion.html:418
+#: templates/chalets_accounts/chalet_offer_promotion.html:645
+#: templates/chalets_accounts/edit_chalet_detail.html:492
+#: templates/chalets_accounts/final_step.html:524
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:118
+msgid "Enter the policy category"
+msgstr "أدخل فئة السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:125
+msgid "Add new policy"
+msgstr "إضافة سياسة جديدة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:139
+msgid "Are you sure you want to delete this policy?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه السياسة؟"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:139
+msgid "This action cannot be undone."
+msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:141
+msgid "Yes, Delete"
+msgstr "نعم، احذف"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:243
+msgid "Category cannot be empty."
+msgstr "لا يمكن أن تكون الفئة فارغة."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:247
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:467
+msgid "Category name must be 50 characters or less."
+msgstr "يجب أن يكون اسم الفئة 50 حرفًا أو أقل."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:251
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:472
+msgid "Category name must contain only alphabetic characters and spaces."
+msgstr "يجب أن يحتوي اسم الفئة على أحرف أبجدية ومسافات فقط."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:256
+msgid "At least one policy must be provided."
+msgstr "يجب توفير سياسة واحدة على الأقل."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:312
+msgid "An error occurred while saving policies."
+msgstr "حدث خطأ أثناء حفظ السياسات."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:315
+msgid "Please enter a category and at least one policy."
+msgstr "الرجاء إدخال فئة وسياسة واحدة على الأقل."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:465
+msgid "Category name cannot be empty or contain only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة فارغًا أو يحتوي على مسافات فقط."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:477
+msgid "Category name cannot be only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة مسافات فقط."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:484
+msgid "Policy "
+msgstr "سياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:484
+msgid " cannot be empty or contain only spaces."
+msgstr "لا يمكن أن تكون فارغة أو تحتوي على مسافات فقط."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:492
+msgid "At least one valid policy must be provided."
+msgstr "يجب توفير سياسة واحدة صالحة على الأقل."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:543
+#: views.py:1371 views.py:1770 views.py:1862 views.py:1919 views.py:2254
+#: views.py:2298 views.py:2393 views.py:2428 views.py:2470 views.py:2511
+#: views.py:2930 views.py:2965 views.py:2998 views.py:3031 views.py:3063
+#: views.py:4306 views.py:4511 views.py:4577
+msgid "An unexpected error occurred."
+msgstr "حدث خطأ غير متوقع."
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:575
+msgid "Policy has been deleted"
+msgstr "تم حذف السياسة"
+
+#: templates/chalets_accounts/accounts/edit_chalet_policy.html:578
+#: views.py:1464
+msgid "Something went wrong"
+msgstr "حدث خطأ ما"
+
+#: templates/chalets_accounts/add_chalet.html:596
+msgid "New Chalet Registration Form"
+msgstr "استمارة تسجيل شاليه جديد"
+
+#: templates/chalets_accounts/add_chalet.html:600
+msgid "Chalet Name In English"
+msgstr "اسم الشاليه بالانجليزي"
+
+#: templates/chalets_accounts/add_chalet.html:601
+msgid "Enter chalet name"
+msgstr "أدخل اسم الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:604
+msgid "Chalet Name in Arabic"
+msgstr "اسم الشاليه بالعربي"
+
+#: templates/chalets_accounts/add_chalet.html:611
+msgid " Owner Name In English "
+msgstr "اسم المالك بالانجليزي"
+
+#: templates/chalets_accounts/add_chalet.html:612
+#: templates/chalets_accounts/hotel_registration.html:54
+msgid "Enter owner name"
+msgstr "اسم مالك الفندق"
+
+#: templates/chalets_accounts/add_chalet.html:617
+#: templates/chalets_accounts/hotel_registration.html:59
+msgid "Owner Name In Arabic"
+msgstr "اسم المالك بالعربي"
+
+#: templates/chalets_accounts/add_chalet.html:625
+#: templates/chalets_accounts/chalet_approval.html:412
+#: templates/chalets_accounts/edit_chalet_detail.html:90
+msgid "Chalet Owner Email"
+msgstr "بريد مالك الشاليه الإلكتروني"
+
+#: templates/chalets_accounts/add_chalet.html:626
+msgid "Enter your email"
+msgstr "أدخل اسم المالك"
+
+#: templates/chalets_accounts/add_chalet.html:632
+#: templates/chalets_accounts/chalet_approval.html:413
+#: templates/chalets_accounts/edit_chalet_detail.html:98
+#: templates/chalets_accounts/edit_chalet_detail.html:101
+#: templates/chalets_accounts/hotel_registration.html:98
+#: templates/chalets_accounts/registration_chalet.html:85
+msgid "Office Number"
+msgstr "رقم المكتب"
+
+#: templates/chalets_accounts/add_chalet.html:633
+#: templates/chalets_accounts/hotel_registration.html:99
+#: templates/chalets_accounts/registration_chalet.html:86
+msgid "Ex-22555555"
+msgstr "مثال-22555555"
+
+#: templates/chalets_accounts/add_chalet.html:644
+#: templates/chalets_accounts/chalet_approval.html:440
+#: templates/chalets_accounts/edit_chalet_detail.html:106
+#: templates/chalets_accounts/registration_chalet.html:122
+msgid "Chalet Address"
+msgstr "عنوان الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:647
+#: templates/chalets_accounts/hotel_registration.html:72
+#: templates/chalets_accounts/registration_chalet.html:125
+msgid "Search here"
+msgstr "ابحث هنا"
+
+#: templates/chalets_accounts/add_chalet.html:648
+#: templates/chalets_accounts/add_chalet.html:649
+#: templates/chalets_accounts/add_chalet.html:1769
+#: templates/chalets_accounts/hotel_registration.html:73
+#: templates/chalets_accounts/hotel_registration.html:74
+#: templates/chalets_accounts/hotel_registration.html:1267
+#: templates/chalets_accounts/registration_chalet.html:126
+#: templates/chalets_accounts/registration_chalet.html:127
+#: templates/chalets_accounts/registration_chalet.html:1244
+msgid "Choose my current location"
+msgstr "اختر موقعي الحالي"
+
+#: templates/chalets_accounts/add_chalet.html:656
+#: templates/chalets_accounts/hotel_registration.html:81
+msgid "Governorate\\State"
+msgstr "المحافظة / الولاية"
+
+#: templates/chalets_accounts/add_chalet.html:658
+#: templates/chalets_accounts/hotel_registration.html:83
+msgid "Enter your Governorate\\state Name"
+msgstr "أدخل اسم المحافظة\\الولاية"
+
+#: templates/chalets_accounts/add_chalet.html:662
+#: templates/chalets_accounts/chalet_approval.html:469
+#: templates/chalets_accounts/edit_chalet_detail.html:163
+#: templates/chalets_accounts/edit_chalet_detail.html:165
+#: templates/chalets_accounts/hotel_registration.html:87
+#: templates/chalets_accounts/registration_chalet.html:140
+msgid "City"
+msgstr "المدينة"
+
+#: templates/chalets_accounts/add_chalet.html:664
+#: templates/chalets_accounts/hotel_registration.html:89
+#: templates/chalets_accounts/registration_chalet.html:142
+msgid "Enter your city name"
+msgstr "أدخل اسم مدينتك"
+
+#: templates/chalets_accounts/add_chalet.html:668
+#: templates/chalets_accounts/chalet_approval.html:441
+#: templates/chalets_accounts/edit_chalet_detail.html:171
+#: templates/chalets_accounts/edit_chalet_detail.html:173
+#: templates/chalets_accounts/hotel_registration.html:93
+#: templates/chalets_accounts/registration_chalet.html:146
+msgid "Country"
+msgstr "الدولة"
+
+#: templates/chalets_accounts/add_chalet.html:670
+#: templates/chalets_accounts/hotel_registration.html:95
+#: templates/chalets_accounts/registration_chalet.html:148
+msgid "Enter your country name"
+msgstr "أدخل اسم بلدك"
+
+#: templates/chalets_accounts/add_chalet.html:674
+#: templates/chalets_accounts/chalet_approval.html:439
+#: templates/chalets_accounts/edit_chalet_detail.html:179
+#: templates/chalets_accounts/edit_chalet_detail.html:182
+#: templates/chalets_accounts/registration_chalet.html:152
+msgid "GSM Number"
+msgstr "رقم الجوال"
+
+#: templates/chalets_accounts/add_chalet.html:675
+#: templates/chalets_accounts/registration_chalet.html:153
+msgid "Enter your GSM number"
+msgstr "أدخل رقم جي إس إم الخاص بك"
+
+#: templates/chalets_accounts/add_chalet.html:688
+#: templates/chalets_accounts/edit_chalet_detail.html:133
+#: templates/chalets_accounts/hotel_registration.html:116
+#: templates/chalets_accounts/registration_chalet.html:166
+msgid "Account Number"
+msgstr "رقم الحساب"
+
+#: templates/chalets_accounts/add_chalet.html:689
+#: templates/chalets_accounts/edit_chalet_detail.html:135
+#: templates/chalets_accounts/hotel_registration.html:117
+#: templates/chalets_accounts/registration_chalet.html:167
+msgid "Enter your Account Number"
+msgstr "أدخل رقم حسابك"
+
+#: templates/chalets_accounts/add_chalet.html:693
+#: templates/chalets_accounts/edit_chalet_detail.html:124
+#: templates/chalets_accounts/edit_chalet_detail.html:127
+#: templates/chalets_accounts/hotel_registration.html:121
+#: templates/chalets_accounts/registration_chalet.html:171
+msgid "Locality"
+msgstr "محلية"
+
+#: templates/chalets_accounts/add_chalet.html:694
+#: templates/chalets_accounts/hotel_registration.html:122
+#: templates/chalets_accounts/registration_chalet.html:172
+msgid "Enter your locality"
+msgstr "أدخل منطقتك"
+
+#: templates/chalets_accounts/add_chalet.html:695
+#: templates/chalets_accounts/hotel_registration.html:123
+#: templates/chalets_accounts/registration_chalet.html:173
+msgid "Locality not found"
+msgstr "محلية"
+
+#: templates/chalets_accounts/add_chalet.html:702
+#: templates/chalets_accounts/edit_chalet_detail.html:141
+#: templates/chalets_accounts/hotel_registration.html:132
+#: templates/chalets_accounts/registration_chalet.html:181
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#: templates/chalets_accounts/add_chalet.html:703
+#: templates/chalets_accounts/edit_chalet_detail.html:143
+#: templates/chalets_accounts/hotel_registration.html:133
+#: templates/chalets_accounts/registration_chalet.html:182
+msgid "Enter your Bank Name"
+msgstr "أدخل اسم البنك الخاص بك"
+
+#: templates/chalets_accounts/add_chalet.html:709
+#: templates/chalets_accounts/edit_chalet_detail.html:150
+#: templates/chalets_accounts/hotel_registration.html:139
+#: templates/chalets_accounts/registration_chalet.html:188
+msgid "Account Holder Name"
+msgstr "اسم صاحب الحساب"
+
+#: templates/chalets_accounts/add_chalet.html:710
+#: templates/chalets_accounts/edit_chalet_detail.html:152
+#: templates/chalets_accounts/hotel_registration.html:140
+#: templates/chalets_accounts/registration_chalet.html:189
+msgid "Enter your Account Holder Name"
+msgstr "أدخل اسم صاحب الحساب الخاص بك"
+
+#: templates/chalets_accounts/add_chalet.html:718
+#: templates/chalets_accounts/chalet_approval.html:498
+#: templates/chalets_accounts/edit_chalet_detail.html:226
+#: templates/chalets_accounts/edit_chalet_detail.html:229
+#: templates/chalets_accounts/hotel_registration.html:183
+#: templates/chalets_accounts/registration_chalet.html:197
+msgid "VAT Number"
+msgstr "رقم ضريبة القيمة المضافة"
+
+#: templates/chalets_accounts/add_chalet.html:719
+#: templates/chalets_accounts/hotel_registration.html:184
+#: templates/chalets_accounts/registration_chalet.html:198
+msgid "Enter VAT number"
+msgstr "أدخل رقم ضريبة القيمة المضافة"
+
+#: templates/chalets_accounts/add_chalet.html:726
+#: templates/chalets_accounts/chalet_approval.html:472
+#: templates/chalets_accounts/edit_chalet_detail.html:209
+#: templates/chalets_accounts/edit_chalet_detail.html:212
+#: templates/chalets_accounts/hotel_registration.html:191
+#: templates/chalets_accounts/registration_chalet.html:205
+msgid "CR Number"
+msgstr "رقم السجل التجاري"
+
+#: templates/chalets_accounts/add_chalet.html:727
+#: templates/chalets_accounts/hotel_registration.html:192
+#: templates/chalets_accounts/registration_chalet.html:206
+msgid "Enter CR number"
+msgstr "أدخل رقم السجل التجاري"
+
+#: templates/chalets_accounts/add_chalet.html:736
+msgid "Chalet Description in English"
+msgstr "وصف الشاليه بالانجليزي"
+
+#: templates/chalets_accounts/add_chalet.html:737
+#: templates/chalets_accounts/edit_chalet_detail.html:307
+#: templates/chalets_accounts/edit_chalet_detail.html:315
+msgid "Enter a few words about your chalet"
+msgstr "أدخل بضع كلمات عن الشاليه الخاص بك"
+
+#: templates/chalets_accounts/add_chalet.html:744
+msgid "Chalet Description in Arabic"
+msgstr "وصف الشاليه بالعربي"
+
+#: templates/chalets_accounts/add_chalet.html:754
+msgid "Chalet Policies In English"
+msgstr "سياسات الشاليه بالانجليزي"
+
+#: templates/chalets_accounts/add_chalet.html:755
+msgid "Enter your chalet policies"
+msgstr "أدخل سياسات الشاليه الخاصة بك"
+
+#: templates/chalets_accounts/add_chalet.html:762
+msgid "Chalet Policies In Arabic"
+msgstr "سياسات الشاليه بالعربي"
+
+#: templates/chalets_accounts/add_chalet.html:785
+#: templates/chalets_accounts/edit_chalet_detail.html:397
+#: templates/chalets_accounts/registration_chalet.html:271
+msgid "Chalet Logo"
+msgstr "شعار الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:791
+#: templates/chalets_accounts/add_chalet.html:815
+#: templates/chalets_accounts/edit_chalet_detail.html:389
+#: templates/chalets_accounts/edit_chalet_detail.html:416
+#: templates/chalets_accounts/hotel_registration.html:245
+#: templates/chalets_accounts/hotel_registration.html:268
+#: templates/chalets_accounts/registration_chalet.html:277
+#: templates/chalets_accounts/registration_chalet.html:302
+msgid "(Upload JPEG/PNG files)"
+msgstr "(تحميل ملفات JPEG/PNG)"
+
+#: templates/chalets_accounts/add_chalet.html:797
+#: templates/chalets_accounts/chalet_detail_view.html:30
+#: templates/chalets_accounts/chalet_detail_view.html:34
+#: templates/chalets_accounts/edit_chalet_detail.html:348
+#: templates/chalets_accounts/registration_chalet.html:284
+msgid "Chalet Images"
+msgstr "صور شاليه"
+
+#: templates/chalets_accounts/add_chalet.html:824
+#: templates/chalets_accounts/registration_chalet.html:312
+msgid "The size of a single chalet image file should not exceed 30 MB"
+msgstr "يجب ألا يتجاوز حجم ملف صورة الشاليه الواحد 30 ميجابايت"
+
+#: templates/chalets_accounts/add_chalet.html:825
+#: templates/chalets_accounts/hotel_registration.html:296
+#: templates/chalets_accounts/registration_chalet.html:313
+msgid "Always take the picture in bright natural light"
+msgstr "التقط الصورة دائمًا في ضوء طبيعي ساطع"
+
+#: templates/chalets_accounts/add_chalet.html:826
+#: templates/chalets_accounts/hotel_registration.html:297
+#: templates/chalets_accounts/registration_chalet.html:314
+msgid "Upload minimum 5 images"
+msgstr "قم بتحميل 5 صور على الأقل"
+
+#: templates/chalets_accounts/add_chalet.html:832
+#: templates/chalets_accounts/hotel_registration.html:304
+msgid "I Agree to the "
+msgstr "أنا أوافق على"
+
+#: templates/chalets_accounts/add_chalet.html:834
+#: templates/chalets_accounts/hotel_registration.html:306
+msgid "Terms"
+msgstr "شروط"
+
+#: templates/chalets_accounts/add_chalet.html:834
+#: templates/chalets_accounts/hotel_registration.html:306
+msgid "And"
+msgstr "و"
+
+#: templates/chalets_accounts/add_chalet.html:834
+#: templates/chalets_accounts/hotel_registration.html:306
+msgid "Conditions"
+msgstr "شروط"
+
+#: templates/chalets_accounts/add_chalet.html:841
+#: templates/chalets_accounts/hotel_registration.html:313
+#: templates/chalets_accounts/registration_chalet.html:328
+msgid "Register"
+msgstr "تسجيل"
+
+#: templates/chalets_accounts/add_chalet.html:1350
+#: templates/chalets_accounts/registration_chalet.html:831
+msgid "Chalet with same email already exist"
+msgstr "الشاليه بنفس البريد الإلكتروني موجود بالفعل"
+
+#: templates/chalets_accounts/add_chalet.html:1392
+#: templates/chalets_accounts/hotel_registration.html:861
+msgid "Registration successful"
+msgstr "تم التسجيل بنجاح"
+
+#: templates/chalets_accounts/add_chalet.html:1393
+#: templates/chalets_accounts/hotel_registration.html:862
+msgid "You have successfully registered."
+msgstr "لقد قمت بالتسجيل بنجاح"
+
+#: templates/chalets_accounts/add_chalet.html:1478
+#: templates/chalets_accounts/chalet_management.html:499
+#: templates/chalets_accounts/chalet_management.html:557
+#: templates/chalets_accounts/hotel_registration.html:965
+#: templates/chalets_accounts/registration_chalet.html:954
+msgid "images remaining to upload."
+msgstr "الصور المتبقية للتحميل"
+
+#: templates/chalets_accounts/add_chalet.html:1611
+#: templates/chalets_accounts/hotel_registration.html:1087
+#: templates/chalets_accounts/registration_chalet.html:1086
+msgid "Could not retrieve current address"
+msgstr "تعذر استرداد العنوان الحالي"
+
+#: templates/chalets_accounts/add_chalet.html:1615
+#: templates/chalets_accounts/hotel_registration.html:1091
+#: templates/chalets_accounts/registration_chalet.html:1090
+msgid "Error fetching current address"
+msgstr "حدث خطأ أثناء جلب العنوان الحالي"
+
+#: templates/chalets_accounts/add_chalet.html:1620
+#: templates/chalets_accounts/hotel_registration.html:1096
+#: templates/chalets_accounts/registration_chalet.html:1095
+msgid "Error getting current location"
+msgstr "حدث خطأ أثناء الحصول على الموقع الحالي"
+
+#: templates/chalets_accounts/add_chalet.html:1623
+#: templates/chalets_accounts/hotel_registration.html:1099
+#: templates/chalets_accounts/registration_chalet.html:1098
+msgid "Geolocation is not supported by this browser"
+msgstr "تحديد الموقع الجغرافي غير مدعوم من هذا المتصفح"
+
+#: templates/chalets_accounts/add_chalet.html:1662
+#: templates/chalets_accounts/hotel_registration.html:1140
+#: templates/chalets_accounts/registration_chalet.html:1137
+msgid "Address not found"
+msgstr "لم يتم العثور على العنوان"
+
+#: templates/chalets_accounts/add_chalet.html:1836
+#: templates/chalets_accounts/hotel_registration.html:1333
+#: templates/chalets_accounts/registration_chalet.html:1310
+msgid "The date must be today or future."
+msgstr "يجب أن يكون التاريخ اليوم أو المستقبل"
+
+#: templates/chalets_accounts/add_chalet.html:1876
+msgid "Please enter Chalet Name."
+msgstr "الرجاء إدخال اسم الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:1879
+#: templates/chalets_accounts/edit_chalet_detail.html:847
+msgid "chalet Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم الشاليه بين 3 و100 حرف."
+
+#: templates/chalets_accounts/add_chalet.html:1887
+#: templates/chalets_accounts/edit_chalet_detail.html:856
+msgid "chalet Arabic Name cannot be empty."
+msgstr "الاسم العربي للشاليه لا يمكن أن يكون فارغا."
+
+#: templates/chalets_accounts/add_chalet.html:1890
+#: templates/chalets_accounts/edit_chalet_detail.html:859
+msgid "chalet Arabic Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول الاسم العربي للشاليه بين 3 و100 حرف."
+
+#: templates/chalets_accounts/add_chalet.html:1901
+#: templates/chalets_accounts/add_chalet.html:1915
+#: templates/chalets_accounts/registration_chalet.html:1397
+#: templates/chalets_accounts/registration_chalet.html:1414
+msgid "Please enter Chalet Owner Name."
+msgstr "الرجاء إدخال اسم مالك الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:1904
+msgid "Chalet Owner Name should be at least 3 characters long."
+msgstr "يجب ألا يقل طول اسم مالك الشاليه عن 3 أحرف."
+
+#: templates/chalets_accounts/add_chalet.html:1907
+msgid "Chalet Owner Name should not exceed 100 characters."
+msgstr "يجب ألا يتجاوز اسم مالك الشاليه 100 حرف."
+
+#: templates/chalets_accounts/add_chalet.html:1918
+msgid "Chalet Owner Name in Arabic should be at least 3} characters long."
+msgstr "يجب أن لا يقل اسم مالك الشاليه باللغة العربية عن 3 أحرف."
+
+#: templates/chalets_accounts/add_chalet.html:1921
+msgid "Chalet Owner Name in Arabic should not exceed 100 characters."
+msgstr "يجب ألا يزيد اسم مالك الشاليه باللغة العربية عن 100 حرف."
+
+#: templates/chalets_accounts/add_chalet.html:1928
+#: templates/chalets_accounts/edit_chalet_detail.html:905
+#: templates/chalets_accounts/registration_chalet.html:1430
+msgid "Please enter a valid email address."
+msgstr "يرجى إدخال عنوان بريد إلكتروني صالح"
+
+#: templates/chalets_accounts/add_chalet.html:1938
+#: templates/chalets_accounts/edit_chalet_detail.html:917
+#: templates/chalets_accounts/hotel_registration.html:1548
+#: templates/chalets_accounts/registration_chalet.html:1440
+msgid "Invalid office number."
+msgstr "رقم المكتب غير صالح."
+
+#: templates/chalets_accounts/add_chalet.html:1940
+#: templates/chalets_accounts/edit_chalet_detail.html:920
+#: templates/chalets_accounts/hotel_registration.html:1550
+#: templates/chalets_accounts/registration_chalet.html:1442
+msgid "Office Number should be 15 digits or less."
+msgstr "يجب أن يتكون رقم المكتب من 15 رقمًا أو أقل."
+
+#: templates/chalets_accounts/add_chalet.html:1955
+#: templates/chalets_accounts/hotel_registration.html:1565
+#: templates/chalets_accounts/registration_chalet.html:1457
+msgid "Please enter Hotel Address."
+msgstr "الرجاء إدخال عنوان الفندق."
+
+#: templates/chalets_accounts/add_chalet.html:1958
+#: templates/chalets_accounts/edit_chalet_detail.html:933
+msgid "Chalet Address should not exceed 300 characters."
+msgstr "ويجب ألا يتجاوز 300 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:1969
+#: templates/chalets_accounts/edit_chalet_detail.html:979
+#: templates/chalets_accounts/registration_chalet.html:1469
+msgid "Invalid GSM number."
+msgstr "رقم GSM غير صالح."
+
+#: templates/chalets_accounts/add_chalet.html:1971
+#: templates/chalets_accounts/registration_chalet.html:1471
+msgid "GSM Number should be 15 digits or less."
+msgstr "يجب أن يتكون رقم GSM من 15 رقمًا أو أقل."
+
+#: templates/chalets_accounts/add_chalet.html:1987
+msgid "Please select a Country."
+msgstr "رجاء قم بإختيار دوله"
+
+#: templates/chalets_accounts/add_chalet.html:1990
+msgid "Country should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز البلد 50 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:1997
+#: templates/chalets_accounts/registration_chalet.html:1508
+msgid "Please select a State/Province."
+msgstr "الرجاء تحديد الولاية/المقاطعة"
+
+#: templates/chalets_accounts/add_chalet.html:2000
+#: templates/chalets_accounts/registration_chalet.html:1511
+msgid "State/Province name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم الولاية/المقاطعة 50 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2006
+#: templates/chalets_accounts/edit_chalet_detail.html:1008
+#: templates/chalets_accounts/hotel_registration.html:1645
+#: templates/chalets_accounts/registration_chalet.html:1538
+msgid "Please enter the account number."
+msgstr "الرجاء إدخال رقم الحساب."
+
+#: templates/chalets_accounts/add_chalet.html:2010
+#: templates/chalets_accounts/edit_chalet_detail.html:1011
+#: templates/chalets_accounts/hotel_registration.html:1648
+msgid "Account Number should be between 9 and 20 digits."
+msgstr "يجب أن يتراوح رقم الحساب بين 9 و20 رقمًا."
+
+#: templates/chalets_accounts/add_chalet.html:2013
+#: templates/chalets_accounts/edit_chalet_detail.html:1014
+#: templates/chalets_accounts/hotel_registration.html:1651
+#: templates/chalets_accounts/registration_chalet.html:1545
+msgid "Account Number must contain only numeric digits."
+msgstr "يجب أن يحتوي رقم الحساب على أرقام رقمية فقط."
+
+#: templates/chalets_accounts/add_chalet.html:2016
+#: templates/chalets_accounts/edit_chalet_detail.html:1017
+#: templates/chalets_accounts/hotel_registration.html:1654
+#: templates/chalets_accounts/registration_chalet.html:1548
+msgid "Account Number cannot contain only zeros."
+msgstr "رقم الحساب لا يكون كله اصفار."
+
+#: templates/chalets_accounts/add_chalet.html:2023
+#: templates/chalets_accounts/edit_chalet_detail.html:1028
+#: templates/chalets_accounts/hotel_registration.html:1662
+#: templates/chalets_accounts/registration_chalet.html:1555
+msgid "Please enter the account holder name."
+msgstr "الرجاء إدخال اسم صاحب الحساب."
+
+#: templates/chalets_accounts/add_chalet.html:2028
+#: templates/chalets_accounts/registration_chalet.html:1560
+msgid "Account Holder should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز صاحب الحساب 50 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2032
+#: templates/chalets_accounts/edit_chalet_detail.html:1034
+#: templates/chalets_accounts/hotel_registration.html:1668
+#: templates/chalets_accounts/registration_chalet.html:1564
+msgid ""
+"Account Holder name should only contain alphabets, spaces, hyphens, and "
+"apostrophes."
+msgstr ""
+"يجب أن يحتوي اسم صاحب الحساب فقط على الحروف الهجائية والمسافات والواصلات "
+"والفواصل العليا."
+
+#: templates/chalets_accounts/add_chalet.html:2039
+#: templates/chalets_accounts/edit_chalet_detail.html:1045
+#: templates/chalets_accounts/hotel_registration.html:1676
+#: templates/chalets_accounts/registration_chalet.html:1571
+msgid "Please enter the Bank Name."
+msgstr "الرجاء إدخال اسم البنك."
+
+#: templates/chalets_accounts/add_chalet.html:2042
+#: templates/chalets_accounts/edit_chalet_detail.html:1048
+#: templates/chalets_accounts/hotel_registration.html:1679
+#: templates/chalets_accounts/registration_chalet.html:1574
+msgid "Bank Name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم البنك 50 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2045
+#: templates/chalets_accounts/edit_chalet_detail.html:1051
+#: templates/chalets_accounts/hotel_registration.html:1682
+#: templates/chalets_accounts/registration_chalet.html:1577
+msgid "Bank Name should only contain alphabets, spaces, and &."
+msgstr "يجب أن يحتوي اسم البنك على الحروف الهجائية والمسافات و& فقط."
+
+#: templates/chalets_accounts/add_chalet.html:2052
+msgid "Please select a City."
+msgstr "الرجاء اختيار المدينة"
+
+#: templates/chalets_accounts/add_chalet.html:2055
+msgid "City should not exceed 50 characters."
+msgstr "يجب ألا تتجاوز المدينة 50 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2063
+msgid "Postal/ZIP code cannot exceed  15 characters."
+msgstr "لا يمكن أن يتجاوز الرمز البريدي/الرمز البريدي 15 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2073
+#: templates/chalets_accounts/hotel_registration.html:1764
+#: templates/chalets_accounts/registration_chalet.html:1616
+msgid "Please agree to the terms and conditions."
+msgstr "يرجى الموافقة على الشروط والأحكام"
+
+#: templates/chalets_accounts/add_chalet.html:2081
+#: templates/chalets_accounts/add_chalet.html:2084
+#: templates/chalets_accounts/hotel_registration.html:1772
+#: templates/chalets_accounts/hotel_registration.html:1775
+#: templates/chalets_accounts/registration_chalet.html:1624
+#: templates/chalets_accounts/registration_chalet.html:1627
+msgid "Please upload a minimum of 5 images."
+msgstr "يرجى تحميل ما لا يقل عن 5 صور"
+
+#: templates/chalets_accounts/add_chalet.html:2093
+#: templates/chalets_accounts/registration_chalet.html:1636
+msgid "Please upload only JPEG or PNG images for chalet images."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لصور الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:2103
+#: templates/chalets_accounts/registration_chalet.html:1646
+msgid "Please upload a Chalet Logo."
+msgstr "يرجى تحميل شعار الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:2111
+#: templates/chalets_accounts/registration_chalet.html:1654
+msgid "Please upload only JPEG or PNG images for the chalet logo."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لشعار الشاليه"
+
+#: templates/chalets_accounts/add_chalet.html:2123
+#, python-brace-format
+msgid "Account Number not exceed ${localityMaxLength} characters."
+msgstr "رقم الحساب لا يتجاوز ${localityMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/add_chalet.html:2138
+#: templates/chalets_accounts/hotel_registration.html:1834
+#: templates/chalets_accounts/registration_chalet.html:1693
+#, python-brace-format
+msgid "Locality should not exceed ${localityArabicMaxLength} characters."
+msgstr "يجب ألا تتجاوز المنطقة المحلية ${localityArabicMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/add_chalet.html:2157
+#: templates/chalets_accounts/hotel_registration.html:1699
+#: templates/chalets_accounts/registration_chalet.html:1722
+msgid "Please enter CR Number."
+msgstr "الرجاء إدخال رقم السجل التجاري"
+
+#: templates/chalets_accounts/add_chalet.html:2160
+#: templates/chalets_accounts/hotel_registration.html:1702
+#: templates/chalets_accounts/registration_chalet.html:1725
+msgid "CR Number should not exceed 15 characters."
+msgstr "يجب ألا يتجاوز رقم السجل التجاري 15 حرفًا."
+
+#: templates/chalets_accounts/add_chalet.html:2173
+#: templates/chalets_accounts/hotel_registration.html:1856
+#, python-brace-format
+msgid ""
+"House/Building/Apartment number should not exceed ${buildingNumberMaxLength} "
+"characters."
+msgstr ""
+"يجب ألا يتجاوز رقم المنزل/المبنى/الشقة ${buildingNumberMaxLength} الشخصيات."
+
+#: templates/chalets_accounts/add_chalet.html:2185
+msgid "Account Holder Name cannot be empty"
+msgstr "لا يمكن أن يكون اسم صاحب الحساب فارغًا"
+
+#: templates/chalets_accounts/add_chalet.html:2188
+#, python-brace-format
+msgid "Account Holder Name should not exceed ${maxLength} characters."
+msgstr "يجب ألا يتجاوز اسم صاحب الحساب ${maxLength} حرفًا."
+
+#: templates/chalets_accounts/amenties.html:337
+msgid "Let's finish things up"
+msgstr "دعونا ننهي الأمور"
+
+#: templates/chalets_accounts/amenties.html:341
+#: templates/chalets_accounts/amenties.html:357
+#: templates/chalets_accounts/chalet_booking_view.html:105
+#: templates/chalets_accounts/chalet_detail_view.html:122
+#: templates/chalets_accounts/chalet_detail_view.html:199
+#: templates/chalets_accounts/chalet_management.html:152
+#: templates/chalets_accounts/chalet_management.html:302
+#: templates/chalets_accounts/final_step.html:430
+#: templates/chalets_accounts/price.html:25
+msgid "Amenities"
+msgstr "وسائل الراحة"
+
+#: templates/chalets_accounts/amenties.html:346
+#: templates/chalets_accounts/final_step.html:435
+#: templates/chalets_accounts/price.html:30
+#: templates/chalets_accounts/price.html:40
+msgid "Prices"
+msgstr "الأسعار"
+
+#: templates/chalets_accounts/amenties.html:358
+msgid "Please list all amenities available at your property"
+msgstr "يرجى ذكر جميع وسائل الراحة المتوفرة في الممتلكات الخاصة بك"
+
+#: templates/chalets_accounts/amenties.html:387
+msgid "Request amenity"
+msgstr "طلب وسائل الراحة"
+
+#: templates/chalets_accounts/amenties.html:393
+#: templates/chalets_accounts/edit_chalet_amentiy.html:193
+msgid "Please select at least one amenity to proceed."
+msgstr "الرجاء تحديد وسائل راحة واحدة على الأقل للمتابعة."
+
+#: templates/chalets_accounts/amenties.html:394
+msgid "Please wait for the requested amenity to be added before proceeding."
+msgstr "يرجى الانتظار حتى تتم إضافة المرافق المطلوبة قبل المتابعة."
+
+#: templates/chalets_accounts/amenties.html:397
+#: templates/chalets_accounts/dashboard_chalets.html:341
+#: templates/chalets_accounts/dashboard_chalets.html:401
+#: templates/chalets_accounts/final_step.html:523
+#: templates/chalets_accounts/pending_hotel.html:21
+#: templates/chalets_accounts/price.html:217
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/chalets_accounts/amenties.html:398
+#: templates/chalets_accounts/price.html:218
+msgid "Next"
+msgstr "التالي"
+
+#: templates/chalets_accounts/amenties.html:566
+msgid "Request sent successfully!"
+msgstr "تم إرسال الطلب بنجاح!\t"
+
+#: templates/chalets_accounts/amenties.html:577
+msgid "Failed to send request."
+msgstr "فشل في إرسال الطلب."
+
+#: templates/chalets_accounts/chalat_logo.html:39
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+#: templates/chalets_accounts/chalat_logo.html:42
+#: templates/chalets_accounts/chalet_booking_view.html:125
+msgid "Booking"
+msgstr "الحجوزات"
+
+#: templates/chalets_accounts/chalat_logo.html:45
+msgid "Booking Availability"
+msgstr "إتاحة الحجز"
+
+#: templates/chalets_accounts/chalat_logo.html:48
+msgid "Chalet Info"
+msgstr "معلومات الشاليه"
+
+#: templates/chalets_accounts/chalat_logo.html:51
+msgid "Transaction"
+msgstr "تفاصيل المعاملات"
+
+#: templates/chalets_accounts/chalat_logo.html:54
+msgid "Offers & Promo"
+msgstr "العروض والترويجات"
+
+#: templates/chalets_accounts/chalat_logo.html:57
+msgid "Refund"
+msgstr "استعادة"
+
+#: templates/chalets_accounts/chalat_logo.html:60
+msgid "Review & Rating"
+msgstr "مراجعات وتقييمات"
+
+#: templates/chalets_accounts/chalat_logo.html:63
+msgid "Edit Details"
+msgstr "تحرير التفاصيل"
+
+#: templates/chalets_accounts/chalet_approval.html:410
+#: templates/chalets_accounts/chalet_management.html:202
+#: templates/chalets_accounts/edit_chalet_detail.html:48
+msgid "Chalet Name"
+msgstr "اسم الشاليه"
+
+#: templates/chalets_accounts/chalet_approval.html:411
+#: templates/chalets_accounts/edit_chalet_detail.html:67
+msgid "Chalet Owner Name"
+msgstr "اسم مالك الشاليه"
+
+#: templates/chalets_accounts/chalet_approval.html:442
+msgid "State/ Province"
+msgstr "المحافظة / الولاية"
+
+#: templates/chalets_accounts/chalet_approval.html:470
+msgid "Postal/ZIP Code"
+msgstr "الرمز البريدي / صندوق البريد"
+
+#: templates/chalets_accounts/chalet_approval.html:471
+#: templates/chalets_accounts/chalet_management.html:59
+#: templates/chalets_accounts/dashboard_chalets.html:104
+msgid "Property Type"
+msgstr "أنواع العقارات"
+
+#: templates/chalets_accounts/chalet_approval.html:497
+#: templates/chalets_accounts/hotel_registration.html:177
+msgid "Date of Expiry"
+msgstr "تاريخ الانتهاء"
+
+#: templates/chalets_accounts/chalet_approval.html:541
+msgid "Reject"
+msgstr "رفض"
+
+#: templates/chalets_accounts/chalet_approval.html:548
+msgid "Approve"
+msgstr "موافقة"
+
+#: templates/chalets_accounts/chalet_booking_management.html:34
+msgid "Upcoming Bookings"
+msgstr "الحجوزات القادمة"
+
+#: templates/chalets_accounts/chalet_booking_management.html:39
+msgid "Past Bookings"
+msgstr "الحجوزات الماضية"
+
+#: templates/chalets_accounts/chalet_booking_management.html:44
+#: templates/chalets_accounts/dashboard_chalets.html:290
+msgid "Cancelled Bookings"
+msgstr "الحجوزات الملغاة"
+
+#: templates/chalets_accounts/chalet_booking_management.html:55
+#: templates/chalets_accounts/chalet_manage_promo_code.html:385
+#: templates/chalets_accounts/chalet_offer_promotion.html:46
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:41
+#: templates/chalets_accounts/chalet_review_rating.html:43
+#: templates/chalets_accounts/chalet_transaction_detail.html:39
+msgid "From: Sep 8, 2023"
+msgstr "من: 8 سبتمبر 2023"
+
+#: templates/chalets_accounts/chalet_booking_management.html:59
+#: templates/chalets_accounts/chalet_manage_promo_code.html:393
+#: templates/chalets_accounts/chalet_offer_promotion.html:53
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:45
+#: templates/chalets_accounts/chalet_review_rating.html:47
+#: templates/chalets_accounts/chalet_transaction_detail.html:43
+msgid "To: Sep 8, 2023"
+msgstr "إلى: 8 سبتمبر 2023"
+
+#: templates/chalets_accounts/chalet_booking_management.html:63
+msgid "Status Type"
+msgstr "نوع الحالة"
+
+#: templates/chalets_accounts/chalet_booking_management.html:64
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: templates/chalets_accounts/chalet_booking_management.html:65
+msgid "Booked"
+msgstr "حجزت"
+
+#: templates/chalets_accounts/chalet_booking_management.html:66
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#: templates/chalets_accounts/chalet_booking_management.html:67
+msgid "Rejected"
+msgstr "مرفوض"
+
+#: templates/chalets_accounts/chalet_booking_management.html:68
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+#: templates/chalets_accounts/chalet_booking_management.html:69
+msgid "Completed"
+msgstr "مكتمل"
+
+#: templates/chalets_accounts/chalet_booking_management.html:75
+#: templates/chalets_accounts/chalet_manage_promo_code.html:410
+#: templates/chalets_accounts/chalet_management.html:67
+#: templates/chalets_accounts/chalet_offer_promotion.html:68
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:74
+#: templates/chalets_accounts/chalet_review_rating.html:68
+#: templates/chalets_accounts/chalet_transaction_detail.html:57
+msgid "Search"
+msgstr "بحث"
+
+#: templates/chalets_accounts/chalet_booking_management.html:88
+#: templates/chalets_accounts/chalet_management.html:201
+#: templates/chalets_accounts/chalet_offer_promotion.html:87
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:85
+#: templates/chalets_accounts/chalet_review_rating.html:79
+#: templates/chalets_accounts/chalet_transaction_detail.html:68
+#: templates/chalets_accounts/dashboard_chalets.html:101
+#: templates/chalets_accounts/offer_table_update.html:7
+#: templates/chalets_accounts/property.html:158
+msgid "Sl. No."
+msgstr "التسلسل"
+
+#: templates/chalets_accounts/chalet_booking_management.html:89
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:88
+#: templates/chalets_accounts/chalet_transaction_detail.html:71
+#: templates/chalets_accounts/dashboard_chalets.html:102
+msgid "Guest Name"
+msgstr "اسم الضيف"
+
+#: templates/chalets_accounts/chalet_booking_management.html:90
+#: templates/chalets_accounts/dashboard_chalets.html:103
+msgid "Contact Number"
+msgstr "رقم الاتصال"
+
+#: templates/chalets_accounts/chalet_booking_management.html:91
+#: templates/chalets_accounts/dashboard_chalets.html:106
+msgid "Check-In"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+
+#: templates/chalets_accounts/chalet_booking_management.html:92
+#: templates/chalets_accounts/dashboard_chalets.html:107
+msgid "Check-Out"
+msgstr "الخروج"
+
+#: templates/chalets_accounts/chalet_booking_management.html:93
+#: templates/chalets_accounts/dashboard_chalets.html:105
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/chalets_accounts/chalet_booking_management.html:94
+#: templates/chalets_accounts/chalet_management.html:207
+#: templates/chalets_accounts/chalet_offer_promotion.html:106
+#: templates/chalets_accounts/property.html:164
+msgid "Action"
+msgstr "إجراء"
+
+#: templates/chalets_accounts/chalet_booking_management.html:110
+#: templates/chalets_accounts/chalet_management.html:225
+msgid "View"
+msgstr "ﻣﻌﺎﯾﻧﺔ"
+
+#: templates/chalets_accounts/chalet_booking_management.html:114
+#: templates/chalets_accounts/chalet_manage_promo_code.html:534
+#: templates/chalets_accounts/chalet_management.html:239
+#: templates/chalets_accounts/chalet_offer_promotion.html:149
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:115
+#: templates/chalets_accounts/chalet_review_rating.html:135
+#: templates/chalets_accounts/chalet_transaction_detail.html:118
+#: templates/chalets_accounts/dashboard_chalets.html:129
+#: templates/chalets_accounts/offer_table_update.html:67
+#: templates/chalets_accounts/property.html:193
+msgid "No data found"
+msgstr "لاتوجد بيانات"
+
+#: templates/chalets_accounts/chalet_booking_view.html:31
+msgid "User Management"
+msgstr "إدارة المستخدمين"
+
+#: templates/chalets_accounts/chalet_booking_view.html:42
+msgid "Booking ID:"
+msgstr ":رقم الحج:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:67
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+#: templates/chalets_accounts/chalet_booking_view.html:68
+msgid "Name:"
+msgstr "اسم:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:69
+msgid "Email Id:"
+msgstr "معرف البريد الإلكتروني:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:70
+msgid "Contact Number:"
+msgstr "رقم الاتصال"
+
+#: templates/chalets_accounts/chalet_booking_view.html:74
+msgid "Booking Info"
+msgstr "معلومات الحجز"
+
+#: templates/chalets_accounts/chalet_booking_view.html:75
+msgid "Booking Date:"
+msgstr "تاريخ الحجز:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:76
+msgid "Check In:"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:77
+msgid "Check Out:"
+msgstr "تسجيل الخروج :"
+
+#: templates/chalets_accounts/chalet_booking_view.html:78
+msgid "Room & Members:"
+msgstr "الغرفة والأعضاء:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:78
+msgid "Room"
+msgstr "غرفة"
+
+#: templates/chalets_accounts/chalet_booking_view.html:78
+msgid "Adult"
+msgstr "الكبار"
+
+#: templates/chalets_accounts/chalet_booking_view.html:84
+msgid "Pricing Structure"
+msgstr "هيكل التسعير"
+
+#: templates/chalets_accounts/chalet_booking_view.html:85
+msgid "Base Price:"
+msgstr "السعر الأساسي:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:86
+msgid "Tax Fees:"
+msgstr "الرسوم الضريبية:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:87
+msgid "Discount Price"
+msgstr "سعر الخصم:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:88
+msgid "Service Fees:"
+msgstr "رسوم الخدمة:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:91
+msgid "Payment Method:"
+msgstr "طريقة الدفع"
+
+#: templates/chalets_accounts/chalet_booking_view.html:92
+msgid "Status:"
+msgstr "حالة:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:96
+msgid "Total Amount:"
+msgstr "المبلغ الإجمالي:"
+
+#: templates/chalets_accounts/chalet_booking_view.html:118
+msgid "Cancel "
+msgstr " اﻟﻐﺎء"
+
+#: templates/chalets_accounts/chalet_booking_view.html:118
+#: templates/chalets_accounts/chalet_booking_view.html:121
+msgid " Booking" 
+msgstr " الحجز"
+
+#: templates/chalets_accounts/chalet_booking_view.html:121
+msgid "Approve "
+msgstr " الموافقة على"
+
+#: templates/chalets_accounts/chalet_booking_view.html:125
+msgid "Send "
+msgstr "يرسل"
+
+#: templates/chalets_accounts/chalet_booking_view.html:125
+msgid " Reminder"
+msgstr "تذكير"
+
+#: templates/chalets_accounts/chalet_booking_view.html:128
+msgid "Close"
+msgstr "إغلاق"
+
+#: templates/chalets_accounts/chalet_booking_view.html:242
+msgid "Are you sure you want to cancel this booking?"
+msgstr "هل أنت متأكد أنك تريد إلغاء هذا الحجز؟"
+
+#: templates/chalets_accounts/chalet_booking_view.html:282
+msgid "Reminder email sent"
+msgstr "تم إرسال رسالة تذكير بالبريد الإلكتروني"
+
+#: templates/chalets_accounts/chalet_booking_view.html:300
+msgid "Are you sure you want to approve this booking?"
+msgstr "هل أنت متأكد أنك تريد الموافقة على هذا الحجز؟"
+
+#: templates/chalets_accounts/chalet_booking_view.html:313
+msgid "Booking is approved"
+msgstr "تمت الموافقة على الحجز"
+
+#: templates/chalets_accounts/chalet_booking_view.html:316
+msgid "Failed to approve this booking"
+msgstr "فشلت الموافقة على هذا الحجز"
+
+#: templates/chalets_accounts/chalet_booking_view.html:348
+msgid "You must upload"
+msgstr "يجب عليك تقديم"
+
+#: templates/chalets_accounts/chalet_booking_view.html:348
+msgid "files."
+msgstr "ملفات"
+
+#: templates/chalets_accounts/chalet_booking_view.html:356
+msgid "One or more files exceed the maximum size of 500 KB."
+msgstr "يتجاوز ملف واحد أو أكثر الحد الأقصى للحجم وهو 500 كيلو بايت."
+
+#: templates/chalets_accounts/chalet_detail_view.html:27
+msgid "Chalet Management"
+msgstr "إدارة الشاليهات"
+
+#: templates/chalets_accounts/chalet_detail_view.html:66
+msgid "Upload New Photo"
+msgstr "تحميل صورة جديدة"
+
+#: templates/chalets_accounts/chalet_detail_view.html:77
+msgid "Chalet Details"
+msgstr "تفاصيل الشاليه"
+
+#: templates/chalets_accounts/chalet_detail_view.html:105
+#: templates/chalets_accounts/chalet_management.html:204
+#: templates/chalets_accounts/chalet_management.html:270
+msgid "Price"
+msgstr "سعر"
+
+#: templates/chalets_accounts/chalet_detail_view.html:106
+msgid "Commission"
+msgstr "عمولة"
+
+#: templates/chalets_accounts/chalet_detail_view.html:109
+#: templates/chalets_accounts/price.html:83
+msgid "Total Price"
+msgstr "السعر الإجمالي"
+
+#: templates/chalets_accounts/chalet_detail_view.html:112
+#: templates/chalets_accounts/chalet_management.html:203
+msgid "No. Of Guests"
+msgstr "عدد الضيوف"
+
+#: templates/chalets_accounts/chalet_detail_view.html:136
+#: templates/chalets_accounts/edit_chalet_detail.html:451
+msgid "No amenities available."
+msgstr "لا توجد وسائل الراحة المتاحة."
+
+#: templates/chalets_accounts/chalet_detail_view.html:155
+#: templates/chalets_accounts/chalet_manage_promo_code.html:528
+#: templates/chalets_accounts/chalet_manage_promo_code.html:547
+#: templates/chalets_accounts/chalet_management.html:230
+#: templates/chalets_accounts/chalet_management.html:258
+#: templates/chalets_accounts/chalet_offer_promotion.html:137
+#: templates/chalets_accounts/chalet_offer_promotion.html:220
+#: templates/chalets_accounts/chalet_review_rating.html:106
+#: templates/chalets_accounts/chalet_review_rating.html:118
+#: templates/chalets_accounts/property.html:179
+#: templates/chalets_accounts/property.html:219
+#: templates/chalets_accounts/property.html:302
+msgid "Edit"
+msgstr "تحرير"
+
+#: templates/chalets_accounts/chalet_detail_view.html:162
+msgid "Room Type"
+msgstr "نوع الغرفة"
+
+#: templates/chalets_accounts/chalet_detail_view.html:175
+#: templates/chalets_accounts/chalet_management.html:111
+#: templates/chalets_accounts/property.html:66
+#: templates/chalets_accounts/property.html:159
+#: templates/chalets_accounts/property.html:227
+msgid "Room Number"
+msgstr "رقم الغرفة"
+
+#: templates/chalets_accounts/chalet_detail_view.html:186
+#: templates/chalets_accounts/chalet_management.html:140
+msgid "Price-per night"
+msgstr "السعر لليلة الواحدة"
+
+#: templates/chalets_accounts/chalet_detail_view.html:217
+msgid "Meals"
+msgstr "وجبات"
+
+#: templates/chalets_accounts/chalet_detail_view.html:235
+msgid "Adults"
+msgstr "الكبار"
+
+#: templates/chalets_accounts/chalet_detail_view.html:249
+msgid "Children"
+msgstr "أطفال"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:380
+msgid "Promo Code Management"
+msgstr "إدارة كود الخصم"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:400
+#: templates/chalets_accounts/chalet_offer_promotion.html:90
+#: templates/chalets_accounts/chalet_offer_promotion.html:273
+#: templates/chalets_accounts/chalet_offer_promotion.html:491
+#: templates/chalets_accounts/offer_table_update.html:10
+msgid "Discount Percentage"
+msgstr "نوع الخصم"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:415
+#: templates/chalets_accounts/chalet_manage_promo_code.html:430
+msgid "Create New Promo Code"
+msgstr "إنشاء كود خصم جديد"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:436
+#: templates/chalets_accounts/chalet_manage_promo_code.html:510
+#: templates/chalets_accounts/chalet_manage_promo_code.html:554
+msgid "Code name"
+msgstr "اسم الكود"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:444
+#: templates/chalets_accounts/chalet_manage_promo_code.html:511
+#: templates/chalets_accounts/chalet_manage_promo_code.html:562
+msgid "Discount percentage"
+msgstr "نسبة الخصم"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:453
+#: templates/chalets_accounts/chalet_manage_promo_code.html:571
+msgid "Validity From"
+msgstr "الصلاحية من"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:466
+#: templates/chalets_accounts/chalet_manage_promo_code.html:582
+msgid "Validity To"
+msgstr "صلاحية ل"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:475
+#: templates/chalets_accounts/chalet_manage_promo_code.html:513
+#: templates/chalets_accounts/chalet_manage_promo_code.html:594
+msgid "Usage limits"
+msgstr "حدود الاستخدام"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:484
+#: templates/chalets_accounts/chalet_manage_promo_code.html:514
+#: templates/chalets_accounts/chalet_manage_promo_code.html:603
+msgid "Applicable conditions"
+msgstr "الشروط القابلة للتطبيق"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:493
+#: templates/chalets_accounts/chalet_manage_promo_code.html:612
+msgid "cancel"
+msgstr "يلغي"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:509
+msgid "Sl.No."
+msgstr "التسلسل."
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:512
+msgid "Validity period"
+msgstr "فترة الصلاحية"
+
+#: templates/chalets_accounts/chalet_manage_promo_code.html:529
+#: templates/chalets_accounts/chalet_offer_promotion.html:140
+#: templates/chalets_accounts/chalet_review_rating.html:109
+#: templates/chalets_accounts/chalet_review_rating.html:121
+#: templates/chalets_accounts/property.html:186
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/chalets_accounts/chalet_management.html:85
+#: templates/chalets_accounts/property.html:53
+msgid "ADD"
+msgstr "يضيف"
+
+#: templates/chalets_accounts/chalet_management.html:92
+msgid "property Type"
+msgstr "أنواع العقارات"
+
+#: templates/chalets_accounts/chalet_management.html:98
+msgid "Select a property type"
+msgstr "اختر نوع العقار"
+
+#: templates/chalets_accounts/chalet_management.html:123
+#: templates/chalets_accounts/property.html:109
+#: templates/chalets_accounts/property.html:162
+#: templates/chalets_accounts/property.html:269
+msgid "Occupancy"
+msgstr "الإشغال"
+
+#: templates/chalets_accounts/chalet_management.html:172
+#: templates/chalets_accounts/chalet_management.html:335
+msgid "Add Images"
+msgstr "إضافة الصور"
+
+#: templates/chalets_accounts/chalet_management.html:185
+#: templates/chalets_accounts/chalet_offer_promotion.html:434
+#: templates/chalets_accounts/edit_chalet_amentiy.html:201
+#: templates/chalets_accounts/property.html:145
+msgid "Add"
+msgstr "يضيف"
+
+#: templates/chalets_accounts/chalet_management.html:205
+msgid "Weekend Price"
+msgstr "سعر عطلة نهاية الأسبوع"
+
+#: templates/chalets_accounts/chalet_management.html:206
+msgid "Commission Amount"
+msgstr "مبلغ العمولة"
+
+#: templates/chalets_accounts/chalet_management.html:226
+msgid "View chalet"
+msgstr "عرض الشاليه"
+
+#: templates/chalets_accounts/chalet_management.html:229
+msgid "Edit chalet"
+msgstr "تحرير الشاليه"
+
+#: templates/chalets_accounts/chalet_management.html:275
+msgid "Enter price"
+msgstr "أدخل السعر"
+
+#: templates/chalets_accounts/chalet_management.html:286
+msgid "Weekend price (Optional)"
+msgstr "سعر نهاية الأسبوع (اختياري)"
+
+#: templates/chalets_accounts/chalet_management.html:291
+msgid "Enter weekend price"
+msgstr "أدخل سعر عطلة نهاية الأسبوع"
+
+#: templates/chalets_accounts/chalet_management.html:307
+#: templates/chalets_accounts/edit_chalet_amentiy.html:180
+msgid "Select Amenities"
+msgstr "حدد وسائل الراحة"
+
+#: templates/chalets_accounts/chalet_management.html:384
+msgid "Chalet added successfully!"
+msgstr "تمت إضافة الشاليه بنجاح!"
+
+#: templates/chalets_accounts/chalet_management.html:432
+msgid "Please enter a valid price greater than 0 (up to 2 decimal places)."
+msgstr "الرجاء إدخال سعر صالح أكبر من 0 (ما يصل إلى منزلتين عشريتين)."
+
+#: templates/chalets_accounts/chalet_management.html:440
+msgid ""
+"Please enter a valid weekend price greater than 0 (up to 2 decimal places)."
+msgstr ""
+"الرجاء إدخال سعر صالح لعطلة نهاية الأسبوع أكبر من 0 (ما يصل إلى منزلتين "
+"عشريتين)."
+
+#: templates/chalets_accounts/chalet_management.html:470
+#: templates/chalets_accounts/chalet_management.html:539
+msgid "Only PNG and JPEG images are allowed."
+msgstr "يُسمح فقط بالصور PNG وJPEG."
+
+#: templates/chalets_accounts/chalet_management.html:477
+#: templates/chalets_accounts/chalet_management.html:520
+msgid "You can select up to 5 images only."
+msgstr "يمكنك اختيار ما يصل إلى 5 صور فقط."
+
+#: templates/chalets_accounts/chalet_management.html:496
+#: templates/chalets_accounts/chalet_management.html:552
+msgid "image(s) uploaded."
+msgstr "تم تحميل الصورة (الصور)."
+
+#: templates/chalets_accounts/chalet_management.html:606
+msgid "Please enter a valid amount greater than 0."
+msgstr "الرجاء إدخال مبلغ صالح أكبر من 0."
+
+#: templates/chalets_accounts/chalet_management.html:615
+msgid "You must upload 5 images"
+msgstr "يجب عليك تحميل 5 صور"
+
+#: templates/chalets_accounts/chalet_management.html:658
+msgid "Room number must be digits only."
+msgstr "يجب أن يتكون رقم الغرفة من أرقام فقط."
+
+#: templates/chalets_accounts/chalet_management.html:669
+#: templates/chalets_accounts/chalet_management.html:823
+msgid "Room number already exists."
+msgstr "رقم الغرفة موجود بالفعل."
+
+#: templates/chalets_accounts/chalet_management.html:681
+msgid "Price per night must be a positive number."
+msgstr "يجب أن يكون سعر الليلة رقمًا موجبًا."
+
+#: templates/chalets_accounts/chalet_management.html:691
+msgid "You must upload 5 images."
+msgstr "يجب عليك تحميل 5 صور."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:37
+msgid "Offer Creation And Management"
+msgstr "إنشاء العرض وإدارته"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:58
+#: templates/chalets_accounts/chalet_offer_promotion.html:478
+msgid "Common Promotion"
+msgstr "شائع ترقية"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:59
+#: templates/chalets_accounts/chalet_offer_promotion.html:479
+msgid "Promo Code Specific"
+msgstr "الرمز الترويجي محدد"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:73
+msgid "Create New Offer"
+msgstr "إنشاء عرض جديد"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:88
+#: templates/chalets_accounts/chalet_offer_promotion.html:237
+#: templates/chalets_accounts/chalet_offer_promotion.html:447
+#: templates/chalets_accounts/offer_table_update.html:8
+msgid "Offer Name"
+msgstr "اسم العرض"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:89
+#: templates/chalets_accounts/chalet_offer_promotion.html:247
+#: templates/chalets_accounts/chalet_offer_promotion.html:459
+#: templates/chalets_accounts/offer_table_update.html:9
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:93
+#: templates/chalets_accounts/chalet_offer_promotion.html:324
+#: templates/chalets_accounts/chalet_offer_promotion.html:548
+#: templates/chalets_accounts/offer_table_update.html:14
+msgid "Promo Code"
+msgstr "إدارة كود الخصم"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:94
+#: templates/chalets_accounts/chalet_offer_promotion.html:335
+#: templates/chalets_accounts/chalet_offer_promotion.html:560
+#: templates/chalets_accounts/offer_table_update.html:15
+msgid "Max Uses"
+msgstr "الاستخدامات القصوى"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:95
+#: templates/chalets_accounts/chalet_offer_promotion.html:104
+#: templates/chalets_accounts/offer_table_update.html:16
+#: templates/chalets_accounts/offer_table_update.html:25
+msgid "Validity Period"
+msgstr "فترة الصلاحية"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:97
+#: templates/chalets_accounts/chalet_offer_promotion.html:372
+#: templates/chalets_accounts/chalet_offer_promotion.html:599
+#: templates/chalets_accounts/offer_table_update.html:18
+msgid "Targeted Offer Type"
+msgstr "نوع العرض المستهدف"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:99
+#: templates/chalets_accounts/chalet_offer_promotion.html:389
+#: templates/chalets_accounts/chalet_offer_promotion.html:616
+#: templates/chalets_accounts/offer_table_update.html:20
+msgid "Occasion Name"
+msgstr "اسم المناسبة"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:101
+#: templates/chalets_accounts/chalet_offer_promotion.html:402
+#: templates/chalets_accounts/chalet_offer_promotion.html:630
+#: templates/chalets_accounts/offer_table_update.html:22
+msgid "Points Required"
+msgstr "النقاط المطلوبة"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:103
+#: templates/chalets_accounts/chalet_offer_promotion.html:289
+#: templates/chalets_accounts/chalet_offer_promotion.html:509
+#: templates/chalets_accounts/offer_table_update.html:24
+msgid "Minimum Spend"
+msgstr "الحد الأدنى للإنفاق"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:132
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:300
+#: templates/chalets_accounts/chalet_offer_promotion.html:347
+#: templates/chalets_accounts/chalet_offer_promotion.html:521
+#: templates/chalets_accounts/chalet_offer_promotion.html:572
+msgid "Valid From"
+msgstr "صالح من"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:310
+#: templates/chalets_accounts/chalet_offer_promotion.html:357
+#: templates/chalets_accounts/chalet_offer_promotion.html:533
+#: templates/chalets_accounts/chalet_offer_promotion.html:584
+msgid "Valid To"
+msgstr "صلاحية ل"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:376
+#: templates/chalets_accounts/chalet_offer_promotion.html:603
+msgid "Early Bird"
+msgstr "الطائر المبكر"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:377
+#: templates/chalets_accounts/chalet_offer_promotion.html:604
+msgid "Last Minute"
+msgstr "اللحظة الأخيرة"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:378
+#: templates/chalets_accounts/chalet_offer_promotion.html:605
+msgid "Family Package"
+msgstr "الحزمة العائلية"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:451
+msgid "Enter offer name"
+msgstr "أدخل اسم العروض"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:463
+msgid "Enter offer description here..."
+msgstr "أدخل وصف العرض هنا..."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:496
+msgid "Enter discount percentage"
+msgstr "أدخل نسبة الخصم"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:513
+msgid "Enter minimum spend"
+msgstr "أدخل الحد الأدنى للإنفاق"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:720
+#: templates/chalets_accounts/chalet_offer_promotion.html:1168
+msgid "Offer Name is required."
+msgstr "مطلوب اسم العروض"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:725
+#: templates/chalets_accounts/chalet_offer_promotion.html:1172
+msgid "Offer Name cannot exceed 30 characters."
+msgstr "لا يمكن أن يتجاوز اسم العروض 30 حرفًا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:731
+#: templates/chalets_accounts/chalet_offer_promotion.html:1177
+msgid "Description is required."
+msgstr "الوصف مطلوب."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:736
+#: templates/chalets_accounts/chalet_offer_promotion.html:1181
+msgid "Description cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز الوصف 100 حرف."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:742
+#: templates/chalets_accounts/chalet_offer_promotion.html:1186
+msgid "You need to enter discount percentage to proceed."
+msgstr "تحتاج إلى إدخال نسبة الخصم للمتابعة."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:747
+#: templates/chalets_accounts/chalet_offer_promotion.html:1191
+msgid "Please enter a valid discount percentage (between 0 and 100)."
+msgstr "الرجاء إدخال نسبة خصم صالحة (بين 0 و100)."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:761
+msgid "Minimum spend must be a whole number (no decimals)."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا (بدون أرقام عشرية)."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:766
+msgid "Please enter a valid minimum spend."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:771
+msgid "Please specify a valid start date."
+msgstr "الرجاء تحديد تاريخ بدء صالح."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:776
+msgid "Please specify a valid end date."
+msgstr "الرجاء تحديد تاريخ انتهاء صالح."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:788
+#: templates/chalets_accounts/chalet_offer_promotion.html:840
+#: templates/chalets_accounts/chalet_offer_promotion.html:1228
+#: templates/chalets_accounts/chalet_offer_promotion.html:1294
+msgid "Valid From date cannot be in the past."
+msgstr "تاريخ صالح من لا يمكن أن يكون في الماضي."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:792
+#: templates/chalets_accounts/chalet_offer_promotion.html:844
+#: templates/chalets_accounts/chalet_offer_promotion.html:1231
+#: templates/chalets_accounts/chalet_offer_promotion.html:1298
+msgid "Validity To date cannot be in the past."
+msgstr "لا يمكن أن تكون الصلاحية حتى الآن في الماضي."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:796
+msgid "Start date cannot be later than the end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:809
+#: templates/chalets_accounts/chalet_offer_promotion.html:1245
+msgid "Promo code is required."
+msgstr "الرمز الترويجي مطلوب."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:814
+msgid "Promo code cannot exceed 50 characters."
+msgstr "لا يمكن أن يتجاوز الرمز الترويجي 50 حرفًا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:820
+#: templates/chalets_accounts/chalet_offer_promotion.html:1275
+msgid "Please specify a valid number of max uses below 1999999999."
+msgstr "يرجى تحديد عدد صحيح من الاستخدامات القصوى أدناه 1999999999."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:825
+#: templates/chalets_accounts/chalet_offer_promotion.html:830
+#: templates/chalets_accounts/chalet_offer_promotion.html:1212
+#: templates/chalets_accounts/chalet_offer_promotion.html:1216
+#: templates/chalets_accounts/chalet_offer_promotion.html:1279
+#: templates/chalets_accounts/chalet_offer_promotion.html:1284
+msgid "Please specify a valid date."
+msgstr "يرجى تحديد تاريخ صالح."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:849
+#: templates/chalets_accounts/chalet_offer_promotion.html:1234
+#: templates/chalets_accounts/chalet_offer_promotion.html:1303
+msgid "Start date cannot be later than end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:857
+#: templates/chalets_accounts/chalet_offer_promotion.html:1312
+msgid "Please select a targeted offer type."
+msgstr "الرجاء تحديد نوع العرض المستهدف."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:866
+#: templates/chalets_accounts/chalet_offer_promotion.html:1320
+msgid "Occasion name is required."
+msgstr "اسم المناسبة مطلوب."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:871
+#: templates/chalets_accounts/chalet_offer_promotion.html:1324
+msgid "Occasion name cannot be a number."
+msgstr "لا يمكن أن يكون اسم المناسبة رقمًا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:876
+msgid "Occasion name cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز اسم المناسبة 100 حرف."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:886
+#: templates/chalets_accounts/chalet_offer_promotion.html:1332
+msgid "Please specify the points required."
+msgstr "يرجى تحديد النقاط المطلوبة."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:943
+#: templates/chalets_accounts/chalet_offer_promotion.html:1046
+#: templates/chalets_accounts/chalet_review_rating.html:305
+msgid "Error fetching pagination data. Please try again later."
+msgstr "حدث خطأ أثناء جلب بيانات ترقيم الصفحات. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:982
+msgid "Error submitting the form. Please try again later."
+msgstr "حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1203
+msgid "Minimum spend is required."
+msgstr "مطلوب الحد الأدنى للإنفاق."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1205
+msgid "Minimum spend must be a whole number without decimal points."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا بدون نقاط عشرية."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1207
+msgid "Please enter a valid minimum spend greater than zero."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق أكبر من الصفر."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1263
+msgid "Promo code already exists."
+msgstr "الرمز الترويجي موجود بالفعل."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1368
+msgid "Error updating offer. Please try again later."
+msgstr "حدث خطأ أثناء تحديث العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1384
+msgid "Are you sure you want to delete this offer?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا العرض؟"
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1397
+msgid "Error deleting offer. Please try again later."
+msgstr "حدث خطأ أثناء حذف العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/chalets_accounts/chalet_offer_promotion.html:1515
+#: templates/chalets_accounts/dashboard_chalets.html:420
+msgid "Error fetching data. Please try again later."
+msgstr "حدث خطأ أثناء جلب البيانات. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:50
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:90
+msgid "Booking Source"
+msgstr "مصدر الحجز"
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:65
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:92
+msgid "Cancelation Status"
+msgstr "حالة الإلغاء"
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:86
+#: templates/chalets_accounts/chalet_transaction_detail.html:69
+msgid "Transaction ID"
+msgstr "رقم المعاملة"
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:87
+#: templates/chalets_accounts/chalet_transaction_detail.html:70
+msgid "Booking ID"
+msgstr "رقم الحجز"
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:89
+msgid "Refund Date"
+msgstr "تاريخ الاسترداد"
+
+#: templates/chalets_accounts/chalet_refund_and_cancellation.html:91
+msgid "Refund Amount"
+msgstr "مبلغ الاسترداد"
+
+#: templates/chalets_accounts/chalet_review_rating.html:52
+#: templates/chalets_accounts/chalet_review_rating.html:81
+msgid "Rating"
+msgstr "التقييم"
+
+#: templates/chalets_accounts/chalet_review_rating.html:61
+#: templates/chalets_accounts/chalet_review_rating.html:82
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/chalets_accounts/chalet_review_rating.html:80
+msgid "User Name"
+msgstr "اسم المستخدم"
+
+#: templates/chalets_accounts/chalet_review_rating.html:83
+msgid "Review Text"
+msgstr " مراجعة نص"
+
+#: templates/chalets_accounts/chalet_review_rating.html:84
+msgid "Response"
+msgstr "إجابة"
+
+#: templates/chalets_accounts/chalet_review_rating.html:101
+msgid "See more"
+msgstr "شاهد المزيد"
+
+#: templates/chalets_accounts/chalet_review_rating.html:128
+msgid "Respond"
+msgstr "يستجيب"
+
+#: templates/chalets_accounts/chalet_review_rating.html:211
+msgid "Write Respond Review"
+msgstr "اكتب مراجعة الرد"
+
+#: templates/chalets_accounts/chalet_review_rating.html:220
+#: templates/chalets_accounts/chalet_review_rating.html:271
+msgid "Review"
+msgstr "مراجعة"
+
+#: templates/chalets_accounts/chalet_review_rating.html:226
+#: templates/chalets_accounts/chalet_review_rating.html:278
+msgid "Response cannot be empty"
+msgstr "لا يمكن أن تكون الاستجابة فارغة"
+
+#: templates/chalets_accounts/chalet_review_rating.html:227
+#: templates/chalets_accounts/chalet_review_rating.html:279
+msgid "Response should be between 5 - 250 characters."
+msgstr "يجب أن تكون الإجابة بين 5 - 250 حرفًا."
+
+#: templates/chalets_accounts/chalet_review_rating.html:236
+#: templates/chalets_accounts/chalet_review_rating.html:287
+msgid "Post"
+msgstr "نشر"
+
+#: templates/chalets_accounts/chalet_review_rating.html:263
+msgid "Edit Respond Review"
+msgstr "تحرير مراجعة الرد"
+
+#: templates/chalets_accounts/chalet_review_rating.html:304
+msgid "Error Fetching Reviews. Please try again later."
+msgstr "حدث خطأ أثناء تحميل المراجعات. يُرجى المحاولة لاحقًا."
+
+#: templates/chalets_accounts/chalet_review_rating.html:306
+msgid "Failed to submit the response. Please try again."
+msgstr "فشل إرسال الرد. يُرجى المحاولة مرة أخرى."
+
+#: templates/chalets_accounts/chalet_review_rating.html:307
+msgid "Response submitted successfully!"
+msgstr "تم إرسال الرد بنجاح!"
+
+#: templates/chalets_accounts/chalet_review_rating.html:308
+msgid "Error deleting response. Please try again later."
+msgstr "حدث خطأ أثناء حذف الرد. يُرجى المحاولة لاحقًا."
+
+#: templates/chalets_accounts/chalet_review_rating.html:309
+#: templates/chalets_accounts/chalet_review_rating.html:332
+msgid "Are you sure you want to delete this response?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه الإجابة؟"
+
+#: templates/chalets_accounts/chalet_review_rating.html:310
+msgid "Response deleted successfully!"
+msgstr "تم حذف الرد بنجاح!"
+
+#: templates/chalets_accounts/chalet_review_rating.html:311 views.py:1683
+#: views.py:2084 views.py:2156 views.py:2851
+msgid "An unexpected error occurred. Please try again."
+msgstr "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
+
+#: templates/chalets_accounts/chalet_review_rating.html:317
+#: templates/chalets_accounts/chalet_review_rating.html:337
+msgid "OK"
+msgstr "نعم"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:48
+#: templates/chalets_accounts/chalet_transaction_detail.html:73
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:72
+msgid "Transaction Date"
+msgstr "تاريخ المعاملة"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:74
+msgid "Transaction Type"
+msgstr "نوع المعاملة"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:75
+msgid "Transaction Amount"
+msgstr "مبلغ المعاملة"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:76
+msgid "Transaction  Status"
+msgstr "حالة المعاملة"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:77
+msgid "Transaction Reference No:"
+msgstr "مرجع المعاملة"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:78
+msgid "Payment Status"
+msgstr "حالة الدفع"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:79
+msgid "Payment Gateway"
+msgstr "بوابة الدفع"
+
+#: templates/chalets_accounts/dashboard_chalets.html:42
+msgid "Bookings Rates"
+msgstr "أسعار الحجوزات"
+
+#: templates/chalets_accounts/dashboard_chalets.html:50
+msgid "Cancellation Rates"
+msgstr "معدلات الإلغاء"
+
+#: templates/chalets_accounts/dashboard_chalets.html:58
+msgid "Average Daily Rates"
+msgstr "متوسط ​​الأسعار اليومية"
+
+#: templates/chalets_accounts/dashboard_chalets.html:66
+msgid "Review Rates"
+msgstr "مراجعة الأسعار"
+
+#: templates/chalets_accounts/dashboard_chalets.html:86
+msgid "Latest Bookings"
+msgstr "أحدث الحجوزات"
+
+#: templates/chalets_accounts/dashboard_chalets.html:90
+msgid "View All"
+msgstr "عرض الكل"
+
+#: templates/chalets_accounts/dashboard_chalets.html:234
+msgid "Visitor Statistics"
+msgstr "إحصائيات الزوار"
+
+#: templates/chalets_accounts/dashboard_chalets.html:242
+#: templates/chalets_accounts/dashboard_chalets.html:248
+msgid "Visitors"
+msgstr "الزوار"
+
+#: templates/chalets_accounts/dashboard_chalets.html:269
+msgid "Reservation Statistics"
+msgstr "إحصائيات الحجز"
+
+#: templates/chalets_accounts/dashboard_chalets.html:277
+msgid "Bookings"
+msgstr "الحجز"
+
+#: templates/chalets_accounts/dashboard_chalets.html:282
+msgid "New Bookings"
+msgstr "أحدث الحجوزات"
+
+#: templates/chalets_accounts/dashboard_chalets.html:286
+msgid "Confirmed Bookings"
+msgstr "التحفظات المؤكدة"
+
+#: templates/chalets_accounts/edit_chalet.html:40
+#: templates/chalets_accounts/edit_chalet_detail.html:42
+msgid "Edit Chalet Details"
+msgstr "أدخل اسم الشاليه"
+
+#: templates/chalets_accounts/edit_chalet.html:70
+msgid "Your Chalet details have been successfully edited."
+msgstr "تم تعديل تفاصيل الشاليه الخاص بك بنجاح."
+
+#: templates/chalets_accounts/edit_chalet_amentiy.html:175
+msgid "Add Amenities"
+msgstr "جميع وسائل الراحة"
+
+#: templates/chalets_accounts/edit_chalet_amentiy.html:198
+msgid "Amenity with this name already exists"
+msgstr "وسائل الراحة بهذا الاسم موجودة بالفعل"
+
+#: templates/chalets_accounts/edit_chalet_amentiy.html:214
+msgid "Search and select amenities"
+msgstr "البحث عن وسائل الراحة واختيارها"
+
+#: templates/chalets_accounts/edit_chalet_amentiy.html:252
+msgid "Please select at least one amenity."
+msgstr "يرجى اختيار وسيلة راحة واحدة على الأقل."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:51
+msgid "chalet Name"
+msgstr "اسم الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:57
+msgid "Chalet Name/اسم الفندق"
+msgstr "اسم الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:60
+msgid "Arabic Name"
+msgstr "الاسم العربي"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:70
+msgid "chalet Owner Name"
+msgstr "اسم مالك الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:76
+msgid "Chalet Owner Name/اسم مالك الفندق"
+msgstr "إسم مالك الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:79
+msgid "chalet Owner Name In Arabic"
+msgstr "اسم مالك الشاليه باللغة العربية"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:93
+msgid "Owner Mail"
+msgstr "بريد المالك"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:109
+msgid "chalet Address"
+msgstr "عنوان الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:114
+#, fuzzy
+#| msgid "Governorate / State"
+msgid "Governorate/State"
+msgstr "المحافظة / الولاية"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:116
+msgid "State/Province"
+msgstr "المحافظة / الولاية"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:187
+#: templates/chalets_accounts/registration_chalet.html:249
+msgid "Chalet Type"
+msgstr "نوع الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:190
+#: templates/chalets_accounts/registration_chalet.html:251
+msgid "Choose your Chalet Type"
+msgstr "اختر نوع الشاليه الخاص بك"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:234
+#: templates/chalets_accounts/price.html:157
+msgid "Payments Accepted"
+msgstr "المدفوعات مقبولة"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:242
+#: templates/chalets_accounts/price.html:167
+msgid "All"
+msgstr "جميع"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:271
+msgid "Meal Price"
+msgstr "سعر الوجبة"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:305
+msgid "Chalet Description"
+msgstr "وصف الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:313
+msgid "Chalet Description/وصف الفندق"
+msgstr "وصف الشاليه/وصف الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:326
+msgid "Chalet Policies"
+msgstr "سياسات الشاليهات"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:329
+#: templates/chalets_accounts/edit_chalet_detail.html:338
+msgid "Enter a few words about your chalet policies"
+msgstr "أدخل بضع كلمات حول سياسات الشاليه الخاص بك"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:335
+msgid "Chalet Policies/سياسات الفندق"
+msgstr "سياسات الشاليهات/سياسات الشاليهات"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:425
+msgid "All Amenities"
+msgstr "جميع وسائل الراحة"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:464
+msgid "Chalet Taxes"
+msgstr "ضرائب الشاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:482
+msgid "Enter percentage"
+msgstr "أدخل النسبة المئوية"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:624
+#: templates/chalets_accounts/edit_chalet_detail.html:1162
+msgid "chalet logo is required. Please upload a logo."
+msgstr "مطلوب شعار الشاليه. يرجى تحميل الشعار."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:656
+#: templates/chalets_accounts/edit_chalet_detail.html:687
+#: templates/chalets_accounts/edit_chalet_detail.html:749
+msgid "Please upload at least 5 images."
+msgstr "يرجى تحميل ما لا يقل عن 5 صور"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:764
+#, python-brace-format
+msgid ""
+"${imageLabel} is in an invalid format. Please upload a JPEG, PNG, or GIF "
+"image."
+msgstr ""
+"تنسيق ${imageLabel} غير صالح. يُرجى تحميل ملف JPEG، أو PNG، أو GIF صورة."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:844
+msgid "chalet Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم الشاليه فارغاً."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:869
+msgid "Chalet Owner Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم مالك الشاليه فارغاً."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:872
+msgid "Chalet Owner Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم مالك الشاليه بين 3 و100 حرف."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:875
+#: templates/chalets_accounts/registration_chalet.html:1400
+msgid "Chalet Owner Name must contain letters only."
+msgstr "يجب أن يحتوي اسم مالك الشاليه على أحرف فقط."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:884
+msgid "Chalet Owner Name Arabic cannot be empty."
+msgstr "لا يمكن أن يكون اسم مالك الشاليه فارغًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:887
+msgid "Chalet Owner Name Arabic must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم مالك الشاليه باللغة العربية بين 3 و100 حرف."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:890
+msgid "Chalet Owner Name Arabic must contain Arabic letters only."
+msgstr "اسم مالك الشاليه باللغة العربية يجب أن يحتوي على حروف عربية فقط."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:901
+msgid "chalet Owner Email cannot be empty."
+msgstr "لا يمكن أن يكون البريد الإلكتروني لمالك الشاليه فارغاً."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:914
+msgid "Office Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم المكتب فارغاً."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:930
+msgid "chalet Address cannot be empty."
+msgstr "لا يمكن أن يكون عنوان الشاليه فارغاً."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:942
+msgid "State/Province cannot be empty."
+msgstr "لا يمكن ترك حقل الولاية/المقاطعة فارغًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:945
+msgid "State/Province cannot exceed 50 characters long."
+msgstr "لا يمكن أن يتجاوز طول الولاية/المقاطعة 50 حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:954
+#: templates/chalets_accounts/hotel_registration.html:1593
+#: templates/chalets_accounts/registration_chalet.html:1705
+msgid "City cannot be empty."
+msgstr "لا يمكن أن تكون المدينة فارغة."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:957
+msgid "City cannot exceed 50 characters long."
+msgstr "لا يمكن أن يتجاوز طول المدينة 50 حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:966
+#: templates/chalets_accounts/hotel_registration.html:1608
+#: templates/chalets_accounts/registration_chalet.html:1731
+msgid "Country cannot be empty."
+msgstr "لا يمكن أن تكون الدولة فارغة."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:969
+msgid "Country cannot exceed  50 characters long."
+msgstr "لا يمكن أن يتجاوز طول البلد 50 حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:983
+msgid "GSM Number shouldnot exceed 15 digits."
+msgstr "يجب ألا يتجاوز رقم GSM 15 رقمًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:999
+msgid "Locality cannot exceed 50 characters long."
+msgstr "لا يمكن أن يتجاوز طول المنطقة 50 حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1031
+#: templates/chalets_accounts/hotel_registration.html:1665
+msgid "Account Holder name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم صاحب الحساب 50 حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1064
+#, python-brace-format
+msgid "CR Number must not exceed ${crMaxLength} characters."
+msgstr "يجب ألا يتجاوز رقم السجل التجاري ${crMaxLength} حرفًا."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1091
+msgid "VAT Number must be between 3 to 12 characters long"
+msgstr "يجب أن يتراوح طول رقم ضريبة القيمة المضافة بين 3 إلى 12 حرفًا"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1138
+#: templates/chalets_accounts/price.html:205
+msgid "Please select your accepted payment methods."
+msgstr "يرجى تحديد طرق الدفع المقبولة لديك."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1149 views.py:3930
+msgid "At least one amenity must be selected."
+msgstr "يجب اختيار ميزة واحدة على الأقل."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1169
+msgid "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+msgstr "نوع الملف غير صالح. يرجى تحميل صورة JPEG، PNG، أو GIF."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1190
+#, python-brace-format
+msgid ""
+"Please upload at least ${requiredTotalImages} images (1 main and 4 "
+"additional)."
+msgstr ""
+"يرجى تحميل ما لا يقل عن ${requiredTotalImages} من الصور (واحدة رئيسية و4 "
+"إضافية)."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1193
+#, python-brace-format
+msgid "You can only upload up to ${requiredTotalImages} images."
+msgstr "يمكنك فقط تحميل ما يصل إلى ${requiredTotalImages} من الصور."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1201 views.py:4553
+msgid "Only JPEG and PNG files are allowed."
+msgstr "يُسمح فقط بملفات JPEG وPNG."
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1207
+msgid "Each image must be less than 1MB."
+msgstr "يجب أن يكون حجم كل صورة أقل من 1 ميجابايت."
+
+#: templates/chalets_accounts/final_step.html:426
+#: templates/chalets_accounts/price.html:21
+msgid "Almost finished!"
+msgstr "انتهى تقريبا!"
+
+#: templates/chalets_accounts/final_step.html:448
+msgid "Please list all policies applicable at your property"
+msgstr "يرجى إدراج كافة السياسات المطبقة في الممتلكات الخاصة بك"
+
+#: templates/chalets_accounts/final_step.html:452
+msgid "Check-In & Check-Out"
+msgstr "الدخول الخروج"
+
+#: templates/chalets_accounts/final_step.html:453
+msgid "Please ensure to mention both your check-in and check-out dates"
+msgstr "يرجى التأكد من ذكر تاريخي تسجيل الوصول والمغادرة"
+
+#: templates/chalets_accounts/final_step.html:457
+msgid "Check in"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+
+#: templates/chalets_accounts/final_step.html:461
+msgid "Check out"
+msgstr "الخروج"
+
+#: templates/chalets_accounts/final_step.html:470
+msgid "Acceptable Identity Proofs"
+msgstr "إثباتات الهوية المقبولة"
+
+#: templates/chalets_accounts/final_step.html:498
+msgid "Select a Highlight Image for Your Chalet"
+msgstr "حدد تسليط الضوء على الصورة للشاليه الخاص بك"
+
+#: templates/chalets_accounts/final_step.html:515
+msgid "The chosen check-out time is considered for the next day."
+msgstr "يتم أخذ وقت تسجيل المغادرة المختار في الاعتبار في اليوم التالي."
+
+#: templates/chalets_accounts/final_step.html:516
+msgid "Please provide both check-in and check-out times."
+msgstr "يرجى تقديم أوقات تسجيل الوصول والمغادرة."
+
+#: templates/chalets_accounts/final_step.html:517
+msgid "Please select at least one acceptable identity proof."
+msgstr "يرجى تحديد إثبات هوية مقبول واحد على الأقل."
+
+#: templates/chalets_accounts/final_step.html:518
+msgid "Please select a highlight image."
+msgstr "الرجاء تحديد صورة تسليط الضوء."
+
+#: templates/chalets_accounts/hotel_registration.html:37
+msgid "Hotel Owner Registration Form"
+msgstr "استمارة تسجيل مالك الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:41
+msgid "Hotel Name In English"
+msgstr "اسم الفندق بالانجليزي"
+
+#: templates/chalets_accounts/hotel_registration.html:42
+msgid "Enter hotel name"
+msgstr "Enter hotel name"
+
+#: templates/chalets_accounts/hotel_registration.html:46
+msgid "Hotel Name In Arabic"
+msgstr "سم الفندق بالعربي"
+
+#: templates/chalets_accounts/hotel_registration.html:53
+msgid "Owner Name In English"
+msgstr "اسم المالك بالانجليزي"
+
+#: templates/chalets_accounts/hotel_registration.html:69
+msgid "Hotel Address"
+msgstr "عنوان الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:147
+msgid "Hotel Type"
+msgstr "نوع الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:149
+msgid "Choose your Hotel Type"
+msgstr "اختر نوع الفندق الخاص بك"
+
+#: templates/chalets_accounts/hotel_registration.html:165
+msgid "Hotel Rating"
+msgstr "تصنيف الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:167
+msgid "Select hotel rating"
+msgstr "اختر تصنيف الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:200
+msgid "Hotel Description in English"
+msgstr "وصف الفندق بالانجليزي"
+
+#: templates/chalets_accounts/hotel_registration.html:201
+msgid "Enter a few words about your hotel"
+msgstr "أدخل بضع كلمات عن فندقك"
+
+#: templates/chalets_accounts/hotel_registration.html:207
+msgid "Hotel Description in Arabic"
+msgstr "وصف الفندق بالعربي"
+
+#: templates/chalets_accounts/hotel_registration.html:219
+msgid "Hotel Policies in English"
+msgstr "سيايات الفندق بالانجليزي"
+
+#: templates/chalets_accounts/hotel_registration.html:220
+msgid "Enter your hotel policies"
+msgstr "أدخل سياسات الفندق الخاص بك"
+
+#: templates/chalets_accounts/hotel_registration.html:226
+msgid "Hotel Policies in Arabic"
+msgstr "سياسات الفندق بالعربي"
+
+#: templates/chalets_accounts/hotel_registration.html:238
+msgid "Hotel Logo"
+msgstr "شعار الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:250
+msgid "Hotel Images"
+msgstr "صور الفندق"
+
+#: templates/chalets_accounts/hotel_registration.html:275
+msgid "Supporting Documents"
+msgstr "الوثائق الداعمة"
+
+#: templates/chalets_accounts/hotel_registration.html:279
+msgid "Supported file formats: PDF, PNG, JPEG"
+msgstr "تنسيقات الملفات المدعومة: PDF، PNG، JPEG"
+
+#: templates/chalets_accounts/hotel_registration.html:281
+msgid "Each File size should be less than 5MB"
+msgstr "يجب أن يكون حجم كل ملف أقل من 5 ميغابايت"
+
+#: templates/chalets_accounts/hotel_registration.html:295
+msgid "The size of a single hotel image file should not exceed 30 MB"
+msgstr "يجب ألا يتجاوز حجم ملف صورة الفندق الواحد 30 ميجابايت"
+
+#: templates/chalets_accounts/hotel_registration.html:298
+msgid "Attach proofs of Address, CR, and VAT"
+msgstr "إرفاق إثباتات العنوان والسجل التجاري وضريبة القيمة المضافة"
+
+#: templates/chalets_accounts/hotel_registration.html:820
+msgid "Hotel with same email already exist"
+msgstr "الفندق الذي يحمل نفس البريد الإلكتروني موجود بالفعل"
+
+#: templates/chalets_accounts/hotel_registration.html:929
+#: templates/chalets_accounts/registration_chalet.html:917
+msgid "Only JPEG/PNG files are allowed."
+msgstr "يُسمح فقط بملفات JPEG/PNG."
+
+#: templates/chalets_accounts/hotel_registration.html:948
+#: templates/chalets_accounts/registration_chalet.html:936
+msgid "This image already exists."
+msgstr "هذه الصورة موجودة بالفعل."
+
+#: templates/chalets_accounts/hotel_registration.html:1205
+msgid "Select Room Types"
+msgstr "حدد أنواع الغرف"
+
+#: templates/chalets_accounts/hotel_registration.html:1313
+#: templates/chalets_accounts/registration_chalet.html:1290
+msgid "This email already exists."
+msgstr "هذا البريد الإلكتروني موجود بالفعل"
+
+#: templates/chalets_accounts/hotel_registration.html:1484
+#: templates/chalets_accounts/registration_chalet.html:1365
+msgid "Please enter Hotel Name."
+msgstr "الرجاء إدخال اسم الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1487
+#, python-brace-format
+msgid "Hotel Name should be at least ${hotelNameMinLength} characters long."
+msgstr "يجب ألا يقل طول اسم الفندق عن ${hotelNameMinLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1490
+#, python-brace-format
+msgid "Hotel Name should not exceed ${hotelNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم الفندق ${hotelNameMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1497
+msgid "Please enter Hotel Name in Arabic."
+msgstr "الرجاء إدخال اسم الفندق باللغة العربية."
+
+#: templates/chalets_accounts/hotel_registration.html:1500
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should be at least ${hotelNameArabicMinLength} "
+"characters long."
+msgstr ""
+"اسم الفندق باللغة العربية يجب أن يكون على الأقل ${hotelNameArabicMinLength}"
+"طول الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1503
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should not exceed ${hotelNameArabicMaxLength} "
+"characters."
+msgstr ""
+"يجب ألا يتجاوز اسم الفندق باللغة العربية ${hotelNameArabicMaxLength} حرفًا."
+
+#: templates/chalets_accounts/hotel_registration.html:1510
+msgid "Please enter Hotel Owner Name."
+msgstr "الرجاء إدخال اسم مالك الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1513
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should be at least ${hotelOwnerNameMinLength} characters "
+"long."
+msgstr ""
+"يجب ألا يقل طول اسم مالك الفندق عن ${hotelOwnerNameMinLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1516
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should not exceed ${hotelOwnerNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم مالك الفندق ${hotelOwnerNameMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1519
+msgid "Hotel Owner Name must contain letters only."
+msgstr "يجب أن يحتوي اسم مالك الفندق على أحرف فقط."
+
+#: templates/chalets_accounts/hotel_registration.html:1526
+msgid "Please enter Hotel Owner Name in Arabic."
+msgstr "الرجاء إدخال اسم مالك الفندق باللغة العربية."
+
+#: templates/chalets_accounts/hotel_registration.html:1529
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should be at least "
+"${hotelOwnerNameArabicMinLength} characters long."
+msgstr ""
+"يجب ألا يقل طول اسم مالك الفندق باللغة العربية عن "
+"${hotelOwnerNameArabicMinLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1532
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should not exceed "
+"${hotelOwnerNameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يتجاوز اسم مالك الفندق باللغة العربية "
+"${hotelOwnerNameArabicMaxLength} حرفًا."
+
+#: templates/chalets_accounts/hotel_registration.html:1535
+msgid "Hotel Owner Name in Arabic must contain Arabic letters only."
+msgstr "يجب أن يحتوي اسم مالك الفندق باللغة العربية على حروف عربية فقط."
+
+#: templates/chalets_accounts/hotel_registration.html:1568
+#: templates/chalets_accounts/registration_chalet.html:1460
+msgid "Hotel Address should not exceed 300 characters."
+msgstr "يجب ألا يتجاوز عنوان الفندق 300 حرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1578
+msgid "State cannot be empty."
+msgstr "لا يمكن أن تكون الحالة فارغة."
+
+#: templates/chalets_accounts/hotel_registration.html:1582
+#, python-brace-format
+msgid "State should be minimum ${stminLength} characters."
+msgstr "يجب أن تكون الحالة الحد الأدنى من ${stminLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1587
+#, python-brace-format
+msgid "State should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا تتجاوز الحالة أحرف ${stmaxLength}."
+
+#: templates/chalets_accounts/hotel_registration.html:1597
+#, python-brace-format
+msgid "city should be minimum  ${stminLength} characters."
+msgstr ""
+"يجب أن يكون الحد الأدنى لعدد الأحرف ${stminLength} هو الحد الأدنى للمدينة."
+
+#: templates/chalets_accounts/hotel_registration.html:1601
+#: templates/chalets_accounts/registration_chalet.html:1708
+#, python-brace-format
+msgid "City should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا تتجاوز المدينة ${stmaxLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1612
+#, python-brace-format
+msgid "country should be minimum e ${stminLength} characters."
+msgstr "يجب أن يكون الحد الأدنى لعدد الأحرف ${stminLength} هو البلد."
+
+#: templates/chalets_accounts/hotel_registration.html:1615
+#: templates/chalets_accounts/registration_chalet.html:1734
+#, python-brace-format
+msgid "Country should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا يتجاوز البلد ${stmaxLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1623
+msgid "Please select Hotel Rating."
+msgstr "الرجاء تحديد تصنيف الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1637
+msgid "Please Select Hotel Rating."
+msgstr "الرجاء تحديد تصنيف الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1706
+msgid "CR Number should be minimum 3 characters."
+msgstr "يجب أن لا يقل رقم السجل التجاري عن 3 أحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1717
+#: templates/chalets_accounts/registration_chalet.html:1587
+#, python-brace-format
+msgid ""
+"VAT Number should be between ${vatMinLength} and ${vatMaxLength} digits."
+msgstr ""
+"يجب أن يتراوح رقم ضريبة القيمة المضافة بين ${vatMinLength} و${vatMaxLength} "
+"من الأرقام."
+
+#: templates/chalets_accounts/hotel_registration.html:1721
+msgid "VAT Number needed "
+msgstr "رقم ضريبة القيمة المضافة مطلوب"
+
+#: templates/chalets_accounts/hotel_registration.html:1735
+msgid "Please upload a minimum of 3 supporting documents."
+msgstr "يرجى تحميل ما لا يقل عن 3 وثائق داعمة"
+
+#: templates/chalets_accounts/hotel_registration.html:1736
+msgid "Maximum 3 files allowed for Supporting Documents."
+msgstr "الحد الأقصى المسموح به هو 3 ملفات للمستندات الداعمة"
+
+#: templates/chalets_accounts/hotel_registration.html:1754
+msgid "Only PDF, JPEG, and PNG files are allowed."
+msgstr "يُسمح فقط بملفات PDF وJPEG وPNG"
+
+#: templates/chalets_accounts/hotel_registration.html:1784
+msgid "Please upload only JPEG or PNG images for hotel images."
+msgstr "قم بتحميل صور JPEG أو PNG فقط لصور الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1794
+msgid "Please upload a Hotel Logo."
+msgstr "يرجى تحميل شعار الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1802
+msgid "Please upload only JPEG or PNG images for the hotel logo."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لشعار الفندق."
+
+#: templates/chalets_accounts/hotel_registration.html:1814
+#: templates/chalets_accounts/registration_chalet.html:1666
+#, python-brace-format
+msgid "Locality should not exceed ${localityMaxLength} characters."
+msgstr "يجب ألا تتجاوز المنطقة المحلية ${localityMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1819
+#, python-brace-format
+msgid "Locality should be minimum ${localityMinLength} characters."
+msgstr "يجب أن تكون المناطق المحلية بحد أدنى ${localityMinLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1839
+#, python-brace-format
+msgid "Locality should be minimum ${localityArabicMinLength} characters."
+msgstr ""
+"يجب أن تكون المنطقة المحلية بحد أدنى ${localityArabicMinLength} من الأحرف."
+
+#: templates/chalets_accounts/hotel_registration.html:1860
+#, python-brace-format
+msgid ""
+"House/Building/Apartment number should be minimum ${buildingNumberMinLength} "
+"characters."
+msgstr ""
+"رقم المنزل/المبنى/الشقة يجب أن يكون الحد الأدنى ${buildingNumberMinLength} "
+"الشخصيات."
+
+#: templates/chalets_accounts/hotel_registration.html:1872
+msgid "Post Office/Postal Box should not exceed 15} characters."
+msgstr "يجب ألا يتجاوز مكتب البريد/صندوق البريد 15 حرفًا."
+
+#: templates/chalets_accounts/hotel_registration.html:1876
+msgid "Post Office/Postal Box should be minimum 3 characters."
+msgstr "يجب أن يتكون مكتب البريد/صندوق البريد من 3 أحرف على الأقل."
+
+#: templates/chalets_accounts/offer_table_update.html:11
+msgid "Discount Value"
+msgstr "قيمة الخصم"
+
+#: templates/chalets_accounts/pending_hotel.html:19
+msgid "Awaiting Approval"
+msgstr "في انتظار الموافقة"
+
+#: templates/chalets_accounts/pending_hotel.html:20
+msgid ""
+"Thanks for registering with us! We have sent your request to the "
+"administrator and once approved you will be notified through email. Please "
+"try again after some time."
+msgstr ""
+"شكرًا لتسجيلك معنا! لقد أرسلنا طلبك إلى المسؤول وبمجرد الموافقة سيتم إعلامك "
+"عبر البريد الإلكتروني. من فضلك حاول مرة أخرى بعد مرور بعض الوقت."
+
+#: templates/chalets_accounts/price.html:41
+msgid "Please enter the price details"
+msgstr "الرجاء إدخال تفاصيل السعر"
+
+#: templates/chalets_accounts/price.html:47
+msgid "Breakfast"
+msgstr "إفطار"
+
+#: templates/chalets_accounts/price.html:48
+#: templates/chalets_accounts/price.html:55
+#: templates/chalets_accounts/price.html:62
+#: templates/chalets_accounts/price.html:86
+#: templates/chalets_accounts/price.html:98
+msgid "OMR Enter"
+msgstr "أدخل ريال عماني"
+
+#: templates/chalets_accounts/price.html:54
+msgid "Lunch"
+msgstr "غداء"
+
+#: templates/chalets_accounts/price.html:61
+msgid "Dinner"
+msgstr "عشاء"
+
+#: templates/chalets_accounts/price.html:71
+msgid "Number Of Guests"
+msgstr "عدد الضيوف"
+
+#: templates/chalets_accounts/price.html:74
+msgid "Enter Number Of Guests Allowed"
+msgstr "أدخل عدد الضيوف المسموح بهم"
+
+#: templates/chalets_accounts/price.html:75
+msgid "Please enter a valid number of guests."
+msgstr "الرجاء إدخال عدد صحيح من الضيوف."
+
+#: templates/chalets_accounts/price.html:87
+msgid "Please enter a valid total price."
+msgstr "الرجاء إدخال سعر إجمالي صالح."
+
+#: templates/chalets_accounts/price.html:95
+msgid "Weekend Price (Optional)"
+msgstr "سعر نهاية الأسبوع (اختياري)"
+
+#: templates/chalets_accounts/price.html:99
+#: templates/chalets_accounts/price.html:473
+msgid "Please enter a valid price."
+msgstr "الرجاء إدخال سعر صالح."
+
+#: templates/chalets_accounts/price.html:110
+msgid "Tax Information"
+msgstr "معلومات الضرائب"
+
+#: templates/chalets_accounts/price.html:113
+msgid "If Applicable"
+msgstr "إذا كان ذلك ينطبق"
+
+#: templates/chalets_accounts/price.html:135
+msgid "أدخل النسبة المئوية (مثال: 5٪)"
+msgstr ""
+
+#: templates/chalets_accounts/price.html:135
+#, python-format
+msgid "Enter percentage (e.g. 5%%)"
+msgstr "أدخل النسبة المئوية (على سبيل المثال 5%%)"
+
+#: templates/chalets_accounts/price.html:149
+msgid "Please enable 'If applicable' toggle if entering tax."
+msgstr "يرجى تفعيل خيار 'إذا كان ذلك ينطبق' عند إدخال الضريبة."
+
+#: templates/chalets_accounts/price.html:152
+msgid ""
+"Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., "
+"5 or 12.5)."
+msgstr ""
+"قيمة الضريبة غير صالحة. الرجاء إدخال مبلغ صالح يتراوح بين 0.00 و99.99 (على "
+"سبيل المثال، 5 أو 12.5)."
+
+#: templates/chalets_accounts/price.html:188
+msgid "Select your corresponding payment method."
+msgstr "حدد طريقة الدفع المناسبة لك."
+
+#: templates/chalets_accounts/price.html:197
+msgid "Please check the corresponding checkbox for the entered price."
+msgstr "يرجى تحديد مربع الاختيار المقابل للسعر الذي تم إدخاله."
+
+#: templates/chalets_accounts/price.html:200
+msgid "Price must be greater than zero."
+msgstr "يجب أن يكون السعر أكبر من الصفر."
+
+#: templates/chalets_accounts/price.html:476
+msgid "Please enter a number greater than 0"
+msgstr "الرجاء إدخال رقم صحيح (1 أو أكبر)"
+
+#: templates/chalets_accounts/price.html:482
+msgid "Please enter a valid number of guests between 1 and 100."
+msgstr "يرجى إدخال عدد صحيح من الضيوف يتراوح بين 1 و100."
+
+#: templates/chalets_accounts/price.html:485
+msgid "Please enter a valid price between 0 and 10,000."
+msgstr "الرجاء إدخال سعر صالح يتراوح بين 0 و10000."
+
+#: templates/chalets_accounts/property.html:46
+msgid "Add Rooms"
+msgstr "إضافة غرف"
+
+#: templates/chalets_accounts/property.html:71
+#: templates/chalets_accounts/property.html:232
+msgid "Enter Room number"
+msgstr "أدخل رقم الغرفة"
+
+#: templates/chalets_accounts/property.html:80
+#: templates/chalets_accounts/property.html:160
+#: templates/chalets_accounts/property.html:241
+msgid "Room Name"
+msgstr "اسم الغرفة"
+
+#: templates/chalets_accounts/property.html:85
+#: templates/chalets_accounts/property.html:246
+msgid "Enter a Room name"
+msgstr "أدخل اسم الغرفة"
+
+#: templates/chalets_accounts/property.html:95
+#: templates/chalets_accounts/property.html:255
+msgid "Washroom"
+msgstr "الحمام"
+
+#: templates/chalets_accounts/property.html:100
+#: templates/chalets_accounts/property.html:260
+msgid "Enter the number of Washrooms"
+msgstr "أدخل عدد دورات المياه"
+
+#: templates/chalets_accounts/property.html:114
+#: templates/chalets_accounts/property.html:274
+msgid "Enter the number of occupancy"
+msgstr "أدخل عدد الإشغال"
+
+#: templates/chalets_accounts/property.html:123
+#: templates/chalets_accounts/property.html:283
+msgid "Number Of Bed"
+msgstr "عدد الأسرة"
+
+#: templates/chalets_accounts/property.html:128
+#: templates/chalets_accounts/property.html:288
+msgid "Enter the number of beds"
+msgstr "أدخل عدد الأسرة"
+
+#: templates/chalets_accounts/property.html:161
+msgid "No Of Washroom"
+msgstr "عدد الحمامات"
+
+#: templates/chalets_accounts/property.html:163
+msgid "No Of Bed"
+msgstr "عدد الأسرة"
+
+#: templates/chalets_accounts/property.html:338
+msgid "Are you sure you want to delete this room?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه الغرفة؟"
+
+#: templates/chalets_accounts/property.html:363
+#: templates/chalets_accounts/property.html:490
+msgid "Room Number must be alphanumeric and 3-5 characters long."
+msgstr "يجب أن يكون رقم الغرفة أبجديًا رقميًا ويتكون من 3-5 أحرف."
+
+#: templates/chalets_accounts/property.html:368
+#: templates/chalets_accounts/property.html:495
+msgid "Room Name must be 50 characters or less."
+msgstr "يجب أن يتكون اسم الغرفة من 50 حرفًا أو أقل."
+
+#: templates/chalets_accounts/property.html:373
+msgid "Room Name should only contain letters."
+msgstr "يجب أن يحتوي اسم الغرفة على أحرف فقط."
+
+#: templates/chalets_accounts/property.html:378
+#: templates/chalets_accounts/property.html:503
+msgid "Washroom number must be a number between 1 and 100."
+msgstr "يجب أن يكون رقم الحمام رقمًا بين 1 و100."
+
+#: templates/chalets_accounts/property.html:383
+#: templates/chalets_accounts/property.html:508
+msgid "Occupancy must be a number between 1 and 100."
+msgstr "يجب أن يكون الإشغال رقمًا بين 1 و100."
+
+#: templates/chalets_accounts/property.html:388
+#: templates/chalets_accounts/property.html:513
+msgid "Bed number must be a number between 1 and 100."
+msgstr "يجب أن يكون رقم السرير رقمًا بين 1 و100."
+
+#: templates/chalets_accounts/property.html:410
+msgid "Room Number already exists."
+msgstr "رقم الغرفة موجود بالفعل."
+
+#: templates/chalets_accounts/property.html:425
+msgid "Room added successfully!"
+msgstr "تمت إضافة الغرفة بنجاح!"
+
+#: templates/chalets_accounts/property.html:431
+msgid "An error occurred while adding the room."
+msgstr "حدث خطأ أثناء إضافة الغرفة."
+
+#: templates/chalets_accounts/property.html:498
+msgid "Room Name should only contain letters and spaces."
+msgstr "يجب أن يحتوي اسم الغرفة على أحرف ومسافات فقط."
+
+#: templates/chalets_accounts/registration_chalet.html:51
+msgid "Chalet Owner Registration\\استمارة تسجيل مالك الشاليه"
+msgstr "تسجيل مالك الشاليه"
+
+#: templates/chalets_accounts/registration_chalet.html:55
+#: templates/chalets_accounts/registration_chalet.html:56
+msgid "Chalet Name(English)"
+msgstr "اسم الشاليه بالانجليزي"
+
+#: templates/chalets_accounts/registration_chalet.html:66
+#: templates/chalets_accounts/registration_chalet.html:67
+msgid "Owner Name(English)"
+msgstr "اسم المالك بالانجليزي"
+
+#: templates/chalets_accounts/registration_chalet.html:78
+#: templates/chalets_accounts/registration_chalet.html:79
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: templates/chalets_accounts/registration_chalet.html:96
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/chalets_accounts/registration_chalet.html:98
+msgid "Enter Your Password"
+msgstr "ادخل رقمك السري"
+
+#: templates/chalets_accounts/registration_chalet.html:108
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/chalets_accounts/registration_chalet.html:110
+msgid "Re-enter your password"
+msgstr "أعد إدخال كلمة المرور"
+
+#: templates/chalets_accounts/registration_chalet.html:134
+#: templates/chalets_accounts/registration_chalet.html:136
+msgid "Governorate / State"
+msgstr "المحافظة / الولاية"
+
+#: templates/chalets_accounts/registration_chalet.html:215
+#: templates/chalets_accounts/registration_chalet.html:216
+msgid "Chalet Description(English)"
+msgstr "وصف الشاليه بالانجليزي "
+
+#: templates/chalets_accounts/registration_chalet.html:233
+#: templates/chalets_accounts/registration_chalet.html:234
+msgid "Chalet Policies(English)"
+msgstr "سياسات الشاليه بالانجليزي"
+
+#: templates/chalets_accounts/registration_chalet.html:321
+msgid "I Agree to the Terms and Conditions"
+msgstr "انا اوافق على الشروط والاحكام"
+
+#: templates/chalets_accounts/registration_chalet.html:1368
+#, python-brace-format
+msgid "Chalet Name should be at least ${chaletNameMinLength} characters long."
+msgstr "يجب ألا يقل طول اسم الشاليه عن ${chaletNameMinLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1371
+#, python-brace-format
+msgid "Chalet Name should not exceed ${chaletNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم الشاليه ${chaletNameMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1380
+msgid "Please enter chalet Name in Arabic."
+msgstr "الرجاء إدخال اسم الشاليه باللغة العربية."
+
+#: templates/chalets_accounts/registration_chalet.html:1383
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should be at least ${NameArabicMinLength} characters "
+"long."
+msgstr ""
+"اسم الشاليه باللغة العربية يجب أن يكون على الأقل ${NameArabicMinLength} حرفا "
+"طويل."
+
+#: templates/chalets_accounts/registration_chalet.html:1386
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should not exceed ${NameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يتجاوز اسم الشاليه باللغة العربية ${NameArabicMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1403
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should be at least ${chaletOwnerNameMinLength} characters "
+"long."
+msgstr ""
+"يجب ألا يقل طول اسم مالك الشاليه عن ${chaletOwnerNameMinLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1406
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should not exceed ${chaletOwnerNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم مالك الشاليه ${chaletOwnerNameMaxLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1417
+msgid "Chalet Owner Name in Arabic must contain Arabic letters only."
+msgstr "يجب أن يحتوي اسم مالك الشاليه باللغة العربية على حروف عربية فقط."
+
+#: templates/chalets_accounts/registration_chalet.html:1420
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should be at least "
+"${chaletOwnerNameArabicMinLength} characters long."
+msgstr ""
+"يجب أن لا يقل طول اسم مالك الشاليه باللغة العربية عن "
+"${chaletOwnerNameArabicMinLength} حرفًا على الأقل."
+
+#: templates/chalets_accounts/registration_chalet.html:1423
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should not exceed "
+"${chaletOwnerNameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يتجاوز اسم مالك الشاليه باللغة العربية "
+"${chaletOwnerNameArabicMaxLength} حرفًا."
+
+#: templates/chalets_accounts/registration_chalet.html:1527
+#, python-brace-format
+msgid "Post Office/Postal Box should not exceed ${maxLength} characters."
+msgstr "مكتب البريد/صندوق البريد يجب ألا يتجاوز ${maxLength} من الأحرف."
+
+#: templates/chalets_accounts/registration_chalet.html:1542
+msgid "Account Number should be between 9 and 16 digits."
+msgstr "يجب أن يتراوح رقم الحساب بين 9 و16 رقمًا.."
+
+#: templates/chalets_accounts/registration_chalet.html:1597
+msgid ""
+"Password must be at least 8 characters long and include a mix of letters "
+"(lower-case & upper-case), numbers, and symbols."
+msgstr ""
+"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتتضمن مزيجًا من الأحرف(الأحرف "
+"الصغيرة والأحرف الكبيرة)، والأرقام، والرموز."
+
+#: templates/chalets_accounts/registration_chalet.html:1603
+msgid "Please confirm Password."
+msgstr "الرجاء تأكيد كلمة المرور"
+
+#: templates/chalets_accounts/registration_chalet.html:1608
+msgid "Passwords do not match. Please re-enter."
+msgstr "كلمة المرور غير مطابقة. الرجاء إعادة الإدخال"
+
+#: templates/chalets_accounts/registration_chalet.html:1678
+msgid "Please select a Chalet Type."
+msgstr "برجاء تحديد نوع الشاليه."
+
+#: views.py:215
+msgid "Chalet image is required."
+msgstr "مطلوب صورة الشاليه."
+
+#: views.py:217
+msgid "Logo image is required."
+msgstr "صورة الشعار مطلوبة."
+
+#: views.py:312
+msgid "There was an error processing your request."
+msgstr "حدث خطأ أثناء معالجة طلبك."
+
+#: views.py:315
+msgid "An unexpected error occurred, please try again."
+msgstr "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى."
+
+#: views.py:320 views.py:330 views.py:552 views.py:3381
+msgid "This field is required."
+msgstr "هذه الخانة مطلوبه"
+
+#: views.py:322
+msgid "Enter a valid email address."
+msgstr "يرجى إدخال عنوان بريد إلكتروني صالح"
+
+#: views.py:325 views.py:547
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحًا"
+
+#: views.py:336
+msgid "Passwords do not match."
+msgstr "كلمات المرور غير متطابقة."
+
+#: views.py:338
+msgid "Password must be at least 8 characters long."
+msgstr "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
+
+#: views.py:425
+msgid "An error occurred while validating the form."
+msgstr "حدث خطأ أثناء التحقق من صحة النموذج."
+
+#: views.py:428
+msgid "Hotel image is required."
+msgstr "صورة الفندق مطلوبة."
+
+#: views.py:430
+msgid "Supporting document is required."
+msgstr "الوثيقة الداعمة مطلوبة."
+
+#: views.py:606 views.py:623 views.py:709 views.py:722 views.py:847
+#: views.py:861 views.py:922 views.py:4210 views.py:4323 views.py:4489
+msgid "Chalet was rejected."
+msgstr "تم رفض الشاليه."
+
+#: views.py:613 views.py:716 views.py:855
+msgid "Chalet post approval already completed. Redirecting to the dashboard."
+msgstr ""
+"تم بالفعل الانتهاء من الموافقة على الشاليه. إعادة التوجيه إلى لوحة القيادة."
+
+#: views.py:1128
+msgid "Hotel status updated successfully."
+msgstr "تم تحديث حالة الفندق بنجاح."
+
+#: views.py:1149 views.py:1356 views.py:1668 views.py:1939 views.py:2145
+#: views.py:2679 views.py:2738 views.py:2840 views.py:3079 views.py:3211
+#: views.py:3502
+msgid "Your chalet was rejected."
+msgstr "تم رفض الشاليه الخاص بك."
+
+#: views.py:1307 views.py:1450
+msgid "Booking not found"
+msgstr "لم يتم العثور على الحجز"
+
+#: views.py:1359 views.py:1671 views.py:2148 views.py:2843
+msgid "Your chalet is pending approval."
+msgstr "الشاليه الخاص بك في انتظار الموافقة."
+
+#: views.py:1363
+msgid "You are not authorized to view this booking."
+msgstr "غير مصرح لك بمشاهدة هذا الحجز."
+
+#: views.py:1406 views.py:1805
+msgid "Booking updated successfully"
+msgstr "تم تحديث الحجز بنجاح"
+
+#: views.py:1433
+msgid "Images uploaded successfully"
+msgstr "تم تحميل الصور بنجاح"
+
+#: views.py:1435
+msgid "No images provided"
+msgstr "لم يتم توفير الصور"
+
+#: views.py:1446
+msgid "Invalid data"
+msgstr "بيانات غير صالحة"
+
+#: views.py:1480
+msgid "Booking is already rejected"
+msgstr "الحجز مرفوض بالفعل"
+
+#: views.py:1497
+msgid "No email found for this booking"
+msgstr "لم يتم العثور على بريد إلكتروني لهذا الحجز"
+
+#: views.py:1544
+msgid "Vendor Transaction creation failed"
+msgstr "فشل إنشاء معاملة البائع"
+
+#: views.py:1547
+msgid "Transaction creation failed"
+msgstr "فشل إنشاء المعاملة"
+
+#: views.py:1553
+msgid "Only Pending status can be approved"
+msgstr "يمكن الموافقة على الحالة المعلقة فقط"
+
+#: views.py:1554
+msgid "Invalid action"
+msgstr "إجراء غير صالح"
+
+#: views.py:1678 views.py:1707 views.py:1824 views.py:1880 views.py:2152
+#: views.py:2847 views.py:4503 views.py:4569
+msgid "Chalet not found."
+msgstr "لم يتم العثور على الشاليه."
+
+#: views.py:1767
+msgid "Vendor profile not found."
+msgstr "لم يتم العثور على ملف تعريف البائع."
+
+#: views.py:1819 views.py:1874 views.py:4481
+msgid "Chalet ID is required."
+msgstr "مطلوب معرف الشاليه."
+
+#: views.py:2066 views.py:2183 views.py:2269 views.py:2311 views.py:2410
+#: views.py:2444 views.py:2484 views.py:2878 views.py:2948 views.py:2980
+#: views.py:3013 views.py:3045
+msgid "No chalet found. Please try again."
+msgstr "لم يتم العثور على شاليه. يرجى المحاولة مرة أخرى."
+
+#: views.py:2081
+msgid "Chalet promocode and chalet id Needed."
+msgstr "مطلوب الرمز الترويجي للشاليه ومعرف الشاليه."
+
+#: views.py:2250 views.py:2383
+msgid "Offer saved successfully."
+msgstr "تم حفظ العرض بنجاح."
+
+#: views.py:2292 views.py:2386 views.py:2421
+msgid "Chalet Offerpromotion ID doesn't exist."
+msgstr "معرّف العرض الترويجي للشاليه غير موجود."
+
+#: views.py:2295 views.py:2389 views.py:2424
+msgid "Chalet Offerpromotion ID Needed."
+msgstr "مطلوب معرف الترويج لعرض الشاليه."
+
+#: views.py:2418
+msgid "Offer deleted successfully"
+msgstr "تم حذف العرض بنجاح"
+
+#: views.py:2464 views.py:2504
+msgid "Chalet Offerpromotion doesn't exist."
+msgstr "عرض الشاليه غير موجود."
+
+#: views.py:2467 views.py:2507
+msgid "Discount Needed."
+msgstr "الخصم مطلوب."
+
+#: views.py:2926
+msgid "Review Not found."
+msgstr "لم يتم العثور على المراجعة."
+
+#: views.py:2956
+msgid "Review response posted successfully"
+msgstr "تم نشر الرد على المراجعة بنجاح"
+
+#: views.py:2959 views.py:2992 views.py:3025 views.py:3057
+msgid "Chalet review not found."
+msgstr "لم يتم العثور على مراجعة الشاليه."
+
+#: views.py:2962 views.py:2995 views.py:3028 views.py:3060
+msgid "Chalet review ID Needed."
+msgstr "مطلوب معرف مراجعة الشاليه."
+
+#: views.py:3022
+msgid "Review response edited successfully"
+msgstr "تم تحرير استجابة المراجعة بنجاح"
+
+#: views.py:3054
+msgid "Review response deleted successfully"
+msgstr "تم حذف استجابة المراجعة بنجاح"
+
+#: views.py:3186
+msgid "Error updating room"
+msgstr "حدث خطأ أثناء تحديث الغرفة"
+
+#: views.py:3202
+msgid "You have no chalets."
+msgstr "ليس لديك شاليهات."
+
+#: views.py:3281
+msgid "User not authenticated"
+msgstr "لم تتم مصادقة المستخدم"
+
+#: views.py:3286 views.py:4045
+msgid "Chalet ID is required"
+msgstr "مطلوب معرف الشاليه"
+
+#: views.py:3293 views.py:4066 views.py:4587 views.py:4624
+msgid "Chalet not found"
+msgstr "لم يتم العثور على الشاليه"
+
+#: views.py:3361
+msgid "User not found."
+msgstr "لم يتم العثور على المستخدم."
+
+#: views.py:3376
+msgid "Error extracting data."
+msgstr "خطأ في استخراج البيانات."
+
+#: views.py:3425
+msgid "An error occurred while uploading images. Please try again."
+msgstr "حدث خطأ أثناء تحميل الصور. يرجى المحاولة مرة أخرى."
+
+#: views.py:3436
+msgid "An error occurred during registration. Please try again."
+msgstr "حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى."
+
+#: views.py:3626
+msgid "Chalet is not approved. You need to log out."
+msgstr "الشاليه غير معتمد تحتاج إلى تسجيل الخروج."
+
+#: views.py:3778
+msgid "Email already exists"
+msgstr "البريد الإلكتروني موجود بالفعل"
+
+#: views.py:3911
+msgid "Chalet details saved successfully."
+msgstr "تم حفظ تفاصيل الشاليه بنجاح."
+
+#: views.py:3936
+msgid "Invalid amenity IDs. IDs must be integers."
+msgstr "معرفات وسائل الراحة غير صالحة. يجب أن تكون المعرفات أعدادًا صحيحة."
+
+#: views.py:3953
+msgid "An error occurred while adding amenity."
+msgstr "حدث خطأ أثناء إضافة وسائل الراحة."
+
+#: views.py:3957
+msgid "Amenities added successfully"
+msgstr "تمت إضافة وسائل الراحة بنجاح"
+
+#: views.py:3961
+msgid "An unexpected error occurred. Please try again later."
+msgstr "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+#: views.py:3963
+msgid "Invalid request"
+msgstr "طلب غير صالح"
+
+#: views.py:4052
+msgid "Policy category not found"
+msgstr "لم يتم العثور على فئة السياسة"
+
+#: views.py:4059
+msgid "Vendor profile not found"
+msgstr "لم يتم العثور على ملف تعريف البائع"
+
+#: views.py:4081
+msgid "An unexpected error occurred"
+msgstr "حدث خطأ غير متوقع"
+
+#: views.py:4119 views.py:4152
+#, python-format
+msgid "Successfully added new policy to %(category)s."
+msgstr "تمت إضافة سياسة جديدة بنجاح إلى %(category)s."
+
+#: views.py:4123 views.py:4156
+msgid "Successfully added policy."
+msgstr "تمت إضافة السياسة بنجاح."
+
+#: views.py:4126 views.py:4159
+msgid "Policy already exists in this category."
+msgstr "السياسة موجودة بالفعل في هذه الفئة."
+
+#: views.py:4190
+msgid "Policies Created Successfully"
+msgstr "تم إنشاء السياسات بنجاح"
+
+#: views.py:4213
+msgid "Vendor or chalet not found."
+msgstr "لم يتم العثور على البائع أو الشاليه."
+
+#: views.py:4300
+msgid "Policy already exists for this category."
+msgstr "السياسة موجودة بالفعل لهذه الفئة."
+
+#: views.py:4302
+msgid "Policies updated successfully."
+msgstr "تم تحديث السياسات بنجاح."
+
+#: views.py:4471
+msgid "No policies found for this category."
+msgstr "لم يتم العثور على سياسات لهذه الفئة."
+
+#: views.py:4499
+msgid "Policy category has been deleted successfully."
+msgstr "تم حذف فئة السياسة بنجاح."
+
+#: views.py:4524
+msgid "The booking's checkout date has already passed."
+msgstr "لقد مر تاريخ الخروج من الحجز بالفعل."
+
+#: views.py:4543
+msgid "No file provided."
+msgstr "لم يتم تقديم أي ملف."
+
+#: views.py:4548
+msgid "File exceeds the maximum size of 500 KB."
+msgstr "يتجاوز حجم الملف الحد الأقصى وهو 500 كيلو بايت."
+
+#: views.py:4565
+msgid "Image uploaded successfully."
+msgstr "تم تحميل الصورة بنجاح."
+
+#: views.py:4573
+msgid "Chalet image not found."
+msgstr "لم يتم العثور على صورة الشاليه."
+
+#: views.py:4658
+msgid "An error occurred, please try again later"
+msgstr "حدث خطأ، يرجى المحاولة مرة أخرى في وقت لاحق"
+
+#~ msgid "Booking Date"
+#~ msgstr "تاريخ الحجز"
+
+#~ msgid "Booking Amount"
+#~ msgstr "مبلغ الحجز"
+
+#~ msgid ""
+#~ "(password must contain at least one number and one special characters."
+#~ "Minimum 8 characters)"
+#~ msgstr ""
+#~ "(يجب أن تحتوي كلمة المرور على رقم واحد وحرف خاص واحد على الأقل. الحد "
+#~ "الأدنى 8 أحرف)"
+
+#~ msgid "Property"
+#~ msgstr "ملكية"
+
+#~ msgid "Payment Type:"
+#~ msgstr "نوع الدفع:"
+
+#~ msgid "Online"
+#~ msgstr "متصل"
+
+#~ msgid "Offline"
+#~ msgstr "غير متصل"
+
+#~ msgid "Cancel Booking"
+#~ msgstr "إلغاء الحجز"
+
+#~ msgid "Approve Booking"
+#~ msgstr "الموافقة على الحجز"
+
+#~ msgid "Property Amenities"
+#~ msgstr "مرافق المنشأة"
+
+#~ msgid "Locality/اسم المنطقة"
+#~ msgstr "المنطقة/اسم المنطقة"
+
+#~ msgid "Locality In Arabic"
+#~ msgstr "المنطقة العربية"
+
+#~ msgid "House/Building/Apartment No."
+#~ msgstr "رقم المنزل/المبنى/الشقة"
+
+#~ msgid "Postal/ZIP code"
+#~ msgstr "الرمز البريدي / صندوق البريد"
+
+#~ msgid "Building Number should not be empty."
+#~ msgstr "يجب ألا يكون رقم المبنى فارغًا."
+
+#~ msgid "Building Number must be between 3 and 10 characters long."
+#~ msgstr "يجب أن يتراوح طول رقم المبنى بين 3 و10 أحرف."
+
+#~ msgid "Amenity Name(English)"
+#~ msgstr "اسم المرفق (الإنجليزية)"
+
+#~ msgid "Enter the amenity name"
+#~ msgstr "أدخل اسم الميزة"
+
+#~ msgid "Amenity Name(Arabic)"
+#~ msgstr "سم المرفق (العربية)"
+
+#~ msgid "Amenity Icon"
+#~ msgstr "أيقونة وسائل الراحة"
+
+#, fuzzy
+#~| msgid "Amenity Name(English)"
+#~ msgid "Amenity Name (English) is required."
+#~ msgstr "اسم المرفق (الإنجليزية)"
+
+#, fuzzy
+#~| msgid "Category name must contain only alphabetic characters and spaces."
+#~ msgid ""
+#~ "Amenity Name (English) should contain only English letters and spaces."
+#~ msgstr "يجب أن يحتوي اسم الفئة على أحرف أبجدية ومسافات فقط."
+
+#, fuzzy
+#~| msgid "Bank Name should not exceed 50 characters."
+#~ msgid "Amenity Name (English) should not exceed 100 characters."
+#~ msgstr "يجب ألا يتجاوز اسم البنك 50 حرفًا."
+
+#, fuzzy
+#~| msgid "Amenity Name(Arabic)"
+#~ msgid "Amenity Name (Arabic) is required."
+#~ msgstr "سم المرفق (العربية)"
+
+#, fuzzy
+#~| msgid "Chalet Owner Name in Arabic should not exceed 100 characters."
+#~ msgid "Amenity Name (Arabic) should not exceed 100 characters."
+#~ msgstr "يجب ألا يزيد اسم مالك الشاليه باللغة العربية عن 100 حرف."
+
+#, fuzzy
+#~| msgid "Chalet Owner Name Arabic must contain Arabic letters only."
+#~ msgid "Amenity Name (Arabic) should contain only Arabic letters and spaces."
+#~ msgstr "اسم مالك الشاليه باللغة العربية يجب أن يحتوي على حروف عربية فقط."
+
+#, fuzzy
+#~| msgid "Description is required."
+#~ msgid "Amenity Icon is required."
+#~ msgstr "الوصف مطلوب."
+
+#, fuzzy
+#~| msgid "Only JPEG and PNG files are allowed."
+#~ msgid "Only JPEG and PNG image formats are allowed."
+#~ msgstr "يُسمح فقط بملفات JPEG وPNG."
+
+#~ msgid "Wallet"
+#~ msgstr "محفظة"
+
+#~ msgid "Each policy name must be 150 characters or less."
+#~ msgstr "يجب أن يكون كل اسم سياسة 150 حرفًا أو أقل."
+
+#~ msgid ""
+#~ "Policy names must contain only alphabetic characters, spaces, periods, "
+#~ "commas, and semicolons."
+#~ msgstr ""
+#~ "يجب أن تحتوي أسماء السياسات على أحرف أبجدية ومسافات ونقاط وفواصل وفواصل "
+#~ "منقوطة فقط."
+
+#~ msgid ""
+#~ " must contain only alphabetic characters, spaces, periods, commas, and "
+#~ "semicolons."
+#~ msgstr ""
+#~ "يجب أن تحتوي فقط على أحرف أبجدية، ومسافات، ونقاط، وفواصل، وفواصل منقوطة."
+
+#~ msgid "Expired"
+#~ msgstr "منتهي الصلاحية"
+
+#~ msgid "(* must select 5 images *)"
+#~ msgstr "(* يجب تحديد 5 صور *)"
+
+
+
+#~ msgid "Price-Per-Night"
+#~ msgstr "سعر الليلة الواحدة"
+
+#~ msgid "Please select a property type."
+#~ msgstr "الرجاء تحديد نوع العقار."
+
+#~ msgid "Please select an occupancy level."
+#~ msgstr "الرجاء تحديد مستوى الإشغال."
+
+#~ msgid "Room number must be a number."
+#~ msgstr "يجب أن يكون رقم الغرفة رقمًا."
+
+#~ msgid "Room number already exists. "
+#~ msgstr "رقم الغرفة موجود بالفعل."
+
+#~ msgid "Number of Bed"
+#~ msgstr "عدد السرير"
+
+#~ msgid "Edit chalet Policies"
+#~ msgstr "تعديل سياسات الشاليه"
+
+#~ msgid "House/Building/Apartment number needed ."
+#~ msgstr "مطلوب رقم المنزل/المبنى/الشقة."
+
+#~ msgid "Please enter a valid discount percentage."
+#~ msgstr "الرجاء إدخال نسبة خصم صالحة."
+
+#~ msgid "Edit Hotel Policies"
+#~ msgstr "تعديل سياسات الفندق"
+
+#~ msgid "House/Building/Apartment no"
+#~ msgstr "منزل / مبنى / شقة رقم"
+
+#~ msgid "Enter your House/Bulding"
+#~ msgstr "أدخل منزلك / المبنى الخاص بك"
+
+#~ msgid "service"
+#~ msgstr "خدمة"
+
+#~ msgid "Hotel Owner Name"
+#~ msgstr "اسم مالك الفندق"
+
+#~ msgid "message"
+#~ msgstr "رسالة"
+
+#~ msgid "Total price"
+#~ msgstr "السعر الإجمالي"
+
+#~ msgid "No. of guests"
+#~ msgstr "عدد الضيوف"
+
+#~ msgid "Booking source"
+#~ msgstr "مصدر الحجز"
+
+#~ msgid "Edit chalet Details"
+#~ msgstr "أدخل اسم الشاليه"
+
+#~ msgid "chalet Owner Email"
+#~ msgstr "بريد مالك الشاليه الإلكتروني"
+
+#~ msgid "chalet Description"
+#~ msgstr "وصف الشاليه"
+
+#~ msgid "chalet Policies"
+#~ msgstr "سياسات الشاليهات"
+
+#~ msgid "chalet Images"
+#~ msgstr "صور شاليه"
+
+#~ msgid "chalet Logo"
+#~ msgstr "شعار الشاليه"
+
+#, fuzzy
+#~| msgid "Office Number should contain only digits."
+#~ msgid "Office Number must be a 10-digit number."
+#~ msgstr "يجب أن يحتوي رقم المكتب على أرقام فقط"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "GSM Number cannot be empty."
+#~ msgstr "محلية"
+
+#~ msgid "and"
+#~ msgstr "و"
+
+#~ msgid "You can only upload up to 3 documents."
+#~ msgstr "يمكنك تحميل ما يصل إلى 3 مستندات فقط"
+
+#~ msgid "1 document selected"
+#~ msgstr "تم اختيار مستند واحد"
+
+#~ msgid "documents selected"
+#~ msgstr "المستندات المختارة"
+
+#~ msgid "Applicable Conditions"
+#~ msgstr "الشروط القابلة للتطبيق"
+
+#, fuzzy
+#~| msgid "Discount Percentage"
+#~ msgid "Percentage"
+#~ msgstr "نوع الخصم"
+
+#~ msgid "recent bookings rate"
+#~ msgstr "معدل الحجز الأخير"
+
+#~ msgid "conversion rate"
+#~ msgstr "معدل التحويل"
+
+#~ msgid "location-specific success"
+#~ msgstr "نجاح خاص بالمكان"
+
+#~ msgid "online visitors"
+#~ msgstr "الزوار عبر الإنترنت"
+
+#, fuzzy
+#~| msgid "Office Number should contain only digits."
+#~ msgid "Postal/ZIP code must be between 3 and 15 digits long."
+#~ msgstr "يجب أن يحتوي رقم المكتب على أرقام فقط"
+
+#, fuzzy
+#~| msgid "Please enter CR Number."
+#~ msgid "Please enter a valid date in YYYY-MM-DD format."
+#~ msgstr "الرجاء إدخال رقم السجل التجاري"
+
+#, fuzzy
+#~| msgid "The date must be today or future."
+#~ msgid "Date of Expiry must be a future date."
+#~ msgstr "يجب أن يكون التاريخ اليوم أو المستقبل"
+
+#, fuzzy
+#~| msgid "Please enter Chalet Owner Name."
+#~ msgid "Please enter Chalet Owner Name in Arabic."
+#~ msgstr "الرجاء إدخال اسم مالك الشاليه"
+
+#~ msgid ""
+#~ "(password must contain at least one number and one special characters."
+#~ "Minimum 12 characters)"
+#~ msgstr ""
+#~ "(يجب أن تحتوي كلمة المرور على رقم واحد وحرف خاص واحد على الأقل.الحد "
+#~ "الأدنى12 حرفًا)"
+
+#~ msgid "Please enter VAT Number."
+#~ msgstr "الرجاء إدخال رقم ضريبة القيمة المضافة"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "Locality cannot be empty."
+#~ msgstr "محلية"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "Locality arabic cannot be empty."
+#~ msgstr "محلية"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "VAT Number cannot be empty."
+#~ msgstr "محلية"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "chalet Policies cannot be empty."
+#~ msgstr "محلية"
+
+#~ msgid "Admin"
+#~ msgstr "مسؤل"
+
+#, fuzzy
+#~| msgid "Chalet Images"
+#~ msgid "Chalet Rating"
+#~ msgstr "صور شاليه"
+
+#, fuzzy
+#~| msgid "Enter a few words about your chalet"
+#~ msgid "Enter a few words about your Chalet"
+#~ msgstr "أدخل بضع كلمات عن الشاليه الخاص بك"
+
+#~ msgid "Order ID"
+#~ msgstr "رقم الأمر"
+
+#~ msgid "Booking Summary"
+#~ msgstr "ملخص الحجز"
+
+#~ msgid "Enter Your postel/ZIP code"
+#~ msgstr "أدخل الرمز البريدي/الرمز البريدي الخاص بك"
+
+#~ msgid "(* Please choose a country first to display the cities.)"
+#~ msgstr "(* الرجاء اختيار الدولة أولاً لعرض المدن.)"
+
+#~ msgid "Confirm password"
+#~ msgstr "تأكيد كلمة المرور"
+
+#~ msgid "Add Your Logo"
+#~ msgstr "أضف شعارك"
+
+#~ msgid "Submit"
+#~ msgstr "يُقدِّم"
+
+
+#: templates/chalets_accounts/chalet_booking_view.html:121
+msgid "Check In "
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+#: templates/chalets_accounts/chalet_transaction_detail.html:79
+msgid  "Booking <br>Date"
+msgstr "تاريخ الحجز"
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:82
+msgid  "Discount Amount"
+msgstr "مبلغ الخصم"
+#: templates/chalets_accounts/chalet_transaction_detail.html:88
+msgid  "Total Members"
+msgstr "إجمالي الأعضاء"
+
+
+
+#: templates/chalets_accounts/chalet_transaction_detail.html:67
+#: templates/chalets_accounts/chalet_transaction_detail.html:108
+msgid  "Booking status"
+msgstr "حالة الحجز"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:159
+msgid "City (Arabic)"
+msgstr "مدينة (عربية)"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:969
+msgid "City name  must contain only English characters."
+msgstr "يجب أن يحتوي اسم المدينة على أحرف إنجليزية فقط."
+
+
+#: templates/chalets_accounts/edit_chalet_detail.html:985
+msgid "City name (Arabic) must contain only Arabic characters."
+msgstr "يجب أن يحتوي اسم المدينة (العربية) على الأحرف العربية فقط."
+
+
+#: templates/chalets_accounts/chalet_management.html:44
+msgid "Available Chalet"
+msgstr "شاليه متاح"
+
+#: templates/chalets_accounts/chalet_management.html:50
+msgid "Booked Chalet"
+msgstr "حجزت شاليه"
+
+#: templates/chalets_accounts/chalet_management.html:73
+msgid "Add Chalet"
+msgstr "أضف شاليه"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1086
+msgid "Number of guests must be greater than zero and less than 100"
+msgstr "يجب أن يكون عدد الضيوف أكبر من الصفر وأقل من 100"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1091
+msgid "Number of guests must be a whole number"
+msgstr "يجب أن يكون عدد الضيوف عددًا صحيحًا"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1104
+msgid "Total price must be a whole number or up to 3 decimal places"
+msgstr "يجب أن يكون السعر الإجمالي عددًا صحيحًا أو ما يصل إلى 3 أرقام عشرية"
+
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1108
+msgid "Total price must be greater than zero and less than 10000"
+msgstr "يجب أن يكون السعر الإجمالي أكبر من الصفر وأقل من 10000"
+
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1119
+msgid "Weekend price must be a whole number or up to 3 decimal places"
+msgstr "يجب أن يكون سعر عطلة نهاية الأسبوع عددًا صحيحًا أو ما يصل إلى 3 منازل عشرية"
+
+#: templates/chalets_accounts/edit_chalet_detail.html:1123
+msgid "Weekend price must be greater than zero and less than 10000"
+msgstr "يجب أن يكون سعر عطلة نهاية الأسبوع أكبر من الصفر وأقل من 10000"
+
+
+#: templates/chalets_accounts/edit_chalet_detail.html:93
+msgid "Check In"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+#: templates/chalets_accounts/edit_chalet_detail.html:101
+msgid "Check Out"
+msgstr "تسجيل الخروج"
+
+#: templates/chalets_accounts/dashboard_chalets.html:239
+msgid "Monthly Bookings"
+msgstr "الحجوزات الشهرية"

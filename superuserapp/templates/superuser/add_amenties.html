@@ -1,0 +1,81 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'chalets/css/add-amenity.css' %}">
+<link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+<div id="amenitiesModal" class="modal" >
+    <div class="modal-content">
+        <h2>+ {% trans "Add Amenities" %}</h2>
+        <form id="addAmenityForm" enctype="multipart/form-data">
+            <div class="input-containers">
+                <div class="form-group">
+                    <label for="amenityName">{% trans "Amenity Name(English)" %}</label>
+                    <input type="text" id="amenityName" name="amenity_name" placeholder="{% trans 'Enter the amenity name' %}" required>
+                    <span id="englishError" class="text-85080C hidden"></span>
+                </div>
+                <div class="form-group">
+                    <label for="amenityNameArabic">{% trans "Amenity Name(Arabic)" %}</label>
+                    <input type="text" id="amenity_arabic" name="amenity_name_arabic" placeholder="{% trans 'Enter the amenity name' %}" required>
+                    <span id="arabicError" class="text-85080C hidden"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>{% trans "Amenity Type" %}</label>
+                    <div class="radio-group">
+                        <input type="radio" id="propertyAmenity" name="amenity_type" value="Property_amenity">
+                        <label for="propertyAmenity">{% trans "Property Amenities" %}</label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" id="roomAmenity" name="amenity_type" value="Room_amenity">
+                        <label for="roomAmenity">{% trans "Room Amenities" %}</label>
+                    </div>
+                    <span id="error-message" class="text-danger" class="text-85080C hidden">{% trans "Select Amenity type" %}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="amenityIcon">{% trans "Upload Amenity Icon" %}</label>
+                    <label for="amenityIcon">
+                        <div class="file-upload">
+                            <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="imagePreview" alt="Image Preview"
+                                style="cursor: pointer; max-width: 100%; max-height: 100px;">
+                            <input style="position: absolute; opacity: 0; cursor: pointer; width: 50%; height: 0%;" type="file"
+                                id="amenityIcon" name="icon" accept="image/jpeg, image/png" required>
+                        </div>
+                    </label>
+                    <p class="file-upload-note">{% trans "(Upload JPEG/PNG files)" %}</p>
+                    <span id="imageError" class="text-85080C hidden"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Status" %}</label>
+                    <div class="radio-group">
+                        <input type="radio" id="active" name="status" value="Active">
+                        <label for="active">{% trans "Active" %}</label>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" id="inactive" name="status" value="Inactive">
+                        <label for="inactive">{% trans "In Active" %}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="adminEmail">{% trans "Vendor Email" %}</label>
+                    <input type="email" id="adminEmail" name="admin_email" placeholder="{% trans 'Enter the email address of the Vendor' %}">
+                    <br>
+                    <br>
+                    <span id="emailError" class="text-85080C hidden">{% trans 'User does not exist' %}</span>
+                </div>
+            </div>
+
+            <span id="error_message" class="text-85080C hidden">{% trans 'Amenity with this name  already exists' %}</span>
+            <div class="form-actions">
+                <button type="button" class="cancel-btn add-amenities-cancel-btn">{% trans "Cancel" %}</button>
+                <button type="submit" class="add-btn update-btn" id="addAmenityBtn">{% trans "Add" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.add-amenities-cancel-btn').addEventListener('click', function () {
+        document.querySelector('#amenitiesModal').style.display = 'none';
+    })
+</script>
+

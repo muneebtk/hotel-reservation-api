@@ -1,0 +1,504 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/manage-amenity.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+     <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+    {% include 'accounts/loader_div.html' %}
+
+        <div class="w3-main main-section">
+                <div class="container container-box" id="blur_container">
+                    <div class="row justify-content-center">
+                        <div class="row-main" id="hotelTable">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-8">
+                                        <div class="select-container">
+                                            <form method="get" action="{% url 'amenity_list' %}" style="display: inline;">
+                                                <div class="col-md-4 filter-item">
+                                                    <select name="status">
+                                                        <option value="" {% if not selected_status %}selected{% endif %}>{% trans "All Status" %}</option>
+                                                        <option value="active" {% if selected_status == 'active' %}selected{% endif %}>{% trans "Active" %}</option>
+                                                        <option value="inactive" {% if selected_status == 'inactive' %}selected{% endif %}>{% trans "Inactive" %}</option>
+                                                    </select>
+                                                    <button id="filter" type="submit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i>{% trans "Search" %}
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-red px-3 active" type="button"  id="openModalButton" style="border-radius: 10px;">
+                                                    <img src ="{% static 'icons/material-symbols_add.png' %}">{% trans 'Add Amenity' %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="border-right">{% trans "Amenity Icon" %}</th>
+                                            <th class="border-right">{% trans "Amenity Name(English)" %}</th>
+                                            <th class="border-right">{% trans "Amenity Name(Arabic)" %}</th>
+                                            <th class="border-right">{% trans "Amenity Type" %}</th>
+                                            <th class="border-right">{% trans "Status" %}</th>
+                                            <th>{% trans "Active" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if page_obj %}
+                                            {% for amenity in page_obj %}
+                                                <tr>
+                                                    <td class="border-right">
+                                                        {% if amenity.icon %}
+                                                            <img src="{{ amenity.icon.url }}" alt="{{ amenity.amenity_name }}" style="width:40px;height:40px;margin-left:20%;">
+                                                        {% else %}
+                                                            <i class="fas fa-ban" aria-hidden="true" style="width:40px;height:40px;margin-left:20%; margin-top: 13%;"></i>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="border-right">{{ amenity.amenity_name|default:"N/A"|title }}</td>
+                                                    <td class="border-right">{{ amenity.amenity_name_arabic|default:"N/A"|title }}</td>
+                                                    <td class="border-right">{{ amenity.formatted_amenity_type }}</td>
+                                                    <td class="border-right">
+                                                        {% if amenity.status %}
+                                                            {% trans "Active" %}
+                                                        {% else %}
+                                                            {% trans "In Active" %}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="color-grey">
+                                                        <a href="#" class="edit-amenity-link edit-btn textdecoration-none" data-id="{{ amenity.id }}">
+                                                            <i class="fa-solid fa-pen"></i> {% trans "Edit" %}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="6" class="text-center">{% trans "No data found" %}</td>
+                                            </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            
+                                <!-- Pagination Controls -->
+                                {% if page_obj.paginator.num_pages > 1 %}
+                                    <div class="pagination">
+                                        <ul class="pagination-list">
+                                            {% if page_obj.has_previous %}
+                                                <li><a href="?status={{ selected_status }}&page={{ page_obj.previous_page_number }}">&lsaquo;</a></li>
+                                            {% else %}
+                                                <li class="disabled"><span>&lsaquo;</span></li>
+                                            {% endif %}
+
+                                            {% for num in page_obj.paginator.page_range %}
+                                                {% if num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+                                                    {% if num == page_obj.number %}
+                                                        <li class="active"><span>{{ num }}</span></li>
+                                                    {% else %}
+                                                        <li><a href="?status={{ selected_status }}&page={{ num }}">{{ num }}</a></li>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if page_obj.has_next %}
+                                                <li><a href="?status={{ selected_status }}&page={{ page_obj.next_page_number }}">&rsaquo;</a></li>
+                                            {% else %}
+                                                <li class="disabled"><span>&rsaquo;</span></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>  
+
+    <!-- add modal -->
+    {% include 'superuser/add_amenties.html'%}
+    <!-- edit modal -->
+    {% include 'superuser/edit_amenties.html'%}
+
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>            
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            
+    <script>
+        
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById('amenitiesModal');
+            const openModalBtn = document.getElementById('openModalButton');
+            const closeModal = document.getElementsByClassName('close')[0];
+
+            openModalBtn.onclick = function () {
+                modal.style.display = 'block';
+            }
+
+            closeModal.onclick = function () {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+
+
+        $(document).ready(function() {
+            $('#amenityIcon').change(function() {
+                var input = this;
+                var file = input.files[0];
+
+                $('#imageError').text('');
+
+                if (file) {
+                    var fileType = file.type;
+                    if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
+                        $('#imageError').text('{% trans "Please upload JPEG or PNG image files only" %}.');
+                        $('#imagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                        $('#addAmenityBtn').prop('disabled', true); 
+                        return;
+                    }
+
+                    if (input.files.length > 1) {
+                        $('#imageError').text('{% trans "Please select only one image" %}.');
+                        $('#imagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                        $('#addAmenityBtn').prop('disabled', true); 
+                        return;
+                    }
+
+                    var url = URL.createObjectURL(file);
+                    $('#imagePreview').attr('src', url);
+                    $('#addAmenityBtn').prop('disabled', false); 
+                } else {
+                    $('#imageError').text('{% trans "Please select an image" %}.');
+                    $('#imagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                    $('#addAmenityBtn').prop('disabled', true); 
+                }
+            });
+
+            $('#addAmenityForm').submit(function(event) {
+                event.preventDefault();
+
+                if ($('#addAmenityBtn').prop('disabled')) {
+                    console.log('Form submission prevented due to validation errors.');
+                    return;
+                }
+                if ($('input[name="amenity_type"]:checked').length === 0) {
+                    $('#error-message').show(); 
+                    return;
+                } else {
+                    $('#error-message').hide(); 
+                }
+                var englishName = $('#amenityName').val().trim();
+                var arabicName = $('#amenity_arabic').val().trim();
+                $('#englishError').hide().text('');
+                $('#arabicError').hide().text('');
+
+                var englishRegex = /^[A-Za-z\s\.,'-]+$/;
+                var arabicRegex = /^[\u0621-\u064A\s\.,'-]+$/;  // Arabic letters and spaces
+
+                if (!arabicName && englishName === "") {
+                    $('#englishError').show().text("{% trans 'Amenity name is required in English or Arabic.' %}");
+                    return;
+                }
+
+                if (!englishName || !englishRegex.test(englishName)) {
+                    $('#englishError').show().text("{% trans 'Amenity Name (English) should contain only English letters and spaces.' %}");
+                    return;
+                }
+
+                if (englishName.length > 100) {
+                    $('#englishError').show().text("{% trans 'Amenity Name (English) should not exceed 100 characters.' %}");
+                    return;
+                }
+
+                if (arabicName.length > 100) {
+                    $('#arabicError').show().text("{% trans 'Amenity Name (Arabic) should not exceed 100 characters.' %}");
+                    return;
+                }
+
+                if (arabicName && !arabicRegex.test(arabicName)) {
+                    $('#arabicError').show().text("{% trans 'Amenity Name (Arabic) should contain only Arabic letters and spaces.' %}");
+                    return;
+                }
+
+                
+
+                $('.loader-container').css('display','flex');
+                $('#amenitiesModal').addClass('blur');
+                $('#blur_container').addClass('blur');
+
+
+                var formData = new FormData($(this)[0]);
+
+                $.ajax({
+                    url: '{% url "amenity_list" %}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        console.log('Success:', data);
+                        $('#amenitiesModal').hide();
+                        window.location.reload(); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        $('#amenitiesModal').removeClass('blur');
+                        $('#blur_container').removeClass('blur');
+                        $('#error_message').show();
+                    },
+                    complete: function() {
+                        $('.loader-container').hide();
+                        $('#amenitiesModal').removeClass('blur');
+                        $('#blur_container').removeClass('blur');
+                    }
+                });
+            });
+
+
+            $('.edit-amenity-link').click(function(e) {
+                e.preventDefault();
+                var amenityId = $(this).data('id');
+
+                $.ajax({
+                    url: `/super_user/amenity_edit/${amenityId}/`,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#editAmenityId').val(data.amenity_id);
+                        $('#editAmenityName').val(data.amenity_name);
+                        $('#editAmenityNameArabic').val(data.amenity_name_arabic);
+
+                        if (data.amenity_type === 'Property_amenity') {
+                            $('#editPropertyAmenity').prop('checked', true);
+                        } else if (data.amenity_type === 'Room_amenity') {
+                            $('#editRoomAmenity').prop('checked', true);
+                        }
+
+                        if (data.status === 'Active') {
+                            $('#editActive').prop('checked', true);
+                        } else {
+                            $('#editInactive').prop('checked', true);
+                        }
+
+                        if (data.icon_url) {
+                            $('#editImagePreview').attr('src', data.icon_url);
+                        } else {
+                            $('#editImagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                        }
+
+                        $('#editAmenityForm').attr('action', `/super_user/amenity_edit/${amenityId}/`);
+
+                        $('#editAmenityModal').css('display', 'block');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching amenity data:', error);
+                    }
+                });
+            });
+
+            $('#editAmenityModal .close').click(function() {
+                $('#editAmenityModal').css('display', 'none');
+            });
+
+            $('#editAmenityModal .cancel-btn').click(function() {
+                $('#editAmenityModal').css('display', 'none');
+            });
+
+            $('#editAmenityIcon').change(function() {
+                var input = this;
+                var file = input.files[0];
+
+                $('#editImageError').text('');
+
+                if (file) {
+                    var fileType = file.type;
+                    if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
+                        $('#editImageError').text('{% trans "Please upload JPEG or PNG image files only" %}.');
+                        $('#editImagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                        $('#editAmenityBtn').prop('disabled', true);
+                        return;
+                    }
+
+                    var url = URL.createObjectURL(file);
+                    $('#editImagePreview').attr('src', url);
+                    $('#editAmenityBtn').prop('disabled', false);
+                } else {
+                    $('#editImageError').text('{% trans "Please select an image" %}.');
+                    $('#editImagePreview').attr('src', "{% static 'icons/teenyicons_image-solid.png' %}");
+                    $('#editAmenityBtn').prop('disabled', true);
+                }
+            });
+
+
+            $('#editAmenityForm').submit(function(event) {
+                event.preventDefault();
+
+                $('#editEnglishError').hide().text('');
+                $('#editArabicError').hide().text('');
+
+                var englishName = $('#editAmenityName').val().trim();
+                var arabicName = $('#editAmenityNameArabic').val().trim();
+                var englishRegex = /^[A-Za-z\s\.,'-]+$/;
+                var arabicRegex = /^[\u0621-\u064A\s\.,'-]+$/; // Arabic letters and spaces only
+
+
+                if (!arabicName && englishName === "") {
+                    $('#editEnglishError').show().text("{% trans 'Amenity name is required in English or Arabic.' %}");
+                    return;
+                }
+
+                if (!englishName || !englishRegex.test(englishName)) {
+                    $('#editEnglishError').show().text("{% trans 'Amenity Name (English) should contain only English letters and spaces.' %}");
+                    return;
+                }
+
+                if (englishName.length > 100) {
+                    $('#editEnglishError').show().text("{% trans 'Amenity Name (English) should not exceed 100 characters.' %}");
+                    return;
+                }
+
+                if (arabicName.length > 100) {
+                    $('#editArabicError').show().text("{% trans 'Amenity Name (Arabic) should not exceed 100 characters.' %}");
+                    return;
+                }
+                
+                if (arabicName && !arabicRegex.test(arabicName)) {
+                    $('#editArabicError').show().text("{% trans 'Amenity Name (Arabic) should contain only Arabic letters and spaces.' %}");
+                    return;
+                }
+
+		        $('.loader-container').css('display','flex');
+                $('#editAmenityModal').addClass('blur');
+                $('#blur_container').addClass('blur');
+                
+                var formData = new FormData($(this)[0]);
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        console.log('Amenity updated successfully:', data);
+                        $('#editAmenityModal').css('display', 'none');
+                        window.location.reload(); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating amenity:', error);
+                        $('#edit_error_message').show();
+                    },
+                    complete: function() {
+                        $('.loader-container').hide();
+                        $('#editAmenityModal').removeClass('blur');
+                        $('#blur_container').removeClass('blur');
+                    }
+                });
+            });
+            
+        });
+
+
+        $('#adminEmail').on('input', function() {
+            var email = $(this).val();
+            if (email) {
+                $.ajax({
+                    url: '{% url "check_email_exists" %}',
+                    type: 'GET',
+                    data: {
+                        'email': email
+                    },
+                    success: function(data) {
+                        if (data.exists) {
+                            $('#emailError').hide();
+                            $('#addAmenityBtn').prop('disabled', false);
+                        } else {
+                            $('#emailError').show();
+                            $('#addAmenityBtn').prop('disabled', true);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        $('#emailError').show();
+                        $('#addAmenityBtn').prop('disabled', true);
+                    }
+                });
+            } else {
+                $('#emailError').hide();
+                $('#addAmenityBtn').prop('disabled', false);
+            }
+        });
+    
+
+                        
+
+    </script>
+    
+</body>
+</html>

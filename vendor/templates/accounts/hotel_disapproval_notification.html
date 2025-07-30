@@ -1,0 +1,14 @@
+{% extends 'accounts/base_email_template.html' %}
+
+{% block title %}Hotel Disapproval Notification{% endblock %}
+
+{% block content %}
+    <h2>Hotel Disapproval Notification</h2>
+    <p>We regret to inform you that your hotel <span style="font-weight: 700;">{{ hotel_name }}</span> has been disapproved.</p>
+    <p>Reason for rejection: <em>{{ rejection_remark }}</em></p>
+    <p>Please contact us for further details.</p>
+    <div class="footer">
+        <p>This email was sent to you by 1929 owner. If you have any questions,please contact us at support</p>
+    </div>
+{% endblock %}
+

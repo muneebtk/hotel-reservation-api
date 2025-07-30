@@ -1,0 +1,720 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="{% static 'chalets/css/property.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %}
+    </div>
+    <div id="loader" class="hidden"></div>
+
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu" 
+        id="myOverlay"></div>
+    <div class="w3-main main-section">
+        <div class="container container-box w-full">
+            <div class="row justify-content-center">
+                <div class="row-main" id="chaletTable">
+                    <div class="row ">
+                        <div class="col-md-4 float-right mt-10px mb-20px">
+                            <a href="#" onclick="document.getElementById('id01').style.display='flex'" id="add_button"
+                                class="btn add-room-btn">
+                                {% trans "Add Rooms" %}
+                            </a>
+
+
+                            <div id="id01" class="add-room-modal">
+                                <div class="add-modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i>{% trans "ADD" %}</h3>
+                                        <span onclick="document.getElementById('id01').style.display='none'"
+                                            class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                                            title="Close Modal">&times;
+                                        </span>
+                                    </div>
+                                    <div class="">
+                                        <form id="roomForm" class="w3-container"  method="post" enctype="multipart/form-data">
+                                            {%csrf_token%}
+                                            <div class="w3-section modal-input-container">
+
+                                                <div class="w3-cell box_container">
+                                                    <div>
+                                                        <label for="room_number"><span class="text-85080c">*</span>{% trans "Room Number" %}</label>
+                                                    </div>
+                                                    <div>
+                                                        <input class=" w3-padding  w3-round-large box_container_input"
+                                                            type="text" id="room_number" name="room_number"
+                                                            placeholder="{% trans 'Enter Room number' %}" required>
+                                                    </div>
+                                                    <div>
+                                                        <span id="room_number_error" class="error-message"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="w3-cell box_container">
+                                                    <div>
+                                                        <label for="room_name">{% trans "Room Name" %}</label>
+                                                    </div>
+                                                    <div>
+                                                        <input class=" w3-padding  w3-round-large box_container_input"
+                                                            type="text" id="room_name" name="room_name"
+                                                            placeholder="{% trans 'Enter a Room name' %}" required>
+                                                    </div>
+                                                    <div>
+                                                        <span id="room_name_error" class="error-message"></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="w3-cell box_container">
+                                                    <div>
+                                                        <label for="bathroom_number">{% trans "Washroom" %}</label>
+                                                    </div>
+                                                    <div>
+                                                        <input class=" w3-padding  w3-round-large box_container_input"
+                                                            type="text" id="bathroom_number" name="bathroom_number"
+                                                            placeholder="{% trans 'Enter the number of Washrooms' %}"  required>
+                                                    </div>
+                                                    <div>
+                                                        <span id="bathroom_number_error" class="error-message"></span>
+                                                    </div>
+                                                </div> 
+                                                
+                                                <div class="w3-cell box_container">
+                                                    <div>
+                                                        <label for="total_occupency">{% trans "Occupancy" %}</label>
+                                                    </div>
+                                                    <div>
+                                                        <input class=" w3-padding  w3-round-large box_container_input"
+                                                            type="text" id="total_occupency" name="total_occupency"
+                                                            placeholder="{% trans 'Enter the number of occupancy' %}" required>
+                                                    </div>
+                                                    <div>
+                                                        <span id="occupancy_error" class="error-message"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="w3-cell box_container">
+                                                    <div>
+                                                        <label for="bed_number">{% trans "Number Of Bed" %}</label>
+                                                    </div>
+                                                    <div>
+                                                        <input class=" w3-padding  w3-round-large box_container_input"
+                                                            type="text" id="bed_number" name="bed_number"
+                                                            placeholder="{% trans 'Enter the number of beds' %}" required>
+                                                    </div>
+                                                    <div>
+                                                        <span id="bed_number_error" class="error-message"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w3-center w3-container">
+                                                <button
+                                                    class="w3-button w3-round-large w3-margin-right  btn  w3-padding-large text-85080c border-85080c"
+                                                    onclick="document.getElementById('id01').style.display='none'"
+                                                    type="button"
+                                                    id="cancel_button">
+                                                    {% trans "Cancel" %}
+                                                </button>
+                                                <button class=" w3-round-large btn w3-section w3-padding-large bg-85080c text-white"
+                                                    type="submit">
+                                                    {% trans "Add"%}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-container w-full overflow-y-auto-sm">
+                                <table class="w3-table responsive-table w-full">
+                                    <thead class="bg-table-head">
+                                        <tr>
+                                            <th class="border-right">{% trans "Sl. No." %}</th>
+                                            <th class="border-right">{% trans "Room Number" %}</th>
+                                            <th class="border-right">{% trans "Room Name" %}</th>
+                                            <th class="border-right">{% trans "No Of Washroom" %}</th>
+                                            <th class="border-right">{% trans "Occupancy" %}</th>
+                                            <th class="border-right">{% trans "No Of Bed" %}</th>
+                                            <th colspan="3">{% trans "Action" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fs12 table-body-color table_body">
+                                        {% for room in rooms %}
+                                        <tr>
+                                            <td class="border-right">{{ forloop.counter }}</td>
+                                            <td class="border-right ">{{ room.room_number }}</td>
+                                            <td class="border-right ">{{ room.room_name }}</td>
+                                            <td class="border-right">{{ room.number_of_bathroom }}</td>
+                                            <td class="border-right">{{ room.total_occupency }}</td>
+                                            <td class="border-right ">{{ room.number_of_bed }}</td>
+                                            <td class="color-grey">
+                                                <div class="table-action-btn-container">
+                                                    <a href="#" onclick="openEditModal({{ room.id }})" class="edit-btn">
+                                                        <i class="fa-solid fa-pen"></i>{% trans "Edit" %}
+                                                    </a>
+                                            
+                                                    <form id="delete-form-{{ room.id }}" action="{% url 'room_remove' room.id %}?chalet_id={{selected_chalet.id}}" method="post" class="inline">
+                                                        {% csrf_token %}
+                                                    </form>
+                                                    <a href="#" onclick="return submitDeleteForm({{ room.id }});" class="delete-btn">
+                                                        <i class="fa-solid fa-trash"></i> {% trans "Delete" %}
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="8" class="text-center">{% trans "No data found" %}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+    
+                            </div>
+                
+                        </div>
+                </div>
+                {%if  rooms%}
+                <div class="pagination">
+
+                    <!-- Previous Button -->
+
+                    {% if  rooms.has_previous %}
+                        <a href="#" class="previous-page pagination-link" data-page="{{  rooms.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                    <div class="page-numbers">
+                        {% for num in  rooms.paginator.page_range %}
+                            {% if  rooms.paginator.num_pages > 3 %}
+                                {% if num >=  rooms.number and num <  rooms.number|add:3 %}
+                                    {% if num ==  rooms.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num ==  rooms.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            
+                    <!-- Next Button -->
+                    {% if rooms.has_next %}
+                            <a href="#" class="next-page pagination-link" data-page="{{ rooms.next_page_number }}" title="Next Page">
+                                <span class="next-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {%else%}
+                <div></div>
+            {% endif %}        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no_data_found hidden"></div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="id02" class="w3-modal">
+        <div class="add-room w3-card-4 w3-round-xlarge max-w-90per edit-room-modal">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id02').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                    title="Close Modal">&times;</span>
+            </div>
+            <div class="">
+                <div>
+                    <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i>&nbsp;{% trans "Edit" %}
+                    </h3>
+                </div>
+                <form id="editroomForm" class="w3-container" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="w3-section edit-forms-input-container">
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="room_number"><span class="text-85080c">*</span>{% trans "Room Number" %}</label>
+                            </div>
+                            <div>
+                                <input class=" w3-padding w3-round-large box_container_input"
+                                    type="text" id="edit_room_number" name="room_number"
+                                    placeholder="{% trans 'Enter Room number' %}" required>
+                            </div>
+                            <div>
+                                <span id="edit_room_number_error" class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="room_name">{% trans "Room Name" %}</label>
+                            </div>
+                            <div>
+                                <input class=" w3-padding w3-round-large box_container_input"
+                                    type="text" id="edit_room_name" name="room_name"
+                                    placeholder="{% trans 'Enter a Room name' %}" required>
+                            </div>
+                            <div>
+                                <span id="edit_room_name_error" class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="bathroom_number">{% trans "Washroom" %}</label>
+                            </div>
+                            <div>
+                                <input class=" w3-padding w3-round-large box_container_input"
+                                    type="text" id="edit_bathroom_number" name="bathroom_number"
+                                    placeholder="{% trans 'Enter the number of Washrooms' %}" required>
+                            </div>
+                            <div>
+                                <span id="edit_bathroom_number_error" class="error-message"></span>
+                            </div>
+                        </div>
+
+                            <div class="w3-cell box_container">
+                                <div>
+                                    <label for="total_occupency">{% trans "Occupancy" %}</label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input"
+                                        type="text" id="edit_total_occupency" name="total_occupency"
+                                        placeholder="{% trans 'Enter the number of occupancy' %}" required>
+                                </div>
+                                <div>
+                                    <span id="edit_occupancy_error" class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <div class="w3-cell box_container">
+                                <div>
+                                    <label for="bed_number">{% trans "Number Of Bed" %}</label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input"
+                                        type="text" id="edit_bed_number" name="bed_number"
+                                        placeholder="{% trans 'Enter the number of beds' %}" required>
+                                </div>
+                                <div>
+                                    <span id="edit_bed_number_error" class="error-message"></span>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="w3-center w3-container">
+                        <button class="w3-button w3-round-large w3-margin-right btn w3-padding-large border-85080c text-85080c"
+                                onclick="document.getElementById('id02').style.display='none'"
+                                type="button"
+                                id="cancel_button">{% trans "Cancel" %}</button>
+                        <button class="w3-round-large btn w3-section w3-padding-large bg-85080c text-white"
+                                type="submit">{% trans "Save" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    document.getElementById('cancel_button').addEventListener('click', resetFormAndClose);
+    document.querySelector("#id01 .w3-display-topright").addEventListener('click', resetFormAndClose);
+
+    function resetFormAndClose() {
+        document.getElementById('roomForm').reset();
+        document.getElementById('id01').style.display = 'none';
+        
+        $(".error-message").text("");
+    }
+
+    function submitDeleteForm(roomId) {
+        if (confirm('{% trans "Are you sure you want to delete this room?" %}')) {
+            document.getElementById('delete-form-' + roomId).submit();
+        }
+        return false;
+    }   
+
+    
+    $(document).ready(function() {
+        $("#roomForm").on("submit", function(event) {
+            event.preventDefault();
+
+            $(".error-message").text("");
+            
+            var form = this;
+
+            var roomNumber = $("#room_number").val();
+            var roomName = $("#room_name").val();
+            var bathroomNumber = $("#bathroom_number").val();
+            var occupancy = $("#total_occupency").val();
+            var bedNumber = $("#bed_number").val();
+
+            var isValid = true;
+
+            var roomNumberPattern = /^[a-zA-Z0-9]{3,5}$/;
+            if (!roomNumberPattern.test(roomNumber)) {
+                $("#room_number_error").text("{% trans 'Room Number must be alphanumeric and 3-5 characters long.' %}");
+                isValid = false;
+            }
+
+            if (roomName.length > 50) {
+                $("#room_name_error").text("{% trans 'Room Name must be 50 characters or less.' %}");
+                isValid = false;
+            } 
+
+            else if (roomName && !/^[a-zA-Z\s]+$/.test(roomName)) {
+                $("#room_name_error").text("{% trans 'Room Name should only contain letters.' %}");
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(bathroomNumber) || bathroomNumber < 1 || bathroomNumber > 100) {
+                $("#bathroom_number_error").text("{% trans 'Washroom number must be a number between 1 and 100.' %}");
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(occupancy) || occupancy < 1 || occupancy > 100) {
+                $("#occupancy_error").text("{% trans 'Occupancy must be a number between 1 and 100.' %}");
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(bedNumber) || bedNumber < 1 || bedNumber > 100) {
+                $("#bed_number_error").text("{% trans 'Bed number must be a number between 1 and 100.' %}");
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Check if room name and room number already exist
+                const urlParams = new URLSearchParams(window.location.search);
+                const chaletId = urlParams.get('chalet_id');
+
+
+                $.ajax({
+                    url: '{% url "check_room_details" %}',  // Update the URL
+                    type: 'POST',
+                    data: {
+                        'room_name': roomName,
+                        'room_number': roomNumber,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}' ,
+                        'chalet_id': chaletId 
+                    },
+                    success: function(response) {
+                        var roomExists = false;
+                        if (response.room_number_exists) {
+                            $("#room_number_error").text("{% trans 'Room Number already exists.' %}");
+                            roomExists = true;
+                        }
+
+                        if (!roomExists) {
+                            var formData = new FormData(form);
+                            formData.append('chalet_id', chaletId);
+
+                            $.ajax({
+                                url: '{% url "chalet_property" %}',
+                                type: 'POST',
+                                data: formData, 
+                                processData: false, 
+                                contentType: false, 
+                                success: function(response) {
+                                    alert("{% trans 'Room added successfully!' %}");
+                                    document.getElementById('id01').style.display = 'none';
+                                    location.reload();  
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('An error occurred:', error);
+                                    alert("{% trans 'An error occurred while adding the room.' %}");
+                                }
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('An error occurred while checking room details:', error);
+                    }
+                });
+            }
+        });
+    });
+
+
+
+    function openEditModal(roomId) {
+    var url = "{% url 'room_edit' 0 %}".replace('0', roomId);
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('edit_room_number').value = data.room_number;
+            document.getElementById('edit_room_name').value = data.room_name;
+            document.getElementById('edit_bathroom_number').value = data.number_of_bathroom;
+            document.getElementById('edit_total_occupency').value = data.total_occupency;
+            document.getElementById('edit_bed_number').value = data.number_of_bed;
+
+            // Set the previous room number and room ID as attributes
+            document.getElementById('editroomForm').setAttribute('data-previous-room-number', data.room_number);
+            document.getElementById('editroomForm').setAttribute('data-room-id', roomId);
+
+            // Show the modal
+            document.getElementById('id02').style.display = 'flex';
+        })
+        .catch(error => console.error('Error fetching room data:', error));
+}
+
+document.getElementById('editroomForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Clear previous error messages
+    $(".error-message").text("");
+
+    // Collect form values
+    var roomNumber = $("#edit_room_number").val().trim();
+    var roomName = $("#edit_room_name").val().trim();
+    var bathroomNumber = $("#edit_bathroom_number").val().trim();
+    var occupancy = $("#edit_total_occupency").val().trim();
+    var bedNumber = $("#edit_bed_number").val().trim();
+
+    var previousRoomNumber = this.getAttribute('data-previous-room-number');
+    var roomId = this.getAttribute('data-room-id');
+
+    var isValid = true;
+
+    // Validation patterns
+    var roomNumberPattern = /^[a-zA-Z0-9]{3,5}$/;
+    if (!roomNumberPattern.test(roomNumber)) {
+        $("#edit_room_number_error").text("{% trans 'Room Number must be alphanumeric and 3-5 characters long.' %}");
+        isValid = false;
+    }
+
+    if (roomName.length > 50) {
+        $("#edit_room_name_error").text("{% trans 'Room Name must be 50 characters or less.' %}");
+        isValid = false;
+    } else if (roomName && !/^[a-zA-Z\s]+$/.test(roomName)) {
+        $("#edit_room_name_error").text("{% trans 'Room Name should only contain letters and spaces.' %}");
+        isValid = false;
+    }
+
+    if (!/^\d+$/.test(bathroomNumber) || bathroomNumber < 1 || bathroomNumber > 100) {
+        $("#edit_bathroom_number_error").text("{% trans 'Washroom number must be a number between 1 and 100.' %}");
+        isValid = false;
+    }
+
+    if (!/^\d+$/.test(occupancy) || occupancy < 1 || occupancy > 100) {
+        $("#edit_occupancy_error").text("{% trans 'Occupancy must be a number between 1 and 100.' %}");
+        isValid = false;
+    }
+
+    if (!/^\d+$/.test(bedNumber) || bedNumber < 1 || bedNumber > 100) {
+        $("#edit_bed_number_error").text("{% trans 'Bed number must be a number between 1 and 100.' %}");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return; // Stop if validation fails
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const chaletId = urlParams.get('chalet_id');
+
+    if (roomNumber !== previousRoomNumber) {
+        // Check for room number uniqueness
+        $.ajax({
+            url: '{% url "check_room_details" %}',
+            type: 'POST',
+            data: {
+                'room_number': roomNumber,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'chalet_id': chaletId
+            },
+            success: function(response) {
+                if (response.room_number_exists) {
+                    $("#edit_room_number_error").text("{% trans 'Room Number already exists.' %}");
+                } else {
+                    submitEditForm(roomId);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('An error occurred:', error);
+                alert("{% trans 'An error occurred while adding the room.' %}");
+            }
+        });
+    } else {
+        submitEditForm(roomId);
+    }
+});
+
+function submitEditForm(roomId) {
+    var url = "{% url 'room_edit' 0 %}".replace('0', roomId);
+    const form = document.getElementById('editroomForm');
+    const formData = new FormData(form);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('id02').style.display = 'none';
+            location.reload();
+        } else {
+            console.error('Error saving data:', data);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+$(document).ready(function () {
+    $(document).on('click', '.pagination-link', function (e) {
+        e.preventDefault(); // Prevent default anchor behavior
+
+        $('#loader').show();
+        $('.table-container').addClass('blurred');
+        var page = $(this).data('page') || 1; 
+        var loaderTimeout = setTimeout(function() {
+            $('#loader').hide();
+            $('.table-container').removeClass('blurred');
+        }, 1000);
+
+        $.ajax({
+            url:'{% url "chalet_property"  %}?chalet_id={{selected_chalet.id}}',  
+            type: 'GET',
+            data: {
+            page: page 
+            },
+            success: function (data) {
+                $('.table-container').removeClass('blurred');
+                $('#loader').hide();
+                $('table thead').html($(data).find('thead').html());
+                $('table tbody').html($(data).find('tbody').html());
+                $('.pagination').html($(data).find('.pagination').html());
+                $('.pagination').html($(data).find('.pagination').html());
+                // const rows = $(data).find('table tbody tr');
+                // const totalRows = rows.length;
+
+                // const currentPage = parseInt($('.current-page').text(), 10) || 1;
+                // console.log(currentPage)
+
+                // if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 10)) {
+                //     $('.pagination').hide();
+                // } else {
+                //     $('.pagination').html($(data).find('.pagination').html()).show();
+
+                // }
+
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching data:', error);
+                alert("{% trans 'Error fetching data. Please try again later.' %}");
+
+                $('#loader').hide();
+                $('.table-container').removeClass('blurred');
+            }
+        });
+    });
+});
+
+function updatePagination(data) {
+const rows = $(data).find('table tbody tr');
+const totalRows = rows.length;
+
+const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+    $('.pagination').hide();
+} else {
+    $('.pagination').html($(data).find('.pagination').html()).show();
+}
+
+}
+
+$(document).ready(function () {
+        updatePagination(document);
+        var urlParams = new URLSearchParams(window.location.search);
+        var chaletId = urlParams.get('chalet_id');
+        $.ajax({
+            url: `/chalets/propertys/?chalet_id=${chaletId}`,
+            method: 'GET',
+            success: function (data) {
+            $('table tbody').html($(data).find('table tbody').html());
+                updatePagination(data);
+            }
+        });
+    });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-*********" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/final-step.css' %}">
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="container">
+            <header class="progress-bar-container">
+                <h2 class="header-title">{% trans 'Almost finished!' %}</h2>
+                <div class="progress-bar">
+                    <div class="step active">
+                        <div class="circle active"><i class="fas fa-check"></i></div>
+                        <span class="label">{% trans 'Amenities' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step active">
+                        <div class="circle active"><i class="fas fa-check"></i></div>
+                        <span class="label">{% trans 'Prices' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step active">
+                        <div class="circle active"><span class="step-number">3</span></div>
+                        <span class="label">{% trans 'Policies' %}</span>
+                    </div>
+                </div>
+            </header>
+            <section class="inner-container">
+                <form action="{%url 'final_step'%}" method="post" id="policyForm">
+                    {%csrf_token%}
+                    <h1 class="title">{% trans 'Policies' %}</h1>
+                    <p class="inner-subtitle">{% trans 'Please list all policies applicable at your property' %}</p>
+                    <div class="scrollable-div">
+    
+                        <div class="policy-section">
+                            <h1>{% trans 'Check-In & Check-Out' %}</h1>
+                            <label>{% trans 'Please ensure to mention both your check-in and check-out dates' %}</label>
+                            <div class="datetime">
+                                <div class="datetime-container">
+                                    <div class="datetime-input">
+                                        <span>{% trans 'Check in' %}</span>
+                                        <input type="time" id="checkin" name="checkin">
+                                    </div>
+                                    <div class="datetime-input">
+                                        <span>{% trans 'Check out' %}</span>
+                                        <input type="time" id="checkout" name="checkout">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                        <!-- Acceptable Identity Proofs Section -->
+                        {% if has_identity_proof %}
+                        <div class="card-policy-section">
+                            <label class="font-bold">{% trans 'Acceptable Identity Proofs' %}</label>
+                            <br>
+                            <br>
+                            <div class="id-proof">
+                                {% for id in id_policy %}
+                                    <input type="checkbox" id="id-proof-{{ id.id }}" name="id-proof" value="{{ id.id }}">
+                                    <label for="id-proof-{{ id.id }}">{{ id.title }}</label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+    
+    
+                    
+                        {% for category in policy_categories %}
+                            <div class="policy-section">
+                                <h1 class="category-name-title">{{ category.category.name }}</h1>
+                                <div class="policy-text">
+                                    {% for policy in category.policy_names.all %}
+                                        <div class="policy-option">
+                                            <label for="policy-{{ policy.id }}">{{ policy.title }}</label>
+                                            <!-- Use policy.id for the value instead of policy.policy_name -->
+                                            <input type="checkbox" id="policy-{{ policy.id }}" name="policy-checkbox" value="{{ policy.id }}">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+    
+    
+                        <div class="">
+                            <h1>{% trans 'Select a Highlight Image for Your Hotel' %}</h1>
+                            <div class="image-section">
+                                <div class="image-selection-container">
+                                    {% for image in hotel_images.hotel_images.all %}
+                                    <div class="image-item">
+                                        <img src="{{ image.image.url }}" alt="Hotel Image {{ forloop.counter }}" class="hotel-image">
+                                        <div class="radio-container">
+                                            <input type="radio" id="highlight-image-{{ forloop.counter }}" name="highlight_image" value="{{ image.id }}">
+                                            <label for="highlight-image-{{ forloop.counter }}"></label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                      <div id="error-message-container" class="text-center p-0">
+                        <span id="nextday-notification" class="text-green hidden">{% trans 'The chosen check-out time is considered for the next day.' %}</span><br>
+                        <span id="datetime-error-message" class="text-red hidden">{% trans 'Please provide both check-in and check-out times.' %}</span><br>
+                        <span id="idproof-error-message" class="text-red hidden">{% trans 'Please select at least one acceptable identity proof.' %}</span><br>
+                        <span id="highlight-image-error-message" class="text-red hidden">{% trans 'Please select a highlight image.' %}</span>
+                    </div>
+    
+                    <div class="buttons">
+                        <button id="backButton" class="back-button">{% trans 'Back' %}</button>
+                        <button type="submit" id="savebutton" class="Save-button">{% trans 'Save' %}</button>
+                    </div> 
+                </form>
+            </section>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            loadFormData();
+            function storeFormData() {
+                let selectedCheckboxes = [];
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+                    selectedCheckboxes.push(checkbox.value);
+                });
+
+                let checkinTime = document.getElementById('checkin').value;
+                let checkoutTime = document.getElementById('checkout').value;
+
+                sessionStorage.setItem('selectedCheckboxes', JSON.stringify(selectedCheckboxes));
+                sessionStorage.setItem('checkinTime', checkinTime);
+                sessionStorage.setItem('checkoutTime', checkoutTime);
+            }
+
+            // Function to load form data from session storage
+            function loadFormData() {
+                let selectedCheckboxes = JSON.parse(sessionStorage.getItem('selectedCheckboxes') || '[]');
+                selectedCheckboxes.forEach((value) => {
+                    document.querySelector(`input[type="checkbox"][value="${value}"]`).checked = true;
+                });
+
+                let checkinTime = sessionStorage.getItem('checkinTime');
+                let checkoutTime = sessionStorage.getItem('checkoutTime');
+                if (checkinTime) {
+                    document.getElementById('checkin').value = checkinTime;
+                }
+                if (checkoutTime) {
+                    document.getElementById('checkout').value = checkoutTime;
+                }
+            }
+            // Function to handle Back button click
+            $('#backButton').click(function (e) {
+                storeFormData();
+                e.preventDefault(); // Prevent default form submission
+
+                // Send Ajax request to get selected amenities and reload form
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "back_add_price" %}', // Replace with your Django URL to fetch selected amenities
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("success");
+                        if (response.selected_price && response.payment_types) {
+                            // Store selected amenities in session storage
+                            sessionStorage.setItem('selectedPrices', JSON.stringify(response.selected_price));
+                            sessionStorage.setItem('selectedPayments', JSON.stringify(response.payment_types));
+                            hotelId=response.hotel_id;
+                            // Redirect to the add amenities page
+                            window.location.href = `/vendor/price/add/?hotel_id=${hotelId}`;
+                        } else {
+                            console.error('No selected_price in response');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            $('#savebutton').click(function (e) {
+                var isValid = true;
+
+                // Clear previous error messages
+                $('#datetime-error-message').hide();
+                $('#nextday-notification').hide();
+                $('#datetime-error').hide();
+
+                var checkinTime = $('#checkin').val();
+                var checkoutTime = $('#checkout').val();
+
+                // If either field is empty
+                if (!checkinTime || !checkoutTime) {
+                    $('#datetime-error-message').text('Please provide both check-in and check-out times.').show();
+                    isValid = false;
+                } else {
+                    // Get current date and set times
+                    var today = new Date();
+                    var checkinDateTime = new Date(today.toISOString().split('T')[0] + 'T' + checkinTime);
+                    
+                    // Create the checkout date as today
+                    var checkoutDateTime = new Date(today.toISOString().split('T')[0] + 'T' + checkoutTime);
+
+                    // Check if checkout time is earlier than or equal to check-in time
+                    if (checkoutDateTime <= checkinDateTime) {
+                        // Move checkout to the next day if it's earlier or same as check-in
+                        checkoutDateTime.setDate(today.getDate() + 1);
+
+                        // Show specific message in green when checkout is considered for the next day
+                        $('#nextday-notification').text('The chosen check-out time is considered for the next day.').show();
+                    } else {
+                        $('#nextday-notification').hide(); // Hide next day message if it's not applicable
+                    }
+
+                    // If the check-out time is still invalid after adjustment, show the error
+                    if (checkinDateTime >= checkoutDateTime) {
+                        $('#datetime-error').text('Check-out time should be greater than check-in times.').show();
+                        isValid = false;
+                    } else {
+                        $('#datetime-error').hide(); // Hide the check-out time error if valid
+                    }
+                }
+
+
+                // // Check if at least one identity proof is selected
+                // if ($('input[name="id-proof"]:checked').length === 0) {
+                //     $('#idproof-error-message').show();
+                //     isValid = false;
+                // } else {
+                //     $('#idproof-error-message').hide();
+                // }
+
+                // Check if at least one identity proof is selected only if it exists in the database
+                var hasIdentityProof = {{ has_identity_proof|lower }};  // Get the value from Django context
+                if (hasIdentityProof && $('input[name="id-proof"]:checked').length === 0) {
+                    $('#idproof-error-message').show();
+                    isValid = false;
+                } else {
+                    $('#idproof-error-message').hide();
+                }
+
+
+
+                // Check if a highlight image is selected
+                if ($('input[name="highlight_image"]:checked').length === 0) {
+                    $('#highlight-image-error-message').show();
+                    isValid = false;
+                } else {
+                    $('#highlight-image-error-message').hide();
+                }
+
+                // Prevent form submission if validation fails
+                if (!isValid) {
+                    e.preventDefault();
+                } else {
+                    sessionStorage.removeItem('selectedPrices');
+                    sessionStorage.removeItem('selectedCheckboxes');
+                    sessionStorage.removeItem('checkinTime');
+                    sessionStorage.removeItem('checkoutTime');
+                    sessionStorage.removeItem('selectedPayments');
+
+                }
+            });
+
+            // Ensure only one image can be selected at a time
+            $('input[name="highlight_image"]').on('change', function() {
+                $('input[name="highlight_image"]').not(this).prop('checked', false);
+            });
+        });
+    </script>
+</body>
+
+</html>

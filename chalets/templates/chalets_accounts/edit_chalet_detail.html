@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="{% static 'chalets/css/edit-chalet-detail.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- <meta name="csrf-token" content="{% csrf_token %}"> -->
+        <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <!-- Include flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
+</head>
+
+<body>
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+    <div id="loader" style="display: none;">loading..</div>
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <div class="w3-main main-section" id="test_div">
+        <div class="row-main w-full">
+            <!-- <h2>Edit chalet Details</h2> -->
+            <div class="col-md-4">
+                <button class="back-btn"><a href="{% url 'edit_chalet' %}?chalet_id={{ selected_chalet.id }}"
+                        style="text-decoration: none;"><i class="fa-solid fa-arrow-left fa-lg "></i></a></button>
+            </div>  
+            <form class="main-chalet-form" id="chaletForm" method="post" enctype="multipart/form-data" onsubmit="submitEditForm(event)">
+                <h2 class="title">{% trans 'Edit Chalet Details' %}</h2>
+                {% csrf_token %}
+                <div class="{% if request.LANGUAGE_CODE == 'ar' %}rtl{% endif %}">
+                <div class="chalet-form ">
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_name">{% trans 'Chalet Name' %}</label>
+                        </div>
+                        <input type="text" id="chalet_name" name="chalet_name" value="{{chalet.name}}"
+                            placeholder="{% trans 'chalet Name' %}">
+                        <span id="chalet_name_error" class="error-message"></span>
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_name">{% trans 'Chalet Name/اسم الفندق' %}</label>
+                        </div>
+                        <input type="text" id="arabic_name" name="arabic_name" value="{{chalet.name_arabic}}"
+                            placeholder="{% trans 'Arabic Name' %}">
+                        <span id="arabic_name_error" class="error-message"></span>
+                    </div>
+
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_owner">{% trans 'Chalet Owner Name'%}</label>
+                        </div>
+                        <input type="text" id="chalet_owner" name="chalet_owner"
+                            value="{% if chalet.owner_name and chalet.owner_name.owner_name %}{{ chalet.owner_name.owner_name }}{% else %}{{ chalet.vendor.name }}{% endif %}"
+                            placeholder="{% trans 'chalet Owner Name' %}">
+                        <span id="chalet_owner_error" class="error-message"></span>
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_owner">{% trans 'Chalet Owner Name/اسم مالك الفندق'%}</label>
+                        </div>
+                        <input type="text" id="chalet_owner_arabic" name="chalet_owner_arabic"
+                            value="{% if chalet.owner_name and chalet.owner_name.owner_name_arabic %}{{ chalet.owner_name.owner_name_arabic}}{% else %}{{ chalet.owner_name_arabic }}{% endif %}"
+                            placeholder="{% trans 'chalet Owner Name In Arabic' %}">
+                        <span id="chalet_owner_arabic_error" class="error-message"></span>
+                    </div>
+                    
+                </div>
+                <br>
+
+                <div class="chalet-form ">
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_check_in">{% trans 'Check In'%}</label>
+                        </div>
+                        <input type="time" id="chalet_check_in" name="chalet_check_in" value="{{chalet.checkin_time|time:'H:i'}}"
+                            placeholder="{% trans 'Check In' %}" required>
+                        <span id="chalet_check_in_error" class="error-message"></span>
+                    </div>
+                   <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_check_out">{% trans 'Check Out' %}</label>
+                        </div>
+                        <input type="time" id="chalet_check_out" name="chalet_check_out" value="{{chalet.checkout_time|time:'H:i'}}"
+                            placeholder="{% trans 'Check In' %}" required>
+                        <span id="chalet_check_out_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_guests">{% trans 'Number Of Guests' %}</label>
+                        </div>
+                        <input type="text" id="chalet_guests" name="chalet_guests" value="{{chalet.number_of_guests}}"
+                            placeholder="{% trans 'Number Of Guests' %}" required>
+                        <span id="chalet_guests_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_price">{% trans 'Total Price' %}</label>
+                        </div>
+                        <input  type="text" id="chalet_price" name="chalet_price" value="{{chalet.total_price}}" placeholder="{% trans 'Total Price' %}" required>
+                        <span id="chalet_price_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_weekend_price">{% trans 'Weekend Price' %}</label>
+                        </div>
+                        <input  type="text" id="chalet_weekend_price" name="chalet_weekend_price" value="{{weekend_price}}" placeholder="{% trans 'Weekend Price' %}" >
+                        <span id="chalet_weekend_price_error" class="error-message"></span>
+                    </div>
+                </div>
+                  <br>
+
+                <div class="chalet-form ">
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_email">{% trans 'Chalet Owner Email'%}</label>
+                        </div>
+                        <input type="text" id="chalet_email" name="chalet_email" value="{{chalet.vendor.user.email}}"
+                            placeholder="{% trans 'Owner Mail' %}">
+                        <span id="chalet_email_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="officenumber">{% trans 'Office Number' %}</label>
+                        </div>
+                        <input type="text" id="officenumber" name="officenumber" value="{{chalet.office_number}}"
+                            placeholder="{% trans 'Office Number' %}">
+                        <span id="officenumber_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="chalet_address">{% trans 'Chalet Address'%}</label>
+                        </div>
+                        <input type="text" id="chalet_address" name="chalet_address" value="{{chalet.address}}"
+                            placeholder="{% trans 'chalet Address' %}">
+                        <span id="chalet_address_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="state">{% trans 'Governorate/State'%}</label>
+                        </div>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="state" name="state" value="{{chalet.state}}" placeholder="{% trans 'State/Province' %}">
+                        <span id="state_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="chalet-form ">
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="locality">{% trans 'Locality' %}</label>
+                        </div>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="locality" name="locality" value="{{chalet.locality}}"
+                            placeholder="{% trans 'Locality' %}">
+                        <span id="locality_error" class="error-message"></span>
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="Accountno">{% trans "Account Number" %}</label>
+                        </div>
+                        <input type="number" id="Accountno" name="Accountno" value="{{chalet.account_no}}" placeholder="{% trans 'Enter your Account Number' %}" required>
+                        <span id="Accountno_error" class="error-message"></span>
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="BankName">{% trans "Bank Name" %}</label>
+                        </div>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="BankName" value="{{chalet.bank}}" name="BankName" placeholder="{% trans 'Enter your Bank Name' %} " required >
+
+                        <span id="BankName_error" class="error-message"></span>    
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="AccountHolder">{% trans "Account Holder Name" %}</label>
+                        </div>
+                        <input  type="text" id="AccountHolder" value="{{chalet.account_holder_name}}" name="Accountholder" placeholder="{% trans 'Enter your Account Holder Name' %}" required >
+
+                        <span id="AccountHolder_error" class="error-message"></span>  
+                    </div> 
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="CityArabic">{% trans "City (Arabic)" %}</label>
+                        </div>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="CityArabic" name="CityArabic" value="{{chalet.city.arabic_name}}" placeholder="{% trans 'City (Arabic)' %}" required>
+                        <span id="CityArabic_error" class="error-message"></span>
+                    </div>
+                </div>
+
+
+                <br>
+                <div class="chalet-form ">
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="city">{% trans 'City' %}</label>
+                        </div>
+                        <input type="text" id="city" name="city" value="{{chalet.city}}" placeholder="{% trans 'City' %}">
+                        <span id="city_error" class="error-message"></span>
+
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="country">{% trans 'Country'%}</label>
+                        </div>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="country" name="country" value="{{chalet.country}}" placeholder="{% trans 'Country' %}">
+                        <span id="country_error" class="error-message"></span>
+
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="gsmnumber">{% trans 'GSM Number'%}</label>
+                        </div>
+                        <input type="text" id="gsmnumber" name="gsmnumber" value="{{chalet.vendor.gsm_number}}"
+                            placeholder="{% trans 'GSM Number' %}">
+                        <span id="gsmnumber_error" class="error-message"></span>
+                    </div>
+                <div class="chalet-row">
+                    <div class="labels">
+                        <label for="hotel_type">{% trans "Chalet Type" %}</label>
+                    </div>
+                    <select class="form-control" id="chalet_type" name="chalet_type" required>
+                        <option value="" selected disabled>{% trans "Choose your Chalet Type" %}</option>
+                        {% if chalet_types %}
+                            {% for chalet_type in chalet_types %}
+                                <option value="{{ chalet_type.id }}" {% if chalet_type.id == chalet.chalet_type.id %}selected{% endif %}>
+                                    {% if request.LANGUAGE_CODE == "ar" %}
+                                        {{ chalet_type.arabic_name }}
+                                    {% else %}
+                                        {{ chalet_type.name }}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                    </div>
+                </div>
+                <br>
+                <div class="chalet-form ">
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="crnumber">{% trans 'CR Number'%}</label>
+                        </div>
+                        <input type="text" id="crnumber" name="crnumber" value="{{chalet.cr_number}}"
+                            placeholder="{% trans 'CR Number' %}">
+                        <span id="crnumber_error" class="error-message"></span>
+                    </div>
+                    {% comment %} <div class="chalet-row">
+                        <div class="labels">
+                            <label for="expiry">{% trans 'Date Of Expiry'%}</label>
+                        </div>
+                        <input type="text" id="expiry" name="expiry" value="{{chalet.date_of_expiry}}"
+                            placeholder="{% trans 'Date of Expiry' %}">
+                        <span id="expiry_error" class="error-message"></span>
+                    </div> {% endcomment %}
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="vatnumber">{% trans 'VAT Number' %}</label>
+                        </div>
+                        <input type="text" id="vatnumber" name="vatnumber" value="{{chalet.vat_number}}"
+                            placeholder="{% trans 'VAT Number' %}">
+                        <span id="vatnumber_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="Payments Accepted">{% trans 'Payments Accepted' %}</label>
+                        </div>
+                        <div class="payment-accept">
+                            <div class="check-container">
+                                <div class="custom-checkbox-container">
+                                    <input type="checkbox" name="payment_category" value="All" id="all" class="custom-checkbox-input">
+                                    <label for="all" class="custom-checkbox-label"></label>
+                                </div>
+                                <label for="all" class="select-label">{% trans 'All' %}</label>
+                            </div>
+                    
+                            {% if Payment_ctg %}
+                                {% for i in Payment_ctg %}
+                                    {% if i.name != "Wallet" %}
+                                        <div class="check-container">
+                                            <div class="custom-checkbox-container">
+                                                <input type="checkbox" name="payment_category" value="{{ i.id }}" id="{{ i.name }}" class="custom-checkbox-input"
+                                                    {% if i.id in selected_categories %}checked{% endif %}>
+                                                <label for="{{ i.name }}" class="custom-checkbox-label"></label>
+                                            </div>
+                                            <label for="{{ i.name }}" class="select-label">
+                                                {% if request.LANGUAGE_CODE == "ar" %}
+                                                    {{ i.name_arabic }}
+                                                {% else %}
+                                                    {{ i.name }}
+                                                {% endif %}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <span id="paymemt_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+                <!-- <div class="labels">
+                    <label>{% trans 'Meal Price' %}</label>
+                </div>
+                <div class="chalet-form">
+                    <div class="chalet-row">
+                        <div class="meal-price-container">
+                            <label for="breakfast-price">Breakfast</label>
+                            <input type="text" id="breakfast-price" name="breakfast-price"
+                                value="{{ meal_prices.breakfast|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                        <span class="error-message" id="breakfast_price_error"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="meal-price-container">
+                            <label for="lunch-price">Lunch</label>
+                            <input type="text" id="lunch-price" name="lunch-price"
+                                value="{{ meal_prices.lunch|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                        <span class="error-message" id="lunch_price_error"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="meal-price-container">
+                            <label for="dinner-price">Dinner</label>
+                            <input type="text" id="dinner-price" name="dinner-price"
+                                value="{{ meal_prices.dinner|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                        <span class="error-message" id="dinner_price_error"></span>
+                    </div>
+                </div> -->
+                
+                <br>
+                <div class="chalet-form">
+
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="description">{% trans "Chalet Description" %}</label>
+                        </div>
+                        <textarea id="about_property" placeholder="{% trans 'Enter a few words about your chalet' %}" required
+                            name="about_property" >{{ chalet.about_property }} </textarea>
+                        <span id="about_property_error" class="error-message"></span>
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="description">{% trans "Chalet Description/وصف الفندق" %}</label>
+                        </div>
+                        <textarea id="about_property_arabic" placeholder="{% trans 'Enter a few words about your chalet' %}" required
+                            name="about_property_arabic" >{{ chalet.about_property_arabic }}</textarea>
+                        <span id="about_property_arabic_error" class="error-message"></span>
+                    </div>
+
+                </div>
+
+                <br>
+                <div class="chalet-form">
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="policies">{% trans "Chalet Policies" %}</label>
+                        </div>
+                        <textarea id="chalet_policies"
+                            placeholder="{% trans 'Enter a few words about your chalet policies' %}" required
+                            name="chalet_policies" >{{ chalet.policies }}</textarea>
+                        <span id="chalet_policies_error" class="error-message"></span>    
+                    </div>
+                    <div class="chalet-row">
+                        <div class="labels">
+                            <label for="policies">{% trans "Chalet Policies/سياسات الفندق" %}</label>
+                        </div>
+                        <textarea id="chalet_policies_arabic"
+                            placeholder="{% trans 'Enter a few words about your chalet policies' %}" required
+                            name="chalet_policies_arabic" >{{ chalet.policies_arabic }}</textarea>
+                        <span id="chalet_policies_arabic_error" class="error-message"></span>    
+                    </div>
+                </div>
+                <br>
+                <div class="chalet-form">
+
+                    <div class="chalet-row">
+                        <div class="add-images">
+                            <label>{% trans "Chalet Images" %} \ صور الفندق</label>
+                            <br>
+                            <div class="image-placeholder text-center">
+                                {% if first_image %}
+                                <div style="position: relative;">
+                                    <img src="{{ first_image.image.url }}" id="main-image" alt="chalet Image"
+                                        data-filename="{{ first_image.image.name }}"
+                                        style="cursor: pointer;" onclick="triggerFileInput('main')">
+                                    <!-- <span class="remove-image-btn" onclick="removeImage('main')"
+                                        style="display: block;">×</span> -->
+                                    <input type="hidden" name="existing_main_image" value="{{ first_image.id }}">
+                                </div>
+                                {% else %}
+                                <div style="position: relative;">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="main-image"
+                                        alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('main')">
+                                    <span class="remove-image-btn" style="display: none;"
+                                        onclick="removeImage('main')">×</span>
+                                </div>
+                                {% endif %}
+                                <input style="display: none;" type="file" id="chalet_images" name="main_images"
+                                    accept="image/*" onchange="previewImage(this, 'main-image')">        
+                            </div>
+                    
+                            <div class="small-upload-icons">
+                                {% for image in remaining_images %}
+                                <div style="position: relative;">
+                                    <img src="{{ image.image.url }}" id="additional-image-{{ forloop.counter }}"
+                                        data-filename="{{ image.image.name }}"
+                                        alt="chalet Image" style="cursor: pointer;"
+                                        onclick="triggerFileInput('additional', {{ forloop.counter }})">
+                                    <span class="remove-image-btn" style="display: block;right: -9%;"
+                                        onclick="removeImage('additional', {{ forloop.counter }})">×</span>
+                                    <input type="hidden" name="existing_image_{{ forloop.counter }}" value="{{ image.id }}">
+                                </div>
+                                <input style="display: none;" type="file" id="remaining_images_{{ forloop.counter }}" 
+                                    name="remaining_images_{{ forloop.counter }}" accept="image/*" 
+                                    onchange="previewImage(this, 'additional-image-{{ forloop.counter }}')">
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <br>
+                            <span id="chalet_images_error" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <div class="chalet-row">
+                        <div class="add-images">
+                            <label>{% trans "Chalet Logo" %}\ شعار الفندق</label>
+                            <br>
+                            <div class="image-placeholder" style="position: relative;">
+                                {% if chalet.logo %}
+                                <img src="{{ chalet.logo.url }}" id="logo-icon" alt="chalet Logo" style="cursor: pointer;"
+                                    onclick="triggerFileInput('logo')">
+                                <!-- <span class="remove-image-btn" onclick="removeImage('logo')"
+                                    style="display: block;">×</span> -->
+                                {% else %}
+                                <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="logo-icon"
+                                    alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('logo')">
+                                <!-- <span class="remove-image-btn" style="display: none;"
+                                    onclick="removeImage('logo')">×</span> -->
+                                {% endif %}
+                            </div>
+                            <input style="opacity: 0; cursor: pointer; width: 20%; height: 0%;" type="file"
+                                id="logo_image" name="logo_image" accept="image/*" 
+                                onchange="previewlogoImage(this, 'logo-icon')">
+                            <br>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <br>
+                            <span id="logo_image_error" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="amenities_list" name="amenities_list">
+                    <div style="margin-right: 2%;">
+                        <div class="labels">
+                            <label for="policies">{% trans "All Amenities" %}</label>
+                        </div>
+                        <div class="feature-container">
+                            {% for amenity in amenities %}
+                            {% if amenity.status %}
+                                <div class="feature-item" id="amenity-{{ amenity.id }}">
+                                    {% if amenity.icon %}
+                                    <img src="{{ amenity.icon.url }}" alt="{{ amenity.amenity_name }}" class="amenity-icon" style="width: 20px;">
+                                    {% else %}
+                                    <img src="{% static 'icons/default_amenity_icon.png' %}" alt="Default Icon" class="amenity-icon">
+                                    {% endif %}
+                                    &nbsp;
+                                    <span>{% if request.LANGUAGE_CODE == 'en' %}
+                                        {{ amenity.amenity_name|title }}
+                                        {% elif request.LANGUAGE_CODE == 'ar' %}
+                                            {% if amenity.amenity_name_arabic %}
+                                                {{ amenity.amenity_name_arabic|title }}
+                                            {% else %}
+                                                {{ amenity.amenity_name|title }}
+                                            {% endif %}
+                                        {% endif %}</span>
+                                    <button type="button" class="remove-btn" data-id="{{ amenity.id }}" onclick="removeAmenity({{ amenity.id }}, event)">×</button>
+                                    <!-- <button class="remove-btn" data-id="{{ amenity.id }}" onclick="removeAmenity({{ amenity.id }})">×</button> -->
+                                </div>
+                            {% endif %}
+                            {% empty %}
+                            <p>{% trans "No amenities available." %}</p>
+                            {% endfor %}
+                            <div class="add-feature-btn" id="openAmenitiesModal">+</div>
+                        </div>
+                        <span id="amenities_list_error" class="error-message" style="display:none; color:red;"></span>
+
+                    </div>
+                </div>
+                <input type="" value="{{chalet.id}}" style="display: none;" id="chalet_id" name="chalet_id">
+                <br>
+                <br>
+                </div>
+                <div class="labels">
+                    <label>{% trans 'Chalet Taxes' %}</label>
+                </div>
+                <div class="chalet-form">
+                    {% for chalet_tax in chalet_taxes %}
+                    <div class="chalet-row">
+                        <div class="meal-price-container">
+                            <label for="tax_percentage_{{ chalet_tax.id }}">
+                                {% if request.LANGUAGE_CODE == "ar" and chalet_tax.name_arabic %}
+                                    {{ chalet_tax.name_arabic }}
+                                {% else %}
+                                    {{ chalet_tax.name }}
+                                {% endif %}
+                            </label>
+                            <input 
+                                   id="tax_percentage_{{ chalet_tax.id }}" 
+                                   name="tax_percentage_{{ chalet_tax.id }}" 
+                                   value="{{ chalet_tax.percentage|default:'0.00' }}" 
+                                   
+                                   placeholder="{% trans 'Enter percentage' %}" 
+                                   >
+                        </div>
+                        <span class="error-message" id="tax_percentage_{{ chalet_tax.id }}_error"></span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Save Button Section -->
+                <div class="chalet-form">
+                    <div class="chalet-row" style="text-align: center;">
+                        <button type="submit" class="save-button">{% trans "Save" %}</button>
+                    </div>
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+{% include 'chalets_accounts/edit_chalet_amentiy.html' %}
+</body>
+<script type="text/javascript">
+    window.CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+<script>
+     
+  
+
+    function capitalizeFirstLetter(input) {
+        let value = input.value;
+        if (value.length > 0) {
+            input.value = value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleAddButton();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#expiry", {
+            dateFormat: "Y-m-d", 
+            altInput: true,
+            altFormat: "F j, Y", 
+            allowInput: true,    
+            defaultDate:  "{{ chalet.date_of_expiry|date:'Y-m-d' }}" 
+        });
+    });
+
+
+
+    let documentCounter = 0;
+
+    const imageFilenames = {};
+
+    function previewImage(input, imgId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imgElement = document.getElementById(imgId);
+                imgElement.src = e.target.result;
+
+                const removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+                if (removeBtn) {
+                    removeBtn.style.display = 'block';
+                }
+
+                imageFilenames[imgId] = file.name;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function triggerFileInput(type, index = null) {
+        var input;
+        if (type === 'logo') {
+            input = document.getElementById('logo_image');
+        } else if (type === 'main') {
+            input = document.getElementById('chalet_images');
+        } else if (type === 'additional' && index !== null) {
+            input = document.getElementById(`remaining_images_${index}`);
+        } else if (type === 'doc') {
+            input = document.getElementById('file-input-doc');
+        }
+        if (input !== undefined && input !== null) {
+            input.click();
+        } else {
+            console.error('File input element not found',);
+        }
+    }
+
+
+    
+
+   
+    let removedImageFilenames = [];
+
+    function removeImage(type, index = null) {
+        let imgElement, input, errorSpan, removeBtn;
+
+        if (type === 'logo') {
+            imgElement = document.getElementById('logo-icon');
+            input = document.getElementById('logo_image');
+            errorSpan = document.getElementById('logo_image_error');
+            removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+        } else if (type === 'main') {
+            imgElement = document.getElementById('main-image');
+            input = document.getElementById('chalet_images');
+            errorSpan = document.getElementById('chalet_images_error');
+            removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+        } else if (type === 'additional' && index !== null) {
+            imgElement = document.getElementById(`additional-image-${index}`);
+            input = document.getElementById('chalet_images');
+            errorSpan = document.getElementById('chalet_images_error');
+            removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+        }
+
+        if (imgElement) {
+            let filename = imgElement.dataset.filename;
+            if (filename && !removedImageFilenames.includes(filename)) {
+                removedImageFilenames.push(filename);
+            }
+
+            // Reset the image element and input
+            imgElement.src = "{% static 'icons/teenyicons_image-solid.png' %}";
+            input.value = "";
+
+            // Hide the remove button if it's found
+            if (removeBtn) {
+                removeBtn.style.display = 'none';
+            }
+
+            // Call updateImageCount() if the type is 'main'
+            // if (type === 'main') {
+            //     updateImageCount();
+            // }
+
+            // Show error message if necessary
+             // Show error message if necessary for logo
+             if (type === 'logo') {
+                errorSpan.textContent = "{% trans 'chalet logo is required. Please upload a logo.' %}";
+            }
+        }
+    }
+
+    function previewlogoImage(input, imgId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(imgId).src = e.target.result;
+                if (imgId === 'logo-icon') {
+                    document.getElementById('logo_image_error').textContent = '';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        if (input.id === 'chalet_images') {
+            updateImageCount();
+            document.getElementById('chalet_images_error').textContent = '';
+        }
+    }
+
+    // function updateImageCount() {
+    //     const mainImage = document.getElementById('main-image');
+    //     const additionalImages = document.querySelectorAll('[id^="additional-image-"]');
+    //     const totalImages = (mainImage.src.includes("{% static 'icons/teenyicons_image-solid.png' %}") ? 0 : 1) + additionalImages.length;
+
+    //     const errorSpan = document.getElementById('chalet_images_error');
+        
+    //     if (totalImages < 5) {
+    //         errorSpan.textContent = "{% trans 'Please upload at least 5 images.' %}";
+    //     } else {
+    //         errorSpan.textContent = "";  
+    //     }
+    // }
+
+    // function updateImageCount() {
+    //     const mainImage = document.getElementById('main-image');
+    //     const additionalImages = document.querySelectorAll('[id^="additional-image-"]');
+
+    //     // Log the image sources for debugging
+    //     console.log('Main Image:', mainImage.src);
+
+    //     // Determine if the main image is an actual uploaded image
+    //     const mainImageUploaded = mainImage.src && !mainImage.src.includes("{% static 'icons/teenyicons_image-solid.png' %}");
+
+    //     let totalImages = mainImageUploaded ? 1 : 0;
+
+    //     // Check each additional image
+    //     additionalImages.forEach((image) => {
+    //         const isAdditionalImageUploaded = image.src && !image.src.includes("{% static 'icons/teenyicons_image-solid.png' %}");
+    //         console.log('Additional Image:', image.src, 'Uploaded:', isAdditionalImageUploaded);
+
+    //         if (isAdditionalImageUploaded) {
+    //             totalImages++;
+    //         }
+    //     });
+
+    //     const errorSpan = document.getElementById('chalet_images_error');
+    //     console.log('Total Images:', totalImages); 
+    //     if (totalImages < 5) {
+    //         errorSpan.textContent = "{% trans 'Please upload at least 5 images.' %}";
+    //         console.log('Error: Less than 5 images');
+    //         errorSpan.style.display = 'block'
+    //         return false;  // Indicate failure
+    //     } else {
+    //         console.log('Image count valid');
+    //         errorSpan.textContent = "";  
+    //         errorSpan.style.display = 'none'; // Hide the error message when valid
+
+    //         return true;  // Indicate success
+    //     }
+    // }
+
+
+    function updateImageCount() {
+        const mainImage = document.getElementById('main-image');
+        const additionalImages = document.querySelectorAll('[id^="additional-image-"]');
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+
+        // Determine if the main image is an actual uploaded image
+        const mainImageUploaded = mainImage.src && !mainImage.src.includes("{% static 'icons/teenyicons_image-solid.png' %}");
+
+        let totalImages = mainImageUploaded ? 1 : 0;
+        let invalidImage = false;
+
+        // Check the main image format if it's uploaded
+        if (mainImageUploaded) {
+            const mainImageInput = document.getElementById('chalet_images');
+            const mainImageFile = mainImageInput ? mainImageInput.files[0] : null; // Check if input exists
+
+            if (mainImageFile && !validImageTypes.includes(mainImageFile.type)) {
+                invalidImage = true;
+                console.log("++++++++++FALSE+++++++++++++++ mainImageFile && !validImageTypes.includes(mainImageFile.type")
+                displayImageFormatError('Main image');
+            }
+        }
+
+        // Check each additional image for format and count
+        additionalImages.forEach((image, index) => {
+            const isAdditionalImageUploaded = image.src && !image.src.includes("{% static 'icons/teenyicons_image-solid.png' %}");
+
+            if (isAdditionalImageUploaded) {
+                const additionalImageInput = document.getElementById(`remaining_images_${index + 1}`); // Adjusted index for correct ID
+                const additionalImageFile = additionalImageInput ? additionalImageInput.files[0] : null; // Check if input exists
+                
+                if (additionalImageFile && !validImageTypes.includes(additionalImageFile.type)) {
+                    invalidImage = true;
+                    console.log("++++++++++FALSE+++++++++++++++ additionalImageFile && !validImageTypes.includes(additionalImageFile.type")
+                    displayImageFormatError(`Additional image ${index + 1}`);
+                }
+                totalImages++;
+            }
+        });
+
+        const errorSpan = document.getElementById('chalet_images_error');
+
+        if (invalidImage) {
+            return false; // Stop form submission if invalid image formats are found
+        }
+
+        if (totalImages < 5) {
+            errorSpan.textContent = "{% trans 'Please upload at least 5 images.' %}";
+            console.log('Error: Less than 5 images');
+            errorSpan.style.display = 'block';
+            return false;  // Indicate failure
+        } else {
+            console.log('Image count valid');
+            errorSpan.textContent = "";  
+            errorSpan.style.display = 'none'; // Hide the error message when valid
+            return true;  // Indicate success
+        }
+    }
+
+    function displayImageFormatError(imageLabel) {
+        console.log("inside displayImageFormatError")
+        const errorSpan = document.getElementById('chalet_images_error');
+        errorSpan.textContent = `{% trans '${imageLabel} is in an invalid format. Please upload a JPEG, PNG, or GIF image.' %}`;
+        errorSpan.style.display = 'block';
+    }
+
+
+
+
+
+
+    function getAmenityIds() {
+        const buttons = document.querySelectorAll('.remove-btn'); // Select all remove buttons
+        const ids = []; 
+
+        buttons.forEach(button => {
+            const onclickAttr = button.getAttribute('onclick'); // Get the onclick attribute
+
+            if (onclickAttr) {
+                // Use regex to match the pattern (number)
+                const match = onclickAttr.match(/\((\d+), event\)/); // Adjust regex to include event
+
+                if (match) {
+                    ids.push(match[1]); // Push the matched ID to the array
+                }
+            }
+        });
+
+        console.log("Collected amenity IDs:", ids); // Log the collected IDs
+        return ids; // Return the array of IDs
+    }
+
+
+
+
+
+    function removeAmenity(amenityId, event) {
+        if (event) {
+            event.preventDefault();
+        }
+
+        var amenityDiv = document.getElementById('amenity-' + amenityId);
+
+        if (amenityDiv) {
+            amenityDiv.remove();
+            
+            const index = addedAmenities.indexOf(amenityId);
+            if (index > -1) {
+                addedAmenities.splice(index, 1);
+            }
+        } else {
+            console.error('Amenity with ID ' + amenityId + ' not found.');
+        }
+    }
+
+
+
+
+    var modal = document.getElementById("amenitiesModal");
+    var btn = document.getElementById("openAmenitiesModal");
+    var span = document.getElementsByClassName("close")[0];
+    var body = document.body; // Reference to the body element
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function validateForm() {
+        let isValid = true;
+
+          
+        
+        // Validate chalet Name
+        const chaletName = document.getElementById('chalet_name').value.trim();
+        if (chaletName === '') {
+            isValid = false;
+            displayError('chalet_name', '{% trans "chalet Name cannot be empty." %}');
+        } else if (chaletName.length < 3 || chaletName.length > 100) {
+            isValid = false;
+            displayError('chalet_name', '{% trans "chalet Name must be between 3 and 100 characters long." %}');
+        }
+        else if (!/^[a-zA-Z0-9\s.'\-&,()]+$/.test(chaletName)) {
+                    isValid = false;
+                    displayError('chalet_name', '{% trans "Please enter a valid Chalet name in English." %}');
+                } else {
+            clearError('chalet_name');
+        }
+
+         // Validate chalet Name
+        const chaletNameArabic = document.getElementById('arabic_name').value.trim();
+        if (chaletNameArabic === '') {
+            isValid = false;
+            displayError('arabic_name', '{% trans "chalet Arabic Name cannot be empty." %}');
+        } else if (chaletNameArabic.length < 3 || chaletNameArabic.length > 100) {
+            isValid = false;
+            displayError('arabic_name', '{% trans "chalet Arabic Name must be between 3 and 100 characters long." %}');
+        } else if (!/^[\u0600-\u06FF0-9\s.,'"\-()،؛؟]+$/.test(chaletNameArabic)) {
+                    isValid = false;
+                    displayError('arabic_name', '{% trans "Please enter a valid Chalet name in Arabic." %}');
+                }
+        else {
+            clearError('arabic_name');
+        }
+
+
+        // Validate chalet Owner Name
+        const chaletOwner = document.getElementById('chalet_owner').value.trim();
+        if (chaletOwner === '') {
+        isValid = false;
+        displayError('chalet_owner', '{% trans "Chalet Owner Name cannot be empty." %}');
+        } else if (chaletOwner.length < 3 || chaletOwner.length > 100) {
+        isValid = false;
+        displayError('chalet_owner', '{% trans "Chalet Owner Name must be between 3 and 100 characters long." %}');
+        } else if (!/^[a-zA-Z\s]+$/.test(chaletOwner)) {
+        isValid = false;
+        displayError('chalet_owner', '{% trans "Chalet Owner Name must contain letters only." %}');
+        } else {
+        clearError('chalet_owner');
+        }
+
+// Validate chalet Owner Name Arabic
+        const chaletOwnerNameArabic = document.getElementById('chalet_owner_arabic').value.trim();
+        if (chaletOwnerNameArabic === '') {
+            isValid = false;
+            displayError('chalet_owner_arabic', '{% trans "Chalet Owner Name Arabic cannot be empty." %}');
+        } else if (chaletOwnerNameArabic.length < 3 || chaletOwnerNameArabic.length > 100) {
+            isValid = false;
+            displayError('chalet_owner_arabic', '{% trans "Chalet Owner Name Arabic must be between 3 and 100 characters long." %}');
+        } else if (!/^[\u0600-\u06FF\s]+$/.test(chaletOwnerNameArabic)) {
+            isValid = false;
+            displayError('chalet_owner_arabic', '{% trans "Chalet Owner Name Arabic must contain Arabic letters only." %}');
+        } else {
+            clearError('chalet_owner_arabic');
+        }
+
+
+
+        // Validate chalet Email
+        const chaletEmail = document.getElementById('chalet_email').value.trim();
+        if (chaletEmail === '') {
+            isValid = false;
+            displayError('chalet_email', '{% trans "chalet Owner Email cannot be empty." %}');
+        } else if (!validateEmail(chaletEmail)) {
+            console.log("else if (!validateEmail(chaletEmail))================")
+            isValid = false;
+            displayError('chalet_email', '{% trans "Please enter a valid email address." %}');
+        } else {
+            clearError('chalet_email');
+        }
+
+        // Validate Office Number
+        const officeNumber = document.getElementById('officenumber').value.trim();
+        if (officeNumber === '') {
+            isValid = false;
+            displayError('officenumber', '{% trans "Office Number cannot be empty." %}');
+        } else if (!/^\+?[1-9]\d{3,15}$/.test(officeNumber)) { // Assuming a 10-digit number format
+            isValid = false;
+            displayError('officenumber', '{% trans "Invalid office number." %}');
+        } 
+        else if (officeNumber.length > 15){
+             displayError('officenumber','{% trans "Office Number should be 15 digits or less." %}');
+
+        }else {
+            clearError('officenumber');
+        }
+
+        // Validate chalet Address
+        const chaletAddress = document.getElementById('chalet_address').value.trim();
+        if (chaletAddress === '') {
+            isValid = false;
+            displayError('chalet_address', '{% trans "chalet Address cannot be empty." %}');
+        } else if (chaletAddress.length > 300) {
+            isValid = false;
+            displayError('chalet_address', '{% trans "Chalet Address should not exceed 300 characters." %}');
+        } else {
+            clearError('chalet_address');
+        }
+
+        // Validate State/Province
+        const state = document.getElementById('state').value.trim();
+        if (state === '') {
+            isValid = false;
+            displayError('state', '{% trans "State/Province cannot be empty." %}');
+        } else if ( state.length > 50) {
+            isValid = false;
+            displayError('state', '{% trans "State/Province cannot exceed 50 characters long." %}');
+        }else {
+            clearError('state');
+        } 
+
+        // Validate City
+        const city = document.getElementById('city').value.trim();
+        const englishRegex = /^[A-Za-z\s]+$/;
+        if (city === '') {
+            isValid = false;
+            displayError('city', '{% trans "City cannot be empty." %}');
+        } else if ( city.length >50) {
+            isValid = false;
+            displayError('city', '{% trans "City cannot exceed 50 characters long." %}');
+        } 
+        else if (!englishRegex.test(city)) {
+            isValid = false;
+            displayError('city', '{% trans "City name  must contain only English characters." %}');
+        }else {
+            clearError('city');
+        }
+        const city_arabic = document.getElementById('CityArabic').value.trim();
+        const arabicRegex = /^[\u0600-\u06FF\s]+$/; 
+        if (city_arabic === '') {
+            console.log(city_arabic,"========city==========")
+            isValid = false;
+            displayError('CityArabic', '{% trans "City cannot be empty." %}');
+        } else if (city_arabic.length > 50) {
+            isValid = false;
+            displayError('CityArabic', '{% trans "City cannot exceed 50 characters long." %}');
+        }
+        else if (!arabicRegex.test(city_arabic)) {
+            isValid = false;
+            displayError('CityArabic', '{% trans "City name (Arabic) must contain only Arabic characters." %}');
+        }
+        else {
+            clearError('CityArabic');
+        }
+
+
+        // Validate Country
+        const country = document.getElementById('country').value.trim();
+        if (country === '') {
+            isValid = false;
+            displayError('country', '{% trans "Country cannot be empty." %}');
+        } else if (country.length > 50) {
+            isValid = false;
+            displayError('country', '{% trans "Country cannot exceed  50 characters long." %}');
+        } else {
+            clearError('country');
+        } 
+
+        // Validate GSM Number
+        const gsmNumber = document.getElementById('gsmnumber').value.trim();
+    
+        if (!/^\+?[1-9]\d{3,15}$/.test(gsmNumber)) { // Assuming GSM Number is between 10 and 15 digits
+            isValid = false;
+            displayError('gsmnumber', '{% trans "Invalid GSM number." %}');
+        } 
+        else if (gsmNumber.length>15){
+            isValid = false;
+            displayError('gsmnumber', '{% trans "GSM Number shouldnot exceed 15 digits." %}');
+        }else {
+            clearError('gsmnumber');
+        }
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if invalid
+        }
+
+
+         // Validate no of guests
+        const no_of_guests = document.getElementById('chalet_guests').value.trim();
+    
+        if (no_of_guests == '') { // Assuming GSM Number is between 10 and 15 digits
+            isValid = false;
+            displayError('chalet_guests', '{% trans "Number of guests Needed" %}');
+        } 
+        else if ((no_of_guests<=0) ||(no_of_guests>100)) {
+            isValid = false;
+            displayError('chalet_guests', '{% trans "Number of guests must be greater than zero and less than 100" %}');
+            console.log("error occured at the no of guests")
+        }
+        else if (!/^\d+$/.test(no_of_guests)) {
+                isValid = false;
+                displayError('chalet_guests', '{% trans "Number of guests must be a whole number" %}');
+            }
+        else {
+            clearError('chalet_guests');
+        }
+
+        const total_price = document.getElementById('chalet_price').value.trim();
+        if (total_price == '') { 
+            isValid = false;
+            displayError('chalet_price', '{% trans "Total Price Needed" %}');
+        } 
+        else if (!/^\d+([.,]\d{1,3})?$/.test(total_price)) {
+                isValid = false;
+                displayError('chalet_price', '{% trans "Total price must be a whole number or up to 3 decimal places" %}');
+            }
+        else if ((total_price<0)|| (total_price>10000)) {
+            isValid = false;
+            displayError('chalet_price', '{% trans "Total price must be greater than zero and less than 10000 " %}');
+        }
+        else {
+            clearError('chalet_price');
+        }
+
+
+       const weekend_price = document.getElementById('chalet_weekend_price').value.trim();
+       if (weekend_price !== null && weekend_price !== undefined && weekend_price !== '' && weekend_price !== 'None') {
+        if (!/^\d+([.,]\d{1,3})?$/.test(weekend_price)) {
+            isValid = false;
+            displayError('chalet_weekend_price', '{% trans "Weekend price must be a whole number or up to 3 decimal places" %}');
+        } 
+        else if (parseFloat(weekend_price) <= 0 || parseFloat(weekend_price) > 10000) {
+            isValid = false;
+            displayError('chalet_weekend_price', '{% trans "Weekend price must be greater than zero and less than 10000" %}');
+        } 
+        else {
+            clearError('chalet_weekend_price');
+        }
+        } else {
+            clearError('chalet_weekend_price');
+        }
+
+
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if invalid
+        }
+
+
+        // Validate Locality
+        // Validate Locality
+         const locality = document.getElementById('locality').value.trim();
+    
+        if (locality.length > 50) {
+                isValid = false;
+                displayError('locality', '{% trans "Locality cannot exceed 50 characters long." %}');
+            } else {
+                clearError('locality');
+            }
+
+          // Validate Account Number
+        const accountNo = document.getElementById('Accountno').value.trim();
+        if (accountNo === '') {
+            isValid = false;
+            displayError('Accountno', '{% trans "Please enter the account number." %}');
+        } else if (accountNo.length < 9 || accountNo.length > 20) {
+            isValid = false;
+            displayError('Accountno', '{% trans "Account Number should be between 9 and 20 digits." %}');
+        } else if (!/^\d+$/.test(accountNo)) {
+            isValid = false;
+            displayError('Accountno', '{% trans "Account Number must contain only numeric digits." %}');
+        } else if (/^0+$/.test(accountNo)) {
+            isValid = false;
+            displayError('Accountno', '{% trans "Account Number cannot contain only zeros." %}');
+        }
+        else {
+            // If no errors, clear any previous error messages
+            clearError('Accountno');
+        } 
+         // Validate Account Holder Name
+        const accountholder = document.getElementById('AccountHolder').value.trim();
+        const nameRegex = /^[A-Za-z\s'’-]+$/; // Allows spaces, apostrophes, and hyphens
+        if (accountholder === '') {
+            isValid = false;
+            displayError('AccountHolder', '{% trans "Please enter the account holder name." %}');
+        } else if (accountholder.length > 50) {
+            isValid = false;
+            displayError('AccountHolder', '{% trans "Account Holder name should not exceed 50 characters." %}');
+        } else if (!nameRegex.test(accountholder)) {
+            isValid = false;
+            displayError('AccountHolder', '{% trans "Account Holder name should only contain alphabets, spaces, hyphens, and apostrophes." %}');
+        }
+        else {
+            // If no errors, clear any previous error messages
+            clearError('AccountHolder');
+        } 
+         // Validate Bank Name
+        const bankname = document.getElementById('BankName').value.trim();
+        const bankNameRegex = /^[A-Za-z\s&]+$/; // Allows alphabets, spaces, and '&'
+        if (bankname === '') {
+            isValid = false;
+            displayError('BankName', '{% trans "Please enter the Bank Name." %}');
+        } else if (bankname.length > 50) {
+            isValid = false;
+            displayError('BankName', '{% trans "Bank Name should not exceed 50 characters." %}');
+        } else if (!bankNameRegex.test(bankname)) {
+            isValid = false;
+            displayError('BankName', '{% trans "Bank Name should only contain alphabets, spaces, and &." %}');
+        }
+        else {
+            // If no errors, clear any previous error messages
+            clearError('BankName');
+        } 
+
+
+        const crNumber = document.getElementById('crnumber').value.trim();
+        const crMaxLength = 15;
+
+        if (crNumber.length > crMaxLength) {
+            isValid = false;
+            displayError('crnumber', `{% trans "CR Number must not exceed ${crMaxLength} characters." %}`);
+        }
+        else {
+            clearError('crnumber');
+        }
+        const AboutHotel= document.getElementById('about_property').value.trim();
+        const AboutHotel_Error= document.getElementById('about_property_error');
+        if (!/^[a-zA-Z0-9\x0A\x0D\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u2014\u2013\u2019]+$/u.test(AboutHotel)) {
+        isValid = false;
+        displayError('about_property', '{% trans "Chalet Description in English must contain English letters only." %}');
+        }
+        else if (AboutHotel.length>1000){
+        isValid = false;
+        displayError('about_property', '{% trans "Chalet Description in English must contain at most 1000 characters." %}');
+        }  
+        else {
+            // Clear the error if valid or if there's no input
+            AboutHotel_Error.textContent='';
+        }
+            // Validate About Hotel Arabic
+
+        const AboutHotel_Arabic= document.getElementById('about_property_arabic').value.trim();
+        const AboutHotel_Arabic_Error= document.getElementById('about_property_arabic_error');
+
+        if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669\u06F0-\u06F90-9\s\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u060C\u061F\p{P}\p{S}]+$/u.test(AboutHotel_Arabic)) {
+        isValid = false;
+        displayError('about_property_arabic', '{% trans "Chalet Description in Arabic must contain Arabic letters only." %}');
+        } 
+        else if (AboutHotel_Arabic.length>1000){
+        isValid = false;
+        displayError('about_property_arabic', '{% trans "Chalet Description in Arabic must contain at most 1000 characters." %}');
+        }
+        else {
+            // Clear the error if valid or if there's no input
+            AboutHotel_Arabic_Error.textContent='';
+        }
+        // Validate Hotel Policies
+
+        const policesHotel= document.getElementById('chalet_policies').value.trim();
+        const policesHotel_Error= document.getElementById('chalet_policies_error');
+
+        if (!/^[a-zA-Z0-9\x0A\x0D\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u2014\u2013\u2019]+$/u.test(policesHotel)) {
+        isValid = false;
+        displayError('chalet_policies', '{% trans "Chalet Policies in English must contain English letters only." %}');
+        } 
+        else if (policesHotel.length>1000){
+        isValid = false;
+        displayError('chalet_policies', '{% trans "Chalet Policies in English must contain at most 1000 characters." %}');
+        } 
+        else {
+            // Clear the error if valid or if there's no input
+            policesHotel_Error.textContent='';
+        }
+
+        const policesHotel_Arabic= document.getElementById('chalet_policies_arabic').value.trim();
+        const policesHotel_Arabic_Error= document.getElementById('chalet_policies_arabic_error');
+        if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669\u06F0-\u06F90-9\s\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u060C\u061F\p{P}\p{S}]+$/u.test(policesHotel_Arabic)) {
+        isValid = false;
+        displayError('chalet_policies_arabic', '{% trans "Chalet Policies in Arabic must contain Arabic letters only." %}');
+        }
+        else if (policesHotel_Arabic.length>1000){
+        isValid = false;
+        displayError('chalet_policies_arabic', '{% trans "chalet Policies in Arabic must contain at most 1000 characters." %}');
+        }  
+        else {
+            // Clear the error if valid or if there's no input
+        policesHotel_Arabic_Error.textContent='';
+        }
+
+
+        // Validate Date of Expiry
+        {% comment %} const expiryDate = document.getElementById('expiry').value.trim();
+        if (expiryDate === '') {
+            isValid = false;
+            displayError('expiry', '{% trans "Date of Expiry cannot be empty." %}');
+        } else if (!validateDate(expiryDate)) {
+            isValid = false;
+            displayError('expiry', '{% trans "Please enter a valid date in YYYY-MM-DD format." %}');
+        } else if (!isFutureDate(expiryDate)) {
+            isValid = false;
+            displayError('expiry', '{% trans "Date of Expiry must be a future date." %}');
+        } else {
+            clearError('expiry');
+        } {% endcomment %}
+
+        // Validate VAT Number
+        const vatNumber = document.getElementById('vatnumber').value.trim();
+
+        if (vatNumber.length > 12 || (vatNumber.length > 0 && !/^\d{3,12}$/.test(vatNumber))) { 
+            isValid = false;
+            displayError('vatnumber', '{% trans "VAT Number must be between 3 to 12 characters long" %}');
+        }
+        else {
+            clearError('vatnumber');
+        }
+
+        // Validate Tax Percentages
+        var languageCode = "{{ request.LANGUAGE_CODE }}"; 
+    document.querySelectorAll('input[name^="tax_percentage_"]').forEach(input => {
+        const taxValue = input.value.trim();
+        const taxId = input.id;
+
+        // Regular expression to allow numbers in the format XX.XX (00.00 - 99.99)
+        const taxPattern = /^(\d{1,2})([.,]\d{1,2})?$/;
+
+        // Define messages based on language
+        const messages = {
+            "empty": languageCode === "ar" ? "لا يمكن أن تكون نسبة الضريبة فارغة." : "Tax percentage cannot be empty.",
+            "invalid": languageCode === "ar" ? "يجب أن تكون نسبة الضريبة رقمًا صالحًا بين 00.00 و 99.99 مع ما يصل إلى منزلتين عشريتين." : "Tax percentage must be a valid number between 00.00 and 99.99 with up to two decimal places."
+        };
+
+        console.log("Checking tax input:", { taxId, taxValue });
+
+        if (taxValue === '') {
+            console.log("Validation failed: tax value is empty.");
+            isValid = false;
+            displayError(taxId, messages.empty);
+        } else if (!taxPattern.test(taxValue)) {
+            console.log(`Validation failed: tax value does not match regex. Value: ${taxValue}`);
+            isValid = false;
+            displayError(taxId, messages.invalid);
+        } else {
+            const numericTaxValue = parseFloat(taxValue.replace(',', '.'));
+            console.log(`Tax value after parsing: ${numericTaxValue}`);
+
+            if (isNaN(numericTaxValue) || numericTaxValue < 0 || numericTaxValue > 99.99) {
+                console.log(`Validation failed: numeric value out of range (0.00 - 99.99). Value: ${numericTaxValue}`);
+                isValid = false;
+                displayError(taxId, messages.invalid);
+            } else {
+                console.log("Validation passed: tax value is valid.");
+                clearError(taxId);
+            }
+        }
+    
+    });
+
+    
+       
+        //validate payments accepted
+        const checkboxes = document.querySelectorAll('input[name="payment_category"]');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+
+        if (!isChecked) {
+            isValid = false;
+            displayError('paymemt', '{% trans "Please select your accepted payment methods." %}');
+            console.log("inside payments accepted error occured")
+        }
+        else {
+            clearError('paymemt');
+        }
+
+        // Validate Amenities
+        const amenityList = document.querySelectorAll('.feature-item'); // Select all amenity items
+        if (amenityList.length === 0) { // Check if there are no amenities
+            isValid = false;
+            displayError('amenities_list', '{% trans "At least one amenity must be selected." %}');
+        } else {
+            clearError('amenities_list');
+        }
+
+        const logoInput = document.getElementById('logo_image');
+        const logoImage = document.getElementById('logo-icon');
+        const logoErrorElement = document.getElementById('logo_image_error');
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+        // Check if the logo is required and no file is selected
+        if (logoImage.src.includes('{% static "icons/teenyicons_image-solid.png" %}') && logoInput.files.length === 0) {
+            isValid = false;
+            displayError('logo_image', '{% trans "chalet logo is required. Please upload a logo." %}');
+        } else if (logoInput.files.length > 0) {
+            const logoFile = logoInput.files[0];
+            
+            // Check if the selected file is an image format
+            if (!validImageTypes.includes(logoFile.type)) {
+                isValid = false;
+                displayError('logo_image', '{% trans "Invalid file type. Please upload a JPEG, PNG, or GIF image." %}');
+            } else {
+                clearError('logo_image');
+            }
+        } else {
+            clearError('logo_image');
+        }
+
+
+
+
+        const chaletImagesInput = document.getElementById('chalet_images');
+        const chaletImagesFiles = chaletImagesInput.files;
+        const requiredTotalImages = 5;
+
+        const preExistingImagesCount = document.querySelectorAll('.small-upload-icons img').length;
+        const mainImageExists = document.getElementById('main-image').src.includes('teenyicons_image-solid.png') ? 0 : 1;
+        const totalImagesCount = preExistingImagesCount + mainImageExists + chaletImagesFiles.length;
+
+        if (totalImagesCount < requiredTotalImages) {
+            isValid = false;
+            displayError('chalet_images', `{% trans "Please upload at least ${requiredTotalImages} images (1 main and 4 additional)." %}`);
+        //} else if (totalImagesCount > requiredTotalImages) {
+        //    isValid = false;
+        //    displayError('chalet_images', `{% trans "You can only upload up to ${requiredTotalImages} images." %}`);
+        } else {
+            let validFiles = true;
+            const maxSize = 1 * 1024 * 1024; // 1MB
+            for (let i = 0; i < chaletImagesFiles.length; i++) {
+                if (!['image/jpeg', 'image/png'].includes(chaletImagesFiles[i].type)) {
+                    isValid = false;
+                    validFiles = false;
+                    displayError('chalet_images', '{% trans "Only JPEG and PNG files are allowed." %}');
+                    break;
+                }
+                if (chaletImagesFiles[i].size > maxSize) {
+                    isValid = false;
+                    validFiles = false;
+                    displayError('chalet_images', '{% trans "Each image must be less than 1MB." %}');
+                    break;
+                }
+            }
+            if (validFiles) {
+                clearError('chalet_images');
+            }
+        }
+
+        // Validate Meal Prices
+        // const mealPrices = [
+        //     { id: 'breakfast-price', errorId: 'breakfast_price' },
+        //     { id: 'lunch-price', errorId: 'lunch_price' },
+        //     { id: 'dinner-price', errorId: 'dinner_price' }
+        // ];
+
+        // mealPrices.forEach(meal => {
+        //     const priceInput = document.getElementById(meal.id);
+        //     const priceValue = priceInput.value.trim();
+
+        //     console.log(`Validating ${meal.id}: "${priceValue}"`); // Debug: Log the value being validated
+
+        //     // Check if the input is empty
+        //     if (priceValue === '') {
+        //         clearError(meal.errorId); // Clear any previous errors if the field is empty
+        //         console.log(`Skipping validation for empty ${meal.id}`); // Log skipping validation
+        //     } else {
+        //         const isValidPriceFormat = /^\d+(\.\d+)?$/.test(priceValue); // Matches integers or decimals
+
+        //         if (!isValidPriceFormat) {
+        //             isValid = false;
+        //             displayError(meal.errorId, 'Please enter a valid price');
+        //             return;
+        //         }
+        //         const price = parseFloat(priceValue); // Use parseFloat for decimal check
+
+        //         console.log(`Parsed price for ${meal.id}: ${price}`); // Debug: Log the parsed price
+
+        //         // Check if the input is a valid number and not a NaN
+        //         if (!isNaN(price) && price >= 0) {
+        //             // Price should be 0 or greater and allow decimals
+        //             clearError(meal.errorId);
+        //             console.log(`Success: ${meal.id} is valid with price: ${price}`); // Log valid price
+        //         } else {
+        //             isValid = false;
+        //             displayError(meal.errorId, 'Please enter a valid number greater than or equal to 0. Characters are not allowed.');
+        //             console.log(`Error: ${meal.id} contains invalid characters or is not a valid number`); // Log error details
+        //         }
+        //     }
+        // });
+
+        // Check image count validity
+        const isImageCountValid = updateImageCount();
+        if (!isImageCountValid) {
+            console.log("Image count validation failed within validateForm.");
+            isValid = false; // Set isValid to false if image count validation fails
+        }
+
+        console.log(`Validation result: ${isValid}`); 
+        return isValid;
+
+    }
+
+    function displayError(fieldId, message) {
+        const errorElement = document.getElementById(`${fieldId}_error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('error');
+            errorElement.style.display = 'block';
+        }
+    }
+
+    function clearError(fieldId) {
+        const errorElement = document.getElementById(`${fieldId}_error`);
+        if (errorElement) {
+            errorElement.textContent = '';
+            errorElement.classList.remove('error');
+        }
+    }
+
+    function validateEmail(email) {
+        console.log("Inside validateEmail>>>>>>>>>>>>>>>>>>>",email)
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) return false;
+
+        const domain = email.split('@')[1];
+        const domainParts = domain.split('.');
+
+        if (domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2) {
+            return false;
+        }
+
+        // Removed the TLD whitelist check
+        // if (!validTLDs.includes(tld)) return false;
+
+        if (domainParts.some(part => part.length === 0)) {
+            return false;
+        }
+
+        if (domain.length > 253) {
+            return false;
+        }
+
+        const localPart = email.split('@')[0];
+        if (localPart.length > 64) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateDate(dateStr) {
+        // Simple date validation in YYYY-MM-DD format
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        if (!datePattern.test(dateStr)) return false;
+        const date = new Date(dateStr);
+        return date.toISOString().startsWith(dateStr);
+    }
+
+    function isFutureDate(dateStr) {
+        const date = new Date(dateStr);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date > today;
+    }
+
+
+
+  
+
+    async function submitEditForm(e) {
+        e.preventDefault(); 
+        console.log("worked", e.target);
+
+        // If the image count is valid, then check the general form validation
+        const isFormValid = validateForm();
+        if (!isFormValid) {
+            console.log("Form validation failed. Submission prevented.");
+            return; 
+        }
+
+        var formData = new FormData(e.target);            
+        const amenityIds = getAmenityIds();
+        formData.append('amentity_ids', JSON.stringify(amenityIds));
+
+        const existingDocumentInputs = document.querySelectorAll('input[name="existing_document_ids"]');
+        existingDocumentInputs.forEach(input => {
+            formData.append('existing_document_ids', input.value);
+        });
+
+        // Append existing main image ID
+        const existingMainImage = document.querySelector('input[name="existing_main_image"]');
+        if (existingMainImage) {
+            formData.append('existing_main_image', existingMainImage.value);
+        }
+
+        // Add existing image IDs
+        document.querySelectorAll('input[name^="existing_image_"]').forEach(input => {
+            formData.append('existing_image_ids[]', input.value);
+        });
+
+        // Append new image data
+        formData.append('main_images', document.querySelector('input[name="main_images"]').files[0]);
+        document.querySelectorAll('input[name^="remaining_images_"]').forEach(input => {
+            formData.append(input.name, input.files[0]);
+        });
+
+        // Show the loader
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+
+        // Add the blur class to the div
+        const testDiv = document.getElementById('test_div');
+        testDiv.classList.add('blurred');
+
+        try {
+            const form = document.getElementById('chaletForm');
+            // const csrfToken = form.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            // Extract chalet_id from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const chaletId = urlParams.get('chalet_id'); // Get the chalet_id
+
+            const response = await fetch(`/chalets/edit_detail/?chalet_id=${chaletId}`, {  // Pass chalet_id in URL
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                }
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                if (result.success) {
+                    const chaletId = result.chalet_id;
+                    window.location.href = `/chalets/edit_chalet/?success=1/chalet_id=${chaletId}`;  // Redirect after successful edit
+                } else if (result.status === 'not_approved') {
+                    alert(result.message);
+                    window.location.href = '/vendor/login/';  // Redirect to logout or login page
+                } else {
+                    // Display error message if the email is already taken
+                    document.getElementById('chalet_email_error').textContent = result.message;
+                }
+            } else {
+                document.getElementById('chalet_email_error').textContent = result.message;
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Request failed', error);
+        } finally {
+            // Hide the loader and remove the blur class from the div
+            loader.style.display = 'none';
+            testDiv.classList.remove('blurred');
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    function setupCheckboxLogic(containerClass) {
+        const tickContainer = document.querySelector(containerClass);
+        if (!tickContainer) return;
+
+        const allSelector = tickContainer.querySelector("#all");
+        const checkboxes = tickContainer.querySelectorAll(".custom-checkbox-input:not(#all)");
+
+        function updateAllCheckbox() {
+            const allChecked = [...checkboxes].every(cb => cb.checked);
+            allSelector.checked = allChecked;
+        }
+
+        // Check status on page load
+        updateAllCheckbox();
+
+        if (allSelector) {
+            allSelector.addEventListener("change", function () {
+                checkboxes.forEach((checkBox) => {
+                    checkBox.checked = this.checked;
+                });
+            });
+
+            checkboxes.forEach((checkBox) => {
+                checkBox.addEventListener("change", updateAllCheckbox);
+            });
+        }
+    }
+
+    // Apply logic to both containers
+    setupCheckboxLogic(".payment-accept");
+    setupCheckboxLogic(".accept-payment-container");
+});
+
+  
+
+
+
+</script>
+
+</html>

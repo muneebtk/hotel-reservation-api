@@ -1,0 +1,13 @@
+{% extends 'accounts/base_email_template.html' %}
+
+{% block title %}Amenity Addition Notification{% endblock %}
+
+{% block content %}
+    <h2>Amenity Addition Notification</h2>
+    <p>A new amenity <strong>{{ amenity_name }}</strong> has been successfully added.</p>
+    
+    <p>Thank you for your contribution.</p>
+    <div class="footer">
+        <p>This email was sent to you by the admin. If you have any questions, please contact us at support.</p>
+    </div>
+{% endblock %}

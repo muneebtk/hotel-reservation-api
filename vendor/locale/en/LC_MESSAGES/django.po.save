@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-30 09:50+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: templates/accounts/vendor_login.html:417
+#: templates/accounts/vendor_login.html:419
+msgid "Email"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:422
+#: templates/accounts/vendor_login.html:425
+msgid "Password"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:428
+msgid "Forget Password?"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:430
+msgid "Log in"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:431
+msgid "Join With Us"
+msgstrم إلينا"
+
+#: templates/accounts/vendor_login.html:436
+msgid "or continue with"
+msgstr "أو استمر مع"

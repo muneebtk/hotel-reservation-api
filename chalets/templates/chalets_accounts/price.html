@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-*********" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+        <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+        <link rel="stylesheet" href="{% static 'chalets/css/price.css' %}">
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="container">
+            <header class="progress-bar-container">
+                <h2 class="header-title">{% trans 'Almost finished!' %}</h2>
+                <div class="progress-bar">
+                    <div class="step active">
+                        <div class="circle active"><i class="fas fa-check"></i></div>
+                        <span class="label">{% trans 'Amenities' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step active">
+                        <div class="circle active"></div>
+                        <span class="label">{% trans 'Prices' %}</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step">
+                        <div class="circle"><span class="step-number">3</span></div>
+                        <span class="label">{% trans 'Policies' %}</span>
+                    </div>
+                </div>
+            </header>
+            <section class="inner-container">
+                <h1 class="title">{% trans 'Prices' %}</h1>
+                <p>{% trans 'Please enter the price details' %}</p>
+                <div class="form-div">
+                    <form action="{%url 'price'%}" id="priceform" method="post">
+                        {%csrf_token%}
+                        <!-- <div class="price-item checkbox">
+                            <input type="checkbox" name="meal" value="breakfast" id="breakfast">
+                            <label for="breakfast">{% trans 'Breakfast' %}</label>
+                            <input type="text" id="breakfast_price" name="breakfast" placeholder="{% trans 'OMR Enter' %}">
+                            <span class="error-message"></span> 
+    
+                        </div>
+                        <div class="price-item checkbox">
+                            <input type="checkbox" name="meal" value="lunch" id="lunch">
+                            <label for="lunch">{% trans 'Lunch' %}</label>
+                            <input type="text" id="lunch_price" name="lunch" placeholder="{% trans 'OMR Enter' %}">
+                            <span class="error-message"></span> 
+    
+                        </div>
+                        <div class="price-item checkbox">
+                            <input type="checkbox" name="meal" value="dinner" id="dinner">
+                            <label for="dinner">{% trans 'Dinner' %}</label>
+                            <input type="text" id="dinner_price" name="dinner" placeholder="{% trans 'OMR Enter' %}">
+                            <span class="error-message"></span>
+                        </div> -->
+    
+                        
+                        <!-- Number of Guests -->
+                        <div class="price-item checkbox">
+                            <div class="label-container">
+                                <input type="checkbox" id="number_of_guests_checkbox">
+                                <label for="number_of_guests_checkbox">{% trans 'Number Of Guests' %}</label>
+                            </div>
+                            <div class="error-container">
+                                <input type="text" id="number_of_guests" name="number_of_guests" placeholder="{% trans 'Enter Number Of Guests Allowed' %}">
+                                <p id="number-of-guests-error-message" class="text-12px text-start" style="color: red; display: none;">{% trans 'Please enter a valid number of guests.' %}</p>
+                            </div>
+                        </div>
+    
+                        <!-- Total Price -->
+                        <div class="price-item checkbox">
+                            <div class="label-container">
+                                <input type="checkbox" id="total_price_checkbox">
+                                <label for="total_price_checkbox">{% trans 'Total Price' %}</label>
+                            </div>
+                            <div class="error-container">
+                                <input type="text" id="total_price" name="total_price" placeholder="{% trans 'OMR Enter' %}">
+                                <p id="total-price-error-message" class="text-12px text-start" style="color: red; display: none;">{% trans 'Please enter a valid total price.' %}</p>
+                            </div>
+                        </div>
+    
+                        <!-- Weekend Price -->
+                        <div class="price-item checkbox">
+                            <div class="label-container">
+                                <input type="checkbox" id="weekend_price_checkbox">
+                                <label for="weekend_price_checkbox">{% trans 'Weekend Price (Optional)' %}</label>
+                            </div>
+                            <div class="error-container">
+                                <input type="text" id="weekend_price" name="weekend_price" placeholder="{% trans 'OMR Enter' %}">
+                                <p class="text-12px text-start" id="price-error-message" style="color: red; display: none;">{% trans 'Please enter a valid price.' %}</p>
+                            </div>
+                        </div>
+    
+    
+                 </div>
+
+
+                 <div class="tax-info-container" {% if not taxes %}style="display: none;"{% endif %}>
+                    <div class="tax-header">
+                        <h1>
+                            {% trans 'Tax Information' %}
+                        </h1>
+                        <div class="accept-switch">
+                            <span>{%trans 'If Applicable' %}</span>
+                            <div class="accept-toggle-container">
+                                <input type="checkbox" id="accept-toggle" class="toggle-input">
+                                <label for="accept-toggle" class="toggle-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tax-input-fields">
+                        <div class="input-item-row">
+                            {% for tax in taxes %}
+                            <div class="input-item-container">
+                                <label for="tax_{{ tax.id }}">
+                                    {% if request.LANGUAGE_CODE == "ar" and tax.name_arabic %}
+                                        {{ tax.name_arabic }}
+                                    {% else %}
+                                        {{ tax.name }}
+                                    {% endif %}
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="tax_{{ tax.id }}" 
+                                    name="tax_{{ tax.id }}" 
+                                    placeholder="{% if request.LANGUAGE_CODE == 'ar' %}{% trans 'أدخل النسبة المئوية (مثال: 5٪)' %}{% else %}{% trans 'Enter percentage (e.g. 5%)' %}{% endif %}"
+                                    
+                                >
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                                </div>
+                                <div class="input-item-row">
+                            {% endif %}
+                        {% endfor %}
+
+                        </div>
+                        
+                    </div>
+                    <div id="tax-toggle-error-message" class="text-12px text-center" style="display: none; color: red;">
+                        {% trans "Please enable 'If applicable' toggle if entering tax." %}
+                    </div>
+                    <div id="tax-error-message" class="text-12px text-center" style="display: none; color: red;">
+                        {% trans "Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., 5 or 12.5)." %}
+                    </div>
+                    </div>
+                    <div class="payment" style="margin-top: 2.5rem;">
+                        <h1>
+                            {% trans 'Payments Accepted' %}
+                        </h1>
+                    <div class="accept-payment-container" style="margin-top: 1.3rem;" > 
+                        <form action="{%url 'price'%}" id="priceform" method="post"> 
+                            {%csrf_token%}        
+                        <div class="check-container" >
+                            <div class="custom-checkbox-container">
+                                <input type="checkbox" name="payment_category" value="All" id="all" class="custom-checkbox-input">
+                                <label for="all" class="custom-checkbox-label"></label>
+                            </div>
+                            <label for="all" class="select-label">{% trans 'All' %}</label>
+                        </div>
+                        {% if Payment_ctg %}
+                        {% for i in Payment_ctg %}
+                            {% if i.name != "Wallet" %}
+                                <div class="check-container">
+                                    <div class="custom-checkbox-container">
+                                        <input type="checkbox" name="payment_category" value="{{i.id}}" id="{{i.name}}" class="custom-checkbox-input">
+                                        <label for="{{i.name}}" class="custom-checkbox-label"></label>
+                                    </div>
+                                    <label for="{{i.name}}" class="select-label"> {% if request.LANGUAGE_CODE == "ar" %}
+                                        {{ i.name_arabic }}
+                                    {% else %}
+                                        {{ i.name }}
+                                    {% endif %}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                    <!-- <div class="error-container">
+                        <input type="text" id="payment_type" name="payment_type" placeholder="{% trans 'Select your corresponding payment method.' %}">
+                        <span class="error-message"></span>
+                    </div> -->
+                </div>
+
+
+
+
+                <div id="error-message-container" style="text-align: center;">
+                    <span class="text-12px" id="checkbox-error-message" style="color: red; display: none;">{% trans 'Please check the corresponding checkbox for the entered price.' %}</span><br>
+                    {% comment %} <span class="text-12px" id="price-error-message" style="color: red; display: none;">{% trans 'Please enter a valid price.' %}</span><br> {% endcomment %}
+                    <span class="text-12px" id="zero-or-negative-error-message" style="color: red; display: none;">{% trans 'Price must be greater than zero.' %}</span><br>
+                    {% comment %} <span id="number-of-guests-error-message" style="color: red; display: none;">{% trans 'Please enter a valid number of guests.' %}</span><br> {% endcomment %}
+                    {% comment %} <span id="total-price-error-message" style="color: red; display: none;">{% trans 'Please enter a valid total price.' %}</span><br> {% endcomment %}
+                    <span class="text-12px" id="payment-type-error-message" style="color: red; display: none;">{% trans 'Please select your accepted payment methods.' %}</span>
+
+                </div>
+                {% comment %} <div id="tax-toggle-error-message" class="text-12px" style="display: none; color: red;">
+                    {% trans "Please enable 'If applicable' toggle if entering tax." %}
+                </div>
+                <div id="tax-error-message" class="text-12px" style="display: none; color: red;">
+                    {% trans "Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., 5 or 12.5)." %}
+                </div> {% endcomment %}
+
+                        <div class="buttons">
+                            <button id="backButton" class="back-button">{% trans 'Back' %}</button>
+                            <button id="nextButton" class="next-button">{% trans 'Next' %}</button>
+                        </div>
+                    </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+
+        //Toggle
+
+        const acceptToggle = document.getElementById('accept-toggle');
+
+        acceptToggle.addEventListener('change', function () {
+        if (this.checked) {
+            console.log('Toggle is ON');
+        } else {
+            console.log('Toggle is OFF');
+        }
+        });
+
+        //All checkbox
+
+        // const tickContainer = document.querySelector(".accept-payment-container")
+        // const allSelector = tickContainer.querySelector("#all")
+        // allSelector.addEventListener('change', function () {
+        //     if (this.checked) {
+        //         tickContainer.querySelectorAll(".custom-checkbox-input").forEach(function(checkBox){
+        //             checkBox.checked = true
+        //         })
+        //     }else{
+        //         tickContainer.querySelectorAll(".custom-checkbox-input").forEach(function(checkBox){
+        //             checkBox.checked = false
+        //         })
+        //     }
+        // })
+        const tickContainer = document.querySelector(".accept-payment-container");
+
+        if (tickContainer) {
+            const allSelector = tickContainer.querySelector("#all");
+
+            if (allSelector) {
+                allSelector.addEventListener("change", function () {
+                    tickContainer.querySelectorAll(".custom-checkbox-input").forEach((checkBox) => {
+                        checkBox.checked = this.checked;
+                    });
+                });
+
+                tickContainer.querySelectorAll(".custom-checkbox-input").forEach((checkBox) => {
+                    checkBox.addEventListener("change", function () {
+                        const allCheckboxes = tickContainer.querySelectorAll(".custom-checkbox-input:not(#all)");
+                        const allChecked = [...allCheckboxes].every(cb => cb.checked);
+
+                        allSelector.checked = allChecked;  
+                    });
+                });
+            }
+        }
+
+
+        tickContainer.querySelectorAll(".custom-checkbox-input").forEach(function (checkBox) {
+            checkBox.addEventListener("change", function () {
+                if (!checkBox.checked) {
+                    allSelector.checked = false
+                }
+            })
+        })
+
+    </script>
+
+    <script>
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, window.location.href);
+
+            window.onpopstate = function () {
+                window.history.go(1);
+            };
+        }
+        $(document).ready(function() {
+            var integerPattern = /^[0-9]+$/;
+            var decimalPattern = /^[0-9]*\.?[0-9]+$/;
+            // Hide error messages initially
+            $('#checkbox-error-message').hide();
+            $('#price-error-message').hide();
+            $('#zero-or-negative-error-message').hide();
+            $('#tax-error-message').hide();
+            $('#tax-toggle-error-message').hide();
+            $('.price-item input, .tax-input-fields input').removeClass('error');
+            $('#invalid-format-error-message').hide();
+            $('#payment-type-error-message').hide();
+
+
+            // Next button click event
+            $('#nextButton').click(function(e) {
+                e.preventDefault();
+    
+                var isValid = true;
+                var checkboxError = false;
+                var priceError = false;
+                var zeroOrNegativeError = false;
+                var invalidFormatError = false;
+                var taxError = false;
+                var taxToggleError = false;
+                var paymenttypeError=false;
+                var numberOfGuestsError = false;
+                var totalPriceError = false;
+                // Hide all error messages
+                $('#checkbox-error-message, #price-error-message, #zero-or-negative-error-message, #tax-error-message, #tax-toggle-error-message, #invalid-format-error-message').hide();
+                $('.price-item input, .tax-input-fields input').removeClass('error');
+                $('#payment-type-error-message').hide();
+
+
+                $('.price-item.checkbox').each(function() {
+                    var checkbox = $(this).find('input[type="checkbox"]');
+                    var inputField = $(this).find('input[type="text"]');
+                    var fieldValue = inputField.val().trim();
+    
+                    // Check if the checkbox is checked when a value is entered
+                    if (fieldValue !== '' && !checkbox.prop('checked')) {
+                        isValid = false;
+                        checkboxError = true;
+                        inputField.addClass('error');
+                    }
+    
+                    // Validate price input if checkbox is checked
+                    if (checkbox.prop('checked')) {
+                        var decimalPattern = /^\d+(\.\d{1,2})?$/; // Allow up to 2 decimal places
+    
+                        if (fieldValue === '') {
+                            isValid = false;
+                            priceError = true;
+                            inputField.addClass('error');
+                        } else if (!decimalPattern.test(fieldValue)) {
+                            isValid = false;
+                            invalidFormatError = true;
+                            inputField.addClass('error');
+                        } else if (parseFloat(fieldValue) < 0) {
+                            isValid = false;
+                            zeroOrNegativeError = true;
+                            inputField.addClass('error');
+                        }
+                    }
+                });
+    
+                // Validate tax inputs
+                var isTaxApplicable = $('#accept-toggle').prop('checked');
+                var hasValidTax = false;
+                var hasInvalidTax = false;
+                var taxHasValueWithoutToggle = false;
+
+                $('.tax-input-fields input[type="text"]').each(function() {
+                    var taxValue = $(this).val().trim();
+
+                    // If tax is entered but toggle is off, show error
+                    if (taxValue !== '' && !isTaxApplicable) {
+                        taxHasValueWithoutToggle = true;
+                        $(this).addClass('error');
+                    }
+
+                    if (isTaxApplicable) {
+                        var taxPattern = /^\d{1,2}(\.\d{1,2})?$/; // Allow whole numbers & up to 2 decimal places
+
+                        if (taxValue !== '') {
+                            var taxAmount = parseFloat(taxValue);
+                            if (!taxPattern.test(taxValue) || taxAmount <= 0) {
+                                hasInvalidTax = true;
+                                $(this).addClass('error');
+                            } else {
+                                hasValidTax = true;
+                            }
+                        }
+                    }
+                });
+
+                // If toggle is enabled but no valid tax is entered, show an error
+                if (isTaxApplicable && !hasValidTax) {
+                    isValid = false;
+                    taxError = true;
+                }
+
+                // If tax is entered without enabling the toggle, show an error
+                if (taxHasValueWithoutToggle) {
+                    isValid = false;
+                    taxToggleError = true;
+                }
+
+
+
+                var numberOfGuests = $('#number_of_guests').val().trim();
+                if (numberOfGuests === '') {
+                    isValid = false;
+                    numberOfGuestsError = true;
+                    $('#number_of_guests').addClass('error');
+                } else if (!integerPattern.test(numberOfGuests)) {
+                    isValid = false;
+                    numberOfGuestsError = true;
+                    $('#number_of_guests').addClass('error');
+                } else if (parseInt(numberOfGuests) <= 0 || parseInt(numberOfGuests) > 100) { // Assuming 100 is the maximum limit
+                    isValid = false;
+                    numberOfGuestsError = true;
+                    $('#number_of_guests').addClass('error');
+                }
+
+                // Validate Total Price
+                var totalPrice = $('#total_price').val().trim();
+                if (totalPrice === '') {
+                    isValid = false;
+                    totalPriceError = true;
+                    $('#total_price').addClass('error');
+                } else if (!decimalPattern.test(totalPrice)) {
+                    isValid = false;
+                    totalPriceError = true;
+                    $('#total_price').addClass('error');
+                } else if (parseFloat(totalPrice) <= 0 || parseFloat(totalPrice) > 10000) { // Assuming 10,000 is the maximum limit
+                    isValid = false;
+                    totalPriceError = true;
+                    $('#total_price').addClass('error');
+                }
+
+                 // Validate Total Price
+                 var weekendPrice = $('#weekend_price').val().trim();
+                 if (!decimalPattern.test(totalPrice)) {
+                     isValid = false;
+                     totalPriceError = true;
+                     $('#total_price').addClass('error');
+                 } else if (parseFloat(weekendPrice) <= 0 || parseFloat(weekendPrice) > 10000) { // Assuming 10,000 is the maximum limit
+                     isValid = false;
+                     totalPriceError = true;
+                     $('#total_price').addClass('error');
+                 }
+
+                    //validate payment category
+                const checkboxes = document.querySelectorAll('input[name="payment_category"]');
+                let isChecked = false;
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        isChecked = true;
+                    }
+                });
+
+                if (!isChecked) {
+                    isValid = false;
+                    paymenttypeError=true;
+                    $('#payment_type').addClass('error');
+
+                }
+    
+                // Show appropriate error messages
+                if (checkboxError) {
+                    $('#checkbox-error-message').show();
+                }
+                if (priceError) {
+                    $('#price-error-message').show().text('{% trans "Please enter a valid price." %}');
+                }
+                if (invalidFormatError) {
+                    $('#price-error-message').show().text('{% trans "Please enter a number greater than 0" %}'); 
+                }
+                if (zeroOrNegativeError) {
+                    $('#zero-or-negative-error-message').show();
+                }
+                if (numberOfGuestsError) {
+                    $('#number-of-guests-error-message').show().text('{% trans "Please enter a valid number of guests between 1 and 100." %}');
+                }
+                if (totalPriceError) {
+                    $('#total-price-error-message').show().text('{% trans "Please enter a valid price between 0 and 10,000." %}');
+                }
+                if( paymenttypeError){
+                    $('#payment-type-error-message').show();   
+                }  
+                // Show appropriate error messages
+                if (taxToggleError) {
+                    $('#tax-toggle-error-message').show().text(gettext("Please enable 'If applicable' toggle if entering tax."));
+                }                
+                if (taxError) {
+                    $('#tax-error-message').show().text(gettext("Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., 5 or 12.5)."));
+                }                
+
+
+
+                if (!isValid) {
+                    console.log('Please correct the errors in the form.');
+                    return; 
+                }
+
+                // Prepare form data for submission
+                var formData = $('#priceform').serializeArray();
+                if (!isTaxApplicable) {
+                    formData = formData.filter(item => !item.name.startsWith('tax_'));
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: $('#priceform').attr('action'),
+                    data: $.param(formData),
+                    success: function(response) {
+                        window.location.href = response.next_url;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            var selectedPrices = sessionStorage.getItem('selectedPrices');
+            if (selectedPrices) {
+                selectedPrices = JSON.parse(selectedPrices);
+                console.log(selectedPrices);
+
+                if (selectedPrices.breakfast) {
+                    $('#breakfast').prop('checked', true);
+                    $('#breakfast_price').val(selectedPrices.breakfast);
+                }
+                if (selectedPrices.lunch) {
+                    $('#lunch').prop('checked', true);
+                    $('#lunch_price').val(selectedPrices.lunch);
+                }
+                if (selectedPrices.dinner) {
+                    $('#dinner').prop('checked', true);
+                    $('#dinner_price').val(selectedPrices.dinner);
+                }
+            }
+
+            var numberOfGuests = sessionStorage.getItem('numberOfGuests');
+            var totalPrice = sessionStorage.getItem('totalPrice');
+            var weekend_price=sessionStorage.getItem('weekend_price');
+            console.log(numberOfGuests,"============1")
+            console.log(totalPrice,"=========totalPrice=============")
+
+            if (numberOfGuests) {
+                $('#number_of_guests').val(numberOfGuests);
+                $('#number_of_guests_checkbox').prop('checked', true);
+            }
+
+            if (totalPrice) {
+                $('#total_price').val(totalPrice);
+                $('#total_price_checkbox').prop('checked', true);
+            }
+            // if (weekend_price){
+            //     $('#weekend_price').val(weekend_price);
+            //     $('#weekend_price_checkbox').prop('checked', true);
+            // }
+                    
+        });
+        $('#backButton').click(function(e) {
+            e.preventDefault(); 
+
+            sessionStorage.removeItem('selectedPrices');
+            
+            var selectedPrices = {};
+            $('.price-item input[type="checkbox"]:checked').each(function() {
+                var priceInputId = $(this).attr('id') + '_price';
+                selectedPrices[$(this).val()] = $('#' + priceInputId).val();
+            });
+
+            var numberOfGuest = $('input[name="number_of_guests"]').val(); 
+            var totalPrice = $('input[name="total_price"]').val();
+            const checkboxes = document.querySelectorAll('input[name="payment_category"]:checked');
+            const selectedPayments = [];
+            checkboxes.forEach(checkbox => {
+            selectedPayments.push(checkbox.value);
+        });
+
+            if (!numberOfGuest) {
+                sessionStorage.setItem('numberOfGuests', ""); 
+            } else {
+                sessionStorage.setItem('numberOfGuests', numberOfGuest);
+            }
+
+            if (!totalPrice) {
+                sessionStorage.setItem('totalPrice', ""); 
+            } else {
+                sessionStorage.setItem('totalPrice', totalPrice);
+            }
+            if (selectedPayments.length === 0) {
+                sessionStorage.setItem('selectedPayments', ""); 
+            } else {
+                sessionStorage.setItem('selectedPayments', JSON.stringify(selectedPayments));
+            }
+            console.log('Number of Guests:', numberOfGuest || 'Empty');
+            console.log('Total Price:', totalPrice || 'Empty');
+
+            if (Object.keys(selectedPrices).length > 0) {
+                sessionStorage.setItem('selectedPrices', JSON.stringify(selectedPrices));
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: '{% url "back_chalet_ammenities" %}', 
+                dataType: 'json',
+                success: function(response) {
+                    console.log("success");
+                    if (response.selected_amenities) {
+                        sessionStorage.setItem('selectedAmenities', JSON.stringify(response.selected_amenities));
+                        chalet_id=response.chalet_id
+                        window.location.href = `/chalets/ammenities/?chalet_id=${chalet_id}`;
+                    } else {
+                        console.error('No selected_amenities in response');
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+
+        
+        $(document).ready(function() {
+            var selectedPayments = sessionStorage.getItem('selectedPayments');
+            if (selectedPayments) {
+                selectedPayments = JSON.parse(selectedPayments);
+                console.log('Selected Payments:', selectedPayments);
+                if (selectedPayments.length > 0) {
+                    selectedPayments.forEach(function(paymentId) {
+                        var checkbox = $("input[type='checkbox'][value='" + paymentId + "']");
+                        console.log('Checkbox:', checkbox); 
+                        if (checkbox.length > 0) {
+                            checkbox.prop('checked', true); // Check the checkbox
+                        }
+                    });
+                }
+            }
+            });
+
+    </script>
+</body>
+</html>

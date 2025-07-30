@@ -1,0 +1,301 @@
+{% load static %}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <style>
+        /* Button styles */
+        .btn-custom {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        /* Modal styles */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .custom-modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            left: 7%;
+        }
+
+        .custom-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .custom-close:hover,
+        .custom-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Form group styles */
+        .custom-form-group {
+            margin-bottom: 15px;
+            padding: 1%;
+        }
+
+        .custom-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .custom-form-group input[type="text"],
+        .custom-form-group input[type="email"],
+        .custom-form-group input[type="file"] {
+            width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            outline: none;
+            background-color: #EDF0F9;
+        }
+
+        /* Radio button styles */
+        .custom-radio-group input[type="radio"] {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-radio-group input[type="radio"]:checked {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+        }
+
+        .custom-radio-group input[type="radio"]+label {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        /* Form actions styles */
+        .custom-form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .custom-cancel-btn,
+        .custom-add-btn {
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .custom-cancel-btn {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        .custom-cancel-btn:hover {
+            background-color: #f2f2f2;
+        }
+
+        .custom-add-btn {
+            background-color: #b71c1c;
+            color: #fff;
+        }
+
+        .custom-add-btn:hover {
+            background-color: #8e0000;
+        }
+
+        /* File upload styles */
+        .custom-file-upload {
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-file-upload span {
+            margin-left: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .custom-form-group .custom-radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-form-group .custom-radio-group input[type="radio"],
+        .custom-form-group .custom-radio-group label {
+            margin-right: 10px;
+        }
+        .custom-blur {
+            filter: blur(5px);
+            pointer-events: none; 
+        }
+    </style>
+</head>
+<!-- Include the Modal HTML -->
+<body>
+    <div id="amenitiesModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h2 class="modal-title">+ {% trans "Add Amenities" %}</h2>
+            <form id="addAmenityForm" enctype="multipart/form-data">
+                <input type="hidden" name="chalet_id" value="{{ chalet.id }}" />
+                
+                <div class="custom-form-group">
+                    <label for="amenityDropdown">{% trans "Select Amenities" %}</label>
+                    <select id="amenityDropdown" name="amenities" class="custom-select" multiple="multiple">
+                        {% for amenity in all_amenities %}
+                            {% if amenity not in amenities %}
+                                <!-- <option value="{{ amenity.id }}">{{ amenity.amenity_name }}</option> -->
+                                {% if request.LANGUAGE_CODE == 'ar' %}
+                                    <option value="{{ amenity.id }}">{{ amenity.amenity_name_arabic }}</option>
+                                {% else %}
+                                    <option value="{{ amenity.id }}">{{ amenity.amenity_name }}</option>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <span id="englishError" class="text-danger" style="color: red; display: none;">{% trans 'Please select at least one amenity to proceed.' %}</span>
+                </div>
+
+
+            
+                <span id="error_message" class="text-danger" style="color: #85080C; display: none;">{% trans 'Amenity with this name already exists' %}</span>
+                <div class="custom-form-actions" style="display: flex; gap: 20px;">
+                    <button type="button" class="custom-cancel-btn" onclick="window.location.reload();">{% trans "Cancel" %}</button>
+                    <button type="submit" class="custom-add-btn" id="addAmenityBtn">{% trans "Add" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#amenityDropdown').select2({
+                placeholder: "{% trans 'Search and select amenities' %}",
+                language: {
+                    noResults: function () {
+                        return "{% if request.LANGUAGE_CODE == 'ar' %}لا توجد نتائج{% else %}No results found{% endif %}";
+                    }
+                },
+                allowClear: true,
+                width: '100%' 
+            });
+        });
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        var addedAmenities = []; 
+
+
+        $(document).ready(function () {
+            $('#addAmenityForm').on('submit', function (event) {
+                event.preventDefault();
+
+                const selectedAmenities = $('#amenityDropdown').val();
+
+                if (!selectedAmenities || selectedAmenities.length === 0) {
+                    englishError.innerText = "{% trans 'Please select at least one amenity.' %}"
+                    englishError.style.display = 'block';
+                    return;
+                } else {
+                    englishError.style.display = 'none';
+                }
+
+                const formData = new FormData(this);
+                selectedAmenities.forEach(id => formData.append('selected_amenities[]', id));
+
+                $.ajax({
+                    url: "{% url 'edit_amenity_to_chalet' %}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function (data) {
+                        console.log("data :",data)
+                        if (data.error) {
+                            $('#error_message').show().text(data.error);
+                        } else if (data.success) {
+                            $('#error_message').hide();
+
+                            const modal = $('#amenitiesModal');
+                            if (modal.length > 0) {
+                                console.log('Hiding custom modal.');
+                                modal.hide();
+                            } else {
+                                console.error('Custom modal not found.');
+                            }
+
+
+                            $('#addAmenityForm')[0].reset();
+
+                            $('#amenityDropdown').val([]).trigger('change');
+                            window.location.reload();                    }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        toastr.error('An unexpected error occurred. Please try again later.');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>

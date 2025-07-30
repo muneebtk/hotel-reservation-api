@@ -1,0 +1,1802 @@
+
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalet Owner Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static "vendor/css/vendor-chalet-registration.css" %}">
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="{% static 'vendor/js/reg_map.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&libraries=places"></script> 
+    
+    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcy6G70dZH26zW0ZMR2Uxd_xJ5M6uR5vc&callback=initMap"  defer></script>   {% endcomment %}  
+    
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+
+<body>
+
+    {% include 'accounts/loader_div.html' %}
+    <div class="container scrollable-form">
+        <form id="form-step-1" class="registration-form" method="post" enctype="multipart/form-data"
+            catgeory="{{category}}" action="{% url 'register' category=category%}">
+            {%csrf_token%}
+
+            <div class="step" id="step-1">
+                <h2><a href="{% url 'advertisment' %}" style="text-decoration: none;"><i class="fa-solid fa-arrow-left fa-lg "></i></a><b>&nbsp;&nbsp;{% trans "Chalet Owner Registration Form" %}</h2>
+                <hr>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="chaletName">{% trans "Chalet Name In English" %}\اسم الشاليه بالانجليزي</label>
+                        <input type="text" id="chaletName" name="chaletName" placeholder="{% trans 'Enter chalet name' %}\اسم مالك الفندق" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chaletNameArabic" class="text-right arabic-label">{% trans "Chalet Name in Arabic" %}\اسم الشاليه بالعربي</label>
+                        <input type="text" id="chaletNameArabic" name="chaletNameArabic" placeholder="أدخل اسم الشاليه" dir="rtl" class="text-right" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="chaletOwnerName">{% trans " Owner Name In English "%}\اسم المالك بالانجليزي</label>
+                        <input type="text" id="chaletOwnerName" name="chaletOwnerName" placeholder="{% trans 'Enter owner name' %}\اسم مالك الفندق "
+                            >
+                        <span id="chaletOwnerName_error" style="color: red;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="chaletOwnerArabicName" class="text-right arabic-label">{% trans "Owner Name In Arabic" %}\اسم المالك بالعربي</label>
+                        <input type="text" id="chaletOwnerArabicName" name="chaletOwnerArabicName" placeholder="اسم مالك الفندق" dir="rtl" class="text-right" >
+                        <span id="chaletOwnerArabicName_error" style="color: red;"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                   
+                    <div class="form-group">
+                        <label for="officenumber">{% trans "Office Number" %}\رقم المكتب</label>
+                        <input type="tel" id="officenumber" name="officenumber" placeholder="{% trans 'Ex-22555555' %}">
+                        <input id="full-office-number" type="hidden" name="full_office_number">
+                        <br>
+                        <span id="officenumber_error" style="color: red;">{{ errors.officenumber }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="crnumber">{% trans "CR Number" %}\رقم السجل التجاري</label>
+                        <input type="text" id="crnumber" name="crnumber" placeholder="{% trans 'Enter CR number' %}\أدخل رقم السجل التجاري" >
+                        <br>
+                        <span id="crnumber_error" style="color: red;">{{ errors.crnumber }}</span>
+                    </div>
+                    
+                </div>
+
+
+
+                <div class="form-row" style="width:100%" >
+                    <div class="location_class" style="display: flex;flex-direction: column;flex: 1;">
+                        <div class="form-group">
+                            <label for="hotelAddress">{% trans "Chalet Address" %}\عنوان الشاليه</label>
+                            <div class="input-with-icon">
+                                <i class="fa fa-search"></i>
+                                <input id="hotelAddress" name="hotelAddress" list="addressSuggestions" autocomplete="off" placeholder="{% trans 'Search here' %}\ابحث هنا">
+                                <img src="{% static 'icons/mage_location-fill.png' %}" alt="{% trans 'Choose my current location' %}"  onclick="getCurrentLocation()" class="location-icon" id="locationIcon">
+                                    <span class="tooltip-text" id="tooltipText-address">{% trans 'Choose my current location' %}</span>
+                                    <span class="tooltip-text" id="tooltipText"></span>
+                            </div>
+                            <span id="hotelAddress_error" style="color: red;">{{ errors.hotelAddress }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stateProvince">{% trans "Governorate\State"%}المحافظة/الولاية</label>
+                            <input style=" background-color: #DDDDDD;" type="text" id="stateProvince" name="stateProvince"
+                            placeholder="{% trans 'Enter your Governorate\state Name' %}\أدخل اسم المحافظة/الولاية الخاصة بك " required >
+                        </div>            
+                       
+                        <div class="form-group">
+                            <label for="city">{% trans "City" %}\المدينة</label>
+                            <input style=" background-color: #DDDDDD;" type="text" id="city" name="city"
+                                placeholder="{% trans 'Enter your city name' %}\أدخل اسم مدينتك" required >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">{% trans "Country" %}\الدولة</label>
+                            <input style=" background-color: #DDDDDD;" type="text" id="country" name="country"
+                                placeholder="{% trans 'Enter your country name' %}\أدخل اسم بلدك" required >
+                        </div>
+                            
+                        
+                    </div>
+
+                    <div class="form-group" >
+                        <div id="map"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="Accountno">{% trans "Account Number" %}\رقم الحساب</label>
+                        <input type="number" id="Accountno" name="Accountno" placeholder="{% trans 'Enter your Account Number' %}\أدخل رقم حسابك" required>
+                        <span id="Accountno_error" style="color: red; display: none;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="locality">{% trans "Locality" %}\اسم المنطقة</label>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="locality" name="locality" placeholder="{% trans 'Enter your locality' %}\أدخل منطقتك" required >
+                        <span id="locality_error" style="color: red; display: none;">{% trans "Locality not found" %}</span>
+                    </div>
+                </div>
+
+
+               
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="BankName">{% trans "Bank Name" %}\اسم البنك</label>
+                        <input oninput="capitalizeFirstLetter(this)" type="text" id="BankName" name="BankName" placeholder="{% trans 'Enter your Bank Name' %}\أدخل اسم البنك الخاص بك " required >
+                        <span id="BankName_error" style="color: red; display: none;"></span>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label for="AccountHolder">{% trans "Account Holder Name" %} / اسم صاحب الحساب</label>
+                        <input  type="text" id="AccountHolder" name="Accountholder" placeholder="{% trans 'Enter your Account Holder Name' %}\أدخل اسم صاحب الحساب الخاص بك" required >
+                        <span id="AccountHolder_error" style="color: red; display: none;"></span>
+                    </div>                    
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vatnumber">{% trans "VAT Number" %}\رقم ضريبة القيمة المضافة</label>
+                        <input type="text" id="vatnumber" name="vatnumber" placeholder="{% trans 'Enter VAT number' %}\أدخل رقم ضريبة القيمة المضافة" >
+                        <br>
+                        <span id="vatnumber_error" style="color: red;">{{ errors.vatnumber }}</span>
+                        
+                    </div>
+                    {% comment %} <div class="form-group">
+                        <label for="expiry">{% trans "Date of Expiry" %}\تاريخ الانتهاء</label>
+                        <input type="date" id="expiry" name="expiry" required>
+                        <br>
+                        <span id="date_error" style="color: red;">{{ errors.expiry }}</span>
+                    </div> {% endcomment %}
+                   
+                </div>
+
+            
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="About">{% trans "Chalet Description in English" %}\وصف الشاليه بالانجليزي</label>
+                        <textarea id="About" placeholder="{% trans 'Enter a few words about your chalet' %}\أدخل بضع كلمات عن الشاليه الخاص بك" name="About"
+                           required ></textarea>
+                        <br>
+                        <span id="About_error" style="color: red;">{{ errors.About }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="about_arabic" class="text-right arabic-label">{% trans "Chalet Description in Arabic" %}\وصف الشاليه بالعربي</label>
+                        <textarea id="about_arabic" placeholder="أدخل بضع كلمات عن الشاليه الخاص بك" name="about_arabic"
+                        dir="rtl" class="text-right" required ></textarea>
+                        <br>
+                        <span id="about_arabic_error" style="color: red;">{{ errors.about_arabic }}</span>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="polices">{% trans "Chalet Policies In English" %}\سياسات الشاليه بالانجليزي </label>
+                       <textarea type="text" placeholder="{% trans 'Enter your chalet policies' %}\أدخل سياسات الشاليه الخاصة بك" id="polices" name="polices"
+                            required ></textarea>
+                        <br>
+                        <span id="polices_error" style="color: red;">{{ errors.polices }}</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="polices_arabic" class="text-right arabic-label">{% trans "Chalet Policies In Arabic" %}/سياسات الشاليه بالعربي</label>
+                        <textarea type="text" placeholder="أدخل سياسات الشاليه الخاصة بك" id="polices_arabic" name="polices_arabic"
+                        dir="rtl" class="text-right" required ></textarea>
+                        <br>
+                        <span id="polices_arabic_error" style="color: red;">{{ errors.polices_arabic }}</span>
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="chalet_type">{% trans "Chalet Type" %}</label>
+                        <select class="form-control" id="chalet_type" name="chalet_type" required>
+                            <option value="" disabled selected>{% trans "Choose your Chalet Type" %}</option>
+                            {% for type in chalet_type %}
+                                <option value="{{ type.id }}">{% if request.LANGUAGE_CODE == "ar" %}
+                                    {{ type.arabic_name }}
+                                {% else %}
+                                    {{ type.name }}
+                                {% endif %}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group form-group-wrapper">
+                            <div class="add-images">
+                                <label>{% trans "Chalet Logo" %}\شعار الشاليه</label>
+                                <div class="image-placeholder-logo">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="logo-icon"
+                                        alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('logo')">
+                                    <input style="opacity: 0; cursor: pointer; width: 20%; height: 0%;" type="file"
+                                        id="logo_image" name="logo_image" accept="image/*" required>
+                                </div>
+                                <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                                <br>
+                                <span id="logo_image_error" style="color: red;"></span>
+                            </div>
+                            <div class="add-images">
+                                <label>{% trans "Chalet Images" %}\صور شاليه</label>
+                                <div class="image-placeholder text-center">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="upload-icon"
+                                        alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('main')">
+                                    <input style="display: none;" type="file" id="chalet_images" name="chalet_images[]"
+                                        accept="image/*" multiple >
+                                </div>
+                                <div class="small-upload-icons">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" alt="Upload Icon"
+                                        onclick="triggerFileInput('additional', 1)">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" alt="Upload Icon"
+                                        onclick="triggerFileInput('additional', 2)">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" alt="Upload Icon"
+                                        onclick="triggerFileInput('additional',3)">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" alt="Upload Icon"
+                                        onclick="triggerFileInput('additional',4)">
+                                </div>
+                                <br>
+                                <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                                <br>
+                                <span id="chalet_images_error" style="color: red;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="guidelines">
+                    <li>{% trans "The size of a single chalet image file should not exceed 30 MB" %}</li>
+                    <li>{% trans "Always take the picture in bright natural light" %}</li>
+                    <li>{% trans "Upload minimum 5 images" %}</li>
+                    <li>{% trans "Attach proofs of Address, CR, and VAT" %}</li>
+                </ul>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms">
+                    <label class="form-check-label" for="agreeTerms">
+                        {% trans "I agree to the " %}
+                        <a href="#" id="agreementTrigger" style="text-decoration: none;">
+                            {% trans "Terms" %} {% trans "And" %} {% trans "Conditions" %}
+                        </a>
+                    </label>
+                </div>
+
+                <br>
+                <div class="form-group full-width button-container" style="gap: 20px;">
+                    <button type="submit" id="submit-btn" class="submit-btn">{% trans "Register" %}</button>
+                </div>
+        </form>
+    </div>
+    <main class="agreement-container">
+        <div class="agreement-modal-container">
+            <button class="modal-close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="arabic-content" dir="rtl">
+                <div class="agreement-title">
+                    <h1>الشروط والأحكام لمزودي الخدمة على تطبيق  1929WAY plus</h1>
+                </div>
+
+                <h2>مقدمة تعريفية</h2>
+                <div class="agreement-item">
+                    <p>
+                        "1929WAY plus" هو تطبيق مملوك لشركة الباز للتجارة الالكترونية ش.م.م،                  وهي شركة عمانية محدودة المسؤولية. يهدف التطبيق إلى ربط الفنادق، الشاليهات، المزارع، والبيوت التراثية مع المستهلكين، لتوفير تجربة سياحية متميزة. لعرض خدماتكم على المنصة، يُرجى قراءة الشروط والأحكام والموافقة عليها.
+                    </p>
+                </div>
+
+                <h2>التعريفات</h2>
+                <div class="agreement-item">
+                    <ul>
+                        <li style="font-weight: bold;">المنصة أو التطبيق:</li>
+                        <ul>
+                            <li>
+                                <span>يشير إلى تطبيق "1929WAY plus".</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">مزود الخدمة: </li>
+                        <ul>
+                            <li><span> يشمل جميع مالكي العقارات السياحية الذين يسجلون عقاراتهم لتقديم خدماتهم عبر التطبيق.</span></li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>١</span>التسجيل والاستخدام</h2>
+                <div class="agreement-item">
+                    <ul style="list-style: circle;">
+                        <li style="font-weight: bold;">التسجيل:</li>
+                        <ul style="list-style: circle;">
+                            <li>يتعين على مزود الخدمة التسجيل في تطبيق "1929WAY plus" وتقديم معلومات دقيقة وصحيحة حول الخدمات. يجب تحديث هذه المعلومات بانتظام.</li>
+                        </ul>
+                        <li style="font-weight: bold;">الإقرار بالمسؤولية:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">
+                                    يقر مزود الخدمة بأنه يتحمل المسؤولية الكاملة عن جميع البيانات المقدمة، ويتحمل أي تبعات نتيجة معلومات غير صحيحة.
+                                </span>
+                            </li>
+                        </ul>
+                        </div>
+
+                <h2><span>٢</span>التزامات مزودي الخدمة</h2>
+
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">جودة الخدمة:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">يلتزم مزود الخدمة بتقديم خدمات عالية الجودة متوافقة مع معايير تطبيق "1929WAY plus". يجب أن تكون البيانات المتعلقة بالعقار دقيقة وتعكس الواقع.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">الالتزام بالسياسات:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">يحظر على مزود الخدمة إلغاء الحجوزات لجذب العملاء مباشرة. ويجب التعامل بنزاهة مع العملاء.</span> 
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">إخلاء مسؤولية التطبيق:</li>
+                        <ul>
+                            <li>التطبيق غير مسؤول عن المحتوى الذي ينشره مزودو الخدمة، ويتحمل مزود الخدمة المسؤولية الكاملة عن بياناته وخدماته.</li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>٣</span>الدفع والتحويلات</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">العمولات:</li>
+                        <ul>
+                            <li>إذا كان سعر الليلة أقل من 23 ريال عماني: العمولة 1.5 ريال عماني.</li>
+                            <li>إذا كان سعر الليلة بين 23 و50 ريال عماني: العمولة 3 ريالات عمانية.</li>
+                            <li>إذا كان سعر الليلة أكثر من 50 ريال عماني: العمولة 5 ريالات عمانية.</li>
+                        </ul>
+                        <li style="font-weight: bold;">رسوم بوابة الدفع:</li>
+                        <ul>
+                            <li>الدفع باستخدام بطاقات الكريديت أو من خارج سلطنة عمان: 2.5%.</li>
+                            <li>الدفع باستخدام بطاقات الديبت داخل السلطنة: 1.5%.</li>
+                        </ul>
+                        <li style="font-weight: bold;">فترة معالجة التحويلات: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">تُحوّل المبالغ المستحقة خلال 14-20 يومًا من تاريخ إتمام الحجز.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">التأخير في المدفوعات: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">يحق للتطبيق إيقاف لوحة التحكم الخاصة بمزود الخدمة في حال تأخر تحويل المستحقات.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>٤</span> سياسة الإلغاء والاسترجاع:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">تحديد السياسات: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">يتحمل مزود الخدمة مسؤولية تحديد سياسات الإلغاء والاسترجاع بوضوح.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;"> الإلغاء المتأخر: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px">يتحمل مزود الخدمة تكلفة أي إلغاء بعد القبول، بناءً على سياسات التطبيق.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>٥</span>نظام الحجز وسياساته:</h2>
+                <div class="agreement-item">
+
+                    <ul  >
+                        <li>عند قيام العميل بالحجز، لا يتم تأكيد الحجز مباشرةً إلا بعد وصول إشعار لمزود الخدمة.</li>
+                        <li>يجب على مزود الخدمة تأكيد الطلب للإشارة إلى وجود شاغر لديه وإتاحة الحجز. </li>
+                        <li>بعد قبول مزود الخدمة للطلب، يصبح العميل قادرًا على إكمال إجراءات الحجز.</li>
+                        <li>مزود الخدمة بعد قبوله للطلب يكون ملتزمًا بتنفيذ هذا
+                             الحجز ويتحمل كافة المسؤولية في حال وصول العميل وعدم استفادته من الخدمة أو عدم وجود إتاحة تلبي حجزه.</li>
+                        <li>يحق للتطبيق فرض العقوبة المناسبة على مزود الخدمة بما يرضي العميل ويحقق مصلحة التطبيق في الحفاظ على العميل.</li>
+                        <li>يتحمل مزود الخدمة دفع العمولة المستحقة للتطبيق عن هذا الحجز.</li>
+                    </ul>
+                </div>
+
+                <h2><span>٦</span>السرية وحماية البيانات:</h2>
+                <div class="agreement-item">
+
+                    <ul  >
+                       <li style="font-weight: bold;">التزام السرية: </li>
+                       <ul>
+                        <li>
+                            <span style=" margin-right: 2px;">يجب الحفاظ على سرية بيانات العملاء وعدم استخدامها خارج نطاق تقديم الخدمة.</span>
+                        </li>
+                       </ul>
+                       <li style="font-weight: bold;">حماية البيانات:</li>
+                       <ul>
+                        <li>
+                            <span style="  margin-right: 2px;">يُحظر مشاركة بيانات العملاء مع أطراف ثالثة إلا في الضرورة القصوى.</span>
+                        </li>
+                       </ul>
+                    </ul>
+                </div>
+
+                <h2><span>٧</span> إخلاء المسؤولية:</h2>
+                <div class="agreement-item">
+                <ul  >
+                    <li style="font-weight: bold;">دور التطبيق:</li>
+                    <ul>
+                        <li>
+                            <span style=" margin-right: 2px;">يعمل "1929WAY Plus" كوسيط لتسهيل الحجوزات. التطبيق غير مسؤول عن جودة الخدمات أو أي قصور من مزودي الخدمة.</span>
+                        </li>
+                    </ul>
+                    <li style="font-weight: bold;">مطابقة المعلومات للواقع: </li>
+                    <ul>
+                        <li>
+                            <span style="margin-right: 2px;">يتحمل مزود الخدمة مسؤولية تطابق البيانات المعروضة مع الواقع.</span>
+                        </li>
+                    </ul>
+                    <li style="font-weight: bold;">النزاعات: </li>
+                    <ul>
+                        <li>
+                            <span style="margin-right: 2px;">يعمل التطبيق كوسيط لحل النزاعات بين العميل ومزود الخدمة دون تحمل المسؤولية القانونية.</span>
+                        </li>
+                    </ul>
+                </ul>
+                </div>
+
+                <h2><span>٨</span>العقوبات:</h2>
+                <div class="agreement-item">
+
+                    <ul  >
+                        <li>يحتفظ التطبيق بحق اتخاذ إجراءات تأديبية، مثل تعليق الحساب أو الإلغاء النهائي، في حال المخالفات.
+                        </li>
+                    </ul>
+                </div>
+
+                <h2><span>٩</span> إنهاء الشراكة:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li>يجب تقديم إشعار مسبق عند إنهاء الشراكة من قبل أي طرف.</li>
+                        <li>يلتزم مزود الخدمة بإتمام الحجوزات المعلقة قبل الإنهاء.
+                        </li>
+                    </ul>
+                </div>
+                <h2><span>١٠</span>القانون وحل النزاعات:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">القانون المطبق: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px;">تخضع هذه الشروط للقوانين المعمول بها في سلطنة عمان.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">المحاكم المختصة:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-right: 2px;">يتم حل النزاعات عبر المحاكم العمانية.</span>
+                            </li>
+                        </ul>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="eng-content">
+                <div class="agreement-title">
+                    <h1>Terms and Conditions for Service Providers on the 1929WAY plus App</h1>
+                </div>
+
+                <h2>Introduction:</h2>
+                <div class="agreement-item">
+                    <p>
+                        "1929WAY plus" is an application owned by Albaz E-commerce LLC, an Omani limited liability company. The app aims to connect hotels, chalets, farms, and heritage houses with consumers, providing an exceptional tourism experience. To showcase your services on the platform, please read and agree to the terms and conditions.
+                    </p>
+                </div>
+
+                <h2>Definitions:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Platform or App:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">Refers to the "1929WAY plus" application.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">Service Provider:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">Includes all owners of tourist properties who register their properties to offer services through the app.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>1</span> Registration and Usage:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Registration:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;"> The service provider must register on the "1929WAY plus" app and provide accurate and truthful information about their services. This information should be regularly updated.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">Acknowledgment of Responsibility:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">The service provider acknowledges full responsibility for all submitted data and bears any consequences arising from incorrect information.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>2</span>Obligations of Service Providers:</h2>
+
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Service Quality:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">The service provider must deliver high-quality services that align with "1929WAY plus" standards. Property details must be accurate and reflect reality.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">Policy Adherence:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;"> Service providers are prohibited from canceling bookings to attract clients directly and must act fairly with customers.</span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">App Disclaimer:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">The app is not responsible for the content posted by service providers, who bear full responsibility for their data and services.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>3</span> Payments and Transfers:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Commissions:</li>
+                        <ul>
+                            <li>If the nightly rate is below 23 OMR: the commission is 1.5 OMR.</li>
+                            <li>If the nightly rate is between 23 and 50 OMR: the commission is 3 OMR.</li>
+                            <li>If the nightly rate exceeds 50 OMR: the commission is 5 OMR</li>
+                        </ul>
+                        <li style="font-weight: bold;">Payment Gateway Fees:</li>
+                        <ul>
+                            <li>Credit card payments or payments from outside Oman: 2.5%.</li>
+                            <li>Debit card payments within Oman: 1.5%.</li>
+                        </ul>
+                        <li style="font-weight: bold;">Transfer Processing Period: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    Payments due are transferred within 14-20 days of booking completion.
+                                </span>
+                            </li>
+                        </ul>
+                        <li style="font-weight: bold;">Payment Delays: </li>
+                        <ul>
+                            <li>
+                                <span style=" margin-left: 2px;"> The app reserves the right to suspend the service provider's control panel if payments are delayed</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>4</span> Cancellation and Refund Policy:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Policy Specification:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">The service provider is responsible for clearly defining cancellation and refund policies</span>
+                            </li>
+                        </ul>
+                            <li style="font-weight: bold;">Late Cancellations:</li>
+                            <ul>
+                                <li>
+                                    <span style="margin-left: 2px;">
+                                        The service provider bears the cost of any cancellation after acceptance, as per app policies
+                                    </span>
+                                </li>
+                            </ul>
+                    </ul>
+                </div>
+
+                <h2><span>5</span> Booking System and Policies:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li>Bookings are not confirmed directly but require a notification to the service provider.
+                        </li>
+                        <li>The service provider must confirm the request to indicate availability and enable booking.</li>
+                        <li>After accepting a request, the service provider is committed to fulfilling the booking and bears full 
+                            responsibility if the customer arrives and the service is not available.</li>
+                        <li>The app reserves the right to impose appropriate penalties on the service provider to satisfy
+                             the customer and maintain the app's reputation.</li>
+                        <li>The service provider must pay the due commission for each booking.</li>
+                    </ul>
+                </div>
+
+                <h2><span>6</span> Confidentiality and Data Protection:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Confidentiality Commitment:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">Service providers must maintain the confidentiality of customer data and use it only for service provision.  </span>
+                            </li>
+                        </ul>
+                    </ul>
+                    <ul>
+                        <li style="font-weight: bold;">Data Protection:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">Sharing customer data with third parties is prohibited unless absolutely necessary.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>7</span> Disclaimer:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">App Role:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    "1929WAY plus" acts as an intermediary to facilitate bookings. It is not responsible for 
+                                    service quality or any deficiencies by service providers.
+                                </span>
+                            </li>
+                        </ul>
+                    </ul>
+                    <ul  >
+                        <li style="font-weight: bold;">Accuracy of Information:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    Service providers are responsible for ensuring the accuracy of displayed information.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                    <ul  >
+                        <li style="font-weight: bold;">Disputes:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    The app mediates disputes between customers and service providers but assumes no legal liability</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <h2><span>8</span>Penalties:</h2>
+                <div class="agreement-item">
+                    <p>The app reserves the right to take disciplinary actions, such as account
+                         suspension or permanent termination, in case of violations.</p>
+                </div>
+
+                <h2><span>9</span> Termination of Partnership:
+                </h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li>Advance notice must be provided by either party before ending the partnership.</li>
+                        <li>The service provider must complete any pending bookings before termination.</li>
+                    </ul>
+                </div>
+            </div>
+            <h2><span>10</span>Legal Framework and Dispute Resolution:</h2>
+                <div class="agreement-item">
+                    <ul  >
+                        <li style="font-weight: bold;">Governing Law: </li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    These terms are subject to the laws of the Sultanate of Oman.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                    <ul  >
+                        <li style="font-weight: bold;">Jurisdiction:</li>
+                        <ul>
+                            <li>
+                                <span style="margin-left: 2px;">
+                                    Disputes are resolved through Omani courts.</span>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+
+            <div class="modal-action-btns">
+                <button class="modal-action-btn" id="acceptAgreement">Accept</button>
+                <button class="modal-action-btn" id="closeAgreement">Close</button>
+                
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const agreementTrigger = document.getElementById("agreementTrigger");
+        const closeAgreement = document.querySelector("#closeAgreement");
+        const acceptAgreement = document.querySelector("#acceptAgreement");
+        const modal = document.querySelector(".agreement-container");
+        const checkBox = document.querySelector("#agreeTerms");
+        const modalChild = document.querySelector(".agreement-modal-container");
+        const closeBtn = document.querySelector(".agreement-modal-container button.modal-close-btn");
+
+        // Function to open modal
+        const openModal = () => {
+            modal.style.display = "flex";
+            modalChild.classList.add("active");
+            modal.classList.add("active");
+        };
+
+        // Function to close modal
+        const closeModal = () => {
+            modal.style.display = "none";
+            modalChild.classList.remove("active");
+            modal.classList.remove("active");
+        };
+
+    
+        agreementTrigger.addEventListener("click", openModal);
+
+        // Close modal 
+        closeAgreement.addEventListener("click", closeModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        // Handle accept button click
+        acceptAgreement.addEventListener("click", () => {
+            checkBox.checked = true; 
+            closeModal(); 
+        });
+
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
+    </script>
+
+    {% if resend_modal %}
+    <script>
+        
+      Toastify({
+            text: `<div style="display: flex; align-items: center; margin-left:2%">
+                    <img src="{% static 'icons/Vector.png' %}" style="  margin-right: 15px;">
+                    <div>
+                        <span style="color: #fff; font-weight: 700; font-size: 15px; display: block;">{% trans "Chalet with same email already exist" %}</span>
+                    </div>
+                </div>`,
+            duration: 10000,  // Duration in milliseconds
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            className: "custom-toast",
+            offset: {
+                y: "180px", // Offset the notification 180px from the top
+            },
+            style: {
+                width: '20%',
+                height:'10%',
+                background: "#DE2006", // Background color
+                borderRadius: '8px', // Border radius
+                display: 'flex', // Use flexbox to align items
+                alignItems: 'center', // Center items vertically
+                padding: '16px', // Padding for the toast content
+                color: '#fff', // Text color
+                fontSize: '16px', // Font size
+                animation: 'none', // Disable animation
+            },
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            escapeMarkup: false // Allows HTML markup in the text
+        }).showToast();
+
+        // Reload the page after showing the toast
+        setTimeout(() => {
+            window.location.href = "/vendor/login/";
+        }, 1000); // Match this delay with the duration of the toast
+            
+               
+  </script>
+    {% endif %}
+
+    {% if registration_success%}
+    <script>
+         
+        Toastify({
+            text: `<div style="display: flex; align-items: center; margin-left:2%">
+                    <img src="{% static 'icons/Mask group (7).png' %}" style="  margin-right: 15px;">
+                    <div>
+                        <span style="color: #fff; font-weight: 700; font-size: 20px; display: block;">{% trans "Registration successful" %}</span>
+                        <span style="color: #fff; display: block;">{% trans "You have successfully registered." %}</span>
+                    </div>
+                </div>`,
+            duration: 10000,  // Duration in milliseconds
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            className: "custom-toast",
+            offset: {
+                y: "180px", // Offset the notification 180px from the top
+            },
+            style: {
+                width: '20%',
+                height:'10%',
+                background: "#18C07A", // Background color
+                borderRadius: '8px', // Border radius
+                display: 'flex', // Use flexbox to align items
+                alignItems: 'center', // Center items vertically
+                padding: '16px', // Padding for the toast content
+                color: '#fff', // Text color
+                fontSize: '16px', // Font size
+                animation: 'none', // Disable animation
+            },
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            escapeMarkup: false // Allows HTML markup in the text
+        }).showToast();
+
+        setTimeout(function () {
+            window.location.href = "{%url 'pending_approval' %}";
+        }, 1000);
+
+    </script>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        // Array to keep track of selected files
+        let selectedFiles = [];
+
+        // Function to trigger file input click
+        function triggerFileInput(type, index) {
+            var input;
+            if (type === 'logo') {
+                input = document.getElementById('logo_image');
+            } else if (type === 'main') {
+                input = document.getElementById('chalet_images');
+            } else if (type === 'additional') {
+                input = document.getElementById('additional_images_' + index);
+            }
+            if (input) {
+                input.click();
+                input.setAttribute('data-current-type', type);
+            }
+        }
+
+        // Function to handle file changes for chalet images, logo, and additional images
+        function handleFileChange(event) {
+            var files = Array.from(event.target.files);
+            var type = event.target.getAttribute('data-current-type');
+
+            if (type === 'logo') {
+                // Handle logo file change
+                if (files.length > 0) {
+                    var logoFile = files[0]; // First file for the logo
+                    updateImagePreview(document.getElementById('logo-icon'), logoFile);
+                }
+            } else if (type === 'main' || type.startsWith('additional')) {
+                // Handle chalet images and additional images file change
+
+                // Add new files to the selectedFiles array
+                selectedFiles = selectedFiles.concat(files);
+
+                // Check if the selected files exceed the limit
+                if (selectedFiles.length > 5) {
+                  
+                    // // Trim the selectedFiles array to only keep the first 5 files
+                    // selectedFiles = selectedFiles.slice(0, 5);
+                    
+                    // Trim the selectedFiles array to only keep the last 5 files
+                    selectedFiles = selectedFiles.slice(-5);
+                }
+                else if (selectedFiles.length < 5) {
+                     // Clear error message
+                     var remainingImages = 5 - selectedFiles.length;
+                    document.getElementById('chalet_images_error').innerText = remainingImages + ' {% trans "images remaining to upload." %} ';
+
+                } 
+                else {
+                    // Clear error message when exactly 5 images are uploaded
+                    document.getElementById('chalet_images_error').innerText = '';
+                }
+
+                // Create a new DataTransfer object
+                var dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+
+                // Assign the DataTransfer object to the input element
+                var fileInput = document.getElementById('chalet_images');
+                fileInput.files = dataTransfer.files;
+
+                console.log(selectedFiles.length);
+
+
+                // Update previews
+                updatePreviews();
+            }
+        }
+
+        // Function to update all image previews
+        function updatePreviews() {
+            var mainIcon = document.getElementById('upload-icon');
+            var icons = document.querySelectorAll('.small-upload-icons img');
+
+            // Update main icon
+            if (selectedFiles.length > 0) {
+                var mainFile = selectedFiles[0]; // First file for the main icon
+                updateImagePreview(mainIcon, mainFile);
+            }
+
+            // Update smaller icons
+            for (var i = 0; i < icons.length; i++) {
+                if (i + 1 < selectedFiles.length) {
+                    var file = selectedFiles[i + 1];
+                    updateImagePreview(icons[i], file);
+                } else {
+                    // Reset to default image if no file selected for this icon
+                    icons[i].src = "{% static 'icons/teenyicons_image-solid.png' %}";
+                }
+            }
+        }
+
+        // Function to update image preview
+        function updateImagePreview(imgElement, file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imgElement.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Attach change event listener to the logo and chalet images file input
+        document.getElementById('logo_image').addEventListener('change', handleFileChange);
+        document.getElementById('chalet_images').addEventListener('change', handleFileChange);
+
+        // Example: Attach change event listeners to additional images file inputs
+        for (var i = 0; i < 4; i++) { // Assuming 4 additional image slots
+            var input = document.getElementById('additional_images_' + i);
+            if (input) {
+                input.addEventListener('change', handleFileChange);
+            }
+        }
+
+        var previewIcons = document.querySelectorAll('.small-upload-icons img');
+        previewIcons.forEach(function(icon, index) {
+            icon.addEventListener('click', function() {
+                triggerFileInput('main', index + 1);
+            });
+        });
+       
+
+        $(document).ready(function () {
+            $(".toggle-password").click(function () {
+                togglePasswordVisibility("#password1", $(this));
+            });
+
+            $(".toggle-password-two").click(function () {
+                togglePasswordVisibility("#password2", $(this));
+            });
+
+            function togglePasswordVisibility(inputId, toggleElement) {
+                toggleElement.toggleClass("fa-eye fa-eye-slash");
+                var input = $(inputId);
+                if (input.attr("type") === "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            }
+        });
+
+        const addressInput = document.getElementById('hotelAddress');
+        const errorSpan = document.getElementById('hotelAddress_error');
+        const localityInput = document.getElementById('locality');
+        const buildingInput = document.getElementById('buildingnumber');
+        const countryInput = document.getElementById('country');
+        const stateProvinceInput = document.getElementById('stateProvince');
+        const cityInput = document.getElementById('city');
+        const locationIcon = document.getElementById('locationIcon');
+
+        function hideLocationIcon() {
+            locationIcon.style.display = 'none';
+        }
+
+        function showLocationIcon() {
+            locationIcon.style.display = 'inline';
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const geocoder = new google.maps.Geocoder();
+                    const latlng = { lat: latitude, lng: longitude };
+
+                    geocoder.geocode({ location: latlng }, (results, status) => {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                const currentAddress = results[0].formatted_address;
+                                addressInput.value = currentAddress;
+                                fillAddressComponents(results[0].address_components);
+                                hideLocationIcon();  // Hide the icon after getting the current location
+                                updateAddressTooltip(currentAddress);
+                            } else {
+                                errorSpan.textContent = '{% trans "Could not retrieve current address" %}';
+                            }
+                        } else {
+                            console.error('Geocoder failed due to:', status);
+                            errorSpan.textContent = '{% trans "Error fetching current address" %}';
+                        }
+                    });
+                }, error => {
+                    console.error('Error getting current location:', error);
+                    errorSpan.textContent = '{% trans "Error getting current location" %}';
+                });
+            } else {
+                errorSpan.textContent = '{% trans "Geolocation is not supported by this browser" %}';
+            }
+        }
+        function updateAddressTooltip(address) {
+            console.log('updateAddressTooltip called with address:', address); // Debugging line
+            const tooltipText = document.getElementById('tooltipText');
+            tooltipText.textContent = address;
+        }
+
+        function fillAddressComponents(components) {
+            components.forEach(component => {
+                const types = component.types;
+                if (types.includes('locality')) {
+                    cityInput.value = component.long_name;
+                }
+                if (types.includes('administrative_area_level_2') && !cityInput.value) {
+                    cityInput.value = component.long_name; 
+                }
+                if (types.includes('street_number')) {
+                    buildingInput.value = component.long_name;
+                }
+                if (types.includes('country')) {
+                    countryInput.value = component.long_name;
+                }
+                if (types.includes('administrative_area_level_1')) {
+                    stateProvinceInput.value = component.long_name;
+                }
+            });
+        }
+
+        const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+            types: ['geocode','establishment'],
+            
+        });
+
+
+        autocomplete.addListener('place_changed', function() {
+            const place = autocomplete.getPlace();
+            if (!place.geometry) {
+                errorSpan.textContent = '{% trans "Address not found" %}';
+                return;
+            }
+            fillAddressComponents(place.address_components);
+            hideLocationIcon();  
+            updateAddressTooltip(addressInput.value);
+        });
+
+        addressInput.addEventListener('input', function() {
+            const address = this.value.trim();
+            const tooltipText = document.getElementById('tooltipText');
+            if (address.length === 0) {
+                showLocationIcon();  
+                tooltipText.textContent = '';
+                return;  
+            }
+            else{
+                hideLocationIcon();
+            }
+
+            const service = new google.maps.places.AutocompleteService();
+            service.getPlacePredictions({ input: address, types: ['geocode'] }, (predictions, status) => {
+                if (status !== google.maps.places.PlacesServiceStatus.OK || !predictions) {
+                    return;
+                }
+                const placeId = predictions[0].place_id;
+                const placeService = new google.maps.places.PlacesService(document.createElement('div'));
+                placeService.getDetails({ 'placeId': placeId }, (place, status) => {
+                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        fillAddressComponents(place.address_components);
+                    } else {
+                        console.error('Failed to get place details:', status);
+                    }
+                });
+
+                const suggestions = predictions.map(prediction => prediction.description);
+            });
+            updateAddressTooltip(address); 
+        });
+
+      
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            var officeNumberInput = document.querySelector("#officenumber");
+
+            function geoIpLookup(callback) {
+                fetch("https://ipapi.co/json/")
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        var countryCode = (data && data.country) ? data.country : "us";
+                        callback(countryCode);
+                    })
+                    .catch(function(error) {
+                        console.error('There was a problem with the fetch operation:', error);
+                        callback("us"); // Fallback to 'us' if there is an error
+                    });
+            }
+
+            var officeNumberIti = window.intlTelInput(officeNumberInput, {
+                initialCountry: "auto",
+                geoIpLookup: geoIpLookup,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+
+            
+
+            // Update hidden input field when office number changes
+            officeNumberInput.addEventListener("input", function() {
+                var fullOfficeNumber = officeNumberIti.getNumber();
+                document.querySelector("#officenumber").value = fullOfficeNumber;
+            });
+
+            
+            
+        });
+        
+
+        var closeButtons = document.querySelectorAll(".close_message");
+        closeButtons.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var modal = this.closest(".modal_message");
+                if (modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+
+        const location_Icon = document.getElementById('locationIcon');
+        const tooltipText = document.getElementById('tooltipText-address');
+        const tooltipText_address = document.getElementById('tooltipText');
+        const Hoteladdress_input = document.getElementById('hotelAddress');
+
+        location_Icon.addEventListener('mouseenter', () => {
+            tooltipText.innerText = "{% trans 'Choose my current location' %}"; // Set your tooltip text here
+            tooltipText.style.visibility = 'visible'; // Show tooltip
+        });
+
+        location_Icon.addEventListener('mouseleave', () => {
+            tooltipText.style.visibility = 'hidden'; // Hide tooltip
+        });
+
+        Hoteladdress_input.addEventListener('mouseenter', () => {  
+            tooltipText_address.style.visibility = 'visible'; // Show tooltip
+        });
+
+        Hoteladdress_input.addEventListener('mouseleave', () => {
+            tooltipText_address.style.visibility = 'hidden'; // Hide tooltip
+        });
+       
+        $(document).ready(function() {
+            var typingTimer;                // Timer identifier
+            var doneTypingInterval = 300;   // Time in ms (0.3 seconds)
+            var $emailInput = $('#chaletOwnerEmail');
+            var $dateInput = $('#expiry');
+            var emailExists = false;        // Flag to track if email exists
+
+            // On keyup, start the countdown
+            $emailInput.on('keyup', function () {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            });
+
+            // On keydown, clear the countdown
+            $emailInput.on('keydown', function () {
+                clearTimeout(typingTimer);
+            });
+
+            // User is "finished typing," do something
+            function doneTyping() {
+                var email = $emailInput.val();
+                if (email) {
+                    $.ajax({
+                        url: '{% url "check_email_exists" %}',
+                        data: {
+                            'email': email
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.exists) {
+                                $('#chaletOwnerEmail_error').text('{% trans "This email already exists." %}');
+                                emailExists = true;
+                            } else {
+                                $('#chaletOwnerEmail_error').text('');
+                                emailExists = false;
+                            }
+                        }
+                    });
+                } else {
+                    $('#chaletOwnerEmail_error').text('');
+                    emailExists = false;
+                }
+            }
+
+            function validateDate() {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);  // Reset the time to midnight for comparison
+                var selectedDate = new Date($dateInput.val());
+
+                if (selectedDate < today) {
+                    $('#date_error').text('{% trans "The date must be today or future." %}');
+                    return false;
+                } else {
+                    $('#date_error').text('');
+                    return true;
+                }
+            }
+
+            $('#expiry').on('blur change', function() {
+                validateDate();
+            });
+
+            // Submit button click event
+            $('#submit-btn').on('click', function(event) {
+                if (emailExists || !validateDate()) {
+                    event.preventDefault(); // Prevent form submission if there are errors
+                
+                }
+            });
+        });
+        
+        let existingFiles = [];
+
+
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form-step-1');
+            form.addEventListener('submit', function (event) {
+                // Prevent form submission
+                event.preventDefault();
+
+                clearValidationMessages();
+
+                let isValid = true;
+
+                const chaletNameMinLength = 3;
+                const chaletNameMaxLength = 100;
+
+                const NameArabicMinLength = 3;
+                const NameArabicMaxLength = 100;
+
+                const chaletOwnerNameMinLength = 3;
+                const chaletOwnerNameMaxLength = 100;
+
+                const chaletOwnerNameArabicMinLength = 3;
+                const chaletOwnerNameArabicMaxLength = 100;
+
+          
+
+
+                 // Validate chalet name
+                const chaletName = document.getElementById('chaletName').value.trim();
+                if (chaletName === '') {
+                    isValid = false;
+                    displayError('chaletName', '{% trans "Please enter Chalet Name." %}');
+                } else if (chaletName.length < chaletNameMinLength) {
+                    isValid = false;
+                    displayError('chaletName', `{% trans "Chalet Name should be at least ${chaletNameMinLength} characters long." %}`);
+                } else if (chaletName.length > chaletNameMaxLength) {
+                    isValid = false;
+                    displayError('chaletName', `{% trans "Chalet Name should not exceed ${chaletNameMaxLength} characters." %}`);
+                }
+                else if (!/^[a-zA-Z0-9\s.'\-&,()]+$/.test(chaletName)) {
+                    isValid = false;
+                    displayError('chaletName', '{% trans "Please enter a valid Chalet name in English." %}');
+                }
+                
+
+
+                 // Validate chalet name in Arabic
+                const chaletNameArabic = document.getElementById('chaletNameArabic').value.trim();
+                if (chaletNameArabic === '') {
+                    isValid = false;
+                    displayError('chaletNameArabic', '{% trans "Please enter chalet Name in Arabic." %}');
+                } else if (chaletNameArabic.length < NameArabicMinLength) {
+                    isValid = false;
+                    displayError('chaletNameArabic', `{% trans "Chalet Name in Arabic should be at least ${NameArabicMinLength} characters long." %}`);
+                } else if (chaletNameArabic.length > NameArabicMaxLength) {
+                    isValid = false;
+                    displayError('chaletNameArabic', `{% trans "Chalet Name in Arabic should not exceed ${NameArabicMaxLength} characters." %}`);
+                }
+                else if (!/^[\u0600-\u06FF0-9\s.,'"\-()،؛؟]+$/.test(chaletNameArabic)) {
+                isValid = false;
+                displayError('chaletNameArabic', '{% trans "Please enter a valid Chalet name in Arabic." %}');
+                }
+
+
+
+                //  Validate hotel owner name
+                const chaletOwnerName = document.getElementById('chaletOwnerName').value.trim();
+                if (chaletOwnerName === '') {
+                    isValid = false;
+                    displayError('chaletOwnerName', '{% trans "Please enter Chalet Owner Name." %}');
+                } else if (chaletOwnerName.length < chaletOwnerNameMinLength) {
+                    isValid = false;
+                    displayError('chaletOwnerName', `{% trans "Chalet Owner Name should be at least ${chaletOwnerNameMinLength} characters long." %}`);
+                } else if (chaletOwnerName.length > chaletOwnerNameMaxLength) {
+                    isValid = false;
+                    displayError('chaletOwnerName', `{% trans "Chalet Owner Name should not exceed ${chaletOwnerNameMaxLength} characters." %}`);
+                }
+                else if (!/^[a-zA-Z\s]+$/.test(chaletOwnerName)) {
+                isValid = false;
+                displayError('chaletOwnerName', '{% trans "Chalet Owner Name must contain letters only." %}');
+            } 
+
+
+
+                const chaletOwnerArabicName = document.getElementById('chaletOwnerArabicName').value.trim();
+                if (chaletOwnerArabicName === '') {
+                    isValid = false;
+                    displayError('chaletOwnerArabicName', '{% trans "Please enter Chalet Owner Name in Arabic." %}');
+                } else if (chaletOwnerArabicName.length < chaletOwnerNameArabicMinLength) {
+                    isValid = false;
+                    displayError('chaletOwnerArabicName', `{% trans "Chalet Owner Name in Arabic should be at least ${chaletOwnerNameArabicMinLength} characters long." %}`);
+                } else if (chaletOwnerArabicName.length > chaletOwnerNameArabicMaxLength) {
+                    isValid = false;
+                    displayError('chaletOwnerArabicName', `{% trans "Chalet Owner Name in Arabic should not exceed ${chaletOwnerNameArabicMaxLength} characters." %}`);
+                }
+                else if (!/^[\u0600-\u06FF\s]+$/.test(chaletOwnerArabicName)) {
+                    isValid = false;
+                    displayError('chaletOwnerArabicName', '{% trans "Chalet Owner Name in Arabic must contain Arabic letters only." %}');
+                } 
+
+
+
+
+
+                const officeNumber = document.getElementById('officenumber').value.trim();
+                const officenoerrorElement = document.getElementById('officenumber_error');
+
+                if (!validatePhoneNumber(officeNumber) || officeNumber.length > 15) {
+                    isValid = false;
+                    let errorMessage = '';
+                    if (!validatePhoneNumber(officeNumber)) {
+                        errorMessage = '{% trans "Invalid office number." %}';
+                    } else if (officeNumber.length > 15) {
+                        errorMessage = '{% trans "Office Number should be 15 digits or less." %}';
+                    }
+                    if (officenoerrorElement) {
+                        officenoerrorElement.textContent = errorMessage;
+                    }
+                } else {
+                    if (officenoerrorElement) {
+                        officenoerrorElement.textContent = ''; // Clear error if valid
+                    }
+                }
+
+                const hotelAddress = document.getElementById('hotelAddress').value.trim();
+                const addresserrorElement = document.getElementById('hotelAddress_error');
+                if (hotelAddress === '') {
+                    isValid = false;
+                    addresserrorElement.textContent = '{% trans "Please enter Hotel Address." %}';
+                } else if (hotelAddress.length > 300) {
+                    isValid = false;
+                    addresserrorElement.textContent = '{% trans "Chalet Address should not exceed 300 characters." %}';
+                }
+
+            
+                // Validate State/Province Selection
+                const stateProvince = document.getElementById('stateProvince').value.trim();
+                if (stateProvince === '') {
+                    isValid = false;
+                    displayError('stateProvince', '{% trans "Please select a State/Province." %}');
+                } else if (stateProvince.length > 50) {
+                    isValid = false;
+                    displayError('stateProvince', '{% trans "State/Province name should not exceed 50 characters." %}');
+                }
+
+
+
+                const stminLength = 3; 
+                const stmaxLength = 50; 
+                const cityName = document.getElementById('city').value.trim();
+                if (cityName === '') {
+                    isValid = false;
+                    displayError('city', '{% trans "City cannot be empty." %}');
+                } else if (cityName.length > stmaxLength) {
+                    isValid = false;
+                    displayError('city', `{% trans "City should not exceed ${stmaxLength} characters." %}`);
+                }
+
+                // Validate Country Selection
+                const countryName = document.getElementById('country').value.trim();
+                if (countryName === '') {
+                    isValid = false;
+                    displayError('country', '{% trans "Country cannot be empty." %}');
+                } else if (countryName.length > stmaxLength) {
+                    isValid = false;
+                    displayError('country', `{% trans "Country should not exceed ${stmaxLength} characters." %}`);
+                }
+
+                 //validate Accountnumber
+                const accountNo = document.getElementById('Accountno').value.trim();
+                console.log("accountNo:", accountNo); 
+                if (accountNo === '') {
+                    isValid = false;
+                    displayError('Accountno_error', '{% trans "Please enter the account number." %}');
+                }
+                else if (accountNo.length > 20) {
+                    isValid = false;
+                    displayError('Accountno_error', `{% trans "Account Number should not exceed 20 digits." %}`);
+                }
+                else if (!/^\d+$/.test(accountNo)) {
+                    isValid = false;
+                    displayError('Accountno_error', '{% trans "Account Number must contain only numeric digits." %}');
+                } 
+                 //validate Accountholder
+                const accountholder=document.getElementById('AccountHolder').value.trim();
+                const regex = /^[A-Za-z\s]+$/; 
+                if (accountholder === ''){
+                    isValid = false;
+                    displayError('AccountHolder_error', '{% trans "Please enter the account holder name." %}');
+
+                }
+                else if (accountholder.length > 50) {
+                    isValid = false;
+                    displayError('AccountHolder_error', `{% trans "Account Holder should not exceed 50 characters." %}`);
+                }
+                else if (!regex.test(accountholder)) {
+                    isValid = false;
+                    displayError('AccountHolder_error', '{% trans "Account Holder name should only contain alphabets." %}');
+                }
+                //validate Bankname
+                const bankname=document.getElementById('BankName').value.trim();
+                if (bankname === ''){
+                    isValid = false;
+                    displayError('BankName_error', '{% trans "Please enter the Bank Name." %}');
+
+                }
+                else if (bankname.length > 50) {
+                    isValid = false;
+                    displayError('BankName_error', `{% trans "Bank Name should not exceed 50 characters." %}`);
+                }
+
+
+                // Validate About Hotel
+
+                const AboutHotel= document.getElementById('About').value.trim();
+                const AboutHotel_Error= document.getElementById('About_error');
+                if (!/^[a-zA-Z0-9\x0A\x0D\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u2014\u2013\u2019]+$/u.test(AboutHotel)) {
+                isValid = false;
+                displayError('About_error', '{% trans "Chalet Description in English must contain English letters only." %}');
+                } 
+                else if (AboutHotel.length>1000){
+                isValid = false;
+                displayError('About_error', '{% trans "Chalet Description in English must contain at most 1000 characters." %}');
+                }
+                else {
+                    // Clear the error if valid or if there's no input
+                    AboutHotel_Error.textContent='';
+                }
+                    // Validate About Hotel Arabic
+
+                const AboutHotel_Arabic= document.getElementById('about_arabic').value.trim();
+                const AboutHotel_Arabic_Error= document.getElementById('about_arabic_error');
+
+                if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669\u06F0-\u06F90-9\s\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u060C\u061F\p{P}\p{S}]+$/u.test(AboutHotel_Arabic)) {
+                isValid = false;
+                displayError('about_arabic_error', '{% trans "Chalet Description in Arabic must contain Arabic letters only." %}');
+                } 
+                else if (AboutHotel_Arabic.length>1000){
+                isValid = false;
+                displayError('about_arabic_error', '{% trans "Chalet Description in Arabic must contain at most 1000 characters." %}');
+                }
+                else {
+                    // Clear the error if valid or if there's no input
+                    AboutHotel_Arabic_Error.textContent='';
+                }
+                // Validate Hotel Policies
+
+                const policesHotel= document.getElementById('polices').value.trim();
+                const policesHotel_Error= document.getElementById('polices_error');
+
+                if (!/^[a-zA-Z0-9\x0A\x0D\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u2014\u2013\u2019]+$/u.test(policesHotel)) {
+                isValid = false;
+                displayError('polices_error', '{% trans "Chalet Policies in English must contain English letters only." %}');
+                }
+                else if (policesHotel.length>1000){
+                isValid = false;
+                displayError('polices_error', '{% trans "Chalet Policies in English must contain at most 1000 characters." %}');
+                } 
+                else {
+                    // Clear the error if valid or if there's no input
+                    policesHotel_Error.textContent='';
+                }
+
+                const policesHotel_Arabic= document.getElementById('polices_arabic').value.trim();
+                const policesHotel_Arabic_Error= document.getElementById('polices_arabic_error');
+                if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\u0660-\u0669\u06F0-\u06F90-9\s\x20-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E\u060C\u061F\p{P}\p{S}]+$/u.test(policesHotel_Arabic)) {
+                isValid = false;
+                displayError('polices_arabic_error', '{% trans "chalet Policies in Arabic must contain Arabic letters only." %}');
+                } 
+                else if (policesHotel_Arabic.length>1000){
+                isValid = false;
+                displayError('polices_arabic_error', '{% trans "chalet Policies in Arabic must contain at most 1000 characters." %}');
+                }
+                else {
+                    // Clear the error if valid or if there's no input
+                   policesHotel_Arabic_Error.textContent='';
+                }
+
+
+                
+                
+
+                const locality = document.getElementById('locality').value.trim();
+                const localityMinLength = 3; // Minimum length
+                const localityMaxLength = 15; // Maximum length
+                const localityPattern = /^[a-zA-Z0-9\s\-\/]+$/; // Adjust the pattern as needed
+
+                const localityErrorElement = document.getElementById('locality_error');
+                if (locality.length > 0 && locality.length > localityMaxLength) {
+                    isValid = false;
+                    localityErrorElement.textContent = `{% trans "Locality should not exceed ${localityMaxLength} characters." %}`;
+                    localityErrorElement.style.display = 'block'; // Show error message
+                } else {
+                    localityErrorElement.textContent = ''; // Clear error if valid
+                    localityErrorElement.style.display = 'none'; // Hide error message
+                }
+
+                // Validate Locality Arabic field
+                // const localityArabic = document.getElementById('localityArabic').value.trim();
+                // const localityArabicMinLength = 3; // Minimum length
+                // const localityArabicMaxLength = 50; // Maximum length
+
+                // const localityArabicErrorElement = document.getElementById('localityArabic_error');
+                // if (localityArabic.length > 0 && localityArabic.length > localityArabicMaxLength) {
+                //     isValid = false;
+                //     localityArabicErrorElement.textContent = `{% trans "Locality should not exceed ${localityArabicMaxLength} characters." %}`;
+                //     localityArabicErrorElement.style.display = 'block'; // Show error message
+                // } else {
+                //     localityArabicErrorElement.textContent = ''; // Clear error if valid
+                //     localityArabicErrorElement.style.display = 'none'; // Hide error message
+                // }
+
+                 // Validate CR Number
+                 const crNumber = document.getElementById('crnumber').value.trim();
+                 const crMinLength = 3; 
+                 const crMaxLength = 15; 
+ 
+                 const hasLetter = /[a-zA-Z]/;   
+                 const hasNumber = /\d/;         
+                 const crRegex = /^[a-zA-Z0-9]{3,15}$/;  
+ 
+                 //if (crNumber === '') {
+                 //    isValid = false;
+                 //    displayError('crnumber', '{% trans "Please enter CR Number." %}');
+                 //} else if (crNumber.length > crMaxLength) {
+                 //    isValid = false;
+                 //    displayError('crnumber', `{% trans "CR Number should not exceed ${crMaxLength} characters." %}`);
+                 //}
+
+                // Validate VAT Number
+                const vatNumber = document.getElementById('vatnumber').value.trim();
+                const vatMinLength = 3; // Minimum length for VAT Number
+                const vatMaxLength = 12; // Maximum length for VAT Number
+
+                //if (vatNumber.length > 0 && !/^\d{3,12}$/.test(vatNumber)) {
+                //    isValid = false;
+                //    displayError('vatnumber', `{% trans "VAT Number should be between ${vatMinLength} and ${vatMaxLength} digits." %}`);
+                //} else {
+                //    // Clear the error if valid or if there's no input
+                //    displayError('vatnumber', '');
+                //}
+
+                // function isPostofficeValid(input) {
+                //     const postofficeRegex = /^[A-Za-z0-9\s\-\/]+$/; // Allows alphanumeric characters, spaces, hyphens, and slashes
+                //     return postofficeRegex.test(input);
+                // }
+
+                // const postofficeName = document.getElementById('Postoffice').value.trim();
+                // const minLength = 3;
+                // const maxLength = 15;
+
+                // if (postofficeName.length > maxLength) {
+                //     isValid = false;
+                //     displayError('Postoffice_error', `{% trans "Post Office/Postal Box should not exceed ${maxLength} characters." %}`);
+                // } else {
+                //     // Clear the error if valid or no input
+                //     displayError('Postoffice_error', '');
+                // }
+
+
+                
+                // Validate House/Building/Apartment Number
+                // const buildingNumber = document.getElementById('buildingnumber').value.trim();
+                // const buildingNumberMinLength = 3; // Minimum length
+                // const buildingNumberMaxLength = 10; // Maximum length
+
+                // const buildingNumberPattern = /^[a-zA-Z0-9\s\-\/]+$/; // Alphanumeric and allowed special characters
+
+                // if (buildingNumber.length > 0 && buildingNumber.length > buildingNumberMaxLength) {
+                //     isValid = false;
+                //     displayError('buildingnumber_error', `{% trans "House/Building/Apartment number should not exceed ${buildingNumberMaxLength} characters." %}`);
+                // }
+                // else if (buildingNumber===''){
+                //     isValid = false;
+                //     displayError('buildingnumber_error', `{% trans "House/Building/Apartment number should not be empty" %}`);
+                // } else {
+                //     // Clear the error if valid or if there's no input
+                //     displayError('buildingnumber_error', '');
+                // } 
+
+
+
+               
+
+                // Validate Terms Agreement
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                if (!agreeTerms) {
+                    isValid = false;
+                    displayError('agreeTerms', '{% trans "Please agree to the terms and conditions." %}');
+                }
+
+
+                const chaletImages = document.getElementById('chalet_images').files;
+                console.log(chaletImages.length);
+                if (chaletImages.length === 0) {
+                    isValid = false;
+                    displayError('chalet_images_error', '{% trans "Please upload a minimum of 5 images." %}');
+                } else if (chaletImages.length < 5) {
+                    isValid = false;
+                    displayError('chalet_images_error', '{% trans "Please upload a minimum of 5 images." %}');
+                } else {
+                    for (let i = 0; i < chaletImages.length; i++) {
+                        const file = chaletImages[i];
+                        const fileType = file.type.split('/')[1]; // Get the file extension
+                        
+                        // Check if the file type is not JPEG or PNG
+                        if (fileType !== 'jpeg' && fileType !== 'png') {
+                            isValid = false;
+                            displayError('chalet_images_error', '{% trans "Please upload only JPEG or PNG images for chalet images." %}');
+                            break; // Exit loop early if there's an invalid file type
+                        }
+                    }
+                }
+
+                // Validate logo image
+                const logoImage = document.getElementById('logo_image').files;
+                if (logoImage.length === 0) {
+                    isValid = false;
+                    displayError('logo_image_error', '{% trans "Please upload a Chalet Logo." %}');
+                } else {
+                    const file = logoImage[0];
+                    const fileType = file.type.split('/')[1]; // Get the file extension
+
+                    // Check if the file type is not JPEG or PNG
+                    if (fileType !== 'jpeg' && fileType !== 'png') {
+                        isValid = false;
+                        displayError('logo_image_error', '{% trans "Please upload only JPEG or PNG images for the chalet logo." %}');
+                    }
+                }
+                // If form is valid, submit the form
+                if (isValid) {
+                    form.submit();
+                }
+            });
+           
+            function isValidEmail(email) {
+                // Updated regex to enforce realistic TLD length
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/;
+                return emailRegex.test(email);
+            }
+
+            // Function to validate numeric input
+            function isValidNumber(input) {
+                // Regular expression to check if input contains only digits
+                return /^\d+$/.test(input);
+            }
+
+            // Function to validate postal/ZIP code format
+            function isValidPostalCode(postalCode) {
+                // Regular expression for postal code (5-digit or 5-digit-4 format)
+                return /^\d{4}$/.test(postalCode);
+            }
+
+            // Function to validate date of expiry (current date or future)
+            function isValidExpiryDate(expiryDate) {
+                // Get today's date
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate comparison
+
+                // Convert expiry date string to Date object
+                const expiry = new Date(expiryDate);
+
+                // Compare dates
+                return expiry >= today;
+            }
+            function validatePhoneNumber(phoneNumber) {
+                const regex = /^\+?[1-9]\d{3,15}$/; // Use the desired regex pattern here
+                return regex.test(phoneNumber);
+            }
+
+
+
+            // Function to display error message
+            function displayError(fieldId, errorMessage) {
+                const field = document.getElementById(fieldId);
+                const errorSpan = document.createElement('span');
+                errorSpan.className = 'error-message';
+                errorSpan.textContent = errorMessage;
+                field.parentNode.appendChild(errorSpan);
+                field.classList.add('input-error');
+            }
+
+            // Function to clear previous error messages
+            function clearValidationMessages() {
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(function (errorMessage) {
+                    errorMessage.parentNode.removeChild(errorMessage);
+                });
+
+                const errorInputs = document.querySelectorAll('.input-error');
+                errorInputs.forEach(function (input) {
+                    input.classList.remove('input-error');
+                });
+            }
+        });
+
+        
+       
+        initMap()
+    </script>
+</body>
+
+</html>

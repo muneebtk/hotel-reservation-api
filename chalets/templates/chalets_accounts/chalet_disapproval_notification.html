@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Disapproval Notification</title>
+        <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .footer {
+            margin-top: 20px;
+            /* text-align: center; */
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Chalet Disapproval Notification</h2>
+        <p>We regret to inform you that your chalet "<span style="font-weight: 700;">{{ hotel_name }}</span>" has not been approved by the owner.</p>
+        <p><strong>Rejection Remark:</strong> {{ rejection_remark }}</p>
+        <div class="footer">
+            <p>This email was sent to you by 1929 owner. If you have any questions,please contact us at support</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+Privacy Policy for 1929 Way
+Last Updated: 2024-09-10
+
+Company: Mazadcom Smart Auction Solutions LLC
+Address: Al-Ghalbi Tower Bausher 113, Way 5507, 23rd July Street, 
+Al Ghubra South, P.O.Box: 2470, PC 111 Muscat, Sultanate of Oman
+Country: Oman
+
+Information We Collect:
+1. Email address
+2. First and last name
+3. Phone number
+4. Address and state
+5. Social media authentication (Facebook and Google Sign-in)
+6. Location data
+7. Profile image
+8. Date of birth and gender
+
+How We Use Your Information:
+- To provide and maintain our services
+- To process payments for our products and services
+- To send transactional emails or newsletters, if you opt-in
+- To verify your identity through social media accounts
+- To enhance user experience using location services (Google Places)
+
+Payment Processing:
+We collect your payment information to process transactions for our services.
+
+Google Places:
+Our app integrates Google Places for location-based services.
+
+Communication:
+You may receive emails from us, and you can opt out anytime.
+
+Security:
+We use various security measures to ensure the safety of your data.
+
+Contact Us:
+Email: 1929way@mzadcom.om

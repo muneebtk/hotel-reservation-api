@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+{%load static%}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/chalet-approvel-table.css' %}">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+</head>
+<body>
+
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+    <div id="loader" style="display: none;"></div>
+
+        <div class="w3-main main-section" >
+
+                <div class="container container-box">
+                 
+                    <div class=" justify-content-center">
+
+                        <div class="" >
+                            <div class="col-md-4">
+                                <button class="nav-back" onclick="goBack()">
+                                    <i class="fa-solid fa-arrow-left fa-lg"></i>
+                                </button>
+                            </div>   
+                          
+                        </div>
+                        
+                        <div class="row-main" id="hotelTable">
+                            <br>
+                            <div class="col-md-12 ">
+                                <div class="table-container ">
+                                    <table class="w3-table  responsive-table " >
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right col_width">{% trans "Chalet Name" %}</th>
+                                                <th class="border-right col_width">{% trans "Chalet Owner Name" %}</th>
+                                                <th class="border-right col_width">{% trans "Chalet Owner Email" %}</th>
+                                                <th class=" border-right col_width" >{% trans "Office Number" %}</th>
+                                                <th class="col_width" >{% trans "Chalet Type" %}</th>
+
+                                                
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="fs12 table-body-color">
+                                           
+                                        <div class="col-md-4" >                
+                                            
+
+                                            <tr>
+                                                <td class="border-right col_width">{% if request.LANGUAGE_CODE == "ar"%}{{data.name_arabic|capfirst}}{% else %}
+                                                    {{data.name|default:"Not available" }}
+                                                {% endif %}</td>
+                                                <td class="border-right col_width">{% if request.LANGUAGE_CODE == "ar"%}
+                                                        {%if data.owner_name.owner_name_arabic %}
+                                                        {{data.owner_name.owner_name_arabic|capfirst}}
+                                                        {% else %}
+                                                        {{data.owner_name_arabic}}
+                                                        {%endif%}
+                                                    {% else %}
+                                                    {%if data.owner_name.owner_name %}
+                                                    {{data.owner_name.owner_name}}
+                                                    {% else %}
+                                                    {{data.vendor.name}}
+                                                    {%endif%}
+                                                    {% endif %}</td>
+                                                <td class="border-right col_width">{{data.vendor.user.email}}</td>
+                                                <td class=" border-right col_width">{{data.office_number}}</td>
+                                                <td class=" border-right col_width">{% if request.LANGUAGE_CODE == "ar" %}
+                                                    {{ data.chalet_type.arabic_name }}
+                                                    {% if not data.chalet_type.arabic_name %}
+                                                        {% trans "Not available" %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {{ data.chalet_type }}
+                                                    {% if not data.chalet_type %}
+                                                        {% trans "Not available" %}
+                                                    {% endif %}
+                                                {% endif %}</td>
+
+                                                
+                                            </tr>
+
+                                           
+                                        </div> 
+                                        </tbody>
+                                    </table>
+
+                                    <table class="w3-table responsive-table ">
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right col_width">{% trans "GSM Number" %}</th>
+                                                <th class="border-right col_width">{% trans "Chalet Address" %}</th>
+                                                <th class="border-right col_width">{% trans "Locality" %}</th>
+                                                <th class="border-right col_width">{% trans "Account Number" %}</th>
+                                                <th class="border-right col_width">{% trans "Payments Accepted" %}</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                           
+
+
+                                        <div class="col-md-4" >                
+                                            
+
+                                            <tr>
+                                                <td class="border-right col_width">{{data.vendor.gsm_number}}</td>
+                                                <td class="border-right col_width">{{data.address}}</td>
+                                                <td class="border-right col_width">
+                                                    {% if data.locality_arabic %}
+                                                        {{ data.locality_arabic|capfirst }}
+                                                    {% elif data.locality %}
+                                                        {{ data.locality|capfirst }}
+                                                    {% else %}
+                                                    {% trans "Not available" %}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right col_width">{{ data.account_no}}</td>
+                                                <td class="border-right col_width">
+                                                    {% if selected_categories %}
+                                                        {% for category in selected_categories %}
+                                                            {% if request.LANGUAGE_CODE == "ar" and category.category__name_arabic %}
+                                                                {{ category.category__name_arabic }}
+                                                            {% else %}
+                                                                {{ category.category__name }}
+                                                            {% endif %}
+                                                            {% if not forloop.last %}, {% endif %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                    {% trans "Not available" %}
+                                                    {% endif %}
+                                                </td>  
+                                            </tr>
+
+                                           
+                                        </div> 
+                                        </tbody>
+                                    </table>
+
+                                    <table class="w3-table responsive-table ">
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right col_width">{% trans "Account Holder Name"  %}</th>
+                                                <th class="border-right col_width">{% trans "Bank Name" %}</th>
+                                                <th class="border-right col_width">{% trans "City" %}</th>
+                                                <th class="border-right col_width">{% trans "Governorate/state" %}</th>
+                                                <th class="border-right col_width">{% trans "Country" %}</th>
+
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                            
+
+                                        <div class="col-md-4" >                
+                                            
+
+                                            <tr>
+                                                <td class="border-right col_width">{{ data.account_holder_name}}</td>
+                                                <td class="border-right col_width">{{data.bank}}</td>
+                                                <td class="border-right col_width">{% if request.LANGUAGE_CODE == "ar" %}
+                                                    {% if data.city.arabic_name %}
+                                                        {{ data.city.arabic_name }}
+                                                    {% else %}
+                                                        {% trans "Not available" %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {{ data.city.name|default:"Not Available"}}
+                                                {% endif %}</td>
+                                                <td class="border-right col_width">{{data.state|capfirst}}</td>
+                                                <td class=" col_width">{{data.country}}</td>
+                                            </tr>
+
+                                           
+                                        </div>  
+                                        </tbody>
+                                    </table>
+                                    <table class="w3-table responsive-table">
+                                        <thead class="bg-table-head">
+                                            <tr>
+                                                <th class="border-right col_width">{% trans "CR Number" %}</th>
+                                                <th class="border-right col_width">{% trans "VAT Number" %}</th>
+                                                <th class="border-right col_width">{% trans "Chalet Description" %}</th>
+                                                <th class="border-right col_width">{% trans "Chalet Policies" %}</th>
+                                                <th class="col_width">{% trans "Taxes (percentage)" %}</th>  <!-- Added tax column -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                            <tr>
+                                                <td class="border-right col_width">{{ data.cr_number }}</td>
+                                                <td class="border-right col_width">{{ data.vat_number }}</td>
+                                                <td class="border-right col_width table-cell">
+                                                    <div class="scrollable-column">{% if request.LANGUAGE_CODE == "ar"%}{{ data.about_property_arabic}}
+                                                        {% if not data.about_property_arabic %}
+                                                        {% trans "Not available" %}
+                                                    {% endif %}{% else %}{{data.about_property|default:"Not Available"}}{% endif %}</div>
+                                                </td>
+                                                <td class="border-right col_width table-cell">
+                                                    <div class="scrollable-column">{% if request.LANGUAGE_CODE == "ar" %}
+                                                        {% if data.policies_arabic %}
+                                                            {{ data.policies_arabic }}
+                                                        {% else %}
+                                                            {% trans "Not available" %}
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {{ data.policies|default:"Not available" }}
+                                                    {% endif %}</div>
+                                                </td>
+                                                <td class="border-right col_width">
+                                                    {% if taxes %}
+                                                        <div class="tax-list">
+                                                            {% for tax in taxes %}
+                                                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                                                    <span style="margin-right: auto; text-align: right;">{% if request.LANGUAGE_CODE == "ar" and tax.name_arabic %}
+                                                                        {{ tax.name_arabic }}
+                                                                    {% else %}
+                                                                        {{ tax.name }}
+                                                                    {% endif %}</span>
+                                                                    <span style="margin-left: auto;">{{ tax.percentage|default:"0.00" }}</span>
+
+                                                                </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    {% else %}
+                                                        {% trans "No taxes available" %}
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+
+                                <div class="new-sections-wrapper">
+                                    <div class="new-sections-container">
+                                        <div class="hotel-images-container">
+                                            <div class="section hotel-logo">
+                                                <h1 class="heading">{% trans 'Hotel Logo' %}</h1>
+                                                <div class="image-items">
+                                                    {% if data.logo %}
+                                                        <a href="{{ data.logo.url }}" target="_blank">
+                                                            <img src="{{ data.logo.url }}" alt="Hotel Logo">
+                                                        </a>
+                                                    {% else %}
+                                                        <p>{% trans 'No logo available' %}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="section hotel-images">
+                                                <h1 class="heading">{% trans 'Hotel Images' %}</h1>
+                                                <div class="image-items">
+                                                    {% for image in images %}
+                                                        <a href="{{ image.image.url }}" target="_blank">
+                                                            <img src="{{ image.image.url }}" alt="Hotel Image">
+                                                        </a>
+                                                    {% empty %}
+                                                        <p>{% trans 'No images available' %}</p>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="last_section">
+                                    <div  class="approval-section">
+                                        <label for="approval_status">{% trans 'Approval Status:' %}</label>
+                                        <input type="text" id="approval_status" name="approval_status" value="{{data.approval_status|capfirst}}" style="outline: none;" readonly>                     
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row w3-margin-top">
+                                    {% if data.approval_status == 'pending' %}
+                                        <button onclick="fetch_status(this.getAttribute('hotel_id'), this.getAttribute('status'), this.getAttribute('data-email'))"
+                                                hotel_id="{{ data.id }}"
+                                                data-email="{{ data.vendor.user.email }}"
+                                                status="rejected"
+                                                class="w3-round-large w3-margin-right w3-margin-bottom btn w3-padding-large"
+                                                style="border: 1px solid brown; color: brown;">
+                                                {% trans "Reject" %}
+                                        </button>
+                                        <button onclick="fetch_status(this.getAttribute('hotel_id'), this.getAttribute('status'), this.getAttribute('data-email'))"
+                                                hotel_id="{{ data.id }}"
+                                                data-email="{{ data.vendor.user.email }}"
+                                                status="approved"
+                                                class="btn active w3-padding-large">
+                                                {% trans "Approve" %}
+                                        </button>
+                                    {% elif data.approval_status == 'approved' %}
+                                        <button onclick="fetch_status(this.getAttribute('hotel_id'), this.getAttribute('status'), this.getAttribute('data-email'))"
+                                                hotel_id="{{ data.id }}"
+                                                data-email="{{ data.vendor.user.email }}"
+                                                status="rejected"
+                                                class="w3-round-large w3-margin-right w3-margin-bottom btn w3-padding-large"
+                                                style="border: 1px solid brown; color: brown;">
+                                                {% trans "Reject" %}
+                                        </button>
+                                    {%else %}
+                                        <button onclick="fetch_status(this.getAttribute('hotel_id'), this.getAttribute('status'), this.getAttribute('data-email'))"
+                                                hotel_id="{{ data.id }}"
+                                                data-email="{{ data.vendor.user.email }}"
+                                                status="approved"
+                                                class="btn active w3-padding-large">
+                                                {% trans "Approve" %}
+                                        </button>
+    
+    
+                                    {%endif%}
+                                </div>
+                                <div id="approvalMessage" style="display: none; text-align: center;"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+
+        </div>
+        <!-- Rejection modal -->
+
+        <div id="remark_rejection" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:25%; margin: auto; padding: 20px;">
+                <div class="w3-center"><br>
+                    <span onclick="document.getElementById('remark_rejection').style.display='none'"
+                          class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                </div>
+                <div class="w3-margin-left">
+                    <h3 class="w3-margin">{% trans 'Write Rejection Remark' %}</h3>
+                    <form id="responseForm" class="w3-container" action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="hotel_id_input" name="hotel_id" value="">
+                        <input type="hidden" id="email_input" name="email" value="">
+                        <div class="w3-section w3-margin-left">
+                            <div class="w3-cell">
+                                <div>
+                                    <textarea class="w3-padding w3-round-large box_container_input" id="respond" name="respond"
+                                              placeholder="{% trans 'Enter rejection reason' %}" style="width: 100%; height: 100px;" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-center w3-container w3-margin-top">
+                            <button class="w3-round-large w3-margin-right btn w3-padding-large"
+                                    onclick="document.getElementById('remark_rejection').style.display='none'"
+                                    style="border: 1px solid #85080C; color: #85080C;" type="button">{% trans 'Cancel' %}</button>
+                            <button class="w3-round-large active btn w3-section w3-padding-large" type="submit">{% trans 'Post' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            window.CSRF_TOKEN = '{{ csrf_token }}';
+        </script>            
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        
+
+        function fetch_status(id, status, email) {
+            if (status === "rejected") {
+                document.getElementById('remark_rejection').style.display = 'block';
+
+                document.getElementById('hotel_id_input').value = id;
+                document.getElementById('email_input').value = email;
+            } else {
+                sendApprovalStatus(id, status, email, "");
+            }
+        }
+
+        function sendApprovalStatus(id, status, email, remark) {
+            $('#loader').show();
+            $('#hotelTable').addClass('blurred');
+
+            $.ajax({
+                url: '/super_user/approval/' + id + '/',
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                data: {
+                    approved_status: status,
+                    email: email,
+                    remark: remark,
+                },
+                success: function (response) {
+                    console.log("success");
+                    $('#loader').hide();
+                    $('#hotelTable').removeClass('blurred');
+
+                    $('button[hotel_id="' + id + '"]').hide();
+
+                    if (response.approved === 'approved') {
+                        $('#approvalMessage').text("{% trans 'Chalet Approved' %}").show();
+                    } else if (response.approved === 'rejected'){
+                        $('#approvalMessage').text("{% trans 'Chalet Rejected' %}").show();
+                    }
+
+                    if (response.approved === 'approved') {
+                        $('#approval_status').val('approved');
+                        Toastify({
+                            text: `<div style="display: flex; align-items: center; margin-left:2%">
+                                    <img src="{% static 'icons/Mask group (7).png' %}" style="  margin-right: 15px;">
+                                    <div>
+                                        <span style="color: #fff; font-weight: 700; font-size: 15px; display: block;">{% trans "Chalet Approved, mail sent successfully" %}</span>
+                                    </div>
+                                </div>`,
+                            duration: 10000,  
+                            gravity: "top", 
+                            position: 'right', 
+                            className: "custom-toast",
+                            offset: {
+                                y: "180px", 
+                            },
+                            style: {
+                                maxWidth: '45%', // Max width for larger screens
+                                height: 'auto', // Let height adjust based on content
+                                background: "#18C07A", 
+                                borderRadius: '8px', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                padding: '16px', 
+                                color: '#fff', 
+                                fontSize: '16px', 
+                                animation: 'none', 
+                            },
+                            stopOnFocus: true, 
+                            escapeMarkup: false 
+                        }).showToast();
+
+                    } else if (response.approved === 'rejected'){
+                        $('#approval_status').val('rejected');
+                        Toastify({
+                            text: `<div style="display: flex; align-items: center; margin-left:2%">
+                                    <img src="{% static 'icons/Vector.png' %}" style="  margin-right: 15px;">
+                                    <div>
+                                        <span style="color: #fff; font-weight: 700; font-size: 15px; display: block;">{% trans "Chalet Rejected, mail sent successfully" %}</span>
+                                    </div>
+                                </div>`,
+                            duration: 10000,  
+                            gravity: "top", 
+                            position: 'right', 
+                            className: "custom-toast",
+                            offset: {
+                                y: "180px", 
+                            },
+                            style: {
+                                maxWidth: '45%', // Max width for larger screens
+                                height: 'auto', // Let height adjust based on content
+                                background: "#DE2006", 
+                                borderRadius: '8px', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                padding: '16px', 
+                                color: '#fff',
+                                fontSize: '16px', 
+                                animation: 'none', 
+                            },
+                            stopOnFocus: true, 
+                            escapeMarkup: false 
+                        }).showToast();
+
+                    }
+
+                   
+                    setTimeout(function() {
+                        window.location.href = '/super_user/hotel/';
+                    }, 1000); 
+                    
+                },
+                error: function () {
+                    alert('Failed to fetch details.');
+                    $('#loader').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }
+            });
+        }
+
+        document.getElementById('responseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const id = document.getElementById('hotel_id_input').value;
+            const email = document.getElementById('email_input').value;
+            const remark = document.getElementById('respond').value;
+
+            sendApprovalStatus(id, "rejected", email, remark);
+            document.getElementById('remark_rejection').style.display = 'none';
+        });
+    </script>
+    
+</body>
+</html>

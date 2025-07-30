@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'chalets/css/logout-btn-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+
+<div class="w3-cell logout-btn-container">
+    <form id="logout-form" method="post" action="{% url 'logout' %}" class="mr-20px">
+        {% csrf_token %}
+        <button id="desk-logout-button" class="logout-btn" type="button"><i class="fas fa-power-off"></i> <span>{% trans 'Logout' %}</span></button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div id="confirmationModal" class="confirmation-modal">
+    <div id="modalContent">
+        <p>{% trans 'Logout From Dashboard?' %}</p>
+        <button id="confirmLogout">{% trans 'Yes' %}</button>
+        <button id="cancelLogout">{% trans 'Cancel' %}</button>
+    </div>
+</div>

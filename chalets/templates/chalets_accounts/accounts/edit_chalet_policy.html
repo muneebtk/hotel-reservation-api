@@ -1,0 +1,609 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/edit-chalet-policy.css' %}">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      rel="stylesheet"
+    />
+</head>
+
+<body>
+
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+
+    </div>
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu"
+        id="myOverlay"></div>     
+    <div class="container main-section">
+        <button class="back-btn"><a href="{% url 'edit_chalet' %}?chalet_id={{ selected_chalet.id }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left fa-lg " ></i></a></button>
+        <div class="header">
+            <h1>{% trans 'Edit Chalet Policies' %}</h1>
+            <button class="add-policy-button">
+                <i class="fas fa-plus"></i>{% trans 'Add New Policy' %} 
+            </button>
+        </div>
+        {% for category in policies %}
+            <div class="policy-card {{ category.name }}-card">
+                <div class="policy-header cancellation-policies-header">
+                    <h2 class="policy-title">{{ category.name|title }}</h2>
+                    <div class="policy-actions">
+                        <button class="edit-policy-button" data-category-id="{{ category.id }}">
+                            <i class="fas fa-edit"></i> {% trans 'Edit Policy' %}
+                        </button>
+                        <button class="delete-policy-button" data-category-id="{{ category.id }}" onclick="deleteChaletpolicy({{ category.id }})">
+                            <i class="fas fa-trash"></i> {% trans 'Delete Policy' %}
+                        </button>
+                    </div>
+                </div>
+                <div class="policy-content">
+                    <ul>
+                        {% for policy in category.policy_names.all %}
+                            {% if policy in selected_policy_names %}
+                                <li>{{ policy.title|title }}</li>
+                            {% endif %}
+                        {% empty %}
+                            <li>No policy details available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">{% trans 'No policies available.' %}</p>
+        {% endfor %}
+    </div>
+
+
+    <!-- #add modal -->
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>+ {% trans 'Add New Policy' %} </h2>
+    
+            <div id="errorMessages" class="error-messages text-85080C"></div> <!-- Container for validation errors -->
+    
+            <div class="form-group">
+                <label for="policyCategory">{% trans 'Category' %}</label>
+                <input type="text" id="policyCategory" placeholder="{% trans 'Enter or select the policy category' %}" list="commonPolicyCategories" />
+                <datalist id="commonPolicyCategories">
+                    {% for policy in common_policies %}
+                        <option value="{{ policy.name }}">{{ policy.name }}</option>
+                    {% endfor %}
+                </datalist>
+            </div>
+    
+            <div id="policyFieldsContainer" class="form-group">
+                <label for="policy">{% trans 'Policies' %}</label>
+                <div class="policy-input-group">
+                    <input type="text" name="policy[]" placeholder="{% trans 'Enter the policy' %}" />
+                    <span class="remove-policy-btn">&times;</span>
+                </div>
+            </div>
+            <div class="w-full flex justify-center items-center">
+                <button id="addPolicyBtn" class="add-policy-btn border-2px-dashed-ced4da">+{% trans 'Add New Policy' %}</button>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="cancel-btn" id="add-cancel-btn">{% trans 'Cancel' %}</button>
+                <button class="save-btn">{% trans 'Save' %}</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- edit modal -->
+    <div id="editPolicyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="edit-close">&times;</span>
+            <h2>+ {% trans 'Edit Policy' %}</h2>
+
+            <div id="errorMessagesEdit" class="error-messages text-85080C"></div> <!-- Container for validation errors -->
+            
+            <div class="form-group">
+                <label for="policyCategory">{% trans 'Category' %}</label>
+                <input type="text" id="policyCategoryEdit" value=""  placeholder="{% trans 'Enter the policy category' %}" readonly />
+            </div>
+            
+            <div id="policyFieldsContainerEdit" class="form-group">
+                <label for="policy">{% trans 'Policies' %}</label>
+            </div>
+            <div class="w-full flex justify-center items-center">
+                <button id="addPolicyBtnEdit" class="edit-policy-btn border-2px-dashed-ced4da">+ {% trans 'Add new policy' %}</button>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="cancel-btn" id="edit-cancel-btn">{% trans 'Cancel' %}</button>
+                <button class="save-btn" id="edit-save-btn">{% trans 'Save' %}</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="custom-modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <h3>{% trans "Delete Policy" %}</h3>
+            <p>{% trans "Are you sure you want to delete this policy?" %} <strong>{% trans "This action cannot be undone." %}</strong></p>
+            <div class="modal-actions">
+                <button id="confirmDelete" class="confirm-btn">{% trans "Yes, Delete" %}</button>
+                <button class="cancel-btn" onclick="closeModal()">{% trans "Cancel" %}</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+            document.getElementsByClassName("top_nav_bar")[0].style.paddingLeft = "0px";
+
+        }
+
+        document.getElementById('addPolicyBtn').addEventListener('click', function () {
+            const policyInputGroup = document.createElement('div');
+            policyInputGroup.className = 'policy-input-group';
+
+            const newPolicyField = document.createElement('input');
+            newPolicyField.setAttribute('type', 'text');
+            newPolicyField.setAttribute('name', 'policy[]');
+            newPolicyField.setAttribute('placeholder', "{% trans 'Enter the policy' %}")
+
+            const removePolicyBtn = document.createElement('span');
+            removePolicyBtn.className = 'remove-policy-btn';
+            removePolicyBtn.innerHTML = '&times;';
+
+            policyInputGroup.appendChild(newPolicyField);
+            policyInputGroup.appendChild(removePolicyBtn);
+
+            document.getElementById('policyFieldsContainer').appendChild(policyInputGroup);
+
+            removePolicyBtn.addEventListener('click', function () {
+                policyInputGroup.remove();
+            });
+        });
+
+        const modal = document.getElementById("policyModal");
+
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
+        }
+
+        document.querySelectorAll('.remove-policy-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                this.parentElement.remove();
+            });
+        });
+
+
+        const btn = document.querySelector(".add-policy-button");
+        const closeBtn = document.querySelector(".close");
+
+        btn.onclick = function() {
+            modal.style.display = "flex";
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            window.location.reload();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                window.location.reload();
+            }
+        }
+
+        // Get chalet_id from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const chaletId = urlParams.get('chalet_id'); // Get the chalet_id
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const saveButton = document.querySelector('.save-btn');
+            const policyCategoryInput = document.getElementById('policyCategory');
+            const policyFieldsContainer = document.getElementById('policyFieldsContainer');
+            const errorMessagesContainer = document.getElementById('errorMessages'); // Assuming you have an error messages container
+
+            saveButton.addEventListener('click', function () {
+                const category = policyCategoryInput.value.trim();
+                const policies = Array.from(policyFieldsContainer.querySelectorAll('input[name="policy[]"]'))
+                                    .map(input => input.value.trim());
+
+                let errorMessages = [];
+
+
+                // Check if the category is empty
+                const categoryPattern = /^[A-Za-z\s]+$/;
+
+                if (category === "") {
+                    errorMessages.push("{% trans 'Category cannot be empty.' %}");
+                }
+                // Validate category length
+                else if (category && category.length > 50) {
+                    errorMessages.push("{% trans 'Category name must be 50 characters or less.' %}");
+                }
+                // Validate category: Must contain only alphabetic characters (including spaces)
+                else if (category && !categoryPattern.test(category)) {
+                    errorMessages.push("{% trans 'Category name must contain only alphabetic characters and spaces.' %}");
+                }
+
+                // Validate each policy length and contents
+                if (policies.length === 0 || policies.every(policy => policy === "")) {
+                    errorMessages.push("{% trans 'At least one policy must be provided.' %}");
+                }
+
+                // Check if there are any errors (Client-Side)
+                if (errorMessages.length > 0) {
+                    // Display errors
+                    if (errorMessagesContainer) {
+                        errorMessagesContainer.innerHTML = ''; // Clear previous messages
+                        errorMessages.forEach(message => {
+                            const p = document.createElement('p');
+                            p.textContent = message;
+                            errorMessagesContainer.appendChild(p);
+                        });
+                    } else {
+                        console.error('Error messages container not found');
+                    }
+                    return; // Stop execution if there are validation errors
+                }
+
+                // Server-Side Validation and Submission
+                if (category && policies.length > 0) {
+                    const formData = new FormData();
+                    formData.append('category', category);
+                    policies.forEach((policy, index) => formData.append(`policies[]`, policy));
+
+                    const fetchUrl = `/chalets/save_policy/?chalet_id=${chaletId}`; 
+
+                    fetch(fetchUrl, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': '{{ csrf_token }}'  // Django CSRF token
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert(data.message);
+                            // Optionally, close the modal or reset the form
+                            document.getElementById('policyModal').style.display = 'none';
+                            window.location.reload();
+                        } else {
+                            // Display server-side validation errors
+                            if (errorMessagesContainer) {
+                                errorMessagesContainer.innerHTML = ''; // Clear previous messages
+                                const p = document.createElement('p');
+                                p.textContent = data.message || 'Unknown error occurred';
+                                errorMessagesContainer.appendChild(p);
+                            } else {
+                                console.error('Error messages container not found');
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert("{% trans 'An error occurred while saving policies.' %}");
+                    });
+                } else {
+                    alert("{% trans 'Please enter a category and at least one policy.' %}");
+                }
+            });
+        });
+
+
+
+    let currentCategoryId = null;
+    document.querySelectorAll('.edit-policy-button').forEach(button => {
+        button.addEventListener('click', function() {
+            currentCategoryId = this.getAttribute('data-category-id');
+            console.log(`Current Category ID: ${currentCategoryId}, Chalet ID: ${chaletId}`);
+
+            fetch(`/chalets/get_policy_data/${currentCategoryId}/?chalet_id=${chaletId}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Response Data:", data); // Check the structure of data here
+
+                    // Access the nested data
+                    const responseData = data.data;
+
+                    // Set category name
+                    var categoryInput = document.getElementById('policyCategoryEdit');
+                    if (categoryInput) {
+                        categoryInput.value = responseData.category_name;
+                    } else {
+                        console.error('policyCategoryEdit input not found');
+                    }
+
+                    // Clear existing policy fields
+                    var policyFieldsContainer = document.getElementById('policyFieldsContainerEdit');
+                    if (policyFieldsContainer) {
+                        policyFieldsContainer.innerHTML = ''; // Clear existing content
+
+                        if (Array.isArray(responseData.selected_policies)) {
+                            responseData.selected_policies.forEach(function (selectedPolicy) {
+                                var selectedPolicyInputGroup = document.createElement('div');
+                                selectedPolicyInputGroup.className = 'policy-input-group-edit';
+
+                                var selectedInput = document.createElement('input');
+                                selectedInput.type = 'text';
+                                selectedInput.name = 'policyEdit[]';
+                                selectedInput.value = selectedPolicy.title; // Ensure 'title' matches backend structure
+                                selectedInput.placeholder = "{% trans 'Enter the policy' %}";
+                                selectedInput.dataset.policyId = selectedPolicy.id;
+
+                                var selectedRemoveBtn = document.createElement('span');
+                                selectedRemoveBtn.className = 'remove-policy-btn-edit';
+                                selectedRemoveBtn.innerHTML = '&times;';
+                                selectedRemoveBtn.addEventListener('click', function () {
+                                    selectedPolicyInputGroup.remove(); // Remove the selected policy input field
+                                });
+
+                                selectedPolicyInputGroup.appendChild(selectedInput);
+                                selectedPolicyInputGroup.appendChild(selectedRemoveBtn);
+                                policyFieldsContainer.appendChild(selectedPolicyInputGroup);
+                            });
+                        } else {
+                            console.error('selected_policies is not an array or is undefined:', responseData.selected_policies);
+                        }
+
+                        var modal = document.getElementById('editPolicyModal');
+                        if (modal) {
+                            modal.style.display = 'flex';
+                        } else {
+                            console.error('editPolicyModal not found');
+                        }
+                    } else {
+                        console.error('policyFieldsContainerEdit not found');
+                    }
+                })
+                .catch(error => console.error('Fetch error:', error));
+        });
+    });
+
+    // Close the modal
+    document.getElementById('edit-close').addEventListener('click', function() {
+        var modal = document.getElementById('editPolicyModal');
+        if (modal) {
+            modal.style.display = 'none';
+            window.location.reload();
+        }
+    });
+
+    // Close the modal on cancel button click
+    document.getElementById('edit-cancel-btn').addEventListener('click', function() {
+        var modal = document.getElementById('editPolicyModal');
+        if (modal) {
+            modal.style.display = 'none';
+            window.location.reload();
+        }
+    });
+
+    document.getElementById('add-cancel-btn').addEventListener('click', function() {
+        var modal = document.getElementById('policyModal');
+        if (modal) {
+            modal.style.display = 'none';
+            window.location.reload();
+        }
+    });
+
+    
+
+    // Add new policy input field
+    document.getElementById('addPolicyBtnEdit').addEventListener('click', function() {
+        var policyFieldsContainer = document.getElementById('policyFieldsContainerEdit');
+        if (policyFieldsContainer) {
+            var policyInputGroup = document.createElement('div');
+            policyInputGroup.className = 'policy-input-group-edit';
+
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'policyEdit[]';
+            input.value = ''; // Start with an empty value
+            input.placeholder = "{% trans 'Enter the policy' %}";
+
+            var removeBtn = document.createElement('span');
+            removeBtn.className = 'remove-policy-btn-edit';
+            removeBtn.innerHTML = '&times;';
+            removeBtn.addEventListener('click', function() {
+                policyInputGroup.remove(); // Remove the policy input field
+            });
+
+            policyInputGroup.appendChild(input);
+            policyInputGroup.appendChild(removeBtn);
+
+            policyFieldsContainer.appendChild(policyInputGroup);
+        }
+    });
+
+
+    document.getElementById('edit-save-btn').addEventListener('click', function() {
+        var errorMessages = []; 
+
+        if (currentCategoryId === null) {
+            console.error('No category ID is set.');
+            return;
+        }
+
+        var category = document.getElementById('policyCategoryEdit').value.trim(); // Trim whitespace
+        var policies = Array.from(document.querySelectorAll('#policyFieldsContainerEdit input[name="policyEdit[]"]'))
+                            .map(input => input.value.trim()); // Trim whitespace
+        console.log(policies);
+        var policies_with_id = Array.from(document.querySelectorAll('#policyFieldsContainerEdit input[name="policyEdit[]"]'))
+                .map(input => ({
+                    value: input.value.trim(), // Get the trimmed value of the input
+                    id: input.dataset.policyId // Get the data-policy-id attribute
+                }));
+        // Validate category length
+        if (category.length === 0) {
+            errorMessages.push("{% trans 'Category name cannot be empty or contain only spaces.' %}");
+        } else if (category.length > 50) {
+            errorMessages.push("{% trans 'Category name must be 50 characters or less.' %}");
+        }
+
+        // Validate category: only alphabetic characters and spaces are allowed
+        if (!/^[a-zA-Z ]+$/.test(category)) {
+            errorMessages.push("{% trans 'Category name must contain only alphabetic characters and spaces.' %}");
+        }
+
+        // Validate if category contains only spaces
+        if (category.split(" ").length === 0 || category.match(/^\s+$/)) {
+            errorMessages.push("{% trans 'Category name cannot be only spaces.' %}");
+        }
+
+        // Validate each policy
+        let policyCount = 0; // Counter for valid policies
+        policies.forEach((policy, index) => {
+            if (policy.length === 0) {
+                errorMessages.push("{% trans 'Policy ' %}" + (index + 1) + "{% trans ' cannot be empty or contain only spaces.' %}");
+            } else {
+                policyCount++;
+            }
+        });
+
+        // Check if at least one valid policy is present
+        if (policyCount === 0) {
+            errorMessages.push("{% trans 'At least one valid policy must be provided.' %}");
+        }
+
+
+        // Display error messages
+        var errorMessagesContainer = document.getElementById('errorMessagesEdit');
+        if (errorMessagesContainer) {
+            errorMessagesContainer.innerHTML = ''; // Clear previous messages
+            if (errorMessages.length > 0) {
+                errorMessages.forEach(message => {
+                    var p = document.createElement('p');
+                    p.textContent = message;
+                    errorMessagesContainer.appendChild(p);
+                });
+                return; // Stop execution if there are validation errors
+            } else {
+                errorMessagesContainer.innerHTML = ''; // Clear messages if no errors
+            }
+        } else {
+            console.error('Error messages container not found');
+            return;
+        }
+
+        // Proceed with submitting the form via fetch
+        fetch('/chalets/update_policy_data/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({
+                category_name: category,
+                policies: policies_with_id,
+                category_id: currentCategoryId,
+                chalet_id: chaletId 
+
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);
+                var modal = document.getElementById('editPolicyModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+                window.location.reload();
+            } else {
+                if (errorMessagesContainer) {
+                    errorMessagesContainer.innerHTML = ''; 
+                    var p = document.createElement('p');
+                    p.textContent = data.message || "{% trans 'An unexpected error occurred.' %}";
+                    errorMessagesContainer.appendChild(p);
+                }
+            }
+        })
+        .catch(error => console.error('Update error:', error));
+    });
+
+
+    let deletePolicyID;
+
+function deleteChaletpolicy(policycategoryID) {
+    deletePolicyID = policycategoryID; // Store the ID for deletion
+    document.getElementById('deleteModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+document.getElementById('confirmDelete').addEventListener('click', function () {
+    fetch(`/chalets/delete_policy/${deletePolicyID}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({ chalet_id: chaletId }),
+    })
+        .then(response => {
+            if (response.ok) {
+                sessionStorage.setItem('status', 'true');
+                sessionStorage.setItem('toastrMessage', "{% trans 'Policy has been deleted' %}");
+            } else {
+                sessionStorage.setItem('status', 'false');
+                sessionStorage.setItem('toastrMessage', "{% trans 'Something went wrong' %}");
+            }
+            window.location.reload();
+        });
+    closeModal();
+});
+
+    window.onload = function() {
+        const status = sessionStorage.getItem('status');
+        const message = sessionStorage.getItem('toastrMessage');
+        if (message) {
+            if(status == "true"){
+                toastr.success(message);
+                sessionStorage.removeItem('status');
+                sessionStorage.removeItem('toastrMessage');
+            }else{
+                toastr.error(message);
+                sessionStorage.removeItem('status');
+                sessionStorage.removeItem('toastrMessage');
+            }
+            
+        }
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

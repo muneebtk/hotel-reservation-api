@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="csrf-token" content="{% csrf_token %}"> -->
+
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <!-- Include flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/edit-hotel.css' %}">
+
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'accounts/hotel_logo_navbar.html' %}
+    {% include 'accounts/search_navbar.html' %}         
+    </div>
+
+    <div class="button-container main-section">
+        <a href="{% url 'edit_detail' %}?hotel_id={{selected_hotel.id}}" class="no-underline">
+            <div class="edit-button">
+                <div class="edit-button-icon">
+                    <i class="fas fa-hotel"></i> 
+                </div>
+                <div class="edit-button-text">{% trans 'Edit Hotel Details' %}</div>
+            </div>
+        </a>   
+        <a href="{% url 'edit_hotel_policy' %}?hotel_id={{selected_hotel.id}}" class="no-underline">
+            <div class="edit-button">
+                <div class="edit-button-icon">
+                    <i class="fas fa-file-alt"></i> 
+                </div>
+                <div class="edit-button-text">{% trans 'Edit Hotel Policies' %}</div>
+            </div>
+        </a>
+    </div>
+   
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+        
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        document.getElementsByClassName("top_nav_bar")[0].style.paddingLeft = "0px";
+    }
+
+
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (urlParams.has('success')) {
+            const languageCode = "{{ request.LANGUAGE_CODE }}"; 
+            
+            const successMessage = languageCode === "ar" 
+                ? "تم تعديل تفاصيل الفندق بنجاح." 
+                : "Your hotel details have been successfully edited.";
+    
+            showToast(successMessage);
+    
+            // Remove the "success" query parameter from the URL
+            const newUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, newUrl);
+        }
+    });
+    
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+
+        const content = document.createElement('div');
+        content.style.display = 'flex'; 
+        content.style.alignItems = 'center';
+
+        const logo = document.createElement('img');
+        logo.src = "{% static 'icons/Mask group (7).png' %}";
+        logo.style.marginRight = '15px';
+        logo.style.width = '30px'; 
+        logo.style.height = '30px';
+
+        const text = document.createElement('span');
+        text.textContent = message;
+        text.style.flexGrow = '1'; 
+
+        content.appendChild(logo);
+        content.appendChild(text);
+
+        toast.appendChild(content);
+
+        toast.style.maxWidth = '45%';
+        toast.style.height = 'auto';
+        toast.style.background = '#18C07A';
+        toast.style.borderRadius = '8px';
+        toast.style.display = 'flex';
+        toast.style.alignItems = 'center';
+        toast.style.padding = '16px';
+        toast.style.color = '#fff';
+        toast.style.fontSize = '16px';
+        toast.style.animation = 'none';
+
+        toast.style.position = 'fixed';
+        toast.style.top = '20%';     
+        toast.style.right = '30px';   
+        toast.style.zIndex = '10000';
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+
+
+
+</script>
+</body>
+</html>

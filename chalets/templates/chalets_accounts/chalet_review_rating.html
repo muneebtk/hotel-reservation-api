@@ -1,0 +1,377 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/chalet_review_rating.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+</head>
+<body>
+
+
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu"
+        id="myOverlay"></div>
+    <div class="w3-main main-section">
+        <div class="container container-box">
+            <div class="row justify-content-center">
+                <div class="row-main w-full" id="hotelTable">
+                    <div class="row ">
+                        <form method="post" id="filterForm">
+                            <div class="col-md-4">
+                                <input type="text" id="datePicker"
+                                    class="form-select select_fromdate fs12 text-black from_date"
+                                    ondblclick="resetDate('datePicker')" name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="datePicker1" class="form-select select_todate fs12 text-black to_date"
+                                ondblclick="resetDate('datePicker1')" name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4">
+                                <select aria-label="Default select example" class="form-select select fs12 text-black"
+                                    id="review_rating" name="review_rating">
+                                    <option value=""> {% trans 'Rating' %}</option>
+                                    {%for rating in ratings%}
+                                    <option value="{{rating.0}}">{{rating.1}}</option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <select aria-label="Default select example" class="form-select select fs12 text-black"
+                                    id="status_type" name="status_type">
+                                    <option value=""> {% trans 'Date' %}</option>
+                                  
+                                </select>
+                            </div> -->
+    
+                            <div class="col-md-4">
+                                <button class=" btn-blue px-3 f" type="button" id="review_search">
+                                    <i class="fa-solid fa-magnifying-glass"></i>  {% trans 'Search' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <div class="table-responsive table-container w-full">
+                            <table class="w3-table text-center responsive-table w-full">
+                                <thead class=" bg-table-head">
+                                    <tr>
+                                        <th class="border-right">{%trans 'Sl. No.'%}</th>
+                                        <th class="border-right"> {% trans 'User Name' %}</th>
+                                        <th class="border-right"> {% trans 'Rating' %}</th>
+                                        <th class="border-right"> {% trans 'Date' %}</th>
+                                        <th class="border-right"> {% trans 'Review Text' %}</th>
+                                        <th>{% trans "Response" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fs12 table-body-color">
+                                   {%if reviews%}
+                                    {% for review in reviews %}
+                                    <tr>
+                                        <td class="border-right">{{ forloop.counter }}</td>
+                                        <td class="border-right">{{ review.username|capfirst }}</td>
+                                        <td class="border-right">{{ review.rating }}/5</td>
+                                        <td class="border-right">{{ review.date }}</td>
+                                        <td class="border-right">{{ review.review_text|capfirst }}</td>
+                                        {%if review.respond%}
+                                        <td class="white-nowrap">
+                                            {% if review.respond|length > 10 %}
+                                                <div class="res-container mb-3">
+                                                    {{ review.respond|slice:":10" }}...
+                                                    <a href="javascript:void(0)" onclick="openModal(this)" class="decoration-none see-more-btn">{% trans 'See more' %}</a>
+                                                    <span class="full-text hidden">{{ review.respond|escapejs }}</span>
+                                                </div>
+                                                <div class="table-action-btn-container">
+                                                    <a href="#" class="edit-review decoration-none edit-btn" data-review-id="{{review.id}}">
+                                                        <i class="fa-solid fa-pen"></i>{% trans 'Edit' %}
+                                                    </a>
+                                                    <a href="#" class="delete-review decoration-none delete-btn" data-review-id="{{review.id}}">
+                                                        <i class="fa-solid fa-trash"></i>{% trans 'Delete' %}
+                                                    </a>
+                                                </div>
+                                            {% else %}
+                                                <div class="mb-3">
+                                                    {{ review.respond }}
+                                                </div>
+                                                <div class="table-action-btn-container">
+                                                    <a href="#" class="edit-review decoration-none edit-btn" data-review-id="{{review.id}}">
+                                                        <i class="fa-solid fa-pen"></i>{% trans 'Edit' %}
+                                                    </a>
+                                                    <a href="#" class="delete-review decoration-none delete-btn" data-review-id="{{review.id}}">
+                                                        <i class="fa-solid fa-trash"></i>{% trans 'Delete' %}
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        </td>
+                                        {%else%}
+                                        <td class="color-grey">
+                                            <a href="#" class="respond_button decoration-none view-btn" onclick="document.getElementById('id02').style.display='flex'" data-review-id="{{review.id}}">{% trans 'Respond' %}</a>
+                                        </td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                    {%else%}
+                                    <tr>
+                                        <td colspan="7" class="text-center">{% trans 'No data found' %}</td>
+                                    </tr>
+                                    {%endif%}
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {%if  reviews%}
+                <div class="pagination">
+
+                    <!-- Previous Button -->
+
+                    {% if  reviews.has_previous %}
+                        <a href="#" class="previous-page pagination-link" data-page="{{  reviews.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                    <div class="page-numbers">
+                        {% for num in  reviews.paginator.page_range %}
+                            {% if  reviews.paginator.num_pages > 3 %}
+                                {% if num >=  reviews.number and num <  reviews.number|add:3 %}
+                                    {% if num ==  reviews.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num ==  reviews.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            
+                    <!-- Next Button -->
+                    {% if reviews.has_next %}
+                            <a href="#" class="next-page pagination-link" data-page="{{ reviews.next_page_number }}" title="Next Page">
+                                <span class="next-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {%else%}
+                <div></div>
+            {% endif %}           
+    </div>    
+
+
+    <!--  Respond modal -->
+
+    <div id="id02" class="res-modal-container hidden">
+        <div class="res-modal-content w3-card-4 w3-round-xlarge">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id02').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red res-modal-close-btn" title="Close Modal">&times;</span>
+            </div>
+            <div class="modal-content">
+                <h3 class="w3-margin">{% trans "Write Respond Review" %}</h3>
+                <form id="responseForm" class="w3-container w-full" method="post">
+                    {% csrf_token %}
+                    <!-- Hidden input to store review ID -->
+                    <input type="hidden" id="reviewId" name="review_id">
+                    
+                    <div class="w3-section w-full">
+                        <div class="w-full">
+                            <div class="w-full">
+                                <label for="guest_name">{% trans "Review" %}</label>
+                            </div>
+                            <div class="w-full">
+                                <textarea class="w3-padding w3-round-large box_container_input" id="respond" name="respond"
+                                    placeholder="message"></textarea>
+                            </div>
+                            <span id="error-message-empty" style="color: red; font-size: 14px; display: none;" class="error-message">{% trans "Response cannot be empty" %}</span>
+                            <span id="error-message-length" style="color: red; font-size: 14px; display: none;" class="error-message">{% trans "Response should be between 5 - 250 characters." %}</span>
+                        </div>
+                    </div>
+    
+                    <div class="w3-center w3-container w3-margin-top">
+                        <button class="w3-round-large w3-margin-right btn w3-padding-large"
+                            onclick="document.getElementById('id02').style.display='none';"
+                            style="border: 1px solid #85080C; color: #85080C; cursor: pointer;" type="button">{% trans "Cancel" %}</button>
+                        <button class="w3-round-large activee btn w3-section w3-padding-large" id="postResponse" type="submit">
+                            {% trans "Post" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="main-modal" id="main-modal">
+        <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:50%">
+            <div class="w3-center">
+                <br>
+                <span onclick="closeModal()"
+                      class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                      title="Close Modal">&times;</span>
+            </div>
+            <div id="newModalContent" class="w3-container" style="padding: 20px; text-align: left; word-wrap: break-word;   word-break: break-word; white-space: pre-wrap;">
+            
+            </div>
+        </div>
+    </div>
+    <div id="id03" class="res-modal-container hidden">
+        <div class="res-modal-content w3-card-4 w3-round-xlarge">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('id03').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            </div>
+            <div class="modal-content">
+                <h3 class="w3-margin">{% trans "Edit Respond Review" %}</h3>
+                <form id="responseForm" class="w3-container w-full" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="reviewId" name="review_id">
+                    
+                    <div class="w3-section w-full">
+                        <div class="w-full">
+                            <div class="w-full">
+                                <label for="guest_name">{% trans "Review" %}</label>
+                            </div>
+                            <div class="w-full">
+                                <textarea class="w3-padding w3-round-large box_container_input" id="respond-message" name="respond"
+                                    placeholder="message"></textarea>
+                            </div>
+                        </div>
+                        <span id="edit-error-message-empty" style="color: red; font-size: 14px; display: none;" class="error-message">{% trans "Response cannot be empty" %}</span>
+                        <span id="edit-error-message-length" style="color: red; font-size: 14px; display: none;" class="error-message">{% trans "Response should be between 5 - 250 characters." %}</span>
+                    </div>
+    
+                    <div class="w3-center w3-container w3-margin-top">
+                        <button class="w3-round-large w3-margin-right btn w3-padding-large"
+                            onclick="document.getElementById('id03').style.display='none';"
+                            style="border: 1px solid #85080C; color: #85080C;" type="button">{% trans "Cancel" %}</button>
+                        <button class="w3-round-large activee btn w3-section w3-padding-large" id="editresponseForm" type="submit">
+                            {% trans "Post" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+          
+        </div>
+        <div id="chaletData" data-chalet-id="{{ selected_chalet.id }}" style="display: none;"></div>
+    </div>
+    <div id="customAlertModal" class="res-modal-container" style="display: none;">
+        <div class="res-modal-content w3-card-4 w3-round-xlarge">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('customAlertModal').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="w3-section w-full" style="text-align: center;">
+                    <h4 id="error-fetch-reviews" class="alert-message" style="display: none;">{% trans "Error Fetching Reviews. Please try again later." %}</h4>
+                    <h4 id="error-pagination" class="alert-message" style="display: none;">{% trans 'Error fetching pagination data. Please try again later.' %}</h4>
+                    <h4 id="error-submit-response" class="alert-message" style="display: none;">{% trans "Failed to submit the response. Please try again." %}</h4>
+                    <h4 id="response-success" class="alert-message" style="display: none;">{% trans "Response submitted successfully!" %}</h4>
+                    <h4 id="error-delete-response" class="alert-message" style="display: none;">{% trans "Error deleting response. Please try again later." %}</h4>
+                    <h4 id="delete-confirmation" class="alert-message" style="display: none;">{% trans "Are you sure you want to delete this response?" %}</h4>
+                    <h4 id="delete-success" class="alert-message" style="display: none;">{% trans "Response deleted successfully!" %}</h4>
+                    <h4 id="error-generic" class="alert-message" style="display: none;">{% trans "An unexpected error occurred. Please try again." %}</h4>
+                </div>
+            </div>
+            <div class="w3-center w3-container w3-margin-top">
+                <button class="w3-round-large activee btn w3-section w3-padding-large confirm-ok"
+                    onclick="document.getElementById('customAlertModal').style.display='none';">
+                    {% trans "OK" %}
+                </button>
+            </div>
+        </div>
+    </div>   
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmDeleteModal" class="res-modal-container" style="display: none;">
+        <div class="res-modal-content w3-card-4 w3-round-xlarge">
+            <div class="w3-center"><br>
+                <span onclick="document.getElementById('confirmDeleteModal').style.display='none'"
+                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            </div>
+            <div class="modal-content">
+                <div class="w3-section w-full" style="text-align: center;">
+                    <h4 id="delete-confirmation">{% trans "Are you sure you want to delete this response?" %}</h4>
+                </div>
+            </div>
+            <div class="w3-center w3-container w3-margin-top">
+                <button class="w3-round-large activee btn w3-section w3-padding-large confirm-ok">
+                    {% trans "OK" %}
+                </button>
+                <button class="w3-round-large btn w3-section w3-padding-large confirm-cancel" style="border: 1px solid #85080C; color: #85080C;">
+                    {% trans "Cancel" %}
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+    
+    <script src="{% static 'chalets/js/chalet_review_rating.js' %}"></script> 
+    <script>
+
+function openModal(element) {
+    console.log("clicked");
+    let reviewText = element.nextElementSibling.textContent;
+
+    const formattedText = reviewText.replace(/\\u000A|\\n|\n/g, "<br>");
+
+    document.getElementById('newModalContent').innerHTML = formattedText;
+
+    document.getElementById('main-modal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('main-modal').style.display = 'none';
+}
+        
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,956 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/hotel-type.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+     <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+    
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <main class="hotel-type-main-container">
+        <div class="main-container">
+            <div class="action-header">
+                <div class="action-items">
+                    <input type="text" placeholder="{% trans 'Name' %}" class="search-input">
+                    <select name="status" id="status-select">
+                        <option value="all">{% trans 'All' %}</option>
+                        <option value="active">{% trans 'Active' %}</option>
+                        <option value="inactive">{% trans 'Inactive' %}</option>
+                    </select>
+                    <button class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>{% trans 'Search' %}</span>
+                    </button>
+                </div>
+                <div class="action-items">
+                    <button class="add-new-hotel-type-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>{% trans 'Add Hotel Type' %}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                {% trans 'Hotel Type Icon' %}
+                            </th>
+                            <th>
+                                {% trans 'Hotel Type ( English )' %}
+                            </th>
+                            <th>
+                                {% trans 'Hotel Type ( Arabic )' %}
+                            </th>
+                            <th>
+                                {% trans 'Status' %}
+                            </th>
+                            <th>
+                                {% trans 'Action' %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if hotel_type %}
+                           {%for hotel_type in hotel_type%}
+                            <tr>
+                                <td>
+                                    {% if hotel_type.icon %}
+                                    <img src="{{ hotel_type.icon.url }}" alt="{{ hotel_type.name }}">
+                                    {% else %}
+                                        <i class="fas fa-ban" aria-hidden="true" style="width:40px;height:40px;margin-left:20%; margin-top: 13%;"></i>
+                                    {% endif %}
+                                </td>
+                                <td><span>{{hotel_type.name|title}}</span>  </td>
+                                <td><span>{{hotel_type.arabic_name}}</span></td>
+                                <td>{{hotel_type.get_status_display}}</td>
+                                <td>
+                                    <div class="table-action-btn-container">
+                                        <button class="edit-btn edit-hotel-type-button"  data-id="{{hotel_type.id}}" >
+                                            <i class="fa-solid fa-pen"></i>
+                                            <span>{% trans 'Edit' %}</span>
+                                        </button>
+                                        <button class="delete-btn"  data-id="{{hotel_type.id}}">
+                                            <i class="fa-solid fa-trash" ></i>
+                                            <span>{% trans 'Delete' %}</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {%else%}
+                            <tr>
+                                <td colspan="6">
+                                    {% trans 'No results found .' %}
+                                </td>
+                            </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                {%if hotel_type %}
+                <div class="pagination">
+                    <!-- Previous Button -->
+
+                    {% if hotel_type.has_previous %}
+                        <a href="#" class="previous-page pagination-link" data-page="{{  hotel_type.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                    <div class="page-numbers">
+                        {% for num in  hotel_type.paginator.page_range %}
+                            {% if  hotel_type.paginator.num_pages > 3 %}
+                                {% if num >=   hotel_type.number and num <   hotel_type.number|add:3 %}
+                                    {% if num ==  hotel_type.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num == hotel_type.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            
+                    <!-- Next Button -->
+                    {% if hotel_type.has_next %}
+                        <a href="#" class="next-page pagination-link" data-page="{{  hotel_type.next_page_number }}" title="Next Page">
+                            <span class="next-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {%else%}
+                <div></div>
+            {% endif %}           
+        </div>
+
+
+        <!-- add hotel type modal -->
+        <div class="add-hotel-type-modal-container">
+            <div class="add-hotel-type-modal">
+                <button class="add-modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="add-modal-header">
+                    <h3>{% trans 'Add Hotel Type' %}</h3>
+                </div>
+                <form action="{%url 'hotel_type'%}" id="priceform" method="post">
+                    {%csrf_token%}        
+                    <input type="hidden">
+                <div class="add-modal-body">
+                    <div class="input-item">
+                        <label for="hotel-type-name">{% trans 'Hotel Type (English)' %}</label>
+                        <input type="text" placeholder="{% trans 'Enter hotel type in english' %}" id="hotel-type-name">
+                        <span id="hotel_name_error" style="display: none;color: red;">{% trans 'Hotel Type(English) required' %}</span>
+                        <span id="name_exist_error" data-error-msg="{% trans 'This hotel type (English) already exists.' %}" style="display: none;color: red;"></span>
+                    </div>
+                    <div class="input-item">
+                        <label for="hotel-type-name-arabic">{% trans 'Hotel Type (Arabic)' %}</label>
+                        <input type="text" placeholder="{% trans 'Enter hotel type in arabic' %}" id="hotel-type-name-arabic">
+                        <span id="hotel_name_arabic_error" style="display: none;color: red;">{% trans 'Hotel Type(Arabic) required' %}</span>
+                        <span id="arab_exist_error" data-error-msg="{% trans 'This hotel type (Arabic) already exists.' %}" style="display: none;color: red;"></span>
+                        
+
+                    </div>
+                    <div class="input-item">
+                        <label for="hotel-type-icon-file">{% trans 'Hotel Type Icon' %}</label>
+                        <label for="hotel-type-icon-file" class="image-placeholder-icon">
+                            <img src="{% static 'icons/img-placeholder.svg' %}" id="hotel-type-icon" alt="hotel-type-icon">
+                            <input type="file" id="hotel-type-icon-file" name="hotel-type-icon-file" hidden>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <span id="hotel_type_icon_error" style="display: none;color: red;">{% trans 'Hotel Type icon required' %}</span>
+                        </label>
+                    </div>
+                    <div class="input-item">
+                        <label for="#">{% trans 'Status' %}</label>
+                        <div class="hotel-type-radio-group">
+                            <input type="radio" name="hotel-type-status" id="active-status" value="active" checked>
+                            <label for="active-status" class="active-label">{% trans 'Active' %}</label>
+                            <input type="radio" name="hotel-type-status" id="inactive-status" value="inactive">
+                            <label for="inactive-status" class="inactive-label">{% trans 'Inactive' %}</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                <div class="add-modal-footer">
+                    <button class="modal-cancel add-modal-cancel">{% trans 'Cancel' %}</button>
+                    <button class="modal-add">{% trans 'Add' %}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- edit hotel type modal -->
+        <div class="edit-hotel-type-modal-container">
+            <div class="edit-hotel-type-modal">
+                <button class="edit-modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+        
+                <div class="edit-modal-header">
+                    <h3><i class="fa-solid fa-pen"></i>{% trans 'Edit Hotel Type' %}</h3>
+                </div>
+                <div class="edit-modal-body">
+                    <input type="hidden" id="hotel_type_id" name="hotel_type_id">
+                    <div class="input-item">
+                        <label for="edit-hotel-type-name">{% trans 'Hotel Type (English)' %}</label>
+                        <input type="text" id="edit-hotel-type-name">
+                        <span id="hotel_name_edit_error" style="display: none;color: red;">{% trans 'Hotel Type(English) required' %}</span>
+                        <span id="name_exist_edit_error" data-error-msg="{% trans 'This hotel type (English) already exists.' %}" style="display: none;color: red;"></span>
+
+                    </div>
+                    <div class="input-item">
+                        <label for="edit-hotel-type-name-arabic">{% trans 'Hotel Type (Arabic)' %}</label>
+                        <input type="text" id="edit-hotel-type-name-arabic">
+                        <span id="hotel_name_edit_arabic_error" style="display: none;color: red;">{% trans 'Hotel Type(Arabic) required' %}</span>
+                        <span id="arab_exist_edit_error" data-error-msg="{% trans 'This hotel type (Arabic) already exists.' %}" style="display: none;color: red;"></span>
+
+
+
+                    </div>
+                    <div class="input-item">
+                        <label for="edit-hotel-type-icon-file">{% trans 'Hotel Type Icon' %}</label>
+                        <label for="edit-hotel-type-icon-file" class="image-placeholder-icon">
+                            <img src="{% static 'icons/img-placeholder.svg' %}" id="hotel-type-icon" alt="hotel-type-icon">
+                            <input type="file" id="edit-hotel-type-icon-file" name="hotel-type-icon-file" hidden>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <span id="hotel_type_edit_icon_error" style="display: none;color: red;">{% trans 'Hotel Type icon required' %}</span>
+                        </label>
+                    </div>
+                    <div class="input-item">
+                        <label for="#">{% trans 'Status' %}</label>
+                        <div class="edit-hotel-type-radio-group">
+                            <input type="radio" name="edit-hotel-type-status" id="edit-active-status" value="active" checked>
+                            <label for="edit-active-status" class="edit-active-label">{% trans 'Active' %}</label>
+                            <input type="radio" name="edit-hotel-type-status" id="edit-inactive-status" value="inactive">
+                            <label for="edit-inactive-status" class="edit-inactive-label">{% trans 'Inactive' %}</label>
+                        </div>
+                    </div>
+                    <div class="edit_id" style="display:none;">
+                        <input type="number" name="hotel_id" id="hotel_type_id">
+                    </div>
+                </form>
+                </div>
+                <div class="edit-modal-footer">
+                    <button class="edit-modal-cancel">{% trans 'Cancel' %}</button>
+                    <button class="modal-edit">{% trans 'Edit' %}</button>
+                </div>
+
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- preview image showing -->
+          
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+    <script>
+        function loadershow(){
+        $('.loader-container').css('display','flex');
+        $('.table-container').addClass('blurred');
+       }
+        function loaderhide(){
+            $('.loader-container').hide();
+            $('.table-container').removeClass('blurred');
+        }
+        
+
+            document.querySelectorAll('#hotel-type-icon-file, #edit-hotel-type-icon-file').forEach(fileInput => {
+                fileInput.addEventListener('change', function(event) {
+                    const modalContainer = event.target.closest('.add-hotel-type-modal-container, .edit-hotel-type-modal-container');
+                    const iconElement = modalContainer.querySelector('img[id*="hotel-type-icon"]');
+                    
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                iconElement.src = e.target.result;
+                            };
+
+                            reader.readAsDataURL(file);
+                        } else {
+                            var errorMessage = "{% trans 'Please select an image file (JPEG/PNG)' %}";
+                            alert(errorMessage);
+                            event.target.value = '';
+                        }
+                    }
+                });
+            });
+        
+
+            const addModalOpenButton = document.querySelector('.add-new-hotel-type-btn')
+            const addCloseModalButton = document.querySelector('.add-modal-close');
+            const addCancelButton = document.querySelector('.add-modal-cancel');
+            const addModal = document.querySelector('.add-hotel-type-modal-container');
+            const form = document.getElementById("priceform");
+
+            addModalOpenButton.addEventListener('click',()=>{
+                addModal.style.display="flex"
+            })
+            addCancelButton.addEventListener('click',()=>{
+                addModal.style.display="none"
+                form.reset();
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                });
+                $(".modal-add").attr("disabled", false);
+
+            })
+            addCloseModalButton.addEventListener('click',()=>{
+                addModal.style.display="none"
+                form.reset();
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                });
+                $(".modal-add").attr("disabled", false);
+
+            })
+
+
+
+            const editModalOpenButton = document.querySelector('.edit-hotel-type-button')
+            const editCloseModalButton = document.querySelector('.edit-modal-close');
+            const editCancelButton = document.querySelector('.edit-modal-cancel');
+
+
+            // editModalOpenButton.addEventListener('click',()=>{
+            //     console.log("edit button clicked")
+            //     editModal.style.display="flex"
+            // })
+            editCancelButton.addEventListener('click',()=>{
+                editModal.style.display="none"
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-edit").attr("disabled", false);
+
+                });
+            })
+            editCloseModalButton.addEventListener('click',()=>{
+                editModal.style.display="none"
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-edit").attr("disabled", false);
+
+                });
+            })
+
+    </script>
+
+    <script>
+        
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        } 
+$(document).ready(function () {
+    var typingTimer;
+    var doneTypingInterval = 300; // 0.3 seconds delay
+
+    function checkAddHotelType() {
+        var name = $('#hotel-type-name').val().trim();
+        var arabicName = $('#hotel-type-name-arabic').val().trim();
+        console.log(arabicName)
+        if (name || arabicName) {
+            $.ajax({
+                url: "{% url 'hotel_type_check_name' %}",
+                data: { 
+                    name: name, 
+                    arabic_name: encodeURIComponent(arabicName) 
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:", data); // Debug response
+                    
+                    if (data.english_exists) {
+                        // $('#name_exist_error').text("This hotel type (English) already exists.").show();
+                        $('#name_exist_error').text($('#name_exist_error').data('error-msg')).show();
+
+                    } else {
+                        $('#name_exist_error').text("").hide();
+                    }
+
+                    if (data.arabic_exists) {
+                        $('#arab_exist_error').text($('#arab_exist_error').data('error-msg')).show();
+
+                    } else {
+                        $('#arab_exist_error').text("").hide();
+                    }
+
+
+                    if (data.english_exists || data.arabic_exists) {
+                        $(".modal-add").attr("disabled", true);  // Alternative method
+                    } else {
+                        $(".modal-add").attr("disabled", false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX Error:", error); // Debug errors
+                }
+            });
+        } else {
+            $('#name_exist_error, #arab_exist_error').text("").hide();
+        }
+    }
+
+    $('#hotel-type-name, #hotel-type-name-arabic').on('input keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(checkAddHotelType, doneTypingInterval);
+        console.log("trigger function worked")
+    });
+});
+
+$(document).ready(function () {
+    var typingTimer;
+    var doneTypingInterval = 300; // 0.3 seconds delay
+
+    function checkEditHotelType() {
+        var name = $('#edit-hotel-type-name').val().trim();
+        var arabicName = $('#edit-hotel-type-name-arabic').val().trim();
+        var hotelTypeId = $('#hotel_type_id').val(); // Pass hotel_type_id for edit
+
+        if (name || arabicName) {
+            $.ajax({
+                url: "{% url 'hotel_type_check_name' %}",
+                data: { 
+                    name: name, 
+                    arabic_name: encodeURIComponent(arabicName) ,
+                    hotel_type_id:hotelTypeId
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:", data); // Debug response
+                    
+                    if (data.english_exists) {
+                        $('#name_exist_edit_error').text($('#name_exist_edit_error').data('error-msg')).show();
+                    } else {
+                        $('#name_exist_edit_error').text("").hide();
+                    }
+
+                    if (data.arabic_exists) {
+                        $('#arab_exist_edit_error').text($('#arab_exist_edit_error').data('error-msg')).show();
+                    } else {
+                        $('#arab_exist_edit_error').text("").hide();
+                    }
+
+
+                    if (data.english_exists || data.arabic_exists) {
+                        $(".modal-edit").attr("disabled", true);  // Alternative method
+                    } else {
+                        $(".modal-edit").attr("disabled", false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX Error:", error); // Debug errors
+                }
+            });
+        } else {
+            $('#name_exist_edit_error, #arab_exist_edit_error').text("").hide();
+        }
+    }
+
+    $('#edit-hotel-type-name, #edit-hotel-type-name-arabic').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(checkEditHotelType, doneTypingInterval);
+        console.log("trigger function worked")
+    });
+});
+
+
+$(document).ready(function () {
+    $(document).on('click', '.modal-add', function (event) {
+        event.preventDefault(); // Prevent default form submission
+        //error messages id
+        let hotel_error=document.getElementById('hotel_name_error')
+        let hotel_ar_error=document.getElementById('hotel_name_arabic_error')
+        // values fetch
+        let name = $("#hotel-type-name").val().trim();
+        let arabicName = $("#hotel-type-name-arabic").val().trim();
+        let status = $("input[name='hotel-type-status']:checked").val();
+        let iconFile = $("#hotel-type-icon-file")[0].files[0]; // Get file input
+
+        //validation regex
+        let name_regex = /^[A-Za-z\s]+$/;
+        let arabic_regex=/^[\u0600-\u06FF\s]+$/;
+
+        // validate name
+        if (!name) {
+            hotel_error.style.display='block';
+            return;
+        }
+        
+        else if (!name_regex.test(name)) {
+            hotel_error.textContent = "{% trans 'Hotel Type (English) should contain only English alphabets' %}";
+            hotel_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (name.length <2 || name.length > 50) {
+            hotel_error.textContent = "{% trans 'Hotel Type (English) length should be between 2 and 50' %}";
+            hotel_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            hotel_error.style.display = "none"; 
+        }
+
+       // validate Arabic name
+
+        if (!arabicName) {
+            hotel_ar_error.style.display='block';
+            return;
+        }
+       
+        else if (!arabic_regex.test(arabicName)) {
+            hotel_ar_error.textContent = "{% trans 'Hotel Type (Arabic) should contain only Arabic' %}";
+            hotel_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (arabicName.length <2 || arabicName.length > 50) {
+            hotel_ar_error.textContent = "{% trans 'Hotel Type (Arabic) length should be between 2 and 50' %}";
+            hotel_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            hotel_ar_error.style.display = "none"; 
+        }
+
+        if (!status) {
+            alert("Please select a status.");
+            return;
+        }
+        if(!iconFile){
+            hotel_type_icon_error.style.display='block';
+            return;
+
+        }
+
+        let formData = new FormData();
+        formData.append("name", name);
+        formData.append("arabic_name", arabicName);
+        formData.append("status", status);
+        if (iconFile) {
+            formData.append("icon", iconFile);
+        }
+
+        // CSRF Token setup
+        let csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+        loadershow();
+        $('.add-hotel-type-modal-container').addClass('blurred');
+        $.ajax({
+            url: "{% url 'hotel_type' %}",  
+            type: "POST",
+            data: formData,
+            processData: false, 
+            contentType: false, 
+            headers: { "X-CSRFToken": csrfToken },  
+            beforeSend: function () {
+                $(".modal-add").text("Adding...").prop("disabled", true);
+            },
+            success: function (response) {
+                var successMessage = "{% trans 'Hotel Type added successfully!' %}";
+
+                alert(successMessage);
+
+                // Reset form fields
+                $("#hotel-type-name").val("");
+                $("#hotel-type-name-arabic").val("");
+                $("#hotel-type-icon-file").val("");
+                $("input[name='hotel-type-status'][value='active']").prop("checked", true);
+
+                // Reset image preview
+                $("#hotel-type-icon").attr("src", "{% static 'icons/img-placeholder.svg' %}");
+
+                // Close the modal
+                $(".add-hotel-type-modal-container").hide();
+                loaderhide();
+
+                // Optionally reload the page
+                location.reload();
+            },
+            error: function (xhr) {
+                let errorMsg = xhr.responseJSON?.error || "Something went wrong!";
+                alert(errorMsg);
+                // Reset form fields
+                $("#hotel-type-name").val("");
+                $("#hotel-type-name-arabic").val("");
+                $("#hotel-type-icon-file").val("");
+                $("input[name='hotel-type-status'][value='active']").prop("checked", true);
+
+                // Reset image preview
+                $("#hotel-type-icon").attr("src", "{% static 'icons/img-placeholder.svg' %}");
+
+                // Close the modal
+                $(".add-hotel-type-modal-container").hide();
+
+                // Optionally reload the page
+                location.reload();
+            },
+            complete: function () {
+                $(".modal-add").text("Add").prop("disabled", false);
+            }
+        });
+    });
+});
+const editModal = document.querySelector('.edit-hotel-type-modal-container');
+$(document).ready(function () {
+$(document).on('click', '.edit-hotel-type-button', function (e) {
+    e.preventDefault();
+    let hotelTypeId = $(this).data("id"); 
+    console.log("edit")
+    loadershow();
+    $.ajax({
+        url: `/super_user/hotel_type/${hotelTypeId}/`, 
+        type: "GET",
+        success: function (data) {
+            $("#edit-hotel-type-name").val(data.name);
+            $("#edit-hotel-type-name-arabic").val(data.arabic_name);
+            $("#hotel_type_id").val(hotelTypeId);
+            const imgElement = $(".edit-hotel-type-modal-container img[id='hotel-type-icon']");
+            if (imgElement.length) {
+                console.log(" Loading new image...");
+                const newImg = new Image();
+                const imageURL = data.icon + "?t=" + new Date().getTime(); 
+                newImg.src = imageURL;
+                newImg.onload = function () {
+                    imgElement.attr("src", newImg.src);
+                    console.log("Image updated successfully!");
+                };
+                newImg.onerror = function () {
+                    console.error(" Failed to load image:", newImg.src);
+                };
+            } else {
+                console.error("Image element not found.");
+            }
+           
+            if (data.status === "active") {
+                $("#edit-active-status").prop("checked", true);
+            } else {
+                $("#edit-inactive-status").prop("checked", true);
+            }
+            editModal.style.display="flex"
+            loaderhide();
+        },
+        error: function (xhr, status, error) {
+            console.error("Failed to fetch Data:", error);
+            loaderhide();
+
+        },
+    });
+});
+});
+
+//edit hotel types
+let hotel_error=document.getElementById('hotel_name_edit_error')
+let hotel_ar_error=document.getElementById('hotel_name_edit_arabic_error')
+$(document).ready(function() {
+    $('.modal-edit').on('click', function() {
+        // Get the form data
+        var hotelTypeName = $('#edit-hotel-type-name').val();
+        var hotelTypeNameArabic = $('#edit-hotel-type-name-arabic').val();
+        var hotelTypeIconFile = $('#edit-hotel-type-icon-file')[0].files[0];
+        var hotelTypeStatus = $('input[name="edit-hotel-type-status"]:checked').val();
+        var hotelTypeId = $("#hotel_type_id").val();
+        //validation regex
+        let name_regex = /^[A-Za-z\s]+$/;
+        let arabic_regex=/^[\u0600-\u06FF\s]+$/;
+        console.log(hotelTypeIconFile)
+
+        // validate name
+        if (!hotelTypeName) {
+            hotel_error.style.display='block';
+            return;
+        }
+        
+        else if (!name_regex.test(hotelTypeName)) {
+            hotel_error.textContent = "{% trans 'Hotel Type (English) should contain only English alphabets' %}";
+            hotel_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (hotelTypeName.length <2 || hotelTypeName.length > 50) {
+            hotel_error.textContent = "{% trans 'Hotel Type (English) length should be between 2 and 50' %}";
+            hotel_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            hotel_error.style.display = "none"; 
+        }
+
+       // validate Arabic name
+
+        if (!hotelTypeNameArabic) {
+            hotel_ar_error.style.display='block';
+            return;
+        }
+       
+        else if (!arabic_regex.test(hotelTypeNameArabic)) {
+            hotel_ar_error.textContent = "{% trans 'Hotel Type (Arabic) should contain only Arabic' %}";
+            hotel_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (hotelTypeNameArabic.length <2 || hotelTypeNameArabic.length > 50) {
+            hotel_ar_error.textContent = "{% trans 'Hotel Type (Arabic) length should be between 2 and 50' %}";
+            hotel_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            hotel_ar_error.style.display = "none"; 
+        }
+
+        if (!hotelTypeStatus) {
+            alert("Please select a status.");
+            return;
+        }
+     
+        var formData = new FormData();
+        formData.append("name", hotelTypeName);
+        formData.append("name_arabic", hotelTypeNameArabic);
+        formData.append("status", hotelTypeStatus);
+        if (hotelTypeIconFile) {
+            formData.append("icon", hotelTypeIconFile);
+        }
+        loadershow();
+        $('.edit-hotel-type-modal-container').addClass('blurred');
+        $.ajax({
+            url: `/super_user/hotel_type/${hotelTypeId}/`,  // URL to your Django view
+            type: 'POST',
+            data: formData,
+            processData: false,  
+            contentType: false,
+            headers: {
+                'X-CSRFToken': window.CSRF_TOKEN
+            },
+            success: function(response) {
+                var successMessage = "{% trans 'Hotel Type edited successfully!' %}";
+                alert(successMessage);
+                console.log('Hotel type updated successfully:', response);
+                location.reload();
+                loaderhide();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating hotel type:', error);
+                var errorMessage = "{% trans 'An error occured' %}";
+                alert(errorMessage)
+                loaderhide();
+            }
+        });
+    });
+
+});
+
+$(document).ready(function() {
+    $(document).on('click', '.delete-btn', function (e) {
+        e.preventDefault();
+        
+        let hotelTypeId = $(this).data("id"); 
+        var confirmMessage = "{% trans 'Are you sure you want to delete this Hotel Type?' %}";
+        if (confirm(confirmMessage)) {
+            loadershow();
+            $.ajax({
+                url: `/super_user/hotel_type/${hotelTypeId}/`, 
+                type: 'DELETE',
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                success: function(data) {
+                    $(e.target).closest('tr').remove();
+                    loaderhide();
+                    $('table tbody').html($(data).find('tbody').html());
+                    $('table tbody').html($(data).find('tbody').html());
+                    $('.pagination').html($(data).find('.pagination').html());
+                    const rows = $(data).find('table tbody tr');
+                    const totalRows = rows.length;
+
+                    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                    if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                        $('.pagination-container').hide();
+                    } else {
+                        $('.pagination-container').show();
+                        $('.pagination').html($(data).find('.pagination').html()).show();
+                    }   
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error deleting offer:', error);
+                    var errorMessage = "{% trans 'An error occured' %}";
+                    alert(errorMessage);
+                    loaderhide();
+
+                }
+            });
+        }
+    });
+});
+
+
+$(document).ready(function () {
+    $(document).on('click', '.search-btn', function (e) {
+        e.preventDefault();
+        var searchName = $(".search-input").val().trim();
+        var selectedStatus = $("#status-select").val();
+        var page =1;
+        console.log(selectedStatus)
+        console.log('clicked')
+        loadershow();
+        $.ajax({
+            url: "/super_user/search_hotel_types/",  
+            type: "GET",
+            data: {
+                name: searchName,
+                status: selectedStatus,
+                page: page
+            },
+            success: function (data) {
+                loaderhide();
+                $('table tbody').html($(data).find('tbody').html());
+                $('table tbody').html($(data).find('tbody').html());
+                $('.pagination').html($(data).find('.pagination').html());
+                const rows = $(data).find('table tbody tr');
+                const totalRows = rows.length;
+
+                const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                    $('.pagination-container').hide();
+                } else {
+                    $('.pagination-container').show();
+                    $('.pagination').html($(data).find('.pagination').html()).show();
+                }      
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching hotel types:", error);
+                loaderhide();
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+$(document).on('click', '.pagination-link', function (e) {
+    e.preventDefault(); 
+    var searchName = $(".search-input").val().trim();
+    var selectedStatus = $("#status-select").val();
+    var page = $(this).data('page');
+    console.log(selectedStatus)
+    console.log('clicked')
+    loadershow();
+    $.ajax({
+        url: "/super_user/search_hotel_types/",  
+        type: 'GET',
+        headers: {
+            'X-CSRFToken': window.CSRF_TOKEN
+        },
+        data: {
+            name: searchName,
+            status: selectedStatus,
+            page: page
+        },
+        success: function (data) {
+            loaderhide();
+            $('table thead').html($(data).find('thead').html());
+            $('table tbody').html($(data).find('tbody').html());
+            $('.pagination').html($(data).find('.pagination').html());
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching data:', error);
+            var errorMessage = "{% trans 'Error fetching pagination data. Please try again later.' %}";
+            alert(errorMessage);
+            loaderhide();
+
+        }
+    });
+});
+});
+
+function updatePagination(data) {
+    const rows = $(data).find('table tbody tr');
+    const totalRows = rows.length;
+    const paginationExists = $(data).find('.pagination').length > 0;
+
+    if (totalRows < 15 || !paginationExists) {
+        $('.pagination-container').hide();
+    } else {
+        $('.pagination-container').show();
+        $('.pagination').html($(data).find('.pagination').html()).show();
+    }
+}
+
+$(document).ready(function () {
+    updatePagination(document);
+
+    $.ajax({
+        url: '/super_user/hotel-type/',
+        method: 'GET',
+        success: function (data) {
+            $('table tbody').html($(data).find('table tbody').html());
+            updatePagination(data);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
+

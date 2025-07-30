@@ -1,0 +1,2622 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-27 15:09+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: templates/superuser/add_amenties.html:8
+#: templates/superuser/add_amentity_detail.html:176
+msgid "Add Amenities"
+msgstr "أضف وسائل الراحة"
+
+#: templates/superuser/add_amenties.html:12
+#: templates/superuser/edit_amenties.html:17
+#: templates/superuser/manage_amenity.html:61
+msgid "Amenity Name(English)"
+msgstr "اسم المرفق (الإنجليزية)"
+
+#: templates/superuser/add_amenties.html:13
+#: templates/superuser/add_amenties.html:18
+#: templates/superuser/add_amentity_detail.html:182
+#: templates/superuser/edit_amenties.html:18
+#: templates/superuser/edit_amenties.html:23
+msgid "Enter the amenity name"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/add_amenties.html:17
+#: templates/superuser/edit_amenties.html:22
+#: templates/superuser/manage_amenity.html:62
+msgid "Amenity Name(Arabic)"
+msgstr "سم المرفق (العربية)"
+
+#: templates/superuser/add_amenties.html:23
+#: templates/superuser/edit_amenties.html:28
+#: templates/superuser/manage_amenity.html:63
+msgid "Amenity Type"
+msgstr "نوع وسائل الراحة"
+
+#: templates/superuser/add_amenties.html:26
+#: templates/superuser/edit_amenties.html:31
+msgid "Property Amenities"
+msgstr "مرافق المنشأة"
+
+#: templates/superuser/add_amenties.html:29
+msgid "Room Amenities"
+msgstr "مرافق الغرفة"
+
+#: templates/superuser/add_amenties.html:31
+msgid "Select Amenity type"
+msgstr "يخترنوع الراحة"
+
+#: templates/superuser/add_amenties.html:35
+#: templates/superuser/edit_amenties.html:39
+msgid "Upload Amenity Icon"
+msgstr "تحميل أيقونة الراحة"
+
+#: templates/superuser/add_amenties.html:42
+#: templates/superuser/add_amentity_detail.html:191
+#: templates/superuser/chalet_type.html:208
+#: templates/superuser/edit_amenties.html:46
+#: templates/superuser/hotel_detail_edit.html:652
+#: templates/superuser/hotel_detail_edit.html:694
+#: templates/superuser/hotel_type.html:199
+#: templates/superuser/hotel_type.html:254
+msgid "(Upload JPEG/PNG files)"
+msgstr "(تحميل ملفات JPEG/PNG)"
+
+#: templates/superuser/add_amenties.html:47
+#: templates/superuser/booking_management.html:81
+#: templates/superuser/chalet_type.html:68
+#: templates/superuser/chalet_type.html:214
+#: templates/superuser/chalet_type.html:267
+#: templates/superuser/dashboard_overview.html:123
+#: templates/superuser/edit_amenties.html:51
+#: templates/superuser/hotel_type.html:66
+#: templates/superuser/hotel_type.html:204
+#: templates/superuser/hotel_type.html:259
+#: templates/superuser/manage_amenity.html:64
+#: templates/superuser/room_type.html:934
+#: templates/superuser/room_type.html:1054
+#: templates/superuser/room_type.html:1104
+#: templates/superuser/user_management.html:79
+#: templates/superuser/user_management.html:224
+#: templates/superuser/user_management.html:278
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/superuser/add_amenties.html:50
+#: templates/superuser/chalet_type.html:39
+#: templates/superuser/chalet_type.html:217
+#: templates/superuser/chalet_type.html:270
+#: templates/superuser/edit_amenties.html:54
+#: templates/superuser/hotel_type.html:37
+#: templates/superuser/hotel_type.html:207
+#: templates/superuser/hotel_type.html:262
+#: templates/superuser/manage_amenity.html:39
+#: templates/superuser/manage_amenity.html:65
+#: templates/superuser/manage_amenity.html:84
+#: templates/superuser/register_view_table.html:86
+#: templates/superuser/room_type.html:910
+#: templates/superuser/room_type.html:1057
+#: templates/superuser/room_type.html:1107
+#: templates/superuser/user_management.html:49
+#: templates/superuser/user_management.html:96
+#: templates/superuser/user_management.html:228
+#: templates/superuser/user_management.html:282
+#: templates/superuser/user_management.html:321
+msgid "Active"
+msgstr "نشيط"
+
+#: templates/superuser/add_amenties.html:53
+#: templates/superuser/edit_amenties.html:57
+#: templates/superuser/manage_amenity.html:86
+msgid "In Active"
+msgstr "غير نشط"
+
+#: templates/superuser/add_amenties.html:57
+msgid "Vendor Email"
+msgstr "البريد الإلكتروني للمورد"
+
+#: templates/superuser/add_amenties.html:58
+msgid "Enter the email address of the Vendor"
+msgstr "أدخل عنوان البريد الإلكتروني للمورد"
+
+#: templates/superuser/add_amenties.html:61
+msgid "User does not exist"
+msgstr "المستخدم غير موجود"
+
+#: templates/superuser/add_amenties.html:65
+msgid "Amenity with this name  already exists"
+msgstr "وسائل الراحة بهذا الاسم موجودة بالفعل"
+
+#: templates/superuser/add_amenties.html:67
+#: templates/superuser/add_amentity_detail.html:197
+#: templates/superuser/add_commission.html:29
+#: templates/superuser/add_policy.html:101
+#: templates/superuser/add_policy.html:128
+#: templates/superuser/add_policy.html:140
+#: templates/superuser/chalet_approval.html:344
+#: templates/superuser/chalet_type.html:225
+#: templates/superuser/chalet_type.html:281
+#: templates/superuser/edit_amenties.html:63
+#: templates/superuser/edit_commission.html:28
+#: templates/superuser/hotel_approval_table.html:334
+#: templates/superuser/hotel_type.html:215
+#: templates/superuser/hotel_type.html:273
+#: templates/superuser/room_type.html:1065
+#: templates/superuser/room_type.html:1114
+#: templates/superuser/superuser_offers.html:401
+#: templates/superuser/superuser_offers.html:628
+#: templates/superuser/user_management.html:238
+#: templates/superuser/user_management.html:292
+msgid "Cancel"
+msgstr "يلغي"
+
+#: templates/superuser/add_amenties.html:68
+#: templates/superuser/add_amentity_detail.html:198
+#: templates/superuser/add_commission.html:30
+#: templates/superuser/chalet_type.html:226
+#: templates/superuser/hotel_type.html:216
+#: templates/superuser/room_type.html:1068
+msgid "Add"
+msgstr "يضيف"
+
+#: templates/superuser/add_amentity_detail.html:181
+msgid "Amenity Name"
+msgstr "اسم وسائل الراحة"
+
+#: templates/superuser/add_amentity_detail.html:186
+#: templates/superuser/manage_amenity.html:60
+msgid "Amenity Icon"
+msgstr "أيقونة الراحة"
+
+#: templates/superuser/add_amentity_detail.html:195
+#: templates/superuser/edit_amenties.html:61 views.py:522 views.py:1178
+msgid "Amenity with this name already exists"
+msgstr "وسائل الراحة بهذا الاسم موجودة بالفعل"
+
+#: templates/superuser/add_commission.html:11
+#: templates/superuser/commission.html:39
+msgid "Add Commission"
+msgstr "إضافة العمولة"
+
+
+#: templates/superuser/add_commission.html:15
+#: templates/superuser/commission.html:50
+#: templates/superuser/edit_commission.html:14
+msgid "From Amount"
+msgstr "من مبلغ"
+
+#: templates/superuser/add_commission.html:16
+msgid "Enter the from-amount"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/add_commission.html:19
+#: templates/superuser/commission.html:51
+#: templates/superuser/edit_commission.html:18
+msgid "To Amount"
+msgstr "الى مبلغ"
+
+#: templates/superuser/add_commission.html:20
+msgid "Enter the to-amount"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/add_commission.html:23
+#: templates/superuser/edit_commission.html:22
+msgid "Commission Amount"
+msgstr "مبلغ العمولة"
+
+#: templates/superuser/add_commission.html:24
+#: templates/superuser/edit_commission.html:23
+msgid "Enter the commission amount"
+msgstr "أدخل نسبة العمولة"
+
+#: templates/superuser/add_commission.html:27
+#: templates/superuser/edit_commission.html:26
+msgid "Commission slab already exists"
+msgstr "لوحة العمولة موجودة بالفعل"
+
+#: templates/superuser/add_commission.html:52
+#: templates/superuser/commission.html:197
+msgid "Please enter valid numbers only (whole or decimal)."
+msgstr "الرجاء إدخال أرقام صحيحة فقط (كاملة أو عشرية)."
+
+#: templates/superuser/add_commission.html:58
+#: templates/superuser/commission.html:204
+#, python-brace-format
+msgid "Each input must be ${maxLength} digits or fewer."
+msgstr "يجب أن يتكون كل إدخال من أرقام ${maxLength} أو أقل."
+
+#: templates/superuser/add_commission.html:64
+#: templates/superuser/commission.html:222
+msgid "To Amount must be greater than From Amount."
+msgstr "يجب أن يكون المبلغ أكبر من مبلغ البداية."
+
+#: templates/superuser/add_policy.html:34
+#: templates/superuser/add_policy.html:92
+#: templates/superuser/add_policy.html:122
+#: templates/superuser/hotel_logo_navbar.html:41
+msgid "Policies"
+msgstr "السياسات"
+
+#: templates/superuser/add_policy.html:36
+#: templates/superuser/add_policy.html:82
+#: templates/superuser/add_policy.html:99
+#: templates/superuser/add_policy.html:125
+msgid "Add New Policy"
+msgstr "إضافة سياسة جديدة"
+
+#: templates/superuser/add_policy.html:45
+#: templates/superuser/add_policy.html:112
+msgid "Edit Policy"
+msgstr "تحرير السياسة"
+
+#: templates/superuser/add_policy.html:48
+#: templates/superuser/add_policy.html:136
+msgid "Delete Policy"
+msgstr "تحرير وسائل الراحة"
+
+#: templates/superuser/add_policy.html:73
+msgid "No policies available."
+msgstr "لا توجد سياسات متاحة."
+
+#: templates/superuser/add_policy.html:87
+#: templates/superuser/add_policy.html:117
+#: templates/superuser/superuser_offers.html:246
+#: templates/superuser/superuser_offers.html:457
+msgid "Category"
+msgstr "فئة"
+
+#: templates/superuser/add_policy.html:88
+msgid "Enter the policy category"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/add_policy.html:94
+#: templates/superuser/add_policy.html:172
+#: templates/superuser/add_policy.html:429
+msgid "Enter the policy"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/add_policy.html:102
+#: templates/superuser/add_policy.html:129
+#: templates/superuser/chalet_type.html:282
+#: templates/superuser/edit_amenties.html:64
+#: templates/superuser/edit_commission.html:29
+#: templates/superuser/superuser_offers.html:403
+#: templates/superuser/superuser_offers.html:629
+#: templates/superuser/user_management.html:239
+#: templates/superuser/user_management.html:293
+msgid "Save"
+msgstr "يحفظ"
+
+#: templates/superuser/add_policy.html:118
+msgid "Enter the Policy Category"
+msgstr "أدخل فئة السياسة"
+
+#: templates/superuser/add_policy.html:137
+msgid "Are you sure you want to delete this policy?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه السياسة؟"
+
+#: templates/superuser/add_policy.html:137
+msgid "This action cannot be undone."
+msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+#: templates/superuser/add_policy.html:139
+msgid "Yes, Delete"
+msgstr "نعم، حذف"
+
+#: templates/superuser/add_policy.html:238
+msgid "Category cannot be empty."
+msgstr "لا يمكن أن تكون الفئة فارغة."
+
+#: templates/superuser/add_policy.html:241
+#: templates/superuser/add_policy.html:463
+msgid "Category name must be 50 characters or less."
+msgstr "يجب أن يكون اسم الفئة 50 حرفًا أو أقل."
+
+#: templates/superuser/add_policy.html:244
+#: templates/superuser/add_policy.html:468
+msgid "Category name must contain only alphabetic characters and spaces."
+msgstr "يجب أن تحتوي الفئة على أحرف أبجدية ومسافات فقط."
+
+#: templates/superuser/add_policy.html:249
+#: templates/superuser/add_policy.html:506
+msgid "At least one policy must be provided."
+msgstr "يجب توفير سياسة واحدة على الأقل."
+
+#: templates/superuser/add_policy.html:289 views.py:1263
+msgid "Policies Created Successfully"
+msgstr "تم إنشاء السياسات بنجاح"
+
+#: templates/superuser/add_policy.html:291 views.py:1266
+msgid "Policy Category Already Exists"
+msgstr "فئة السياسة موجودة بالفعل"
+
+#: templates/superuser/add_policy.html:313
+msgid "An error occurred while saving policies."
+msgstr "حدث خطأ أثناء حفظ السياسات."
+
+#: templates/superuser/add_policy.html:316
+msgid "Please enter a category and at least one policy."
+msgstr "الرجاء إدخال فئة وسياسة واحدة على الأقل."
+
+#: templates/superuser/add_policy.html:461
+msgid "Category name cannot be empty or contain only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة فارغًا أو يحتوي على مسافات فقط."
+
+#: templates/superuser/add_policy.html:473
+msgid "Category name cannot be only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة مسافات فقط."
+
+#: templates/superuser/add_policy.html:498
+msgid "Policy "
+msgstr "سياسة"
+
+#: templates/superuser/add_policy.html:498
+msgid " cannot be empty or contain only spaces."
+msgstr "لا يمكن أن تكون فارغة أو تحتوي على مسافات فقط."
+
+#: templates/superuser/add_policy.html:577
+msgid "Policy has been deleted"
+msgstr "تم حذف السياسة"
+
+#: templates/superuser/add_policy.html:581
+msgid "Something went wrong"
+msgstr "حدث خطأ ما"
+
+#: templates/superuser/booking_management.html:43
+#: templates/superuser/register_view_table.html:41
+#: templates/superuser/review_rating.html:39
+#: templates/superuser/transaction_detail.html:39
+msgid "From: Sep 8, 2023"
+msgstr "من: 8 سبتمبر 2023"
+
+#: templates/superuser/booking_management.html:47
+#: templates/superuser/register_view_table.html:44
+#: templates/superuser/review_rating.html:43
+#: templates/superuser/transaction_detail.html:43
+msgid "To: Sep 8, 2023"
+msgstr "إلى: 8 سبتمبر 2023"
+
+#: templates/superuser/booking_management.html:52
+msgid "Status Type"
+msgstr "نوع الحالة"
+
+#: templates/superuser/booking_management.html:53
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#: templates/superuser/booking_management.html:54
+#: templates/superuser/register_view_table.html:50
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: templates/superuser/booking_management.html:55
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+#: templates/superuser/booking_management.html:56
+msgid "Completed"
+msgstr "مكتمل"
+
+#: templates/superuser/booking_management.html:69
+#: templates/superuser/chalet_type.html:44
+#: templates/superuser/hotel_top_nav.html:16
+#: templates/superuser/hotel_type.html:42
+#: templates/superuser/register_view_table.html:63
+#: templates/superuser/review_rating.html:64
+#: templates/superuser/room_type.html:916
+#: templates/superuser/superuser_offers.html:53
+#: templates/superuser/transaction_detail.html:71
+#: templates/superuser/manage_amenity.html:43
+#: templates/superuser/user_management.html:63
+msgid "Search"
+msgstr "بحث"
+
+#: templates/superuser/booking_management.html:79
+#: templates/superuser/dashboard_overview.html:119
+#: templates/superuser/register_view_table.html:76
+#: templates/superuser/register_view_table.html:121
+#: templates/superuser/review_rating.html:75
+#: templates/superuser/superuser_offers.html:73
+#: templates/superuser/transaction_detail.html:82
+msgid "Sl. No."
+msgstr "التسلسل"
+
+#: templates/superuser/booking_management.html:80
+#: templates/superuser/booking_management.html:219
+#: templates/superuser/hotel_approval_table.html:44
+#: templates/superuser/hotel_detail_edit.html:433
+#: templates/superuser/register_view_table.html:77
+#: templates/superuser/transaction_detail.html:83
+msgid "Hotel Name"
+msgstr "تحديث"
+
+#: templates/superuser/booking_management.html:82
+#: templates/superuser/dashboard_overview.html:124
+msgid "Check-In"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+
+#: templates/superuser/booking_management.html:83
+#: templates/superuser/dashboard_overview.html:125
+msgid "Check-Out"
+msgstr "الخروج"
+
+#: templates/superuser/booking_management.html:84
+msgid "Total Price"
+msgstr "السعر الإجمالي"
+
+#: templates/superuser/booking_management.html:101
+#: templates/superuser/commission.html:79
+#: templates/superuser/dashboard_overview.html:143
+#: templates/superuser/manage_amenity.html:98
+#: templates/superuser/review_rating.html:110
+#: templates/superuser/superuser_offers.html:133
+#: templates/superuser/transaction_detail.html:122
+msgid "No data found"
+msgstr "لاتوجد بيانات"
+
+#: templates/superuser/booking_management.html:218
+#: templates/superuser/chalet_approval.html:52
+#: templates/superuser/register_view_table.html:122
+msgid "Chalet Name"
+msgstr "اسم الشاليه"
+
+#: templates/superuser/chalet_approval.html:53
+#: templates/superuser/register_view_table.html:123
+msgid "Chalet Owner Name"
+msgstr "اسم مالك الشاليه"
+
+#: templates/superuser/chalet_approval.html:54
+#: templates/superuser/register_view_table.html:124
+msgid "Chalet Owner Email"
+msgstr "بريد مالك الشاليه الإلكتروني"
+
+#: templates/superuser/chalet_approval.html:55
+#: templates/superuser/hotel_approval_table.html:47
+#: templates/superuser/hotel_detail_edit.html:461
+#: templates/superuser/register_view_table.html:79
+#: templates/superuser/register_view_table.html:125
+msgid "Office Number"
+msgstr "رقم المكتب"
+
+#: templates/superuser/chalet_approval.html:56
+#: templates/superuser/hotel_logo_navbar.html:54
+msgid "Chalet Type"
+msgstr "نوع الشاليه"
+
+#: templates/superuser/chalet_approval.html:77
+#: templates/superuser/chalet_approval.html:82
+#: templates/superuser/chalet_approval.html:121
+#: templates/superuser/chalet_approval.html:136
+#: templates/superuser/chalet_approval.html:193
+#: templates/superuser/chalet_approval.html:201
+#: templates/superuser/hotel_approval_table.html:113
+#: templates/superuser/hotel_approval_table.html:143
+#: templates/superuser/hotel_approval_table.html:156
+#: templates/superuser/hotel_approval_table.html:179
+msgid "Not available"
+msgstr "غير متوفر"
+
+#: templates/superuser/chalet_approval.html:97
+#: templates/superuser/hotel_approval_table.html:67
+#: templates/superuser/hotel_detail_edit.html:503
+#: templates/superuser/register_view_table.html:126
+msgid "GSM Number"
+msgstr "رقم الجوال"
+
+#: templates/superuser/chalet_approval.html:98
+#: templates/superuser/register_view_table.html:127
+msgid "Chalet Address"
+msgstr "عنوان الشاليه"
+
+#: templates/superuser/chalet_approval.html:99
+#: templates/superuser/hotel_approval_table.html:69
+#: templates/superuser/hotel_detail_edit.html:514
+msgid "Locality"
+msgstr "منطقة"
+
+#: templates/superuser/chalet_approval.html:100
+#: templates/superuser/hotel_approval_table.html:70
+msgid "Account Number"
+msgstr "رقم الحساب"
+
+#: templates/superuser/chalet_approval.html:101
+#: templates/superuser/hotel_approval_table.html:131
+msgid "Payments Accepted"
+msgstr "طريقة الدفع المقبولة"
+
+#: templates/superuser/chalet_approval.html:149
+#: templates/superuser/hotel_approval_table.html:95
+msgid "Account Holder Name"
+msgstr "اسم صاحب الحساب"
+
+#: templates/superuser/chalet_approval.html:150
+#: templates/superuser/hotel_approval_table.html:96
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#: templates/superuser/chalet_approval.html:151
+#: templates/superuser/hotel_approval_table.html:98
+#: templates/superuser/hotel_detail_edit.html:487
+#: templates/superuser/register_view_table.html:130
+msgid "City"
+msgstr "المدينة"
+
+#: templates/superuser/chalet_approval.html:152
+#: templates/superuser/hotel_approval_table.html:97
+msgid "Governorate/state"
+msgstr ""
+
+#: templates/superuser/chalet_approval.html:153
+#: templates/superuser/hotel_approval_table.html:127
+#: templates/superuser/hotel_detail_edit.html:495
+#: templates/superuser/register_view_table.html:128
+msgid "Country"
+msgstr "الدولة"
+
+#: templates/superuser/chalet_approval.html:179
+#: templates/superuser/hotel_approval_table.html:168
+#: templates/superuser/hotel_detail_edit.html:542
+#: templates/superuser/register_view_table.html:82
+#: templates/superuser/register_view_table.html:133
+msgid "CR Number"
+msgstr "رقم السجل التجاري"
+
+#: templates/superuser/chalet_approval.html:180
+#: templates/superuser/hotel_approval_table.html:129
+#: templates/superuser/hotel_detail_edit.html:558
+#: templates/superuser/register_view_table.html:84
+#: templates/superuser/register_view_table.html:135
+msgid "VAT Number"
+msgstr "رقم ضريبة القيمة المضافة"
+
+#: templates/superuser/chalet_approval.html:181
+msgid "Chalet Description"
+msgstr "وصف الشاليه"
+
+#: templates/superuser/chalet_approval.html:182
+msgid "Chalet Policies"
+msgstr "سياسات الشاليهات"
+
+#: templates/superuser/chalet_approval.html:183
+#: templates/superuser/hotel_approval_table.html:169
+msgid "Taxes (percentage)"
+msgstr "أدخل نسبة الخصم"
+
+#: templates/superuser/chalet_approval.html:223
+#: templates/superuser/hotel_approval_table.html:204
+msgid "No taxes available"
+msgstr "لا توجد ضرائب متاحة"
+
+#: templates/superuser/chalet_approval.html:236
+#: templates/superuser/hotel_approval_table.html:215
+#: templates/superuser/hotel_detail_edit.html:633
+msgid "Hotel Logo"
+msgstr "شعار الفندق"
+
+#: templates/superuser/chalet_approval.html:243
+#: templates/superuser/hotel_approval_table.html:222
+msgid "No logo available"
+msgstr "لا يوجد شعار متاح"
+
+#: templates/superuser/chalet_approval.html:248
+#: templates/superuser/hotel_approval_table.html:227
+#: templates/superuser/hotel_detail_edit.html:660
+msgid "Hotel Images"
+msgstr "صور الفندق"
+
+#: templates/superuser/chalet_approval.html:255
+#: templates/superuser/hotel_approval_table.html:234
+msgid "No images available"
+msgstr "لا توجد صور متاحة"
+
+#: templates/superuser/chalet_approval.html:266
+#: templates/superuser/hotel_approval_table.html:260
+msgid "Approval Status:"
+msgstr "حالة الموافقة"
+
+#: templates/superuser/chalet_approval.html:279
+#: templates/superuser/chalet_approval.html:295
+#: templates/superuser/hotel_approval_table.html:273
+#: templates/superuser/hotel_approval_table.html:289
+msgid "Reject"
+msgstr "رفض"
+
+#: templates/superuser/chalet_approval.html:286
+#: templates/superuser/chalet_approval.html:303
+#: templates/superuser/hotel_approval_table.html:280
+#: templates/superuser/hotel_approval_table.html:297
+msgid "Approve"
+msgstr "موافقة"
+
+#: templates/superuser/chalet_approval.html:328
+#: templates/superuser/hotel_approval_table.html:318
+msgid "Write Rejection Remark"
+msgstr "كتابة ملاحظة الرفض"
+
+#: templates/superuser/chalet_approval.html:337
+#: templates/superuser/hotel_approval_table.html:327
+msgid "Enter rejection reason"
+msgstr "أدخل سبب الرفض"
+
+#: templates/superuser/chalet_approval.html:345
+#: templates/superuser/hotel_approval_table.html:335
+msgid "Post"
+msgstr "بريد"
+
+#: templates/superuser/chalet_approval.html:408
+msgid "Chalet Approved"
+msgstr "تمت الموافقة على الشاليه"
+
+#: templates/superuser/chalet_approval.html:410
+msgid "Chalet Rejected"
+msgstr "الشاليه مرفوض"
+
+#: templates/superuser/chalet_approval.html:419
+msgid "Chalet Approved, mail sent successfully"
+msgstr "تمت الموافقة على الشاليه، وتم إرسال البريد بنجاح"
+
+#: templates/superuser/chalet_approval.html:451
+msgid "Chalet Rejected, mail sent successfully"
+msgstr "تم رفض الشاليه وتم إرسال البريد بنجاح"
+
+#: templates/superuser/chalet_type.html:36
+#: templates/superuser/hotel_type.html:34
+#: templates/superuser/room_type.html:906
+#: templates/superuser/transaction_detail.html:63
+#: templates/superuser/user_management.html:77
+#: templates/superuser/dashboard_overview.html:120
+msgid "Name"
+msgstr "اسم"
+
+#: templates/superuser/chalet_type.html:38
+#: templates/superuser/hotel_type.html:36
+#: templates/superuser/register_view_table.html:48
+#: templates/superuser/room_type.html:909
+msgid "All"
+msgstr "جميع"
+
+#: templates/superuser/chalet_type.html:40
+#: templates/superuser/chalet_type.html:219
+#: templates/superuser/chalet_type.html:272
+#: templates/superuser/hotel_type.html:38
+#: templates/superuser/hotel_type.html:209
+#: templates/superuser/hotel_type.html:264
+#: templates/superuser/manage_amenity.html:40
+#: templates/superuser/room_type.html:911
+#: templates/superuser/room_type.html:1059
+#: templates/superuser/room_type.html:1109
+#: templates/superuser/user_management.html:50
+#: templates/superuser/user_management.html:96
+#: templates/superuser/user_management.html:232
+#: templates/superuser/user_management.html:286
+#: templates/superuser/user_management.html:326
+msgid "Inactive"
+msgstr "غير نشط"
+
+#: templates/superuser/chalet_type.html:50
+#: templates/superuser/chalet_type.html:186
+msgid "Add Chalet Type"
+msgstr "أضف نوع الشاليه"
+
+#: templates/superuser/chalet_type.html:59
+#: templates/superuser/chalet_type.html:204
+#: templates/superuser/chalet_type.html:258
+msgid "Chalet Type Icon"
+msgstr "رمز نوع الشاليه"
+
+#: templates/superuser/chalet_type.html:62
+msgid "Chalet Type ( English )"
+msgstr "نوع الشاليه (انجليزي)"
+
+#: templates/superuser/chalet_type.html:65
+msgid "Chalet Type ( Arabic )"
+msgstr "نوع الشاليه (عربي)"
+
+#: templates/superuser/chalet_type.html:71
+#: templates/superuser/commission.html:53
+#: templates/superuser/hotel_type.html:69
+#: templates/superuser/room_type.html:935
+#: templates/superuser/superuser_offers.html:92
+msgid "Action"
+msgstr "فعل"
+
+#: templates/superuser/chalet_type.html:102
+#: templates/superuser/commission.html:67
+#: templates/superuser/hotel_type.html:91
+#: templates/superuser/hotel_type.html:274
+#: templates/superuser/manage_amenity.html:91
+#: templates/superuser/register_view_table.html:109
+#: templates/superuser/register_view_table.html:164
+#: templates/superuser/room_type.html:955
+#: templates/superuser/room_type.html:1115
+#: templates/superuser/superuser_offers.html:205
+#: templates/superuser/user_management.html:132
+#: templates/superuser/user_management.html:142
+msgid "Edit"
+msgstr "تحرير"
+
+#: templates/superuser/chalet_type.html:106
+#: templates/superuser/commission.html:71
+#: templates/superuser/hotel_type.html:95
+#: templates/superuser/room_type.html:959
+#: templates/superuser/user_management.html:135
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/superuser/chalet_type.html:115
+#: templates/superuser/room_type.html:968
+#: templates/superuser/user_management.html:154
+msgid "No results found for your search criteria."
+msgstr "لم يتم العثور على نتائج لمعايير البحث الخاصة بك."
+
+#: templates/superuser/chalet_type.html:192
+#: templates/superuser/chalet_type.html:243
+msgid "Chalet Type (English)"
+msgstr "نوع الشاليه (انجليزي)"
+
+#: templates/superuser/chalet_type.html:193
+msgid "Enter chalet type in english"
+msgstr "أدخل نوع الشاليه باللغة الإنجليزية"
+
+#: templates/superuser/chalet_type.html:194
+#: templates/superuser/chalet_type.html:245
+msgid "Chalet Type(English) required"
+msgstr "مطلوب نوع الشاليه (انجليزي)."
+
+#: templates/superuser/chalet_type.html:195
+#: templates/superuser/chalet_type.html:246
+msgid "This Chalet type (English) already exists."
+msgstr "هذا النوع من الفندق (باللغة الإنجليزية) موجود بالفعل."
+
+#: templates/superuser/chalet_type.html:198
+#: templates/superuser/chalet_type.html:250
+msgid "Chalet Type (Arabic)"
+msgstr "نوع الشاليه (عربي)"
+
+#: templates/superuser/chalet_type.html:199
+msgid "Enter chalet type in arabic "
+msgstr "أدخل نوع الشاليه باللغة العربية"
+
+#: templates/superuser/chalet_type.html:200
+#: templates/superuser/chalet_type.html:252
+msgid "Chalet Type(Arabic) required"
+msgstr "مطلوب نوع الشاليه (عربي)."
+
+#: templates/superuser/chalet_type.html:201
+#: templates/superuser/chalet_type.html:253
+msgid "This Chalet type (Arabic) already exists."
+msgstr "هذا النوع من الشاليهات (عربي) موجود بالفعل."
+
+#: templates/superuser/chalet_type.html:209
+#: templates/superuser/chalet_type.html:262
+msgid "Chalet Type icon required"
+msgstr "مطلوب رمز نوع الشاليه"
+
+#: templates/superuser/chalet_type.html:239
+msgid "Edit Chalet Type"
+msgstr "تعديل نوع الشاليه"
+
+#: templates/superuser/chalet_type.html:559
+#: templates/superuser/chalet_type.html:745
+msgid "Chalet Type (English) should contain only English alphabets"
+msgstr ""
+"يجب أن يحتوي نوع الشاليه (الإنجليزية) على الحروف الهجائية الإنجليزية فقط"
+
+#: templates/superuser/chalet_type.html:565
+#: templates/superuser/chalet_type.html:751
+msgid "Chalet Type (English) length should be between 2 and 50"
+msgstr "نوع الشاليه (إنجليزي) يجب أن يتراوح طوله بين 2 و50"
+
+#: templates/superuser/chalet_type.html:582
+#: templates/superuser/chalet_type.html:768
+msgid "Chalet Type (Arabic) should contain only Arabic"
+msgstr "نوع الشاليه (عربي) يجب أن يحتوي على اللغة العربية فقط"
+
+#: templates/superuser/chalet_type.html:588
+#: templates/superuser/chalet_type.html:774
+msgid "Chalet Type (Arabic) length should be between 2 and 50"
+msgstr "نوع الشاليه (عربي) يجب أن يتراوح طوله بين 2 و50"
+
+#: templates/superuser/chalet_type.html:630
+msgid "Chalet Type added successfully!"
+msgstr "تمت إضافة نوع الشاليه بنجاح!"
+
+#: templates/superuser/chalet_type.html:807
+msgid "Chalet Type edited successfully!"
+msgstr "تم تعديل نوع الشاليه بنجاح!"
+
+#: templates/superuser/chalet_type.html:815
+#: templates/superuser/chalet_type.html:860
+#: templates/superuser/hotel_type.html:793
+#: templates/superuser/hotel_type.html:836
+msgid "An error occured"
+msgstr "حدث خطأ"
+
+#: templates/superuser/chalet_type.html:829
+msgid "Are you sure you want to delete this Chalet Type?"
+msgstr "هل أنت متأكد من رغبتك في حذف نوع الشاليه هذا؟"
+
+#: templates/superuser/chalet_type.html:941
+#: templates/superuser/dashboard_overview.html:451
+#: templates/superuser/hotel_type.html:917
+#: templates/superuser/superuser_offers.html:705
+#: templates/superuser/superuser_offers.html:974
+#: templates/superuser/superuser_offers.html:1557
+msgid "Error fetching pagination data. Please try again later."
+msgstr ""
+"حدث خطأ أثناء جلب بيانات ترقيم الصفحات. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+#: templates/superuser/commission.html:52
+#: templates/superuser/hotel_logo_navbar.html:44
+msgid "Commission"
+msgstr "عمولة"
+
+#: templates/superuser/commission.html:215
+msgid "Invalid amount values."
+msgstr "قيم المبلغ غير صالحة."
+
+#: templates/superuser/commission.html:281
+msgid "Are you sure you want to delete this commission?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه العمولة؟"
+
+#: templates/superuser/commission.html:295
+msgid "Failed to delete commission: "
+msgstr "فشل في حذف العمولة:"
+
+#: templates/superuser/dashboard_overview.html:65
+msgid "Bookings Rates"
+msgstr "أسعار الحجز"
+
+#: templates/superuser/dashboard_overview.html:73
+msgid "Cancellation Rates"
+msgstr "معدلات الإلغاء"
+
+#: templates/superuser/dashboard_overview.html:81
+msgid "Average Daily Rates"
+msgstr "متوسط ​​الأسعار اليومية"
+
+#: templates/superuser/dashboard_overview.html:89
+msgid "Review Rates"
+msgstr "مراجعة الأسعار"
+
+#: templates/superuser/dashboard_overview.html:104
+msgid "Latest Bookings"
+msgstr "أحدث الحجوزات"
+
+#: templates/superuser/dashboard_overview.html:108
+msgid "View All"
+msgstr "عرض الكل"
+
+#: templates/superuser/dashboard_overview.html:121
+msgid "Guest Name"
+msgstr "اسم الضيف"
+
+#: templates/superuser/dashboard_overview.html:122
+msgid "Contact Number"
+msgstr "رقم السجل التجاري"
+
+#: templates/superuser/dashboard_overview.html:228
+msgid "Visitor Statistics"
+msgstr "إحصائيات الزوار"
+
+#: templates/superuser/dashboard_overview.html:261
+msgid "Visitors"
+msgstr "الزوار"
+
+#: templates/superuser/dashboard_overview.html:291
+msgid "Reservation Statistics"
+msgstr "إحصائيات الحجز"
+
+#: templates/superuser/dashboard_overview.html:323
+msgid "Confirmed Bookings"
+msgstr "الحجوزات المؤكدة"
+
+#: templates/superuser/dashboard_overview.html:329
+msgid "Pending Bookings"
+msgstr "الحجوزات المعلقة"
+
+#: templates/superuser/dashboard_overview.html:335
+msgid "Cancelled Bookings"
+msgstr "الحجوزات الملغاة"
+
+#: templates/superuser/dashboard_overview.html:381
+msgid "Back"
+msgstr "خلف"
+
+#: templates/superuser/edit_amenties.html:11
+msgid "Edit Amenity"
+msgstr "تحرير وسائل الراحة"
+
+#: templates/superuser/edit_amenties.html:34
+msgid "Room Amenites"
+msgstr "مرافق الغرفة"
+
+#: templates/superuser/edit_commission.html:9
+msgid "Edit Commission"
+msgstr "تعديل العمولة"
+
+#: templates/superuser/edit_commission.html:15
+msgid "Enter the from amount"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/edit_commission.html:19
+msgid "Enter the to amount"
+msgstr "أدخل اسم الميزة"
+
+#: templates/superuser/hotel_approval_table.html:45
+#: templates/superuser/hotel_detail_edit.html:441
+#: templates/superuser/register_view_table.html:78
+msgid "Hotel Owner Name"
+msgstr "اسم مالك الفندق"
+
+#: templates/superuser/hotel_approval_table.html:46
+#: templates/superuser/hotel_detail_edit.html:449
+msgid "Hotel Owner Email"
+msgstr "بريد مالك الفندق الإلكتروني"
+
+#: templates/superuser/hotel_approval_table.html:68
+#: templates/superuser/hotel_detail_edit.html:469
+#: templates/superuser/register_view_table.html:80
+msgid "Hotel Address"
+msgstr "عنوان الفندق"
+
+#: templates/superuser/hotel_approval_table.html:84
+msgid " Not available"
+msgstr "غير متوفر"
+
+#: templates/superuser/hotel_approval_table.html:99
+#: templates/superuser/hotel_logo_navbar.html:60
+msgid "Hotel Type"
+msgstr "نوع الفندق"
+
+#: templates/superuser/hotel_approval_table.html:128
+msgid "Date Of Expiry"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#: templates/superuser/hotel_approval_table.html:130
+#: templates/superuser/hotel_detail_edit.html:611
+msgid "Hotel Description"
+msgstr "وصف الفندق"
+
+#: templates/superuser/hotel_approval_table.html:166
+#: templates/superuser/hotel_detail_edit.html:619
+msgid "Hotel Policies"
+msgstr "سياسات الفندق"
+
+#: templates/superuser/hotel_approval_table.html:167
+#: templates/superuser/hotel_detail_edit.html:597
+#: templates/superuser/register_view_table.html:81
+msgid "Hotel Rating"
+msgstr "تقييم الفندق"
+
+#: templates/superuser/hotel_approval_table.html:240
+msgid "Supporting Documents"
+msgstr "الوثائق الداعمة"
+
+#: templates/superuser/hotel_approval_table.html:245
+msgid "Supporting Document"
+msgstr "الوثائق الداعمة"
+
+#: templates/superuser/hotel_approval_table.html:248
+msgid "No documents available"
+msgstr "لا توجد وثائق متاحة"
+
+#: templates/superuser/hotel_approval_table.html:414
+msgid "Hotel Approved"
+msgstr "تمت الموافقة على الفندق"
+
+#: templates/superuser/hotel_approval_table.html:416
+msgid "Hotel Rejected"
+msgstr "الفندق مرفوض"
+
+#: templates/superuser/hotel_approval_table.html:426
+msgid "Hotel Approved, mail sent successfully"
+msgstr "تمت الموافقة على الفندق، تم إرسال البريد بنجاح"
+
+#: templates/superuser/hotel_approval_table.html:458
+msgid "Hotel Rejected, mail sent successfully"
+msgstr "تم رفض الفندق، تم إرسال البريد بنجاح"
+
+#: templates/superuser/hotel_detail_edit.html:477
+msgid "State/Province"
+msgstr "المحافظة / الولاية"
+
+#: templates/superuser/hotel_detail_edit.html:523
+msgid "House/Building/Apartment No."
+msgstr "رقم المنزل/المبنى/الشقة"
+
+#: templates/superuser/hotel_detail_edit.html:531
+msgid "Postal/ZIP code"
+msgstr "الرمز البريدي/الرمز البريدي"
+
+#: templates/superuser/hotel_detail_edit.html:550
+#: templates/superuser/register_view_table.html:83
+#: templates/superuser/register_view_table.html:134
+msgid "Date of Expiry"
+msgstr "تاريخ الانتهاء"
+
+#: templates/superuser/hotel_detail_edit.html:600
+msgid "Select hotel rating"
+msgstr "تقييم الفندق"
+
+#: templates/superuser/hotel_detail_edit.html:613
+msgid "Enter a few words about your hotel"
+msgstr "أدخل بضع كلمات عن فندقك"
+
+#: templates/superuser/hotel_detail_edit.html:622
+msgid "Enter a few words about your hotel policies"
+msgstr "أدخل بضع كلمات حول سياسات فندقك"
+
+#: templates/superuser/hotel_detail_edit.html:718
+msgid "No amenities available."
+msgstr "لا توجد وسائل الراحة المتاحة."
+
+#: templates/superuser/hotel_detail_edit.html:1004
+msgid "Hotel Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم الفندق فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1007
+msgid "Hotel Name must be between 3 and 15 characters long."
+msgstr "يجب أن يتراوح طول اسم الفندق بين 3 و15 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1016
+msgid "Hotel Owner Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم مالك الفندق فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1019
+msgid "Hotel Owner Name must be between 3 and 50 characters long."
+msgstr "يجب أن يتراوح طول اسم مالك الفندق بين 3 و50 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1028
+msgid "Hotel Owner Email cannot be empty."
+msgstr "لا يمكن أن يكون البريد الإلكتروني لمالك الفندق فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1031
+#: templates/superuser/user_management.html:588 views.py:1457
+msgid "Please enter a valid email address."
+msgstr "يرجى إدخال عنوان بريد إلكتروني صالح."
+
+#: templates/superuser/hotel_detail_edit.html:1040
+msgid "Office Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم المكتب فارغاً."
+
+#: templates/superuser/hotel_detail_edit.html:1043
+msgid "Office Number must be a 10-digit number."
+msgstr "يجب أن يتكون رقم المكتب من 10 أرقام."
+
+#: templates/superuser/hotel_detail_edit.html:1052
+msgid "Hotel Address cannot be empty."
+msgstr "لا يمكن أن يكون عنوان الفندق فارغاً."
+
+#: templates/superuser/hotel_detail_edit.html:1055
+msgid "Hotel Address must be between 5 and 100 characters long."
+msgstr "يجب أن يتراوح طول عنوان الفندق بين 5 و100 حرف."
+
+#: templates/superuser/hotel_detail_edit.html:1064
+msgid "State/Province cannot be empty."
+msgstr "لا يمكن ترك حقل الولاية/المقاطعة فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1067
+msgid "State/Province must be between 2 and 60 characters long."
+msgstr "يجب أن يتراوح طول الولاية/المقاطعة بين 2 و60 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1070
+msgid "State/Province cannot contain numbers."
+msgstr "لا يمكن أن تحتوي الولاية/المقاطعة على أرقام."
+
+#: templates/superuser/hotel_detail_edit.html:1079
+msgid "City cannot be empty."
+msgstr "لا يمكن للمدينة أن تكون فارغة."
+
+#: templates/superuser/hotel_detail_edit.html:1082
+msgid "City must be between 2 and 60 characters long."
+msgstr "يجب أن يتراوح طول المدينة بين 2 و60 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1085
+msgid "City cannot contain numbers."
+msgstr "لا يمكن أن تحتوي المدينة على أرقام."
+
+#: templates/superuser/hotel_detail_edit.html:1094
+msgid "Country cannot be empty."
+msgstr "لا يمكن للبلاد أن تكون فارغة."
+
+#: templates/superuser/hotel_detail_edit.html:1097
+msgid "Country must be between 2 and 60 characters long."
+msgstr "يجب أن يتراوح طول البلد بين 2 و60 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1100
+msgid "Country cannot contain numbers."
+msgstr "لا يمكن أن تحتوي الدولة على أرقام."
+
+#: templates/superuser/hotel_detail_edit.html:1109
+msgid "GSM Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم GSM فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1112
+msgid "GSM Number must be between 10 and 15 digits."
+msgstr "يجب أن يتراوح رقم GSM بين 10 و15 رقمًا."
+
+#: templates/superuser/hotel_detail_edit.html:1126
+msgid "Locality cannot be empty."
+msgstr "لا يمكن أن تكون المنطقة فارغة."
+
+#: templates/superuser/hotel_detail_edit.html:1129
+msgid "Locality must be between 2 and 50 characters long."
+msgstr "يجب أن يتراوح طول المنطقة/المنطقة بين 2 و50 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1132
+msgid "Locality must contain only alphabetic characters."
+msgstr "يجب أن تحتوي المنطقة على أحرف أبجدية فقط."
+
+#: templates/superuser/hotel_detail_edit.html:1141
+msgid "Building Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم المبنى فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1144
+msgid "Building Number must contain only numeric characters."
+msgstr "يجب أن يحتوي رقم المبنى على أحرف رقمية فقط."
+
+#: templates/superuser/hotel_detail_edit.html:1147
+msgid "Building Number must be between 1 and 20 characters long."
+msgstr "يجب أن يتراوح طول رقم المبنى بين 1 و20 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1157
+msgid "Postal/ZIP code cannot be empty."
+msgstr "لا يمكن أن يكون الرمز البريدي/الرمز البريدي فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1160
+msgid "Postal/ZIP code must be between 5 and 10 digits long."
+msgstr "يجب أن يتكون الرمز البريدي/الرمز البريدي من 5 إلى 10 أرقام."
+
+#: templates/superuser/hotel_detail_edit.html:1170
+msgid "CR Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم السجل التجاري فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1173
+msgid "CR Number must be between 5 and 20 characters long."
+msgstr "يجب أن يتراوح طول رقم السجل التجاري بين 5 و20 حرفًا."
+
+#: templates/superuser/hotel_detail_edit.html:1182
+msgid "Date of Expiry cannot be empty."
+msgstr "لا يمكن أن يكون تاريخ انتهاء الصلاحية فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1185
+msgid "Please enter a valid date in YYYY-MM-DD format."
+msgstr "الرجاء إدخال تاريخ صالح بتنسيق YYYY-MM-DD."
+
+#: templates/superuser/hotel_detail_edit.html:1188
+msgid "Date of Expiry must be a future date."
+msgstr "يجب أن يكون تاريخ انتهاء الصلاحية تاريخًا مستقبليًا."
+
+#: templates/superuser/hotel_detail_edit.html:1197
+msgid "VAT Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم ضريبة القيمة المضافة فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1200
+msgid "VAT Number must be between 5 and 20 alphanumeric characters long."
+msgstr ""
+"يجب أن يتراوح طول رقم ضريبة القيمة المضافة بين 5 و20 حرفًا أبجديًا رقميًا."
+
+#: templates/superuser/hotel_detail_edit.html:1210
+msgid "Hotel Rating must be selected."
+msgstr "يجب تحديد تصنيف الفندق."
+
+#: templates/superuser/hotel_detail_edit.html:1219
+msgid "Hotel Description cannot be empty."
+msgstr "لا يمكن أن يكون وصف الفندق فارغًا."
+
+#: templates/superuser/hotel_detail_edit.html:1222
+msgid "Hotel Description must be between 10 and 500 characters long."
+msgstr "يجب أن يتراوح طول وصف الفندق بين 10 و500 حرف."
+
+#: templates/superuser/hotel_detail_edit.html:1231
+msgid "Hotel Policies cannot be empty."
+msgstr "لا يمكن أن تكون سياسات الفندق فارغة."
+
+#: templates/superuser/hotel_detail_edit.html:1234
+msgid "Hotel Policies must be between 10 and 500 characters long."
+msgstr "يجب أن يتراوح طول سياسات الفندق بين 10 و500 حرف."
+
+#: templates/superuser/hotel_logo_navbar.html:20
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: templates/superuser/hotel_logo_navbar.html:23
+msgid "Registration Request"
+msgstr "طلبات التسجيل"
+
+#: templates/superuser/hotel_logo_navbar.html:26
+msgid "Reservations"
+msgstr "الحجوزات"
+
+#: templates/superuser/hotel_logo_navbar.html:29
+msgid "Amenities"
+msgstr "المرافق"
+
+#: templates/superuser/hotel_logo_navbar.html:32
+msgid "Reviews and Ratings"
+msgstr "المراجعات والتقييمات"
+
+#: templates/superuser/hotel_logo_navbar.html:35
+msgid "Offers and Promotional Campaigns"
+msgstr "العروض والحملات الترويجية"
+
+#: templates/superuser/hotel_logo_navbar.html:38
+msgid "Transaction Details"
+msgstr "تفاصيل المعاملات"
+
+#: templates/superuser/hotel_logo_navbar.html:48
+msgid "User Management"
+msgstr "إدارة المستخدم"
+
+#: templates/superuser/hotel_logo_navbar.html:64
+msgid "Room type"
+msgstr "نوع الغرفة"
+
+#: templates/superuser/hotel_top_nav.html:45
+#: templates/superuser/hotel_top_nav.html:73
+#: templates/superuser/user_management.html:110
+msgid "Admin"
+msgstr "مسؤل"
+
+#: templates/superuser/hotel_top_nav.html:61
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: templates/superuser/hotel_type.html:48
+#: templates/superuser/hotel_type.html:174
+msgid "Add Hotel Type"
+msgstr "أضف نوع الفندق"
+
+#: templates/superuser/hotel_type.html:57
+#: templates/superuser/hotel_type.html:195
+#: templates/superuser/hotel_type.html:250
+msgid "Hotel Type Icon"
+msgstr "رمز نوع الفندق"
+
+#: templates/superuser/hotel_type.html:60
+msgid "Hotel Type ( English )"
+msgstr "نوع الفندق (انجليزي)"
+
+#: templates/superuser/hotel_type.html:63
+msgid "Hotel Type ( Arabic )"
+msgstr "نوع الفندق (عربي)"
+
+#: templates/superuser/hotel_type.html:104
+msgid "No results found ."
+msgstr "لم يتم العثور على نتائج ."
+
+#: templates/superuser/hotel_type.html:181
+#: templates/superuser/hotel_type.html:234
+msgid "Hotel Type (English)"
+msgstr "نوع الفندق (انجليزي)"
+
+#: templates/superuser/hotel_type.html:182
+msgid "Enter hotel type in english"
+msgstr "أدخل نوع الفندق باللغة الإنجليزية"
+
+#: templates/superuser/hotel_type.html:183
+#: templates/superuser/hotel_type.html:236
+msgid "Hotel Type(English) required"
+msgstr "نوع الفندق (انجليزي) مطلوب"
+
+#: templates/superuser/hotel_type.html:184
+#: templates/superuser/hotel_type.html:237
+msgid "This hotel type (English) already exists."
+msgstr "هذا النوع من الفندق (باللغة الإنجليزية) موجود بالفعل."
+
+#: templates/superuser/hotel_type.html:187
+#: templates/superuser/hotel_type.html:241
+msgid "Hotel Type (Arabic)"
+msgstr "نوع الفندق (عربي)"
+
+#: templates/superuser/hotel_type.html:188
+msgid "Enter hotel type in arabic"
+msgstr "أدخل نوع الفندق باللغة العربية"
+
+#: templates/superuser/hotel_type.html:189
+#: templates/superuser/hotel_type.html:243
+msgid "Hotel Type(Arabic) required"
+msgstr "نوع الفندق (عربي) مطلوب"
+
+#: templates/superuser/hotel_type.html:190
+#: templates/superuser/hotel_type.html:244
+msgid "This hotel type (Arabic) already exists."
+msgstr "هذا النوع من الفنادق (عربي) موجود بالفعل."
+
+#: templates/superuser/hotel_type.html:200
+#: templates/superuser/hotel_type.html:255
+msgid "Hotel Type icon required"
+msgstr "رمز نوع الفندق مطلوب"
+
+#: templates/superuser/hotel_type.html:229
+msgid "Edit Hotel Type"
+msgstr "تعديل نوع الفندق"
+
+#: templates/superuser/hotel_type.html:321
+msgid "Please select an image file (JPEG/PNG)"
+msgstr "الرجاء تحديد ملف الصورة (JPEG/PNG)"
+
+#: templates/superuser/hotel_type.html:537
+#: templates/superuser/hotel_type.html:723
+msgid "Hotel Type (English) should contain only English alphabets"
+msgstr ""
+"يجب أن يحتوي نوع الفندق (الإنجليزية) على الحروف الهجائية الإنجليزية فقط"
+
+#: templates/superuser/hotel_type.html:543
+#: templates/superuser/hotel_type.html:729
+msgid "Hotel Type (English) length should be between 2 and 50"
+msgstr "نوع الفندق (إنجليزي) يجب أن يتراوح طوله بين 2 و50"
+
+#: templates/superuser/hotel_type.html:560
+#: templates/superuser/hotel_type.html:746
+msgid "Hotel Type (Arabic) should contain only Arabic"
+msgstr "يجب أن يحتوي اسم الميزة (عربي) على أحرف ومسافات باللغة العربية فقط."
+
+#: templates/superuser/hotel_type.html:566
+#: templates/superuser/hotel_type.html:752
+msgid "Hotel Type (Arabic) length should be between 2 and 50"
+msgstr "نوع الفندق (عربي) يجب أن يتراوح طوله بين 2 و50"
+
+#: templates/superuser/hotel_type.html:608
+msgid "Hotel Type added successfully!"
+msgstr "تمت إضافة نوع الفندق بنجاح!"
+
+#: templates/superuser/hotel_type.html:785
+msgid "Hotel Type edited successfully!"
+msgstr "تم تعديل نوع الفندق بنجاح!"
+
+#: templates/superuser/hotel_type.html:807
+msgid "Are you sure you want to delete this Hotel Type?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا النوع من الغرف؟"
+
+#: templates/superuser/manage_amenity.html:38
+#: templates/superuser/user_management.html:48
+msgid "All Status"
+msgstr "جميع الحالات"
+
+#: templates/superuser/manage_amenity.html:49
+msgid "Add Amenity"
+msgstr "أضف وسائل الراحة"
+
+#: templates/superuser/manage_amenity.html:214
+#: templates/superuser/manage_amenity.html:378
+msgid "Please upload JPEG or PNG image files only"
+msgstr "يرجى تحميل ملفات صور JPEG أو PNG فقط"
+
+#: templates/superuser/manage_amenity.html:221
+msgid "Please select only one image"
+msgstr "الرجاء تحديد صورة واحدة فقط"
+
+#: templates/superuser/manage_amenity.html:231
+#: templates/superuser/manage_amenity.html:388
+msgid "Please select an image"
+msgstr "الرجاء اختيار صورة"
+
+#: templates/superuser/manage_amenity.html:259
+#: templates/superuser/manage_amenity.html:408
+msgid "Amenity name is required in English or Arabic."
+msgstr "مطلوب اسم وسائل الراحة باللغة الإنجليزية أو العربية."
+
+#: templates/superuser/manage_amenity.html:264
+#: templates/superuser/manage_amenity.html:413
+msgid "Amenity Name (English) should contain only English letters and spaces."
+msgstr ""
+"يجب أن يحتوي اسم وسائل الراحة (باللغة الإنجليزية) على أحرف ومسافات باللغة "
+"الإنجليزية فقط."
+
+#: templates/superuser/manage_amenity.html:269
+#: templates/superuser/manage_amenity.html:418
+msgid "Amenity Name (English) should not exceed 100 characters."
+msgstr "يجب ألا يتجاوز اسم الميزة (بالإنجليزية) 100 حرف."
+
+#: templates/superuser/manage_amenity.html:274
+#: templates/superuser/manage_amenity.html:423
+msgid "Amenity Name (Arabic) should not exceed 100 characters."
+msgstr "يجب ألا يتجاوز اسم الميزة (عربي) 100 حرف."
+
+#: templates/superuser/manage_amenity.html:279
+#: templates/superuser/manage_amenity.html:428
+msgid "Amenity Name (Arabic) should contain only Arabic letters and spaces."
+msgstr "يجب أن يحتوي اسم الميزة (عربي) على أحرف ومسافات باللغة العربية فقط."
+
+#: templates/superuser/register_view_table.html:49
+msgid "Approved"
+msgstr "موافقة"
+
+#: templates/superuser/register_view_table.html:51
+msgid "Rejected"
+msgstr "مرفوض"
+
+#: templates/superuser/register_view_table.html:85
+#: templates/superuser/register_view_table.html:136
+msgid "Approval Status"
+msgstr "حالة الموافقة"
+
+#: templates/superuser/register_view_table.html:108
+#: templates/superuser/register_view_table.html:163
+msgid "View"
+msgstr "معاينة"
+
+#: templates/superuser/register_view_table.html:129
+msgid "State/ Province"
+msgstr "الولاية / المحافظة"
+
+#: templates/superuser/register_view_table.html:131
+msgid "Postal/ZIP Code"
+msgstr "الرمز البريدي / صندوق البريد"
+
+#: templates/superuser/register_view_table.html:132
+msgid "Propert Type"
+msgstr "أنواع العقارات"
+
+#: templates/superuser/review_rating.html:48
+#: templates/superuser/review_rating.html:77
+msgid "Rating"
+msgstr "تقييم"
+
+#: templates/superuser/review_rating.html:57
+msgid "HOTEL"
+msgstr "الفندق"
+
+#: templates/superuser/review_rating.html:58
+msgid "CHALET"
+msgstr "شاليه"
+
+
+
+#: templates/superuser/review_rating.html:78
+msgid "Date"
+msgstr "تاريخ"
+
+#: templates/superuser/review_rating.html:79
+#: templates/superuser/dashboard_overview.html:123
+msgid "Property"
+msgstr "ملكيات"
+
+
+#: templates/superuser/dashboard_overview.html:138
+msgid "Hotel"
+msgstr "الفندق"
+
+
+#: templates/superuser/dashboard_overview.html:146
+msgid "Chalet"
+msgstr "شاليه"
+
+#: templates/superuser/review_rating.html:80
+msgid "Review Text"
+msgstr "مراجعة نص"
+
+#: templates/superuser/review_rating.html:101
+msgid "See more"
+msgstr "شاهد المزيد"
+
+#: templates/superuser/room_type.html:924
+#: templates/superuser/room_type.html:1031
+msgid "Add Room Type"
+msgstr "إضافة نوع الغرفة"
+
+#: templates/superuser/room_type.html:932
+#: templates/superuser/room_type.html:1035
+#: templates/superuser/room_type.html:1085
+msgid "Room Type ( English )"
+msgstr "نوع الغرفة (بالإنجليزية)"
+
+#: templates/superuser/room_type.html:933
+#: templates/superuser/room_type.html:1041
+#: templates/superuser/room_type.html:1091
+msgid "Room Type ( Arabic )"
+msgstr "نوع الغرفة (بالعربية)"
+
+#: templates/superuser/room_type.html:1036
+#: templates/superuser/room_type.html:1086
+msgid "Enter Room type in English"
+msgstr "أدخل نوع الغرفة باللغة الإنجليزية"
+
+#: templates/superuser/room_type.html:1042
+#: templates/superuser/room_type.html:1092
+msgid "Enter Room type in Arabic"
+msgstr "أدخل نوع الغرفة باللغة العربية"
+
+#: templates/superuser/room_type.html:1081
+msgid "Edit Room Type"
+msgstr "تعديل نوع الغرفة"
+
+#: templates/superuser/room_type.html:1326
+msgid "Are you sure you want to delete this room type?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا النوع من الغرف؟"
+
+#: templates/superuser/superuser_offers.html:36
+msgid "Offer Creation And Management"
+msgstr "إنشاء العرض وإدارته"
+
+#: templates/superuser/superuser_offers.html:43
+#: templates/superuser/superuser_offers.html:462
+msgid "Common Promotion"
+msgstr "الترويج المشترك"
+
+#: templates/superuser/superuser_offers.html:44
+#: templates/superuser/superuser_offers.html:463
+msgid "Promo Code Specific"
+msgstr "الرمز الترويجي محدد"
+
+#: templates/superuser/superuser_offers.html:58
+msgid "Create New Offer"
+msgstr "إنشاء عروض جديدة"
+
+#: templates/superuser/superuser_offers.html:74
+#: templates/superuser/superuser_offers.html:222
+#: templates/superuser/superuser_offers.html:431
+msgid "Offer Name"
+msgstr "اسم العروض"
+
+#: templates/superuser/superuser_offers.html:75
+#: templates/superuser/superuser_offers.html:232
+#: templates/superuser/superuser_offers.html:443
+msgid "Description"
+msgstr "وصف"
+
+#: templates/superuser/superuser_offers.html:76
+#: templates/superuser/superuser_offers.html:258
+#: templates/superuser/superuser_offers.html:475
+msgid "Discount Percentage"
+msgstr "نسبة الخصم"
+
+#: templates/superuser/superuser_offers.html:79
+#: templates/superuser/superuser_offers.html:309
+#: templates/superuser/superuser_offers.html:532
+msgid "Promo Code"
+msgstr "الرمز الترويجي"
+
+#: templates/superuser/superuser_offers.html:80
+#: templates/superuser/superuser_offers.html:320
+#: templates/superuser/superuser_offers.html:544
+msgid "Max Uses"
+msgstr "أقصى عدد للاستخدامات"
+
+#: templates/superuser/superuser_offers.html:81
+#: templates/superuser/superuser_offers.html:90
+msgid "Validity Period"
+msgstr "فترة الصلاحية"
+
+#: templates/superuser/superuser_offers.html:83
+#: templates/superuser/superuser_offers.html:357
+#: templates/superuser/superuser_offers.html:583
+msgid "Targeted Offer Type"
+msgstr "نوع العرض المستهدف"
+
+#: templates/superuser/superuser_offers.html:85
+#: templates/superuser/superuser_offers.html:374
+#: templates/superuser/superuser_offers.html:600
+msgid "Occasion Name"
+msgstr "اسم المناسبة"
+
+#: templates/superuser/superuser_offers.html:87
+#: templates/superuser/superuser_offers.html:387
+#: templates/superuser/superuser_offers.html:614
+msgid "Points Required"
+msgstr "النقاط المطلوبة"
+
+#: templates/superuser/superuser_offers.html:89
+#: templates/superuser/superuser_offers.html:274
+#: templates/superuser/superuser_offers.html:493
+msgid "Minimum Spend"
+msgstr "الحد الأدنى للإنفاق"
+
+#: templates/superuser/superuser_offers.html:285
+#: templates/superuser/superuser_offers.html:332
+#: templates/superuser/superuser_offers.html:505
+#: templates/superuser/superuser_offers.html:556
+msgid "Valid From"
+msgstr "صالح من"
+
+#: templates/superuser/superuser_offers.html:295
+#: templates/superuser/superuser_offers.html:342
+#: templates/superuser/superuser_offers.html:517
+#: templates/superuser/superuser_offers.html:568
+msgid "Valid To"
+msgstr "صالح حتى"
+
+#: templates/superuser/superuser_offers.html:361
+#: templates/superuser/superuser_offers.html:587
+msgid "Early Bird"
+msgstr "الطائر المبكر"
+
+#: templates/superuser/superuser_offers.html:362
+#: templates/superuser/superuser_offers.html:588
+msgid "Last Minute"
+msgstr "اللحظة الأخيرة"
+
+#: templates/superuser/superuser_offers.html:363
+#: templates/superuser/superuser_offers.html:589
+msgid "Family Package"
+msgstr "الحزمة العائلية"
+
+#: templates/superuser/superuser_offers.html:418
+msgid "Add New Offer"
+msgstr "إضافة عرض جديد"
+
+#: templates/superuser/superuser_offers.html:435
+msgid "Enter offer name"
+msgstr "أدخل اسم العرض"
+
+#: templates/superuser/superuser_offers.html:447
+msgid "Enter offer description here..."
+msgstr "أدخل وصف العرض هنا..."
+
+#: templates/superuser/superuser_offers.html:480
+msgid "Enter discount percentage"
+msgstr "أدخل نسبة الخصم"
+
+#: templates/superuser/superuser_offers.html:497
+msgid "Enter minimum spend"
+msgstr "أدخل الحد الأدنى للإنفاق"
+
+#: templates/superuser/superuser_offers.html:746
+#: templates/superuser/superuser_offers.html:1219
+msgid "Offer Name is required."
+msgstr "مطلوب اسم العروض"
+
+#: templates/superuser/superuser_offers.html:757
+#: templates/superuser/superuser_offers.html:1228
+msgid "Description is required."
+msgstr "الوصف مطلوب."
+
+#: templates/superuser/superuser_offers.html:762
+#: templates/superuser/superuser_offers.html:1233
+msgid "Description cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز الوصف 100 حرف."
+
+#: templates/superuser/superuser_offers.html:768
+msgid "You need to enter discount percentage to proceed."
+msgstr "تحتاج إلى إدخال نسبة الخصم للمتابعة."
+
+#: templates/superuser/superuser_offers.html:773
+#: templates/superuser/superuser_offers.html:1246
+msgid "Please enter a valid discount percentage (between 0 and 100)."
+msgstr "الرجاء إدخال نسبة خصم صالحة (بين 0 و100)."
+
+#: templates/superuser/superuser_offers.html:795
+msgid "Minimum spend must be a whole number (no decimals)."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا (بدون أرقام عشرية)."
+
+#: templates/superuser/superuser_offers.html:800
+msgid "Please enter a valid minimum spend."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق."
+
+#: templates/superuser/superuser_offers.html:805
+msgid "Please specify a valid start date."
+msgstr "الرجاء تحديد تاريخ بدء صالح."
+
+#: templates/superuser/superuser_offers.html:810
+msgid "Please specify a valid end date."
+msgstr "الرجاء تحديد تاريخ انتهاء صالح."
+
+#: templates/superuser/superuser_offers.html:822
+#: templates/superuser/superuser_offers.html:873
+#: templates/superuser/superuser_offers.html:1291
+#: templates/superuser/superuser_offers.html:1358
+msgid "Valid From date cannot be in the past."
+msgstr "تاريخ صالح من لا يمكن أن يكون في الماضي."
+
+#: templates/superuser/superuser_offers.html:826
+#: templates/superuser/superuser_offers.html:877
+#: templates/superuser/superuser_offers.html:1294
+#: templates/superuser/superuser_offers.html:1362
+msgid "Validity To date cannot be in the past."
+msgstr "لا يمكن أن تكون الصلاحية حتى الآن في الماضي.\t"
+
+#: templates/superuser/superuser_offers.html:830
+msgid "Start date cannot be later than the end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/superuser/superuser_offers.html:843
+#: templates/superuser/superuser_offers.html:1308
+msgid "Promo code is required."
+msgstr "الرمز الترويجي مطلوب."
+
+#: templates/superuser/superuser_offers.html:848
+msgid "Promo code cannot exceed 50 characters."
+msgstr "لا يمكن أن يتجاوز الرمز الترويجي 50 حرفًا."
+
+#: templates/superuser/superuser_offers.html:854
+#: templates/superuser/superuser_offers.html:1339
+msgid "Please specify a valid number of max uses below 1999999999."
+msgstr "يرجى تحديد عدد صحيح من الاستخدامات القصوى أدناه 1999999999."
+
+#: templates/superuser/superuser_offers.html:858
+#: templates/superuser/superuser_offers.html:863
+#: templates/superuser/superuser_offers.html:1275
+#: templates/superuser/superuser_offers.html:1279
+#: templates/superuser/superuser_offers.html:1343
+#: templates/superuser/superuser_offers.html:1348
+msgid "Please specify a valid date."
+msgstr "يرجى تحديد تاريخ صالح."
+
+#: templates/superuser/superuser_offers.html:882
+#: templates/superuser/superuser_offers.html:1297
+#: templates/superuser/superuser_offers.html:1367
+msgid "Start date cannot be later than end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/superuser/superuser_offers.html:890
+#: templates/superuser/superuser_offers.html:1376
+msgid "Please select a targeted offer type."
+msgstr "الرجاء تحديد نوع العرض المستهدف."
+
+#: templates/superuser/superuser_offers.html:899
+#: templates/superuser/superuser_offers.html:1384
+msgid "Occasion name is required."
+msgstr "Event name is required."
+
+#: templates/superuser/superuser_offers.html:904
+#: templates/superuser/superuser_offers.html:1388
+msgid "Occasion name cannot be a number."
+msgstr "لا يمكن أن يكون اسم المناسبة رقمًا."
+
+#: templates/superuser/superuser_offers.html:909
+msgid "Occasion name cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز اسم المناسبة 100 حرف."
+
+#: templates/superuser/superuser_offers.html:919
+#: templates/superuser/superuser_offers.html:1396
+msgid "Please specify the points required."
+msgstr "يرجى تحديد النقاط المطلوبة."
+
+#: templates/superuser/superuser_offers.html:1013
+msgid "Error submitting the form. Please try again later."
+msgstr "حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/superuser/superuser_offers.html:1239
+msgid "You need to enter discount percentage or discount value to proceed."
+msgstr "تحتاج إلى إدخال نسبة الخصم أو قيمة الخصم للمتابعة."
+
+#: templates/superuser/superuser_offers.html:1266
+msgid "Minimum spend is required."
+msgstr "مطلوب الحد الأدنى للإنفاق."
+
+#: templates/superuser/superuser_offers.html:1268
+msgid "Minimum spend must be a whole number without decimal points."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا بدون نقاط عشرية."
+
+#: templates/superuser/superuser_offers.html:1270
+msgid "Please enter a valid minimum spend greater than zero."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق أكبر من الصفر."
+
+#: templates/superuser/superuser_offers.html:1434
+msgid "Error updating offer. Please try again later."
+msgstr "حدث خطأ أثناء تحديث العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/superuser/superuser_offers.html:1447
+msgid "Are you sure you want to delete this offer?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا العرض؟"
+
+#: templates/superuser/superuser_offers.html:1460
+msgid "Error deleting offer. Please try again later."
+msgstr "حدث خطأ أثناء حذف العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/superuser/transaction_detail.html:47
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#: templates/superuser/transaction_detail.html:55
+msgid "Transaction Status"
+msgstr "حالة المعاملة"
+
+#: templates/superuser/transaction_detail.html:69
+#: templates/superuser/transaction_detail.html:113
+msgid "Booking Status"
+msgstr "حالة الحجز"
+
+
+#: templates/superuser/transaction_detail.html:67
+msgid "Transaction ID"
+msgstr "رقم المعاملة"
+
+#: templates/superuser/transaction_detail.html:84
+msgid "Transaction <br>ID"
+msgstr "رقم المعاملة"
+
+#: templates/superuser/transaction_detail.html:85
+msgid "Booking <br>ID"
+msgstr "رقم الحجز"
+
+#: templates/superuser/transaction_detail.html:86
+msgid "Guest <br>Name"
+msgstr "اسم الضيف"
+
+#: templates/superuser/transaction_detail.html:87
+msgid "Transaction <br>Date"
+msgstr "تاريخ المعاملة"
+
+#: templates/superuser/transaction_detail.html:88
+msgid "Payment <br> Method"
+msgstr "طريقة الدفع"
+
+#: templates/superuser/transaction_detail.html:89
+msgid "Transaction <br> Type"
+msgstr "نوع المعاملة"
+
+
+#: templates/superuser/transaction_detail.html:89
+msgid "Discount Amount"
+msgstr "مبلغ الخصم"
+
+
+#: templates/superuser/transaction_detail.html:90
+msgid "Transaction <br> Status"
+msgstr "حالة المعاملة"
+
+#: templates/superuser/transaction_detail.html:91
+msgid "Transaction <br> Reference No:"
+msgstr "مرجع المعاملة"
+
+#: templates/superuser/transaction_detail.html:92
+msgid "Payment <br> Status"
+msgstr "حالة الدفع"
+
+#: templates/superuser/transaction_detail.html:93
+msgid "Payment <br> Gateway"
+msgstr "بوابة الدفع"
+
+#: templates/superuser/transaction_detail.html:94
+msgid "Transaction <br> Amount"
+msgstr "مبلغ المعاملة"
+
+#: templates/superuser/transaction_detail.html:95
+msgid "Hotel <br> Amount"
+msgstr "مبلغ الفندق"
+
+#: templates/superuser/transaction_detail.html:96
+msgid "Commission <br> Amount"
+msgstr "مبلغ العمولة"
+
+#: templates/superuser/user_management.html:44
+msgid "Search By Name"
+msgstr "البحث بالاسم"
+
+#: templates/superuser/user_management.html:55
+msgid "All OS"
+msgstr "جميع أنظمة التشغيل"
+
+#: templates/superuser/user_management.html:56
+msgid "Windows"
+msgstr "ويندوز"
+
+#: templates/superuser/user_management.html:57
+msgid "Android"
+msgstr "أندرويد"
+
+#: templates/superuser/user_management.html:58
+msgid "iOS"
+msgstr "آي أو إس"
+
+#: templates/superuser/user_management.html:68
+#: templates/superuser/user_management.html:197
+msgid "Add Admin"
+msgstr "أضف المشرف"
+
+#: templates/superuser/user_management.html:76
+msgid "Sl No"
+msgstr "التسلسل"
+
+#: templates/superuser/user_management.html:78
+#: templates/superuser/user_management.html:212
+#: templates/superuser/user_management.html:266
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: templates/superuser/user_management.html:80
+msgid "Operating System"
+msgstr "نظام التشغيل"
+
+#: templates/superuser/user_management.html:81
+msgid "User Type"
+msgstr "نوع المستخدم"
+
+#: templates/superuser/user_management.html:82
+msgid "Change status"
+msgstr "تغيير الحالة"
+
+#: templates/superuser/user_management.html:83
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: templates/superuser/user_management.html:108
+msgid "Superadmin"
+msgstr "مشرف سوبر"
+
+#: templates/superuser/user_management.html:112
+msgid "User"
+msgstr "مستخدم"
+
+#: templates/superuser/user_management.html:120
+#: templates/superuser/user_management.html:323
+msgid "Deactivate"
+msgstr "تعطيل"
+
+#: templates/superuser/user_management.html:122
+#: templates/superuser/user_management.html:328
+msgid "Activate"
+msgstr "تفعيل"
+
+#: templates/superuser/user_management.html:202
+#: templates/superuser/user_management.html:256
+msgid "First Name"
+msgstr "الاسم الأول"
+
+#: templates/superuser/user_management.html:203
+#: templates/superuser/user_management.html:257
+msgid "Enter first name"
+msgstr "أدخل الاسم الأول"
+
+#: templates/superuser/user_management.html:206
+#: templates/superuser/user_management.html:260
+msgid "Last Name"
+msgstr "اسم العائلة"
+
+#: templates/superuser/user_management.html:207
+#: templates/superuser/user_management.html:261
+msgid "Enter last name"
+msgstr "أدخل الاسم الأخير"
+
+#: templates/superuser/user_management.html:213
+#: templates/superuser/user_management.html:267
+msgid "Enter email"
+msgstr "أدخل البريد الإلكتروني"
+
+#: templates/superuser/user_management.html:216
+#: templates/superuser/user_management.html:270
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/superuser/user_management.html:217
+#: templates/superuser/user_management.html:271
+msgid "Enter password"
+msgstr "أدخل كلمة المرور"
+
+#: templates/superuser/user_management.html:220
+#: templates/superuser/user_management.html:221
+#: templates/superuser/user_management.html:274
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/superuser/user_management.html:251
+msgid "Edit Admin"
+msgstr "تحرير المشرف"
+
+#: templates/superuser/user_management.html:275
+msgid "Confirm password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/superuser/user_management.html:431
+msgid "First Name is required."
+msgstr "الاسم الأول مطلوب."
+
+#: templates/superuser/user_management.html:434
+msgid "First Name can only contain alphabets and spaces."
+msgstr "يمكن أن يحتوي الاسم الأول على أحرف أبجدية ومسافات فقط."
+
+#: templates/superuser/user_management.html:439
+msgid "Last Name is required."
+msgstr "الاسم الأخير مطلوب."
+
+#: templates/superuser/user_management.html:442
+msgid "Last Name can only contain alphabets and spaces."
+msgstr "يمكن أن يحتوي اسم العائلة على أحرف أبجدية ومسافات فقط."
+
+#: templates/superuser/user_management.html:447
+msgid "Valid Email is required."
+msgstr "مطلوب بريد إلكتروني صالح."
+
+#: templates/superuser/user_management.html:452
+msgid ""
+"Password must be at least 8 characters, include 1 uppercase, 1 lowercase, "
+"and 1 special character."
+msgstr ""
+"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتتضمن حرفًا واحدًا كبيرًا وحرفًا "
+"صغيرًاوشخصية خاصة واحدة."
+
+#: templates/superuser/user_management.html:457
+#: templates/superuser/user_management.html:599 views.py:1463
+msgid "Passwords do not match."
+msgstr "كلمات المرور غير متطابقة."
+
+#: templates/superuser/user_management.html:487
+msgid "Something went wrong! Please try again."
+msgstr "حدث خطأ ما! يرجى المحاولة مرة أخرى."
+
+#: templates/superuser/user_management.html:571
+msgid "First name cannot be empty."
+msgstr "لا يمكن أن يكون الاسم الأول فارغًا."
+
+#: templates/superuser/user_management.html:575 views.py:1451
+msgid "First name can only contain letters and spaces."
+msgstr "يمكن أن يحتوي الاسم الأول على أحرف ومسافات فقط."
+
+#: templates/superuser/user_management.html:579
+msgid "Last name cannot be empty."
+msgstr "لا يمكن أن يكون الاسم الأخير فارغًا."
+
+#: templates/superuser/user_management.html:583 views.py:1454
+msgid "Last name can only contain letters and spaces."
+msgstr "يمكن أن يحتوي الاسم الأخير على أحرف ومسافات فقط."
+
+#: templates/superuser/user_management.html:586
+msgid "Email cannot be empty."
+msgstr "لا يمكن أن يكون البريد الإلكتروني فارغًا."
+
+#: templates/superuser/user_management.html:592
+msgid "Password cannot be empty."
+msgstr "لا يمكن أن تكون كلمة المرور فارغة."
+
+#: templates/superuser/user_management.html:596 views.py:1460
+msgid ""
+"Password must be at least 8 characters and include uppercase, lowercase, a "
+"number, and a special character."
+msgstr ""
+"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتتضمن أحرفًا كبيرة وصغيرة ورقم، "
+"وشخصية خاصة."
+
+#: templates/superuser/user_management.html:617
+msgid "New admin added successfully!"
+msgstr "تمت إضافة المشرف الجديد بنجاح!"
+
+#: templates/superuser/user_management.html:630
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+#: templates/superuser/user_management.html:652
+msgid "Are you sure you want to delete this admin?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا المشرف؟"
+
+#: templates/superuser/user_management.html:662
+msgid "Admin deleted successfully!"
+msgstr "تم حذف المشرف بنجاح!"
+
+#: templates/superuser/user_management.html:665
+msgid "Error: "
+msgstr "خطأ:"
+
+#: templates/superuser/user_management.html:669
+msgid "Something went wrong: "
+msgstr "حدث خطأ ما:"
+
+#: views.py:53
+msgid "Invalid language code"
+msgstr "رمز اللغة غير صالح"
+
+#: views.py:204 views.py:279
+msgid "Hotel status updated successfully."
+msgstr "تم تحديث حالة الفندق بنجاح."
+
+#: views.py:518 views.py:597
+msgid "Amenity name and Arabic name are required"
+msgstr "مطلوب اسم وسائل الراحة والاسم العربي"
+
+#: views.py:526
+msgid "Amenity with this Arabic name already exists"
+msgstr "وسائل الراحة بهذا الاسم العربي موجودة بالفعل"
+
+#: views.py:539
+msgid "Failed to create amenity. Please try again later."
+msgstr "فشل في إنشاء وسائل الراحة. يرجى المحاولة مرة أخرى لاحقا."
+
+#: views.py:543
+msgid "Amenity creation failed. Email not sent."
+msgstr "فشل إنشاء وسائل الراحة. لم يتم إرسال البريد الإلكتروني."
+
+#: views.py:556
+msgid "Amenity created but email notification failed."
+msgstr "تم إنشاء الميزة ولكن فشل إشعار البريد الإلكتروني."
+
+#: views.py:560
+msgid "Amenity added successfully!"
+msgstr "تمت إضافة الميزة بنجاح!"
+
+#: views.py:564
+msgid "An unexpected error occurred, please try again later."
+msgstr "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى لاحقًا."
+
+#: views.py:573 views.py:590
+msgid "Amenity not found"
+msgstr "لم يتم العثور على وسائل الراحة"
+
+#: views.py:609
+msgid "Amenity with this name already exists."
+msgstr "وسائل الراحة بهذا الاسم موجودة بالفعل."
+
+#: views.py:612
+msgid "Amenity with this Arabic name already exists."
+msgstr "وسائل الراحة بهذا الاسم العربي موجودة بالفعل."
+
+#: views.py:627
+msgid "Failed to update amenity"
+msgstr "فشل في تحديث وسائل الراحة"
+
+#: views.py:629
+msgid "Amenity updated successfully!"
+msgstr "تم تحديث وسائل الراحة بنجاح!"
+
+#: views.py:662 views.py:723
+msgid "Commission slab with overlapping range already exists"
+msgstr "لوحة العمولة ذات النطاق المتداخل موجودة بالفعل"
+
+#: views.py:669 views.py:730
+msgid "A commission slab with these exact values already exists"
+msgstr "توجد بالفعل لوحة عمولة بهذه القيم الدقيقة"
+
+#: views.py:677
+msgid "Commission added successfully!"
+msgstr "تمت إضافة العمولات بنجاح!"
+
+#: views.py:681
+msgid "An error occurred while adding the commission slab"
+msgstr "حدث خطأ أثناء إضافة شريحة العمولة"
+
+#: views.py:698
+msgid "Error retrieving commission slab"
+msgstr "حدث خطأ أثناء استرداد شريحة العمولة"
+
+#: views.py:715
+msgid "No changes made, but commission slab saved successfully"
+msgstr "لم يتم إجراء أي تغييرات، ولكن تم حفظ شريحة العمولة بنجاح"
+
+#: views.py:738
+msgid "Commission updated successfully!"
+msgstr "تم تحديث سعر العمولة بنجاح!"
+
+#: views.py:742
+msgid "An error occurred while updating the commission slab"
+msgstr "حدث خطأ أثناء تحديث شريحة العمولة"
+
+#: views.py:751
+msgid "commission deleted successfully!"
+msgstr "تم حذف العمولات بنجاح!"
+
+#: views.py:916 views.py:1554 views.py:1665 views.py:1882 views.py:2065
+#: views.py:2105 views.py:2131
+msgid "An unexpected error occurred. Please try again."
+msgstr "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
+
+#: views.py:1158
+msgid "Hotel details saved successfully."
+msgstr "تم حفظ تفاصيل الفندق بنجاح."
+
+#: views.py:1186
+msgid "Amenity added"
+msgstr "تمت إضافة وسائل الراحة"
+
+#: views.py:1188
+msgid "Invalid request"
+msgstr "طلب غير صالح"
+
+#: views.py:1221
+msgid "An unexpected error occurred."
+msgstr "حدث خطأ غير متوقع."
+
+#: views.py:1232
+msgid "Category is required"
+msgstr "الفئة مطلوبة"
+
+#: views.py:1236
+msgid "Policies cannot be empty"
+msgstr "لا يمكن أن تكون السياسات فارغة"
+
+#: views.py:1270
+msgid "An error occurred while saving the policy"
+msgstr "حدث خطأ أثناء حفظ السياسة"
+
+#: views.py:1273
+msgid "Invalid request method"
+msgstr "طريقة الطلب غير صالحة"
+
+#: views.py:1288
+#, python-format
+msgid "No policies found for category %(category)s created by you."
+msgstr "لم يتم العثور على سياسات للفئة %(category)s التي أنشأتها."
+
+#: views.py:1302
+msgid "Category not found"
+msgstr "لم يتم العثور على الفئة"
+
+#: views.py:1310
+msgid "An error occurred while fetching policy data"
+msgstr "حدث خطأ أثناء جلب بيانات السياسة"
+
+#: views.py:1323
+msgid "Category name and category ID are required."
+msgstr "مطلوب اسم الفئة ومعرف الفئة."
+
+#: views.py:1342
+#, python-format
+msgid "Successfully added new policy '%(policy_name)s' to %(category)s."
+msgstr "تمت إضافة السياسة الجديدة '%(policy_name)s' إلى %(category)s' بنجاح."
+
+#: views.py:1345
+#, python-format
+msgid ""
+"Policy '%(policy_name)s' already exists in category '%(category)s', no new "
+"policy added."
+msgstr ""
+"السياسة '%(policy_name)s' موجودة بالفعل في الفئة '%(category)s'، ولا يوجد جديد "
+"تمت إضافة السياسة."
+
+#: views.py:1351
+msgid "Category not found."
+msgstr "لم يتم العثور على الفئة."
+
+#: views.py:1369
+msgid "PolicyCategory has been deleted successfully"
+msgstr "تم حذف فئة السياسة بنجاح"
+
+#: views.py:1373
+msgid "PolicyCategory not found"
+msgstr "لم يتم العثور على فئة السياسة"
+
+#: views.py:1377
+msgid "An unexpected error occurred"
+msgstr "حدث خطأ غير متوقع"
+
+#: views.py:1434
+msgid "An error occurred while fetching users."
+msgstr "حدث خطأ أثناء جلب المستخدمين."
+
+#: views.py:1466
+msgid "Email is already registered."
+msgstr "البريد الإلكتروني مسجل بالفعل."
+
+#: views.py:1491
+msgid "New admin has been added successfully."
+msgstr "تمت إضافة المشرف الجديد بنجاح."
+
+#: views.py:1495
+msgid "An error occurred while creating the admin user."
+msgstr "حدث خطأ أثناء إنشاء المستخدم المسؤول."
+
+#: views.py:1509 views.py:1720
+msgid "User not found"
+msgstr "لم يتم العثور على المستخدم"
+
+#: views.py:1694
+msgid "Error retrieving hotels, chalets, or offers.."
+msgstr "خطأ في إسترجاع الفنادق أو الشاليهات أو العروض.."
+
+#: views.py:1725 views.py:1832 views.py:2014 views.py:2061 views.py:2101
+msgid "User not found ."
+msgstr "لم يتم العثور على المستخدم ."
+
+#: views.py:1836 views.py:2021
+msgid "Unexpected error in superadmin -offer page"
+msgstr "خطأ غير متوقع في المشرف الفائق - صفحة العروض"
+
+#: views.py:1876
+msgid " Offerpromotion ID doesn't exist."
+msgstr "معرف العرض الترويجي غير موجود."
+
+#: views.py:1879
+msgid " Offerpromotion ID needed."
+msgstr "معرف العرض الترويجي مطلوب."
+
+#: views.py:1971
+msgid "Failed to update promotion"
+msgstr "فشل تحديث العرض الترويجي"
+
+#: views.py:2012
+msgid " Offerpromotion ID Not found."
+msgstr "لم يتم العثور على معرف العرض الترويجي."
+
+#: views.py:2018
+msgid " Offerpromotion ID Needed."
+msgstr "معرف العرض الترويجي مطلوب."
+
+#: views.py:2059 views.py:2099 views.py:2124
+msgid "Promotion Not exist."
+msgstr "الترويج غير موجود."
+
+#: views.py:2121
+msgid "Offer deleted successfully"
+msgstr "تم حذف العرض بنجاح"
+
+#: views.py:2127 views.py:2237 views.py:2269 views.py:2299 views.py:2327
+#: views.py:2350 views.py:2384 views.py:2435 views.py:2462 views.py:2490
+#: views.py:2518 views.py:2541 views.py:2574
+msgid "vendor profile not found"
+msgstr "لم يتم العثور على ملف تعريف البائع"
+
+#: views.py:2175
+msgid "Invalid action!"
+msgstr "إجراء غير صالح!"
+
+#: views.py:2184
+msgid "Room type already exists!"
+msgstr "نوع الغرفة موجود بالفعل!"
+
+#: views.py:2187
+msgid "Room type added successfully!"
+msgstr "تم إضافة نوع الغرفة بنجاح!"
+
+#: views.py:2202
+msgid "Room type updated successfully!"
+msgstr "تم تحديث نوع الغرفة بنجاح!"
+
+#: views.py:2209
+msgid "Room type deleted successfully!"
+msgstr "تم حذف نوع الغرفة بنجاح!"
+
+#: views.py:2264
+msgid "Chalet type created successfully"
+msgstr "Chalet type created successfully"
+
+#: views.py:2296 views.py:2324 views.py:2347
+msgid "Chalet type not found"
+msgstr "لم يتم العثور على نوع الشاليه"
+
+#: views.py:2321
+msgid "Chalet type updated successfully"
+msgstr "تم تحديث نوع الشاليه بنجاح"
+
+#: views.py:2344
+msgid "Chalet type removed  successfully"
+msgstr "تمت إزالة نوع الشاليه بنجاح"
+
+#: views.py:2487 views.py:2515 views.py:2538
+msgid "Hotel type not found"
+msgstr "لم يتم العثور على نوع الفندق"
+
+#: views.py:2512
+msgid "Hotel type updated successfully"
+msgstr "تم تحديث نوع الفندق بنجاح"
+
+#: views.py:2535
+msgid "Hotel type removed  successfully"
+msgstr "تمت إزالة نوع الفندق بنجاح"
+
+#: views.py:2619
+msgid "An error occurred while fetching admin details."
+msgstr "حدث خطأ أثناء جلب تفاصيل المسؤول."
+
+#: views.py:2640
+msgid "Email is already in use."
+msgstr "البريد الإلكتروني قيد الاستخدام بالفعل."
+
+#: views.py:2657
+msgid "Admin details updated successfully."
+msgstr "تم تحديث تفاصيل المشرف بنجاح."
+
+#: views.py:2661
+msgid "An error occurred while updating admin details."
+msgstr "حدث خطأ أثناء تحديث تفاصيل المسؤول."
+
+#: views.py:2670
+msgid "Admin ID is required."
+msgstr "معرف المسؤول مطلوب."
+
+#: views.py:2678
+msgid "Cannot delete a Super Admin!"
+msgstr "لا يمكن حذف المشرف المتميز!"
+
+#: views.py:2682
+msgid "Admin deleted successfully."
+msgstr "تم حذف المشرف بنجاح."
+
+#: views.py:2686
+msgid "An error occurred while deleting admin."
+msgstr "حدث خطأ أثناء حذف المشرف."
+
+#: views.py:2689
+msgid "Invalid request."
+msgstr "طلب غير صالح."
+
+#~ msgid "Chalet Logo"
+#~ msgstr "شعار الشاليه"
+
+#~ msgid "Chalet Images"
+#~ msgstr "صور شاليه"
+
+#~ msgid "Update"
+#~ msgstr "تحديث"
+
+#~ msgid "Offer Applicable For Hotels"
+#~ msgstr "العرض ينطبق على الفنادق"
+
+#~ msgid "Select Hotels"
+#~ msgstr "اختر الفنادق"
+
+#~ msgid "Offer Applicable For Chalets"
+#~ msgstr "يسري العرض على الشاليهات"
+
+#~ msgid "Select Chalets"
+#~ msgstr "اختر الشاليهات"
+
+#~ msgid "Each policy name must be 150 characters or less."
+#~ msgstr "يجب أن يكون كل اسم سياسة 150 حرفًا أو أقل."
+
+#~ msgid " must be 150 characters or less."
+#~ msgstr "Must be 150 characters or less."
+
+#~ msgid ""
+#~ " must contain only alphabetic characters, spaces, periods, commas, and "
+#~ "semicolons."
+#~ msgstr ""
+#~ "يجب أن تحتوي فقط على أحرف أبجدية، ومسافات، ونقاط، وفواصل، وفواصل منقوطة."
+
+#~ msgid "Enter the commission amountt"
+#~ msgstr "أدخل نسبة العمولة"
+
+#~ msgid "Offer Name cannot exceed 255 characters."
+#~ msgstr "لا يمكن أن يتجاوز اسم العروض 255 حرفًا."
+
+#~ msgid "Please select at least one hotel or chalet."
+#~ msgstr "يرجى اختيار فندق أو شاليه واحد على الأقل."
+
+#~ msgid "Please select at least one hotel or chalet to apply for."
+#~ msgstr "يرجى اختيار فندق أو شاليه واحد على الأقل للتقديم فيه."
+
+#~ msgid "Add new policy"
+#~ msgstr "إضافة سياسة جديدة"
+
+#~ msgid "Discount Value"
+#~ msgstr "قيمة الخصم"
+
+#, fuzzy
+#~| msgid "Booking"
+#~ msgid " Bookings"
+#~ msgstr "الحجز"
+
+#~ msgid "Admin Email"
+#~ msgstr "البريد الإلكتروني المشرف"
+
+#~ msgid "Property Type"
+#~ msgstr "أنواع العقارات"
+
+#~ msgid "Number of Rooms"
+#~ msgstr "عدد الغرف"
+
+#~ msgid "The chalet has already been approved."
+#~ msgstr "تمت الموافقة على الشاليه بالفعل"
+
+#~ msgid "The hotel has already been approved."
+#~ msgstr "تمت الموافقة على الفندق بالفعل"
+
+#~ msgid "Amenity Request"
+#~ msgstr "طلب وسائل الراحة"
+
+#~ msgid " Booking Management"
+#~ msgstr "إدارة الحجوزات"
+
+#~ msgid "Transaction details"
+#~ msgstr "تفاصيل المعاملات"
+
+#~ msgid "No Icon"
+#~ msgstr "لا يوجد رمز"
+
+#~ msgid "Enter discount value"
+#~ msgstr "أدخل قيمة الخصم"
+
+msgid "Property Name"
+msgstr "اسم العقار"
+
+msgid "Property <br> Amount"
+msgstr "مبلغ <br> العقار"
+
+msgid "Tax"
+msgstr "الضريبة"
+
+msgid "Meal Price"
+msgstr "سعر الوجبة"
+
+msgid "Meal Tax "
+msgstr "ضريبة الوجبة"
+
+msgid "Payment gateway <br> Commission"
+msgstr "عمولة <br> بوابة الدفع"
+
+msgid "Failed"
+msgstr "فشل"
+#: templates/superuser/transaction_detail.html:96
+msgid "Vendor Earnings"
+msgstr "أرباح البائعين"
+
+
+#: templates/superuser/transaction_detail.html:100
+msgid "Payment gateway <br> Commission for Admin"
+msgstr "بوابة الدفع عمولة للمسؤول"
+
+#: templates/superuser/transaction_detail.html:101
+msgid "Payment gateway Charge"
+msgstr "رسوم بوابة الدفع"
+
+#: templates/superuser/transaction_detail.html:84
+msgid "Export Reports:"
+msgstr "تقارير التصدير:"
+
+
+#: templates/superuser/transaction_detail.html:84
+msgid "Excel"
+msgstr "اكسل"
+
+#: templates/superuser/transaction_detail.html:85
+msgid "PDF"
+msgstr "بي دي إف"
+
+#: templates/superuser/dashboard_overview.html:101
+msgid "Total Number Of Available Rooms"
+msgstr "إجمالي عدد الغرف المتاحة"
+
+#: templates/superuser/dashboard_overview.html:108
+msgid "Number Of Booked Rooms"
+msgstr "عدد الغرف المحجوزة"
+
+#: templates/superuser/dashboard_overview.html:115
+msgid "Number Of Android Users"
+msgstr "عدد مستخدمي أندرويد"
+
+#: templates/superuser/dashboard_overview.html:122
+msgid "Number Of IOS Users"
+msgstr "عدد مستخدمي آي أو اس"
+
+
+#: templates/superuser/dashboard_overview.html:118
+msgid "Total Number Of Available Chalets"
+msgstr "إجمالي عدد الشاليهات المتاحة"
+
+
+#: templates/superuser/dashboard_overview.html:126
+msgid "Number Of Booked Chalets"
+msgstr "عدد الشاليهات المحجوزة"
+
+#: templates/superuser/user_management.html:88
+msgid "Total Bookings"
+msgstr "إجمالي الحجوزات"
+
+#: templates/superuser/user_management.html:89
+msgid "Wallet Balance"
+msgstr "رصيد المحفظة"
+
+#: templates/superuser/user_management.html:88
+msgid "Mobile Number"
+msgstr "رقم الهاتف المحمول"
+
+#: templates/superuser/review_rating.html:76
+msgid "User Name"
+msgstr "اسم المستخدم"
+
+#: templates/superuser/transaction_detail.html:109
+msgid "User <br>Name"
+msgstr "اسم المستخدم"
+
+#: templates/superuser/transaction_detail.html:110
+msgid "Booking <br>Mobile Number"
+msgstr "حجز رقم الجوال"
+
+#: templates/superuser/dashboard_overview.html:178
+msgid "Transaction Time"
+msgstr "وقت المعاملة"
+
+#: templates/superuser/user_management.html:89
+msgid "Registration Date"
+msgstr "تاريخ التسجيل"
+
+#: templates/superuser/transaction_detail.html:112
+msgid "Booking <br>Time"
+msgstr "وقت الحجز"
+

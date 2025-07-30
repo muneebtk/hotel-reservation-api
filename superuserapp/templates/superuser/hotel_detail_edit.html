@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="csrf-token" content="{% csrf_token %}">
+
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <!-- Include flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <style>
+        /* body,h1,h2,h3,h4,h5 {font-family: General Sans} */
+        body {
+            font-size: 16px;
+            background-color: #F4F4F4;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .w3-sidebar {
+            background-color: #85080C;
+            color: white;
+        }
+
+        .btn-search {
+            padding: 10px;
+            border-radius: 32px;
+            width: 200px;
+            border: none;
+            margin-left: 30px;
+            text-align: left;
+            background-color: #F4F4F4;
+        }
+
+        #loader {
+            color: #85080C;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-indent: -9999em;
+            animation: mulShdSpin 1.3s infinite linear;
+            z-index: 9999;
+        }
+
+        .container-box {
+            margin-left: 20%;
+            background-color: white;
+            width: 80%;
+            max-height: 80vh;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            overflow-y: auto;
+
+        }
+
+        .row-main h2 {
+            font-size: xx-large;
+        }
+
+        .row-main {
+            margin-left: 2%;
+        }
+
+        .labels {
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        @keyframes mulShdSpin {
+
+            0%,
+            100% {
+                box-shadow: 0 -3em 0 0.2em,
+                    2em -2em 0 0em, 3em 0 0 -1em,
+                    2em 2em 0 -1em, 0 3em 0 -1em,
+                    -2em 2em 0 -1em, -3em 0 0 -1em,
+                    -2em -2em 0 0;
+            }
+
+            12.5% {
+                box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em,
+                    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
+                    -2em 2em 0 -1em, -3em 0 0 -1em,
+                    -2em -2em 0 -1em;
+            }
+
+            25% {
+                box-shadow: 0 -3em 0 -0.5em,
+                    2em -2em 0 0, 3em 0 0 0.2em,
+                    2em 2em 0 0, 0 3em 0 -1em,
+                    -2em 2em 0 -1em, -3em 0 0 -1em,
+                    -2em -2em 0 -1em;
+            }
+
+            37.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                    3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
+                    -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            50% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                    3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
+                    -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+
+            62.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
+                    -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+            }
+
+            75% {
+                box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em,
+                    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+                    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+            }
+
+            87.5% {
+                box-shadow: 0em -3em 0 0, 2em -2em 0 -1em,
+                    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+                    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+            }
+        }
+
+
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .hotel-form {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 10px;
+
+        }
+
+        .hotel-form .hotel-row {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .hotel-row input,select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background-color: #FFD6D6;
+        }
+
+        .meal-price-container {
+            display: inline-block;
+            padding: 10px;
+            background-color: #FFD6D6;
+            border-radius: 10px;
+            margin-right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .meal-price-container label {
+            display: block;
+            font-size: 16px;
+            color: black;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .meal-price-container input {
+            padding: 5px;
+            text-align: left;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            margin-left: 30px;
+
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background-color: #FFD6D6;
+        }
+
+        @media (max-width: 1440px) {
+            .container-box {
+                margin-left: 24%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+
+            .container-box {
+                margin-left: 34%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .container-box {
+                margin-left: 44%;
+            }
+        }
+
+        .image-placeholder img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+
+        .small-upload-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .small-upload-icons img {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+
+        .feature-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #FADADA;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 25px;
+            padding: 5px 10px;
+            margin: 5px;
+            border: 1px solid #B61929;
+            color: #B61929;
+            font-weight: bold;
+        }
+
+        .feature-item span {
+            margin-right: 10px;
+        }
+
+        .remove-btn {
+            background-color: #B61929;
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .add-feature-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border: 2px solid #B61929;
+            color: #B61929;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .supporting-documents {
+            flex: 2;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .supporting-documents .document_div {
+            width: calc(40% - 15px);
+            /* Adjust width to fit 2 in a row */
+            margin: 5px;
+            text-align: center;
+        }
+
+        .document_div {
+            border-radius: 10px;
+            border: 1px dashed;
+            padding: 5px;
+        }
+
+        .supporting-documents {
+            flex: 2;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .supporting-documents .document_div {
+            width: calc(40% - 15px);
+            /* Adjust width to fit 2 in a row */
+            margin: 5px;
+            text-align: center;
+            position: relative;
+            border-radius: 10px;
+            border: 1px dashed;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .document_div img {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .document_div a {
+            flex: 1;
+            text-align: left;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .remove-document {
+            background-color: transparent;
+            border: none;
+            color: #000;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .add-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 57px;
+            height: 48px;
+            border: 1px solid #B5B5B5;
+            border-radius: 10px;
+        }
+
+        .add-document {
+            background-color: transparent;
+            border: none;
+            color: #000;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .remove-image-btn {
+            position: absolute;
+            top: 0px;
+            right: 72%;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            border-radius: 100%;
+            font-size: 20px;
+            width: 35px;
+            height: 35px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+            display: none;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.875em; /* Adjust the font size if needed */
+            margin-top: 0.5em; /* Add some spacing above the error message */
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+
+    <div id="loader" style="display: none;"></div>
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+        id="myOverlay"></div>
+    <br>
+    <br>
+    <div class="w3-main container-box">
+        <div class="row-main">
+            <h2>Edit Hotel Details</h2>
+            <br>
+            <form id="hotelForm" method="post" enctype="multipart/form-data" action="{% url 'save_hotel_details' %}" onsubmit="submitEditForm(event)">
+                {% csrf_token %}
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="hotel_name">{% trans 'Hotel Name' %}</label>
+                        </div>
+                        <input type="text" id="hotel_name" name="hotel_name" value="{{hotel.name}}"
+                            placeholder="Hotel Name">
+                        <span id="hotel_name_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="hotel_owner">{% trans 'Hotel Owner Name'%}</label>
+                        </div>
+                        <input type="text" id="hotel_owner" name="hotel_owner"
+                            value="{{hotel.vendor.user.get_full_name}}" placeholder="Hotel Owner Name">
+                        <span id="hotel_owner_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="hotel_email">{% trans 'Hotel Owner Email'%}</label>
+                        </div>
+                        <input type="text" id="hotel_email" name="hotel_email" value="{{hotel.vendor.user.email}}"
+                            placeholder="Owner Mail">
+                        <span id="hotel_email_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="officenumber">{% trans 'Office Number' %}</label>
+                        </div>
+                        <input type="text" id="officenumber" name="officenumber" value="{{hotel.office_number}}"
+                            placeholder="Office Number">
+                        <span id="officenumber_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="hotel_address">{% trans 'Hotel Address'%}</label>
+                        </div>
+                        <input type="text" id="hotel_address" name="hotel_address" value="{{hotel.address}}"
+                            placeholder="Hotel Address">
+                        <span id="hotel_address_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="state">{% trans 'State/Province'%}</label>
+                        </div>
+                        <input type="text" id="state" name="state" value="{{hotel.state}}" placeholder="State/Province">
+                        <span id="state_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="city">{% trans 'City' %}</label>
+                        </div>
+                        <input type="text" id="city" name="city" value="{{hotel.city}}" placeholder="City">
+                        <span id="city_error" class="error-message"></span>
+
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="country">{% trans 'Country'%}</label>
+                        </div>
+                        <input type="text" id="country" name="country" value="{{hotel.country}}" placeholder="Country">
+                        <span id="country_error" class="error-message"></span>
+
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="gsmnumber">{% trans 'GSM Number'%}</label>
+                        </div>
+                        <input type="text" id="gsmnumber" name="gsmnumber" value="{{hotel.vendor.gsm_number}}"
+                            placeholder="GSM Number">
+                        <span id="gsmnumber_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="locality">{% trans 'Locality' %}</label>
+                        </div>
+                        <input type="text" id="locality" name="locality" value="{{hotel.locality}}"
+                            placeholder="Locality">
+                        <span id="locality_error" class="error-message"></span>
+    
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="bulidingno">{% trans 'House/Building/Apartment No.'%}</label>
+                        </div>
+                        <input type="text" id="bulidingno" name="bulidingno" value="{{hotel.building_number}}"
+                            placeholder="House/Building/Apartment No.">
+                        <span id="bulidingno_error" class="error-message"></span>    
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="postal">{% trans 'Postal/ZIP code'%}</label>
+                        </div>
+                        <input type="text" id="postal" name="postal" value="{{hotel.city.postal_code}}"
+                            placeholder="House/Building/Apartment No.">
+                        <span id="postal_error" class="error-message"></span>    
+                    </div>
+                </div>
+                <br>
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="crnumber">{% trans 'CR Number'%}</label>
+                        </div>
+                        <input type="text" id="crnumber" name="crnumber" value="{{hotel.cr_number}}"
+                            placeholder="CR Number">
+                        <span id="crnumber_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="expiry">{% trans 'Date of Expiry'%}</label>
+                        </div>
+                        <input type="text" id="expiry" name="expiry" value="{{hotel.date_of_expiry}}"
+                            placeholder="Date of Expiry">
+                        <span id="expiry_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="vatnumber">{% trans 'VAT Number' %}</label>
+                        </div>
+                        <input type="text" id="vatnumber" name="vatnumber" value="{{hotel.vat_number}}"
+                            placeholder="VAT Number">
+                        <span id="vatnumber_error" class="error-message"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="labels">
+                    <label>Meal Price</label>
+                </div>
+                <div class="hotel-form ">
+                    <div class="hotel-row">
+                        <div class="meal-price-container">
+                            <label for="breakfast-price">Breakfast</label>
+                            <input type="text" id="breakfast-price" name="breakfast-price"
+                                value="{{ meal_prices.breakfast|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="meal-price-container">
+                            <label for="lunch-price">Lunch</label>
+                            <input type="text" id="lunch-price" name="lunch-price"
+                                value="{{ meal_prices.lunch|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="meal-price-container">
+                            <label for="dinner-price">Dinner</label>
+                            <input type="text" id="dinner-price" name="dinner-price"
+                                value="{{ meal_prices.dinner|default:0.0 }}" placeholder="Enter price">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="hotel-form">
+
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="rating">{% trans 'Hotel Rating' %}</label>
+                        </div>
+                        <select id="hotelrating" name="hotelrating" required>
+                            <option value="" disabled {% if not hotel.hotel_rating %}selected{% endif %}>{% trans "Select hotel rating" %}</option>
+                            {% for hotel_rating_val, hotel_rating_lab in hotel_rating %}
+                            <option value="{{ hotel_rating_val }}" {% if hotel_rating_val == hotel.hotel_rating %}selected{% endif %}>{{ hotel_rating_lab }}</option>
+                            {% endfor %}
+                        </select>
+                        <span id="hotelrating_error" class="error-message"></span>
+
+                    </div>
+
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="description">{% trans "Hotel Description" %}</label>
+                        </div>
+                        <textarea id="about_property" placeholder="{% trans 'Enter a few words about your hotel' %}"
+                            name="about_property" >{{ hotel.about_property }}</textarea>
+                        <span id="about_property_error" class="error-message"></span>
+                    </div>
+                    <div class="hotel-row">
+                        <div class="labels">
+                            <label for="policies">{% trans "Hotel Policies" %}</label>
+                        </div>
+                        <textarea id="hotel_policies"
+                            placeholder="{% trans 'Enter a few words about your hotel policies' %}"
+                            name="hotel_policies" >{{ hotel.hotel_policies }}</textarea>
+                        <span id="hotel_policies_error" class="error-message"></span>    
+                    </div>
+
+                </div>
+                <br>
+
+                <div class="hotel-form">
+                    <div class="hotel-row">
+                        <div class="add-images">
+                            <label>{% trans "Hotel Logo" %}\ شعار الفندق</label>
+                            <br>
+                            <div class="image-placeholder" style="position: relative;">
+                                {% if hotel.logo %}
+                                <img src="{{ hotel.logo.url }}" id="logo-icon" alt="Hotel Logo" style="cursor: pointer;"
+                                    onclick="triggerFileInput('logo')">
+                                <span class="remove-image-btn" onclick="removeImage('logo')"
+                                    style="display: block;">×</span>
+                                {% else %}
+                                <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="logo-icon"
+                                    alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('logo')">
+                                <span class="remove-image-btn" style="display: none;"
+                                    onclick="removeImage('logo')">×</span>
+                                {% endif %}
+                            </div>
+                            <input style="opacity: 0; cursor: pointer; width: 20%; height: 0%;" type="file"
+                                id="logo_image" name="logo_image" accept="image/*" 
+                                onchange="previewImage(this, 'logo-icon')">
+                            <br>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <br>
+                            <span id="logo_image_error" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <div class="hotel-row">
+                        <div class="add-images">
+                            <label>{% trans "Hotel Images" %} \ صور الفندق</label>
+                            <br>
+                            <div class="image-placeholder text-center">
+                                {% if first_image %}
+                                <div style="position: relative;">
+                                    <img src="{{ first_image.image.url }}" id="main-image" alt="Hotel Image"
+                                        style="cursor: pointer;" onclick="triggerFileInput('main')">
+                                    <span class="remove-image-btn" onclick="removeImage('main')"
+                                        style="display: block;">×</span>
+                                </div>
+                                {% else %}
+                                <div style="position: relative;">
+                                    <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="main-image"
+                                        alt="Upload Icon" style="cursor: pointer;" onclick="triggerFileInput('main')">
+                                    <span class="remove-image-btn" style="display: none;"
+                                        onclick="removeImage('main')">×</span>
+                                </div>
+                                {% endif %}
+                                <input style="display: none;" type="file" id="hotel_images" name="hotel_images[]"
+                                    accept="image/*" onchange="previewImage(this, 'main-image')" multiple>    
+                            </div>
+
+                            <div class="small-upload-icons">
+                                {% for image in remaining_images %}
+                                <div style="position: relative;">
+                                    <img src="{{ image.image.url }}" id="additional-image-{{ forloop.counter }}"
+                                        alt="Hotel Image" style="cursor: pointer;"
+                                        onclick="triggerFileInput('additional', {{ forloop.counter }})">
+                                    <span class="remove-image-btn" style="display: block;right: -9%;"
+                                        onclick="removeImage('additional', {{ forloop.counter }})">×</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <br>
+                            <span id="hotel_images_error" style="color: red;"></span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="amenities_list" name="amenities_list">
+                    <div style="margin-right: 2%;">
+                        <div class="labels">
+                            <label for="policies"> All Amenties</label>
+                        </div>
+                        <div class="feature-container">
+                            {% for amenity in amenities %}
+                            <div class="feature-item">
+                                {% if amenity.icon %}
+                                <img src="{{ amenity.icon.url }}" alt="{{ amenity.amenity_name }}" class="amenity-icon" style="width: 20px;">
+                                {% else %}
+                                <img src="{% static 'icons/default_amenity_icon.png' %}" alt="Default Icon" class="amenity-icon">
+                                {% endif %}
+                                &nbsp;
+                                <span>{{ amenity.amenity_name }}</span>
+                                <button class="remove-btn" data-id="{{ amenity.id }}" onclick="removeAmenity({{ amenity.id }})">×</button>
+                            </div>
+                            {% empty %}
+                            <p>{% trans "No amenities available." %}</p>
+                            {% endfor %}
+
+                            <div class="add-feature-btn" id="openAmenitiesModal">+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotel-row">
+                    <div class="labels">
+                        <label for="Documents">Supporting Documents</label>
+                    </div>
+                    <div class="section supporting-documents">
+                        {% for document in documents %}
+                        <div id="document-{{ forloop.counter }}" class="document_div">
+                            <img src="{% static 'icons/image 81.png' %}" alt="Document Icon">
+                            <a href="{{ document.url }}" class="document" target="_blank">{{ document.filename }}</a>
+                            <button class="remove-document"
+                                onclick="removeDocument('document-{{ forloop.counter }}')">×</button>
+                        </div>
+                        {% empty %}
+                        <p>No documents available.</p>
+                        {% endfor %}
+                        <div class="add-button">
+                            <button class="add-document" onclick="triggerFileInput()" id="add-document" type="button">+</button>
+                        </div>
+                    </div>
+                </div>
+                <input type="file" id="file-input" style="display: none;" onchange="handleFiles()" name="hotel_documents[]" multiple>
+                <input type="" value="{{hotel.id}}" style="display: none;" id="hotel_id" name="hotel_id">
+                <br>
+                <br>
+                <!-- Save Button Section -->
+                <div class="hotel-form">
+                    <div class="hotel-row" style="text-align: center;">
+                        <button type="submit" class="save-button" style="width: 15%; border-radius: 10px; height: 150%;background-color: #C1272D;color: white; border: none;">Save</button>
+                    </div>
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+
+{% include 'superuser/add_amentity_detail.html' %}
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#expiry", {
+            dateFormat: "Y-m-d", // Format: YYYY-MM-DD
+            altInput: true,
+            altFormat: "F j, Y", // Format: Month Day, Year (e.g., August 30, 2024)
+            allowInput: true,    // Allow manual date entry
+        });
+    });
+
+
+    let documentCounter = 0;
+
+    const imageFilenames = {};
+
+    function previewImage(input, imgId) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imgElement = document.getElementById(imgId);
+                imgElement.src = e.target.result;
+
+                const removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+                if (removeBtn) {
+                    removeBtn.style.display = 'block';
+                }
+
+                imageFilenames[imgId] = file.name;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function triggerFileInput(type, index = null) {
+        let input;
+        if (type === 'logo') {
+            input = document.getElementById('logo_image');
+        } else if (type === 'main') {
+            input = document.getElementById('hotel_images');
+        } else if (type === 'additional' && index !== null) {
+            input = document.getElementById('hotel_images');
+            input.setAttribute('onchange', `previewImage(this, 'additional-image-${index}')`);
+        } else {
+            input = document.getElementById('file-input').click();
+        }
+
+        input.click();
+    }
+
+    function handleFiles() {
+        const fileInput = document.getElementById('file-input');
+        const files = fileInput.files;
+        const section = document.querySelector('.supporting-documents');
+        let documentCounter = section.querySelectorAll('.document_div').length;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                documentCounter++; // Increment the counter
+                const documentId = `new-doc-${documentCounter}`; // Create a unique ID
+
+                const documentDiv = document.createElement('div');
+                documentDiv.className = 'document_div';
+                documentDiv.id = documentId; // Set the ID
+
+                const fileIcon = file.type.startsWith('image/') ? e.target.result : '{% static "icons/image 81.png" %}';
+                const fileName = file.name;
+
+                documentDiv.innerHTML = `
+                <img src="${fileIcon}" alt="Document Icon">
+                <a href="${e.target.result}" class="document" target="_blank">${fileName}</a>
+                <button class="remove-document" onclick="removeDocument('${documentId}')">×</button>
+            `;
+
+                section.appendChild(documentDiv);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+    function removeDocument(documentId) {
+        const documentElement = document.getElementById(documentId);
+        if (documentElement) {
+            documentElement.remove();
+        }
+    }
+    function removeImage(type, index = null) {
+        let imgElement, input;
+
+        if (type === 'logo') {
+            imgElement = document.getElementById('logo-icon');
+            input = document.getElementById('logo_image');
+        } else if (type === 'main') {
+            imgElement = document.getElementById('main-image');
+            input = document.getElementById('hotel_images');
+        } else if (type === 'additional' && index !== null) {
+            imgElement = document.getElementById(`additional-image-${index}`);
+            input = document.getElementById('hotel_images');
+        }
+
+        imgElement.src = "{% static 'icons/teenyicons_image-solid.png' %}";
+        input.value = "";
+
+        const removeBtn = imgElement.parentElement.querySelector('.remove-image-btn');
+        if (removeBtn) {
+            removeBtn.style.display = 'none';
+        }
+    }
+
+
+    
+    function getImageFilenames() {
+        let filenames = [];
+        Object.keys(imageFilenames).forEach(imgId => {
+            filenames.push(imageFilenames[imgId]);
+        });
+
+        return filenames;
+    }
+
+    function getDocumentSources() {
+        let filenames = [];
+
+        let documents = document.querySelectorAll('.supporting-documents .document');
+
+        documents.forEach(doc => {
+            filenames.push(doc.textContent.trim());
+        });
+
+        return filenames;
+    }
+
+
+    function getLogoSource() {
+        let logoInput = document.getElementById('logo_image');
+        
+        if (logoInput && logoInput.files.length > 0) {
+            let fileName = logoInput.files[0].name;
+            return fileName;
+        } else {
+            return '';
+        }
+    }
+
+    
+    function getAmenityIds() {
+        const buttons = document.querySelectorAll('.remove-btn');
+        const ids = [];
+
+        buttons.forEach(button => {
+            let id = button.getAttribute('data-id');
+
+            if (!id) {
+                const onclickAttr = button.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/\((\d+)\)/);
+                    if (match) {
+                        id = match[1];
+                    }
+                }
+            }
+
+            if (id && !ids.includes(id)) {
+                ids.push(id);
+            }
+        });
+
+        return ids;
+    }
+
+
+    async function submitEditForm(e) {
+        e.preventDefault(); 
+        console.log("worked", e.target);
+        var formData = new FormData(e.target);
+
+        formData.append('image_sources', JSON.stringify(getImageFilenames()));
+        formData.append('document_sources', JSON.stringify(getDocumentSources()));
+        formData.append('logo_source', JSON.stringify(getLogoSource()));
+
+        const amenityIds = getAmenityIds();
+        console.log("Amenity IDs to be sent:", amenityIds); 
+        formData.append('amentity_ids', JSON.stringify(amenityIds));
+
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            const response = await fetch("{% url 'save_hotel_details' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrfToken 
+                }
+            });
+
+            if (response.ok) {
+            const result = await response.json(); 
+            console.log(result);
+            
+            window.location.href = '/super_user/hotel/'; 
+        } else {
+            console.error('Error:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Request failed', error);
+    }
+}
+
+
+    var modal = document.getElementById("amenitiesModal");
+    var btn = document.getElementById("openAmenitiesModal");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+
+    function submitEditForm(event) {
+        let isValid = true;
+
+        // Validate Hotel Name
+        const hotelName = document.getElementById('hotel_name').value.trim();
+        if (hotelName === '') {
+            isValid = false;
+            displayError('hotel_name', '{% trans "Hotel Name cannot be empty." %}');
+        } else if (hotelName.length < 3 || hotelName.length > 15) {
+            isValid = false;
+            displayError('hotel_name', '{% trans "Hotel Name must be between 3 and 15 characters long." %}');
+        } else {
+            clearError('hotel_name');
+        }
+
+        // Validate Hotel Owner Name
+        const hotelOwner = document.getElementById('hotel_owner').value.trim();
+        if (hotelOwner === '') {
+            isValid = false;
+            displayError('hotel_owner', '{% trans "Hotel Owner Name cannot be empty." %}');
+        } else if (hotelOwner.length < 3 || hotelOwner.length > 50) {
+            isValid = false;
+            displayError('hotel_owner', '{% trans "Hotel Owner Name must be between 3 and 50 characters long." %}');
+        } else {
+            clearError('hotel_owner');
+        }
+
+        // Validate Hotel Email
+        const hotelEmail = document.getElementById('hotel_email').value.trim();
+        if (hotelEmail === '') {
+            isValid = false;
+            displayError('hotel_email', '{% trans "Hotel Owner Email cannot be empty." %}');
+        } else if (!validateEmail(hotelEmail)) {
+            isValid = false;
+            displayError('hotel_email', '{% trans "Please enter a valid email address." %}');
+        } else {
+            clearError('hotel_email');
+        }
+
+        // Validate Office Number
+        const officeNumber = document.getElementById('officenumber').value.trim();
+        if (officeNumber === '') {
+            isValid = false;
+            displayError('officenumber', '{% trans "Office Number cannot be empty." %}');
+        } else if (!/^\d{10-15}$/.test(officeNumber)) { // Assuming a 10-digit number format
+            isValid = false;
+            displayError('officenumber', '{% trans "Office Number must be a 10-digit number." %}');
+        } else {
+            clearError('officenumber');
+        }
+
+        // Validate Hotel Address
+        const hotelAddress = document.getElementById('hotel_address').value.trim();
+        if (hotelAddress === '') {
+            isValid = false;
+            displayError('hotel_address', '{% trans "Hotel Address cannot be empty." %}');
+        } else if (hotelAddress.length < 5 || hotelAddress.length > 100) {
+            isValid = false;
+            displayError('hotel_address', '{% trans "Hotel Address must be between 5 and 100 characters long." %}');
+        } else {
+            clearError('hotel_address');
+        }
+
+        // Validate State/Province
+        const state = document.getElementById('state').value.trim();
+        if (state === '') {
+            isValid = false;
+            displayError('state', '{% trans "State/Province cannot be empty." %}');
+        } else if (state.length < 2 || state.length > 60) {
+            isValid = false;
+            displayError('state', '{% trans "State/Province must be between 2 and 60 characters long." %}');
+        } else if (/\d/.test(state)) { // Check for numbers
+            isValid = false;
+            displayError('state', '{% trans "State/Province cannot contain numbers." %}');
+        } else {
+            clearError('state');
+        }
+
+        // Validate City
+        const city = document.getElementById('city').value.trim();
+        if (city === '') {
+            isValid = false;
+            displayError('city', '{% trans "City cannot be empty." %}');
+        } else if (city.length < 2 || city.length > 60) {
+            isValid = false;
+            displayError('city', '{% trans "City must be between 2 and 60 characters long." %}');
+        } else if (/\d/.test(city)) { // Check for numbers
+            isValid = false;
+            displayError('city', '{% trans "City cannot contain numbers." %}');
+        } else {
+            clearError('city');
+        }
+
+        // Validate Country
+        const country = document.getElementById('country').value.trim();
+        if (country === '') {
+            isValid = false;
+            displayError('country', '{% trans "Country cannot be empty." %}');
+        } else if (country.length < 2 || country.length > 60) {
+            isValid = false;
+            displayError('country', '{% trans "Country must be between 2 and 60 characters long." %}');
+        } else if (/\d/.test(country)) { // Check for numbers
+            isValid = false;
+            displayError('country', '{% trans "Country cannot contain numbers." %}');
+        } else {
+            clearError('country');
+        }
+
+        // Validate GSM Number
+        const gsmNumber = document.getElementById('gsmnumber').value.trim();
+        if (gsmNumber === '') {
+            isValid = false;
+            displayError('gsmnumber', '{% trans "GSM Number cannot be empty." %}');
+        } else if (!/^\d{10,15}$/.test(gsmNumber)) { // Assuming GSM Number is between 10 and 15 digits
+            isValid = false;
+            displayError('gsmnumber', '{% trans "GSM Number must be between 10 and 15 digits." %}');
+        } else {
+            clearError('gsmnumber');
+        }
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if invalid
+        }
+
+
+        // Validate Locality
+        const locality = document.getElementById('locality').value.trim();
+        if (locality === '') {
+            isValid = false;
+            displayError('locality', '{% trans "Locality cannot be empty." %}');
+        } else if (locality.length < 2 || locality.length > 50) {
+            isValid = false;
+            displayError('locality', '{% trans "Locality must be between 2 and 50 characters long." %}');
+        } else if (/[^a-zA-Z\s]/.test(locality)) { // Check for non-alphabetic characters
+            isValid = false;
+            displayError('locality', '{% trans "Locality must contain only alphabetic characters." %}');
+        } else {
+            clearError('locality');
+        }
+
+        // Validate Building No
+        const buildingNo = document.getElementById('bulidingno').value.trim();
+        if (buildingNo === '') {
+            isValid = false;
+            displayError('bulidingno', '{% trans "Building Number cannot be empty." %}');
+        } else if (!/^\d+$/.test(buildingNo)) { // Check for non-numeric characters
+            isValid = false;
+            displayError('bulidingno', '{% trans "Building Number must contain only numeric characters." %}');
+        } else if (buildingNo.length < 1 || buildingNo.length > 20) {
+            isValid = false;
+            displayError('bulidingno', '{% trans "Building Number must be between 1 and 20 characters long." %}');
+        } else {
+            clearError('bulidingno');
+        }
+
+    
+        // Validate Postal/ZIP Code
+        const postalCode = document.getElementById('postal').value.trim();
+        if (postalCode === '') {
+            isValid = false;
+            displayError('postal', '{% trans "Postal/ZIP code cannot be empty." %}');
+        } else if (!/^\d{5,12}$/.test(postalCode)) { // Assuming postal code is 5 to 10 digits long
+            isValid = false;
+            displayError('postal', '{% trans "Postal/ZIP code must be between 5 and 10 digits long." %}');
+        } else {
+            clearError('postal');
+        }
+
+
+        // Validate CR Number
+        const crNumber = document.getElementById('crnumber').value.trim();
+        if (crNumber === '') {
+            isValid = false;
+            displayError('crnumber', '{% trans "CR Number cannot be empty." %}');
+        } else if (crNumber.length < 5 || crNumber.length > 20) {
+            isValid = false;
+            displayError('crnumber', '{% trans "CR Number must be between 5 and 20 characters long." %}');
+        } else {
+            clearError('crnumber');
+        }
+
+        // Validate Date of Expiry
+        const expiryDate = document.getElementById('expiry').value.trim();
+        if (expiryDate === '') {
+            isValid = false;
+            displayError('expiry', '{% trans "Date of Expiry cannot be empty." %}');
+        } else if (!validateDate(expiryDate)) {
+            isValid = false;
+            displayError('expiry', '{% trans "Please enter a valid date in YYYY-MM-DD format." %}');
+        } else if (!isFutureDate(expiryDate)) {
+            isValid = false;
+            displayError('expiry', '{% trans "Date of Expiry must be a future date." %}');
+        } else {
+            clearError('expiry');
+        }
+
+        // Validate VAT Number
+        const vatNumber = document.getElementById('vatnumber').value.trim();
+        if (vatNumber === '') {
+            isValid = false;
+            displayError('vatnumber', '{% trans "VAT Number cannot be empty." %}');
+        } else if (!/^[A-Z0-9]{5,20}$/.test(vatNumber)) { // Assuming VAT Number is alphanumeric, 5 to 20 characters
+            isValid = false;
+            displayError('vatnumber', '{% trans "VAT Number must be between 5 and 20 alphanumeric characters long." %}');
+        } else {
+            clearError('vatnumber');
+        }
+
+
+        // Validate Hotel Rating
+        const hotelRating = document.getElementById('hotelrating').value.trim();
+        if (hotelRating === '') {
+            isValid = false;
+            displayError('hotelrating', '{% trans "Hotel Rating must be selected." %}');
+        } else {
+            clearError('hotelrating');
+        }
+
+        // Validate Hotel Description
+        const hotelDescription = document.getElementById('about_property').value.trim();
+        if (hotelDescription === '') {
+            isValid = false;
+            displayError('about_property', '{% trans "Hotel Description cannot be empty." %}');
+        } else if (hotelDescription.length < 10 || hotelDescription.length > 500) {
+            isValid = false;
+            displayError('about_property', '{% trans "Hotel Description must be between 10 and 500 characters long." %}');
+        } else {
+            clearError('about_property');
+        }
+
+        // Validate Hotel Policies
+        const hotelPolicies = document.getElementById('hotel_policies').value.trim();
+        if (hotelPolicies === '') {
+            isValid = false;
+            displayError('hotel_policies', '{% trans "Hotel Policies cannot be empty." %}');
+        } else if (hotelPolicies.length < 10 || hotelPolicies.length > 500) {
+            isValid = false;
+            displayError('hotel_policies', '{% trans "Hotel Policies must be between 10 and 500 characters long." %}');
+        } else {
+            clearError('hotel_policies');
+        }
+
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if invalid
+        }
+    }
+
+    function displayError(fieldId, message) {
+        const errorElement = document.getElementById(`${fieldId}_error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('error');
+        }
+    }
+
+    function clearError(fieldId) {
+        const errorElement = document.getElementById(`${fieldId}_error`);
+        if (errorElement) {
+            errorElement.textContent = '';
+            errorElement.classList.remove('error');
+        }
+    }
+
+    function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+
+    function validateDate(dateStr) {
+        // Simple date validation in YYYY-MM-DD format
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        if (!datePattern.test(dateStr)) return false;
+        const date = new Date(dateStr);
+        return date.toISOString().startsWith(dateStr);
+    }
+
+    function isFutureDate(dateStr) {
+        const date = new Date(dateStr);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Set hours to 00:00:00 for comparison
+        return date > today;
+    }
+
+
+
+    
+
+</script>
+
+</html>

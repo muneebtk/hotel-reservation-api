@@ -1,0 +1,126 @@
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 20px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        /* margin: 5% auto; */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @media (max-width: 768px) {
+            width: 60%;
+        }
+
+        @media (max-width: 640px) {
+            width: 80%;
+        }
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        padding: 1%;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 300;
+    }
+
+    .form-group input[type="text"] {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        outline: none;
+        background-color: #EDF0F9;
+    }
+    .form-group textarea {
+        width: 90%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        outline: none;
+        background-color: #EDF0F9;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: center; 
+        margin-top: 20px; 
+    }
+
+    .cancel-btn,
+    .add-btn {
+        padding: 10px 40px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        color: #333;
+    }
+
+    .cancel-btn:hover {
+        background-color: #f2f2f2;
+    }
+
+    .add-btn {
+        background-color: #b71c1c;
+        color: #fff;
+    }
+
+    .add-btn:hover {
+        background-color: #8e0000;
+    }

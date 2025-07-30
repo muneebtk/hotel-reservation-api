@@ -1,0 +1,63 @@
+*/migrations/*
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+
+*.pyc
+*.pyo
+
+*.env
+.env
+Bookingapp_1969/.env
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Specific files and directories to ignore
+Bookingapp_1969/__pycache__/
+api/__pycache__/
+chalets/__pycache__/
+chalets/migrations/
+common/__pycache__/
+common/migrations/
+user/__pycache__/
+user/migrations/
+vendor/__pycache__/
+vendor/migrations/
+media/hotel_images/
+media/hotel_logos/
+media/roomtype_images/
+superuserapp/__pycache__/
+media/hotel_documents/
+media/amenity_icons/
+Bookingapp_1969/.env
+#log
+logs/
+*/logs/
+*.log
+log/debug.log
+*/__pycache__/*
+*/migrations/__pycache__/
+
+staticfiles
+*/staticfiles/*
+
+*/logs/*
+
+config/apple/*.p8
+
+# *.mo

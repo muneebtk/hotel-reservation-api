@@ -1,0 +1,307 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/commission.css' %}">
+
+</head>
+<body>
+     <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+    {% include 'accounts/loader_div.html' %}
+
+        <div class="w3-main main-section">
+                <div class="container container-box" id="blur_container">
+                    <div class="row justify-content-center">
+                        <div class="row-main" id="hotelTable">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-8">
+                                        <div class="select-container">
+                                            <div class="col-md-4" style="float: right;">
+                                                <button class="btn btn-red px-3 active" type="button"  id="openModalButton" style="border-radius: 10px;">
+                                                    <img src ="{% static 'icons/material-symbols_add.png' %}">{% trans 'Add Commission' %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="border-right">{% trans "From Amount" %}</th>
+                                            <th class="border-right">{% trans "To Amount" %}</th>
+                                            <th class="border-right">{% trans "Commission" %}</th>
+                                            <th>{% trans "Action" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                        {% if commissions %}
+                                            {% for commission in commissions %}
+                                                <tr>
+                                                    <td class="border-right">{{ commission.from_amount }}</td>
+                                                    <td class="border-right">{{commission.to_amount}}</td>
+                                                    <td class="border-right">{{commission.commission_amount}}</td>
+                                                    <td class="color-grey">
+                                                        <div class="table-action-btn-container">
+                                                            <a href="#" class="edit-commission-link edit-btn" data-id="{{ commission.id }}" class="textdecoration-none">
+                                                                <i class="fa-solid fa-pen"></i> {% trans "Edit" %}
+                                                            </a>
+                                                        
+                                                            <a href="#" class="delete-commission-link delete-btn" data-id="{{ commission.id }}" class="textdecoration-none">
+                                                                <i class="fa-solid fa-trash-can"></i> {% trans "Delete" %}
+                                                            </a>
+                                                        </div>
+                                                    </td>                                                    
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="5" class="text-center">{% trans "No data found" %}</td>
+                                            </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>  
+
+    <!-- add modal -->
+    {% include 'superuser/add_commission.html'%}
+    <!-- edit modal -->
+    {% include 'superuser/edit_commission.html'%}
+
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>            
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            
+    <script>
+        
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById('commisionModal');
+            const openModalBtn = document.getElementById('openModalButton');
+
+            openModalBtn.onclick = function () {
+                modal.style.display = 'block';
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+
+
+        $(document).ready(function() {
+
+            $('.edit-commission-link').click(function(e) {
+                e.preventDefault();
+                var commissionId = $(this).data('id');
+
+                $.ajax({
+                    url: `/super_user/commission_edit/${commissionId}/`,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#editcommissionId').val(data.commission_id);
+                        $('#editfromamount').val(data.from_amount);
+                        $('#edittoamount').val(data.to_amount);
+                        $('#editcommission').val(data.commission);
+                        $('#editCommissionForm').attr('action', `/super_user/commission_edit/${commissionId}/`);
+                        $('#editCommissionModal').css('display', 'block');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching amenity data:', error);
+                    }
+                });
+            });
+
+            $('#editCommissionModal .close').click(function() {
+                $('#editCommissionModal').css('display', 'none');
+                $('#edit_error_message').hide();
+            });
+
+            $('#editCommissionModal .cancel-btn').click(function() {
+                $('#editCommissionModal').css('display', 'none');
+                $('#edit_error_message').hide();
+            });
+
+            $('#editCommissionForm').submit(function(event) {
+                event.preventDefault();
+
+                function isDecimalOrDigits(value) {
+                    return /^\d+(\.\d+)?$/.test(value);
+                }
+
+                var fromAmount = document.getElementById('editfromamount').value.trim();
+                var toAmount = document.getElementById('edittoamount').value.trim();
+                var commission = document.getElementById('editcommission').value.trim();
+
+                // Validate the input values first
+                if (!isDecimalOrDigits(fromAmount) || !isDecimalOrDigits(toAmount) || !isDecimalOrDigits(commission)) {
+                    document.getElementById('edit_error_message').style.display = 'block';
+                    document.getElementById('edit_error_message').innerText = "{% trans 'Please enter valid numbers only (whole or decimal).' %}";
+                    return; 
+                }
+
+                var maxLength = 10;
+                if (fromAmount.length > maxLength || toAmount.length > maxLength || commission.length > maxLength) {
+                    document.getElementById('edit_error_message').style.display = 'block';
+                    document.getElementById('edit_error_message').innerText = `{% trans 'Each input must be ${maxLength} digits or fewer.' %}`;
+                    return;
+                }
+
+                const parsedFromAmount = parseFloat(fromAmount);
+                const parsedToAmount = parseFloat(toAmount);
+                console.log(parsedFromAmount, parsedToAmount);
+                
+                // Ensure that parsed amounts are valid numbers
+                if (isNaN(parsedFromAmount) || isNaN(parsedToAmount)) {
+                    document.getElementById('edit_error_message').style.display = 'block';
+                    document.getElementById('edit_error_message').innerText = "{% trans 'Invalid amount values.' %}";
+                    return;
+                }
+
+                // Now compare the amounts
+                if (parsedToAmount <= parsedFromAmount) {
+                    document.getElementById('edit_error_message').style.display = 'block';
+                    document.getElementById('edit_error_message').innerText = "{% trans 'To Amount must be greater than From Amount.' %}";
+                    return;
+                }
+
+                // Hide the error message if everything is valid
+                document.getElementById('edit_error_message').style.display = 'none';
+                
+                // Show loader and blur the modal
+                $('#loader').show();
+                $('#editCommissionModal').addClass('blur');
+                $('#blur_container').addClass('blur');
+
+                // Prepare the form data for AJAX
+                var formData = new FormData($(this)[0]);
+
+                // AJAX request
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        console.log('commission updated successfully:', data);
+                        $('#editCommissionModal').css('display', 'none');
+                        window.location.reload(); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating commission:', error);
+                
+                        let errorMessage = 'An unknown error occurred.'; 
+            
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.error) {
+                                errorMessage = response.error;
+                            }
+                        } catch (e) {
+                            console.error('Error parsing JSON response:', e);
+                        }
+                
+                        $('#edit_error_message').text(errorMessage).show();
+                    },
+                    complete: function() {
+                        $('#loader').hide();
+                        $('#editCommissionModal').removeClass('blur');
+                        $('#blur_container').removeClass('blur');
+                    }
+                });
+            });
+        
+            $('.delete-commission-link').on('click', function(event) {
+                event.preventDefault(); 
+
+                const commissionId = $(this).data('id'); 
+
+                const userConfirmed = confirm("{% trans 'Are you sure you want to delete this commission?' %}");
+
+                if (userConfirmed) {
+                    
+                    $.ajax({
+                        url: `/super_user/delete-commission/${commissionId}/`,
+                        type: 'POST', 
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        success: function(response) {
+                            location.reload();
+                        },
+                        error: function(xhr) {
+                            alert("{% trans 'Failed to delete commission: ' %}" + xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+    
+</body>
+</html>

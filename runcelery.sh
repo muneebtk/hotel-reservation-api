@@ -1,0 +1,1 @@
+celery -A Bookingapp_1969 worker -l info & celery -A Bookingapp_1969 beat -l info

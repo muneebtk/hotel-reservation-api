@@ -1,0 +1,103 @@
+{% load static %}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/add-commission.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+</head>
+<!-- Include the Modal HTML -->
+<body>
+    <div id="commisionModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h2 class="modal-title">+ {% trans "Add Commission" %}</h2>
+            <form id="addcommissionForm" enctype="multipart/form-data">
+                
+                <div class="custom-form-group">
+                    <label for="fromamount">{% trans "From Amount" %}</label>
+                    <input type="text" id="fromamount" name="fromamount" placeholder="{% trans 'Enter the from-amount' %}" required>
+                </div>
+                <div class="custom-form-group">
+                    <label for="toamount">{% trans "To Amount" %}</label>
+                    <input type="text" id="toamount" name="toamount" placeholder="{% trans 'Enter the to-amount' %}" required>
+                </div>
+                <div class="custom-form-group">
+                    <label for="commission">{% trans "Commission Amount" %}</label>
+                    <input type="text" id="commission" name="commission" placeholder="{% trans 'Enter the commission amount' %}" required>
+                </div>
+            
+                <span id="error_message" class="text-85080C hidden">{% trans 'Commission slab already exists' %}</span>
+                <div class="custom-form-actions">
+                    <button type="button" class="custom-cancel-btn" onclick="window.location.reload();">{% trans "Cancel" %}</button>
+                    <button type="submit" class="custom-add-btn" id="addcommissionBtn">{% trans "Add" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+        document.getElementById('addcommissionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            function isDecimalOrDigits(value) {
+                return /^\d+(\.\d+)?$/.test(value);
+            }
+            
+            var fromAmount = document.getElementById('fromamount').value;
+            var toAmount = document.getElementById('toamount').value;
+            var commission = document.getElementById('commission').value;
+
+            var maxLength = 10;
+        
+            if (!isDecimalOrDigits(fromAmount) || !isDecimalOrDigits(toAmount) || !isDecimalOrDigits(commission)) {
+                document.getElementById('error_message').style.display = 'block';
+                document.getElementById('error_message').innerText = "{% trans 'Please enter valid numbers only (whole or decimal).' %}";
+                return;
+            }
+        
+            else if (fromAmount.length > maxLength || toAmount.length > maxLength || commission.length > maxLength) {
+                document.getElementById('error_message').style.display = 'block';
+                document.getElementById('error_message').innerText = `{% trans 'Each input must be ${maxLength} digits or fewer.' %}`;
+                return;
+            }
+        
+            else if (parseFloat(toAmount) <= parseFloat(fromAmount)) {
+                document.getElementById('error_message').style.display = 'block';
+                document.getElementById('error_message').innerText = "{% trans 'To Amount must be greater than From Amount.' %}";
+                return;
+            } else {
+                document.getElementById('error_message').style.display = 'none';
+            }
+            var formData = new FormData(this);
+            console.log(formData);
+            
+            fetch("{% url 'commission_list' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('error_message').style.display = 'block';
+                    document.getElementById('error_message').innerText = data.error;
+                } else {
+                    document.getElementById('error_message').style.display = 'none';
+
+                    var modal = document.getElementById('commisionModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+
+                    document.getElementById('addcommissionForm').reset();
+                    location.reload();
+                    }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+    </script>
+
+</body>

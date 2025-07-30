@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'chalets/css/chalet-booking-management.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu" id="myOverlay"></div>
+        <div class="w3-main main-section">
+                <div class="container container-box w-full">
+                    <div class="row justify-content-center w-full">
+                        <div class="row tabs-row" >
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3 active" type="button" id="upcoming_bookings_btn">
+                                    {% trans 'Upcoming Bookings' %} ({{bookings_page_length}})
+                                </button>
+                            </div>    
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3" type="button" id="past_bookings_btn">
+                                    {% trans 'Past Bookings' %} ({{past}})
+                                </button>
+                            </div>    
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3" type="button" id="cancelled_bookings_btn">
+                                    {% trans 'Cancelled Bookings' %} ({{cancelled}})
+                                </button>
+                            </div>  
+                        </div>
+                        <div class="row-main w-full" id="hotelTable">
+                           
+                            <div class="row ">
+                                <form method="post" id="filterForm">
+                                    {% csrf_token %}
+                                    <div class="col-md-4">
+                                            <input type="text" id="datePicker" ondblclick="resetDate('datePicker')" class="form-select select_fromdate fs12 text-black from_date"
+                                                name="date" placeholder="{% trans 'From: Sep 8, 2023' %}" >
+                                    </div>
+                                    <div class="col-md-4">
+                                            <input type="text" id="datePicker1" ondblclick="resetDate('datePicker1')" class="form-select select_todate fs12 text-black to_date"
+                                                name="date" placeholder="{% trans 'To: Sep 8, 2023' %}" >
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select select fs12 text-black" id="status_type" name="status_type" >
+                                            <option value="Status Type">{% trans "Status Type" %}</option>
+                                            <option value="pending">{% trans "Pending" %}</option>
+                                            <option value="booked">{% trans "Booked" %}</option>
+                                            <option value="confirmed">{% trans "Confirmed" %}</option>
+                                            <option value="rejected">{% trans "Rejected" %}</option>
+                                            <option value="expired">{% trans "Expired" %}</option>
+                                            <option value="cancelled">{% trans "Cancelled" %}</option>
+                                            <option value="completed">{% trans "Completed" %}</option>
+                                            <option value="check-in">{% trans "Check-In" %}</option>
+                                        </select>
+                                    </div>
+                                
+                                    <div class="col-md-4">
+                                        <button class=" btn-blue px-3 f" type="button" id="chalet_booking_search_button">
+                                            <i class="fa-solid fa-magnifying-glass"></i> {% trans 'Search' %}
+                                        </button>
+                                    </div>
+                                </form>    
+                            </div>
+                            
+                            <br>
+                            <div class="col-md-12 w-full">
+                                <input class="chalet-id"  type="text" data-chalet-id={{selected_chalet.id}} hidden>
+                                <div class="table-responsive table-container w-full">
+                                    <table class="w3-table text-center responsive-table w-full" >
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right">{% trans 'Sl. No.'%}</th>
+                                                <th class="border-right">{% trans 'Guest Name' %}</th>
+                                                <th class="border-right">{% trans 'Contact Number' %}</th>
+                                                <th class="border-right">{% trans 'Check-In' %}</th>
+                                                <th class="border-right">{% trans 'Check-Out' %}</th>
+                                                <th class="border-right">{% trans 'Status' %}</th>
+                                                <th colspan="3" >{% trans 'Action' %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color" id="search_results">
+                                            {%if booking_data%}
+                                            {%for booking in booking_data%}
+                                            <tr>
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right">{{ booking.booking_fname|capfirst}}</td>
+                                                <td class="border-right">{{booking.booking_mobilenumber}}</td>
+                                                <td class="border-right">{{booking.checkin_date|date:"Y-m-d"}}</td>
+                                                <td class="border-right">{{booking.checkout_date|date:"Y-m-d"}}</td>
+                                                <td class="border-right">{{ booking.status|title }}</td>
+                                                <td class="color-grey">
+                                                    <a href="{%url 'chalet_user' booking.id%}" class="text-decoration-none view-btn" data-book-id="{{ booking.id }}">{% trans 'View' %}</a>
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                            {%else%}
+                                                <tr>
+                                                    <td colspan="8" class="text-center">{% trans 'No data found' %}</td>
+                                                </tr>
+                                            {%endif%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+               
+                {% if booking_data.paginator.num_pages > 0 %}
+                <div id="pagination" class="pagination">
+                    <!-- Previous Button -->
+                    {% if booking_data.has_previous %}
+                        <a href="#" class="previous-page pagination-link" data-page="{{ booking_data.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}
+                    
+                    <div class="page-numbers">
+                        {% for num in booking_data.paginator.page_range %}
+                            {% if booking_data.paginator.num_pages > 3 %}
+                                {% if num >= booking_data.number and num < booking_data.number|add:3 %}
+                                    {% if num == booking_data.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num == booking_data.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Next Button -->
+                    {% if booking_data.has_next %}
+                        <a href="#" class="next-page pagination-link" data-page="{{ booking_data.next_page_number }}" title="Next Page">
+                            <span class="next-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+            
+                        
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>            
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        function loadershow(){
+            $('.loader-container').css('display','flex');
+            $('#hotelTable').addClass('blurred');
+        }
+        function loaderhide(){
+            var loaderTimeout = setTimeout(function() {
+            $('.loader-container').hide();
+            $('#hotelTable').removeClass('blurred');
+        }, 1000);
+        
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        
+        function resetDate(dateId) {
+            console.log(dateId);
+            document.getElementById(dateId).value = '';
+        }
+
+        $(document).ready(function() {
+            $('#saveEditedBookingBtn').click(function(e) {
+                e.preventDefault();
+
+                var BookingDetailId = $('#booking_detail_id').val();
+
+                var BookingData = {
+                    guest_name: $('#guest_name').val(),
+                    contact_number: $('#contact').val(),
+                    room_types: $('#roomtypes').val(),
+                    check_in_date: $('#check_in').val(),
+                    check_out_date: $('#check_out').val(),
+                    booking_status: $('#status').val(),
+                };
+
+                $.ajax({
+                    url: '/chalets/chalet_booking_detail/' + BookingDetailId + '/',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': window.CSRF_TOKEN
+                    },
+                    data: BookingData,
+                    success: function(data) {
+                        $('#id02').hide();
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating booking:', error);
+                        alert('Error updating booking. Please try again later.');
+                    }
+                });
+            });
+        });
+      
+        $(document).ready(function() {
+            $('#chalet_booking_search_button').click(function() {
+                loadershow();
+
+                var fromDate = $('.from_date').val();
+                var toDate = $('.to_date').val();
+                var statusType = $('#status_type').val();
+                var activeButtonId = $('.btn.active').attr('id');
+                 // Extract chalet_id from the current URL
+                var urlParams = new URLSearchParams(window.location.search);
+                var chaletId = urlParams.get('chalet_id'); // Get chalet_id from URL
+
+                console.log("Chalet ID:", chaletId);
+                if (chaletId == null){
+                    var chaletInput = document.querySelector('.chalet-id');
+                    var chaletId = chaletInput.dataset.chaletId;
+
+                    console.log(chaletId);
+                }
+
+
+                setTimeout(function() {
+                    $.ajax({
+                        url: "{% url 'chalet_booking' %}",
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data: {
+                            from_date: fromDate,
+                            to_date: toDate,
+                            status_type: statusType,
+                            active_button_id: activeButtonId,
+                            chalet_id: chaletId, 
+                        },
+                        success: function(data) {
+                            console.log(data,"============")
+                            $('table tbody').html($(data).find('table tbody').html());
+                            updatePagination(data)
+                            loaderhide();
+                            
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching bookings:', error);
+                            loaderhide();
+                            alert('Error fetching bookings. Please try again later.');
+
+                        }
+                    });
+                }, 500);     
+            });
+        });
+
+        $(document).ready(function() {
+            $('#upcoming_bookings_btn').click(function() {
+                loadershow();
+                var urlParams = new URLSearchParams(window.location.search);
+                var chaletId = urlParams.get('chalet_id'); // Get chalet_id from URL
+
+                console.log("Chalet ID:", chaletId);
+                if (chaletId == null){
+                    var chaletInput = document.querySelector('.chalet-id');
+                    var chaletId = chaletInput.dataset.chaletId;
+
+                    console.log(chaletId);
+                }
+                setTimeout(function() {
+                    $.ajax({
+                        url: '/chalets/chalet_booking?chalet_id=' + chaletId,
+                        type: 'GET',
+                        success: function(data) {
+                            $('table tbody').html($(data).find('table tbody').html());
+                            $('.btn').removeClass('active');
+                            $('#upcoming_bookings_btn').addClass('active');
+                            loaderhide();
+                            
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+                            const currentPage = parseInt($('.current-page').text(), 10) || 1;
+                            console.log("rows:",rows,"totalRows:",totalRows,"currentPage:",currentPage,"totalRows:",totalRows)
+                            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                                $('.pagination').hide();
+                            } else {
+                                $('.pagination').html($(data).find('.pagination').html()).show();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching cancelled appointments:', error);
+                            loaderhide();
+                            alert('Error fetching cancelled appointments. Please try again later.');
+                        }
+                    });
+                }, 500);   
+            });
+        });
+
+
+        $(document).ready(function() {
+            $('#cancelled_bookings_btn').click(function() {
+                loadershow();
+                var urlParams = new URLSearchParams(window.location.search);
+                var chaletId = urlParams.get('chalet_id'); // Get chalet_id from URL
+
+                console.log("Chalet ID:", chaletId);
+                if (chaletId == null){
+                    var chaletInput = document.querySelector('.chalet-id');
+                    var chaletId = chaletInput.dataset.chaletId;
+
+                    console.log(chaletId);
+                }
+                setTimeout(function() {
+                    $.ajax({
+                        url: '/chalets/chalet_cancelled-appointments/?chalet_id=' + chaletId, 
+                        type: 'GET',
+                        success: function(data) {
+                            $('table tbody').html($(data).find('table tbody').html());
+                            $('.btn').removeClass('active');
+                            $('#cancelled_bookings_btn').addClass('active');
+                            loaderhide();
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+
+                            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                                $('.pagination').hide();
+                            } else {
+                                $('.pagination').html($(data).find('.pagination').html()).show();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching cancelled appointments:', error);
+                            loaderhide();
+                            alert('Error fetching cancelled appointments. Please try again later.');
+                        }
+                    });
+                }, 500);   
+            });
+        });
+
+        $(document).ready(function() {
+            $('#past_bookings_btn').click(function() {
+                loadershow();
+                setTimeout(function() {
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var chaletId = urlParams.get('chalet_id'); // Get chalet_id from URL
+
+                    console.log("Chalet ID:", chaletId);
+                    if (chaletId == null){
+                        var chaletInput = document.querySelector('.chalet-id');
+                        var chaletId = chaletInput.dataset.chaletId;
+
+                        console.log(chaletId);
+                    }
+                    $.ajax({
+                        url: '/chalets/chalet_past-bookings/?chalet_id=' + chaletId,  
+                        type: 'GET',
+                        success: function(data) {
+                            $('table tbody').html($(data).find('table tbody').html());
+                            $('.btn').removeClass('active');
+                            $('#past_bookings_btn').addClass('active');
+                            $('.pagination').html($(data).find('.pagination').html());
+                            loaderhide();
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+
+                            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                                $('.pagination').hide();
+                            } else {
+                                $('.pagination').html($(data).find('.pagination').html()).show();
+                            }      
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching past bookings:', error);
+                            loaderhide();
+                            alert('Error fetching past bookings. Please try again later.');
+                        }
+                    });
+                }, 500); 
+            });
+        });
+        $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+        loadershow();
+        const activeButton = $('.btn.active').attr('id');
+        const page = $(this).data('page');  // Get the page number from the clicked pagination link
+        let url = '';
+        console.log(page,"==========================")
+        var urlParams = new URLSearchParams(window.location.search);
+        var chaletId = urlParams.get('chalet_id'); // Get chalet_id from URL
+
+        console.log("Chalet ID:", chaletId);
+        if (chaletId == null){
+            var chaletInput = document.querySelector('.chalet-id');
+            var chaletId = chaletInput.dataset.chaletId;
+
+            console.log(chaletId);
+        }
+
+        var fromDate = $('.from_date').val();
+        var toDate = $('.to_date').val();
+        var statusType = $('#status_type').val();
+       
+
+        var activeButtonId = $('.btn.active').attr('id');
+        console.log("statusType:", statusType,"--------->>>>>>>>>>>>>","activeButtonId:",activeButtonId,"-------------->>>>>>>>");
+
+        if (activeButton === 'cancelled_bookings_btn') {
+            url = `/chalets/chalet_cancelled-appointments/?chalet_id=${chaletId}&page=${page}&fromDate=${fromDate}&toDate=${toDate}&statusType=${statusType}&activeButtonId=${activeButtonId}`;
+        } else if (activeButton === 'past_bookings_btn') {
+            url = `/chalets/chalet_past-bookings/?chalet_id=${chaletId}&page=${page}&fromDate=${fromDate}&toDate=${toDate}&statusType=${statusType}&activeButtonId=${activeButtonId}`;
+        }
+        else if (activeButton === 'upcoming_bookings_btn'){
+            url = `/chalets/chalet_booking?chalet_id=${chaletId}&page=${page}&fromDate=${fromDate}&toDate=${toDate}&statusType=${statusType}&activeButtonId=${activeButtonId}`;
+        }
+        console.log(url,"==================")
+        $.ajax({
+            url: url, 
+            type: 'GET',
+            success: function(data) {
+                $('table tbody').html($(data).find('table tbody').html());
+
+                $('.pagination').html($(data).find('.pagination').html());
+                loaderhide();
+
+                const rows = $(data).find('table tbody tr');
+                const totalRows = rows.length;
+
+                const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                    $('.pagination').hide();
+                } else {
+                    $('.pagination').html($(data).find('.pagination').html()).show();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching pagination data:', error);
+                loaderhide();
+                alert('Error fetching data for pagination. Please try again later.');
+            }
+        });
+    });
+function updatePagination(data) {
+    const rows = document.querySelectorAll('#search_results tr');
+    const totalRows = Array.from(rows).filter(row => !row.querySelector('[colspan]')).length;
+
+    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+    console.log("rows:",rows,"totalRows:",totalRows,"currentPage:",currentPage,"totalRows:",totalRows)
+    if ((totalRows === 1 ) || (currentPage === 1 && totalRows < 15)) {
+        console.log("+++++++++==============+++++++++++++")
+        $('.pagination').hide();
+    } else {
+        $('.pagination').html($(data).find('.pagination').html()).show();
+    }         
+}
+
+$(document).ready(function () {
+    updatePagination(document);
+    var urlParams = new URLSearchParams(window.location.search);
+    var chaletId = urlParams.get('chalet_id');
+    $.ajax({
+        url: `/chalets/chalet_booking?chalet_id=${chaletId}`,
+        method: 'GET',
+        success: function (data) {
+            console.log(data,"===================")
+            //$('table tbody').html($(data).find('table tbody').html());
+            updatePagination(data);
+        }
+    });
+});
+
+
+
+        
+    </script>
+    
+</body>
+</html>

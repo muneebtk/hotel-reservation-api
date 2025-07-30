@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/register-view-table.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- Include Flatpickr CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+     <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+</head>
+<body>
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+  
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+        <div class="w3-main main-section">
+            <div class="container container-box">
+                <div class=" justify-content-center">
+                    <div class="row-main" id="hotelTable">
+                        <div class="row filter-action-container">
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <input type="text" ondblclick="resetDate('datePicker')" id="datePicker" class="form-select select_fromdate fs12 text-black" name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <input type="text" ondblclick="resetDate('datePicker1')" id="datePicker1" class="form-select select_todate fs12 text-black" name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <select aria-label="Default select example" class="form-select select_approved fs12 text-black white">
+                                    <option value="">{% trans "All" %}</option>
+                                    <option value="approved">{%trans "Approved" %}</option>
+                                    <option value="pending">{%trans "Pending" %}</option>
+                                    <option value="rejected">{%trans "Rejected" %}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3">
+                                <select aria-label="Default select example" class="form-select select_hotel fs12 text-black white">
+                                    {% for category in categories %}
+                                    <option value="{{ category }}">{{ category|capfirst }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-6 mb-3" id="button_div">
+                                <button class="btn-blue search_button w-100" type="button">
+                                    <i class="fa-solid fa-magnifying-glass"></i> {% trans "Search" %}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div > 
+                            <div class="hotel_table">
+                                <div class="table-container ">
+                                    <table>
+                                      <thead>
+                                            <tr>
+                                                <th class="border-right">{% trans 'Sl. No.'%}</th>
+                                                <th class="border-right">{% trans "Hotel Name" %}</th>
+                                                <th class="border-right">{% trans "Hotel Owner Name" %} </th>
+                                                <th class="border-right">{% trans "Office Number" %} </th>
+                                                <th class="border-right">{% trans "Hotel Address" %} </th>
+                                                <th class="border-right">{% trans "Hotel Rating" %} </th>
+                                                <th class="border-right">{% trans "CR Number" %} </th>
+                                                <th class="border-right">{% trans "Date of Expiry" %} </th>
+                                                <th class="border-right">{% trans "VAT Number" %} </th>
+                                                <th class="border-right">{% trans "Approval Status" %} </th>
+                                                <th class="">{% trans "Active" %}</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                            {%for data in hotel_data%}
+                                            <tr class="">
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right"><a href="{%url 'super_hotel_approval' data.id%}" class="textdecoration-none">{% if request.LANGUAGE_CODE == "ar"%}{{data.name_arabic|capfirst}}
+                                                    {% else %}
+                                                    {{data.name|default:"Not available" }}
+                                                {% endif %}
+                                                </a></td>
+                                                <td class="border-right">{% if request.LANGUAGE_CODE == "ar"%}
+                                                        {%if data.owner_name.owner_name_arabic %}
+                                                        {{data.owner_name.owner_name_arabic|capfirst}}
+                                                        {% else %}
+                                                        {{data.owner_name_arabic}}
+                                                        {%endif%}
+                                                    {% else %}
+                                                    {%if data.owner_name.owner_name %}
+                                                    {{data.owner_name.owner_name}}
+                                                    {% else %}
+                                                    {{data.vendor.name}}
+                                                    {%endif%}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">{{data.office_number}}</td>
+                                                <td class="border-right">{{data.address}}</td>
+                                                <td class="border-right">{{data.hotel_rating}}</td>
+                                                <td class="border-right">{{data.cr_number}}</td>
+                                                <td class="border-right">{{data.date_of_expiry}}</td>
+                                                <td class="border-right">{{data.vat_number}}</td>
+                                                <td class="border-right">{{data.get_approval_status_display}}</td>
+                                                <td class="color-grey"><a href="{%url 'super_hotel_approval' data.id%}" class="textdecoration-none view-btn">{% trans "View" %}</a></td>
+                                                <!-- <td class="color-grey"><a href="{% url 'hotel_edit' data.id %}" style="text-decoration: none;">{% trans "Edit" %}</a></td>  #edit button editing hotel detail -->
+                                            </tr>
+                                            {%endfor%}
+                                        </tbody>   
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="chalet_table hidden">
+                                <div class="table-container ">
+                                    <table>
+                                      <thead>
+                                            <tr>
+                                                <th class="border-right">{% trans 'Sl. No.'%}</th>
+                                                <th class="border-right">{% trans "Chalet Name" %}</th>
+                                                <th class="border-right">{% trans "Chalet Owner Name" %}</th>
+                                                <!-- <th class="border-right">{% trans "Chalet Owner Email" %}</th> -->
+                                                <th class="border-right">{% trans "Office Number" %}</th>
+                                                <!-- <th class="border-right">{% trans "GSM Number" %}</th> -->
+                                                <th class="border-right">{% trans "Chalet Address" %}</th>
+                                                <!-- <th class="border-right">{% trans "Country" %}</th>
+                                                <th class="border-right">{% trans "State/ Province" %}</th>
+                                                <th class="border-right">{% trans "City" %}</th>
+                                                <th class="border-right">{% trans "Postal/ZIP Code" %}</th>
+                                                <th class="border-right">{% trans "Propert Type" %}</th> -->
+                                                <th class="border-right">{% trans "CR Number" %}</th>
+                                                <th class="border-right">{% trans "Date of Expiry" %}</th>
+                                                <th class="border-right">{% trans "VAT Number" %}</th>
+                                                <th class="border-right">{% trans "Approval Status" %} </th>
+                                                <th class=""></th>
+                                                <!-- <th class=""></th> -->
+                                            </tr>
+                                        </thead>
+                                                
+                                        <tbody class="fs12 table-body-color">
+                                            {%for data in hotel_data%}
+                                            <tr class="">
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right"><a href="{%url 'super_chalet_approval' data.id%}" class="textdecoration-none">{% if request.LANGUAGE_CODE == "ar"%}{{data.name_arabic}}   {% else %}
+                                                    {{data.name|default:"Not available" }}
+                                                {% endif %}</a></td>
+                                                <td class="border-right">{% if request.LANGUAGE_CODE == "ar"%}
+                                                        {%if data.owner_name.owner_name_arabic %}
+                                                        {{data.owner_name.owner_name_arabic|capfirst}}
+                                                        {% else %}
+                                                        {{data.owner_name_arabic}}
+                                                        {%endif%}
+                                                    {% else %}
+                                                    {%if data.owner_name.owner_name %}
+                                                    {{data.owner_name.owner_name}}
+                                                    {% else %}
+                                                    {{data.vendor.name}}
+                                                    {%endif%}
+                                                  {%endif%}</td>
+                                                <!-- <td class="border-right">{{data.vendor.user.email}}</td> -->
+                                                <td class="border-right">{% if data.office_number %}{{data.office_number}}{% else %} N/A {% endif %}</td>
+                                                <!-- <td class="border-right">{{data.vendor.gsm_number}}</td> -->
+                                                <td class="border-right">{% if data.address %}{{data.address}}{% else %} N/A {% endif %}</td>
+                                                <!-- <td class="border-right">{{data.country}}</td>
+                                                <td class="border-right">{{data.state}}</td>
+                                                <td class="border-right">{{data.city}}</td>
+                                                <td class="border-right">{{data.city.postal_code}}</td>
+                                                <td class="border-right ">{{data.property_types.all|join:", "}}</td> -->
+                                                <td class="border-right">{% if data.cr_number %}{{data.cr_number}}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if data.date_of_expiry %}{{data.date_of_expiry|date:"Y-m-d"}}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if data.vat_number %}{{data.vat_number}}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if data.get_approval_status_display %}{{data.get_approval_status_display}}{% else %} N/A {% endif %}</td>
+                                                <td class="color-grey"><a href="{%url 'super_chalet_approval' data.id%}" class="textdecoration-none view-btn">{% trans "View" %}</a></td>
+                                                <!-- <td class="color-grey"><a href="{% url 'hotel_edit' data.id %}" style="text-decoration: none;">{% trans "Edit" %}</a></td> -->
+                                            </tr>
+                                            {%endfor%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="no_data_found hidden"></div>
+                    {%if hotel_data%}
+                <div class="pagination">
+                    <!-- Previous Button -->
+                    {% if hotel_data.has_previous %}
+                    <a href="#" class="previous-page pagination-link" data-page="{{ hotel_data.previous_page_number }}" title="Previous Page">
+                        <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                <div class="page-numbers">
+                    {% for num in hotel_data.paginator.page_range %}
+                        {% if hotel_data.paginator.num_pages > 3 %}
+                            {% if num >= hotel_data.number and num < hotel_data.number|add:3 %}
+                                {% if num == hotel_data.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if num == hotel_data.number %}
+                                <span class="current-page">{{ num }}</span>
+                            {% else %}
+                                <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+                <!-- Next Button -->
+                {% if hotel_data.has_next %}
+                <a href="#" class="next-page pagination-link" data-page="{{ hotel_data.next_page_number }}" title="Next Page">
+                    <span class="next-button">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                {% else %}
+                    <span class="disabled-button disabled-button-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                {% endif %}
+            </div>
+            {%else%}
+            <div></div>
+            {% endif %}              
+                </div>
+            </div>
+        </div>
+        
+
+        <script type="text/javascript">
+            window.CSRF_TOKEN = '{{ csrf_token }}';
+        </script>
+
+    <script>
+          
+        document.addEventListener('DOMContentLoaded', function() {
+            var select = document.getElementById('languageSelectArabicFirst');
+            var arabicOption = select.querySelector('option[value="ar"]');
+            
+            if (arabicOption) {
+                select.insertBefore(arabicOption, select.firstChild);
+            }
+        });
+   
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+        $(document).ready(function(){
+            $('.search_button').click(function(event){
+
+                event.preventDefault();
+
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+
+                var from_date = $('.select_fromdate').val();
+                var to_date = $('.select_todate').val();   
+                var category_type = $('.select_hotel').val();
+                var approved = $('.select_approved').val();
+                console.log(from_date,to_date,category_type,approved);
+                if(category_type == "CHALET"){
+
+                    $('.hotel_table ').hide();
+                    $('.chalet_table').show();
+                }
+                else if(category_type == "HOTEL"){
+
+                    $('.chalet_table').hide();
+                    $('.hotel_table ').show();
+                    
+                }
+                setTimeout(function() {
+                    $.ajax({
+                        url:'{%url "super_hotel_table_list" %}',
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data:{
+                            "from_date":from_date,
+                            "to_date":to_date,
+                            "category_type":category_type,
+                            "approved":approved
+                        },
+                        success:function(data){
+
+                           clearTimeout(loaderTimeout);
+
+                           $('.loader-container').hide();
+                           $('#hotelTable').removeClass('blurred');
+
+                            // console.log(data);
+                            // $(' table tbody').html($(data).find(' table tbody').html())
+                            if (category_type == "CHALET") {
+                                // $('.chalet_table table tbody').html($(data).find('.chalet_table table tbody').html());
+                                var chaletData = $(data).find('.chalet_table table tbody').html();
+                                if (chaletData.trim() === '') {
+                                    // $('.no_data_found').html('No chalet found').show();
+                                    // $('.chalet_table table tbody').empty();
+                                    $('.chalet_table table tbody').html('<tr><td colspan="17" style="text-align: center;">No data found</td></tr>');
+                                    $('.pagination').hide();
+                                } else {
+                                    $('.no_data_found').hide();
+                                    $('.chalet_table table tbody').html(chaletData);
+                                    const currentPage = parseInt($(data).find('.current-page').text(), 15) || 1;
+                                    const totalRows = $(data).find('.chalet_table table tbody tr').length;
+
+                                    if (currentPage === 1 && totalRows < 15) {
+                                        $('.pagination').hide();
+                                    } else {
+                                        $('.pagination').html($(data).find('.pagination').html()).css('display', 'flex');
+                                    }
+
+                                }
+                            } else if (category_type == "HOTEL") {                                
+                                // $('.hotel_table table tbody').html($(data).find('.hotel_table table tbody').html());
+                                var hotelData = $(data).find('.hotel_table table tbody').html();
+                                if (hotelData.trim() === '') {
+                                    // $('.no_data_found').html('No hotel found').show();
+                                    // $('.hotel_table table tbody').empty();
+                                    $('.hotel_table table tbody').html('<tr><td colspan="17" style="text-align: center;">No data found</td></tr>');
+                                    $('.pagination').hide();
+                                } else {
+                                    $('.no_data_found').hide();
+                                    $('.hotel_table table tbody').html(hotelData);
+                                    const currentPage = parseInt($(data).find('.current-page').text(), 15) || 1;
+                                    const totalRows = $(data).find('.hotel_table table tbody tr').length;
+                                    
+                                    if (currentPage === 1 && totalRows < 15) {
+                                        $('.pagination').hide();
+                                    } else {
+                                        $('.pagination').html($(data).find('.pagination').html()).css('display', 'flex');
+                                    }
+                                }
+                            }
+                        },
+                        error:function(xhr,status,error){
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('.pagination').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            console.error('error :',error);
+                        }
+                    });
+                }, 500);  
+                     
+                // if(category_type == "HOTEL"){
+                //     $('.chalet_table').css('display', 'none');
+                //     $('.hotel_table').css('display', 'table');
+                //     $.ajax({
+                //         url:'{%url "hotel_table_list" %}',
+                //         type:'POST',
+                //         headers: {
+                //             'X-CSRFToken': window.CSRF_TOKEN
+                //         },
+                //         data:{
+                //             "from_date":from_date,
+                //             "to_date":to_date,
+                //             "category_type":category_type,
+                //             "approved":approved
+                //         },
+                //         success:function(data){
+                //             $('table tbody').html($(data).find('table tbody').html())
+                //         },
+                //         error:function(xhr,status,error){
+                //             console.error('error :',error);
+                //         }
+                //     });
+                // }
+                
+            })
+        });
+        $(document).on('click', '.pagination-link', function (e) {
+
+                event.preventDefault();
+
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+                var page = $(this).data('page');
+                var from_date = $('.select_fromdate').val();
+                var to_date = $('.select_todate').val();   
+                var category_type = $('.select_hotel').val();
+                var approved = $('.select_approved').val();
+                console.log(from_date,to_date,category_type,approved);
+                if(category_type == "CHALET"){
+
+                    $('.hotel_table ').hide();
+                    $('.chalet_table').show();
+                }
+                else if(category_type == "HOTEL"){
+
+                    $('.chalet_table').hide();
+                    $('.hotel_table ').show();
+                    
+                }
+                setTimeout(function() {
+                    $.ajax({
+                        url:'{%url "super_hotel_table_list" %}',
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data:{
+                            "page": page, 
+                            "from_date":from_date,
+                            "to_date":to_date,
+                            "category_type":category_type,
+                            "approved":approved
+                        },
+                        success:function(data){
+
+                           clearTimeout(loaderTimeout);
+
+                           $('.loader-container').hide();
+                           $('#hotelTable').removeClass('blurred');
+
+                            // console.log(data);
+                            // $(' table tbody').html($(data).find(' table tbody').html())
+                            if (category_type == "CHALET") {
+                                // $('.chalet_table table tbody').html($(data).find('.chalet_table table tbody').html());
+                                var chaletData = $(data).find('.chalet_table table tbody').html();
+                                if (chaletData.trim() === '') {
+                                    // $('.no_data_found').html('No chalet found').show();
+                                    // $('.chalet_table table tbody').empty();
+                                    $('.chalet_table table tbody').html('<tr><td colspan="17" style="text-align: center;">No data found</td></tr>');
+                                    $('.pagination').hide();
+                                } else {
+                                    $('.no_data_found').hide();
+                                    $('.chalet_table table tbody').html(chaletData);
+                                    $('.pagination').html($(data).find('.pagination').html());
+
+                                }
+                            } else if (category_type == "HOTEL") {
+                                // $('.hotel_table table tbody').html($(data).find('.hotel_table table tbody').html());
+                                var hotelData = $(data).find('.hotel_table table tbody').html();
+                                if (hotelData.trim() === '') {
+                                    // $('.no_data_found').html('No hotel found').show();
+                                    // $('.hotel_table table tbody').empty();
+                                    $('.hotel_table table tbody').html('<tr><td colspan="17" style="text-align: center;">No data found</td></tr>');
+                                    $('.pagination').hide();
+                                } else {
+                                    $('.no_data_found').hide();
+                                    $('.hotel_table table tbody').html(hotelData);
+                                    $('.pagination').html($(data).find('.pagination').html());
+
+                                }
+                            }
+                        },
+                        error:function(xhr,status,error){
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('.pagination').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            console.error('error :',error);
+                        }
+                    });
+                }, 500);  
+                     
+                // if(category_type == "HOTEL"){
+                //     $('.chalet_table').css('display', 'none');
+                //     $('.hotel_table').css('display', 'table');
+                //     $.ajax({
+                //         url:'{%url "hotel_table_list" %}',
+                //         type:'POST',
+                //         headers: {
+                //             'X-CSRFToken': window.CSRF_TOKEN
+                //         },
+                //         data:{
+                //             "from_date":from_date,
+                //             "to_date":to_date,
+                //             "category_type":category_type,
+                //             "approved":approved
+                //         },
+                //         success:function(data){
+                //             $('table tbody').html($(data).find('table tbody').html())
+                //         },
+                //         error:function(xhr,status,error){
+                //             console.error('error :',error);
+                //         }
+                //     });
+                // }
+                
+            });
+            function updatePagination(data) {
+            const rows = $(data).find('table tbody tr');
+            const totalRows = rows.length;
+
+            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                $('.pagination').hide();
+            } else {
+                $('.pagination').html($(data).find('.pagination').html()).css('display', 'flex');
+            }         
+        }
+
+        $(document).ready(function () {
+            updatePagination(document);
+
+            $.ajax({
+                url: '{%url "super_hotel_table_list" %}',
+                method: 'GET',
+                success: function (data) {
+                    $('table tbody').html($(data).find('table tbody').html());
+                    updatePagination(data);
+                }
+            });
+        });
+
+
+
+        
+    </script>
+    
+</body>
+</html>

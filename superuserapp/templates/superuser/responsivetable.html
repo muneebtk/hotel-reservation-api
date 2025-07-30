@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    
+    <style>
+      .table-container {
+        width: 100%;
+        max-height: 600px;
+        border-radius: 20px;
+        background-color: white;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 20px; 
+        box-sizing: border-box; 
+      }
+
+      table {
+        width: 100%;
+        border-spacing: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        border-left: 0.5px solid #bcbcbc;
+        border-right: 0.5px solid #bcbcbc;
+      }
+
+      th,
+      td {
+        padding: 8px 12px;
+        text-align: left;
+        border-left: 0.5px solid #bcbcbc;
+        border-right: 0.58776 px solid #bcbcbc;
+      }
+
+      th {
+        background-color: #ffd6d6;
+      }
+
+      tr {
+        background-color: #fff6f6;
+      }
+
+     
+      table tr:last-child td {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+            <th>Header 4</th>
+            <th>Header 5</th>
+            <th>Header 6</th>
+            <th>Header 7</th>
+            <th>Header 8</th>
+            <th>Header 9</th>
+            <th>Header 10</th>
+            <th>Header 11</th>
+            <th>Header 12</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+            <td>Data 7</td>
+            <td>Data 8</td>
+            <td>Data 9</td>
+            <td>Data 10</td>
+            <td>Data 11</td>
+            <td>Data 12</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

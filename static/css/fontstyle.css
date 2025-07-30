@@ -1,0 +1,71 @@
+/* Define the IBMPlexSansArabic font weights */
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansArabic';
+    src: url('/static/font/IBMPlexSansArabic-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* Apply IBMPlexSansArabic globally */
+* {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+}
+
+[class^="fas-"], [class^="far-"], [class^="fab-"], [class^="fa-"] ,[class^="fas"], [class^="fa"]{
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+button,input,select,textarea{
+    cursor: pointer;
+    
+    &:focus{
+        outline: none;
+        box-shadow: none;
+    }
+    &:focus-visible{
+        outline: none;
+        box-shadow: none;
+    }
+}

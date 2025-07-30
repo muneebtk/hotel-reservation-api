@@ -1,0 +1,79 @@
+td,th{
+    text-align: center !important;
+}
+
+.view-btn{
+    background-color: #ffd6d6;
+    padding: .4rem .8rem;
+    border-radius: .4rem;
+    font-size: .8rem;
+    color: #85080c;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    border: none;
+
+    &:hover{
+        background-color: #85080c;
+        color: white;
+    }
+}
+
+.edit-btn{
+    background-color: #ffd6d6;
+    padding: .4rem .8rem;
+    border-radius: .4rem;
+    font-size: .8rem;
+    color: #85080c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+    transition: all 0.2s ease-in-out;
+    text-decoration:none;
+    border: none;
+
+    &:hover{
+        background-color: #85080c;
+        color: white;
+    }
+}
+
+.delete-btn{
+    background-color: #ffd6d6;
+    padding: .4rem .8rem;
+    border-radius: .4rem;
+    font-size: .8rem;
+    color: #85080c;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    text-decoration:none;
+    border: none;
+
+    &:hover{
+        background-color: #85080c;
+        color: white;
+    }
+}
+
+.table-action-btn-container{
+    display: flex;
+    gap: .7rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.see-more-btn{
+    font-size: .8rem;
+    border-radius: .3rem;
+    border: 1px solid #ffd6d6;
+    padding: .1rem .3rem;
+    color: #85080c;
+    text-decoration:none;
+    border: none;
+}

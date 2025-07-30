@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+{% load static%}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'chalets/css/chalet-booking-view.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+
+
+    <!-- Sidebar/menu -->
+       {% include 'chalets_accounts/chalat_logo.html' %}
+       {% include 'accounts/search_navbar.html' %} 
+
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu" id="myOverlay"></div> 
+        <div class="w3-main main-section">
+                <div class="container container-box w-full">
+                    <div class="row justify-content-center">
+                        <div class="row user-title-container" >
+                            <div class="col-md-4"> 
+                                <button class="back-icon w3-xlarge  w3-white"><a href="{%url 'chalet_booking'%}?chalet_id={{ selected_chalet.id }}" class="text-descoration-none"><i class="fa-solid fa-arrow-left fa-lg " ></i></a></button>
+                            </div>    
+                            <div class="col-md-4">
+                                {{booking.booking_fname|capfirst}} <br> <h4 class="mt-0">{% trans 'User Management' %}</h4>
+                            </div>    
+                        </div>
+
+                        <div class="row-main w-full p-0">
+                        
+                            <div class="main-container w-full">
+
+                                <div class="left-section">
+                                    <div class="booking-header">
+                                        <div class="booking-id">
+                                            <span>{% trans "Booking ID:" %}<strong>{{booking.booking_id}}</strong></span>
+                                            {% if status == "pending" %}
+                                                <span class="status pending">{{status|capfirst}}</span>
+                                            {% elif status == "booked" %}
+                                                <span class="status booked">{{status|capfirst}}</span>
+                                            {% elif status == "confirmed" %}
+                                                <span class="status confirmed">{{status|capfirst}}</span>
+                                            {% elif status == "rejected" %}
+                                                <span class="status rejected">{{status|capfirst}}</span>
+                                            {% elif status == "expired" %}
+                                                <span class="status expired">{{status|capfirst}}</span>
+                                            {% elif status == "cancelled" %}
+                                                <span class="status cancelled">{{status|capfirst}}</span>
+                                            {% else %}
+                                                <span class="status completed">{{status|capfirst}}</span>
+                                            {% endif %}
+                                        </div>
+                                        <!-- <button class="btn" id="book_edit"><img src="{% static 'images/ri_edit-fill.png' %}"></i></button> -->
+                                    </div>
+                                    <hr>
+                                    <div class="outer_container">
+
+                                        <div class="left_content border-right-ddd">
+                                            <input id="booking-id" data={{booking.id}} class="hidden"></input>
+                                            <div class="customer-details p-10px">
+                                                <h3>{% trans "Customer Details" %}</h3>
+                                                <p><strong>{% trans "Name:" %}</strong> {{booking.booking_fname}}</p>
+                                                <p><strong>{% trans "Email Id:" %}</strong> {{booking.booking_email}}</p>
+                                                <p><strong>{% trans "Contact Number:" %}</strong>{{booking.booking_mobilenumber}}</p>
+                                            </div>
+                                            <hr>
+                                            <div class="booking-info p-10px">
+                                                <h3>{% trans "Booking Info" %}</h3>
+                                                <p><strong>{% trans "Booking Date:" %}</strong> {{ booking.checkin_date|date:"m/d/Y" }}</p>
+                                                <p><strong>{% trans "Check In:" %}</strong> {{ booking.checkin_date|date:"Y-m-d" }}</p>
+                                                <p><strong>{% trans "Check Out:" %}</strong> {{ booking.checkout_date|date:"Y-m-d" }}</p>
+                                                <p><strong>{% trans "Room & Members:" %}</strong> {{booking.number_of_booking_rooms}} {% trans "Room" %}, {{booking.number_of_guests}} {% trans "Adult" %}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="right_content">
+                                            <div class="pricing-structure p-10px">
+                                                <h3>{% trans "Pricing Structure" %}</h3>
+                                                <p><strong>{% trans "Base Price:" %}</strong> OMR {{ base_price|default_if_none:"N/A"}}</p>
+                                                <p><strong>{% trans "Tax Fees:" %}</strong> OMR {{ booking.tax_and_services|default_if_none:0.00}}</p>
+                                                
+                                                <p><strong>{% trans "Discount Price" %}{% if booking.promocode_applied %} ({{booking.promocode_applied}}) {% elif booking.discount_percentage_applied %} {% else %}({{""}}){% endif %}:</strong>OMR {{ booking.discount_price|default_if_none:"N/A" }}</p>
+                                                <p><strong>{% trans "Service Fees:" %}</strong>OMR {{ booking.service_fee|default_if_none:"N/A" }}</p>
+                                                <!-- <p><strong>Commission Fees:</strong> </p> -->
+                                                <p><strong>{% trans "Payment Method:" %}</strong> {{ payment_method_name|default:"N/A" }}</p>   
+                                                <!-- <p><strong>{% trans "Admin commission:" %}</strong>{{ booking.chalet.country.currency|default_if_none:"" }} {{ admin_commission|default:"0.00" }}</p>      -->
+                                                <p><strong>{% trans "Payment gateway fee:" %}</strong>OMR {{ total_gateway_fee|default:"0.00" }}</p>                                   
+                                                <p><strong>{% trans "Transaction Status:" %}</strong> {{ booking.transaction.transaction_status|default:"N/A"|capfirst }}</p>
+                                            </div>
+                                            <hr>
+                                            <div class="amount_section p-10px"> 
+                                                <h3><strong>{% trans "Total Amount:" %}</strong> OMR {{ booking.booked_price|default_if_none:"0.00"}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <div class="right-section p-0">
+                                        
+                                    <div class="border-ddd rounded-10px p-10px">
+                                        <h3><b>{% trans "Amenities" %}</b></h3>
+                                        <hr>
+                                        {% for amenity in amenities %}
+                                            <li>
+                                                <i class="fa-solid fa-square-check text-85080C"></i> {{ amenity.amenity_name|capfirst }}
+                                            </li>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full action-btns">
+                                <div class="action-btn-container w3-cell "> 
+                                    {% if booking.checkin_date == today and status == "confirmed" %}
+                                    <button id="checkinBookingBtn"  class="action-btn w3-round-large w3-green btn  w3-padding-large w3-border"  data-booking-id="{{ booking.id }}" >{% trans "Check In " %}</button>  
+                                    {% endif %} 
+                                    {% if booking.checkout_date >= today and status == "pending" %}
+                                        <button id="cancelBookingBtn"  class="action-btn w3-round-large w3-red btn  w3-padding-large w3-border" data-booking-id="{{ booking.id }}" >{% trans "Cancel " %}<span class="booking-tag">{% trans " Booking" %}</span></button>  
+                                    {% endif %}  
+                                    {% if booking.checkout_date >= today and status == "pending" %}                                    
+                                        <button id="approveBookingBtn"  class="action-btn w3-round-large w3-green btn  w3-padding-large w3-border" data-booking-id="{{ booking.id }}" >{% trans "Approve " %}<span class="booking-tag">{% trans " Booking" %}</span></button>
+                                    {% endif %}   
+                                    {% if reminder %}                            
+                                    {% if booking.checkout_date >= today and status != "rejected" and status != "expired" and status != "cancelled" and status != "completed" and status != "pending" and status != "booked" %}
+                                        <button id="sendReminderBtn" class="action-btn w3-round-large w3-indigo btn w3-padding-large w3-border" data-booking-id="{{ booking.id }}">{% trans "Send " %} <span class="booking-tag">{% trans "Booking" %} </span>{% trans " Reminder" %}</button>
+                                    {% endif %}
+                                    {% endif %}
+                                    <!-- <button id="closebutton" class="w3-round-large w3-margin-right w3-margin-bottom  btn  w3-padding-large " style="border: 1px solid #85080C; color: #85080C;" onclick="redirectToBooking()">{% trans "Close" %}</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.CSRF_TOKEN = '{{ csrf_token }}';
+        </script> 
+
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        {% comment %} document.addEventListener("DOMContentLoaded", function() {
+            var bookingStatus = document.getElementById("bookingStatus").value;
+            if (bookingStatus === "cancelled") {
+                document.getElementById("cancelBookingBtn").style.display = "none";
+                document.getElementById("sendReminderBtn").style.display = "none";
+                document.getElementById("closebutton").style.display = "none";
+            }
+        }); {% endcomment %}
+
+        
+        $(document).ready(function() {
+            $('#book_edit').click(function(e) {
+                e.preventDefault(); 
+
+                var get_bookingid = document.getElementById('booking-id')
+                var bookingid = get_bookingid.getAttribute("data")
+                console.log(bookingid)
+                //if (!bookId) {
+                //    console.error("Book ID not found.");
+                //    return; 
+                //}
+
+                console.log("Book ID:", bookingid); 
+
+                $.ajax({
+                    url: '/chalets/room/view/edit/' + bookingid + '/',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#guest_name').val(data.guest_name);
+                        $('#contact').val(data.contact_number);
+                        $('#property').val(data.property_type);
+                        $('#check_in').val(data.check_in);
+                        $('#check_out').val(data.check_out);
+                        $('#status').val(data.status);
+
+                        $('#booking_detail_id').val(bookingid);
+
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching offer data:', error);
+                    }
+                });
+            });
+        });
+        $('#saveEditedBookingBtn').click(function(e) {
+            e.preventDefault();
+            
+            var bookId = $('#booking_detail_id').val();
+            console.log(bookId);
+
+
+            var BookingData = {
+                guest_name: $('#guest_name').val(),
+                contact_number: $('#contact').val(),
+                property_types: $('#property').val(),
+                check_in_date: $('#check_in').val(),
+                check_out_date: $('#check_out').val(),
+                booking_status: $('#status').val(),
+             
+            };
+            
+            $.ajax({
+                url: '/chalets/room/view/edit/' + bookId + '/',
+                type: 'POST', 
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                data: BookingData,
+                success: function(data) {
+                    $('#id02').hide(); 
+                    window.location.reload();  
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error updating offer:', error);
+                    alert('Error updating. Please try again later.');
+                }
+            });
+        });
+        function redirectToBooking() {
+            window.location.href = "{%url 'chalet_booking'%}?chalet_id={{ selected_chalet.id }}";
+        }
+
+        {% comment %} $(document).ready(function() { {% endcomment %}
+            $('#cancelBookingBtn').click(function(event) {
+                console.log("=======================")
+                var bookingId = $(this).data('booking-id');
+
+                if (confirm('{% trans "Are you sure you want to cancel this booking?" %}')) {
+                    $.ajax({
+                        url: '{% url "chalet-manage-booking" %}',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: {
+                            id: bookingId,
+                            action: 'cancel'
+                        },
+                        success: function(data) {
+                            if (data.success) {
+                                alert('Booking is cancelled');
+                                window.location.href = "{%url 'chalet_booking'%}?chalet_id={{ selected_chalet.id }}";
+                            } else {
+                                alert('Failed to cancel booking');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }
+            });
+
+            $('#sendReminderBtn').click(function(event) {
+                var bookingId = $(this).data('booking-id');
+                $.ajax({
+                    url: '{% url "chalet-manage-booking" %}',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    data: {
+                        id: bookingId,
+                        action: 'send_reminder'
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            alert('{% trans "Reminder email sent" %}');
+                            window.location.href = "{% url 'chalet_booking' %}";
+                        } else {
+                            alert('Failed to send reminder');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            $('#approveBookingBtn').click(function(event) {
+                var bookingId = $(this).data('booking-id');
+                $('#loader').show();
+                $('#hotelTable').addClass('blurred');
+
+
+                if (confirm('{% trans "Are you sure you want to approve this booking?" %}')) {
+                    $.ajax({
+                        url: '{% url "chalet-manage-booking" %}',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: {
+                            id: bookingId,
+                            action: 'approve'
+                        },
+                        success: function(data) {
+                            if (data.success) {
+                                alert('{% trans "Booking is approved" %}');
+                                window.location.href = "{%url 'chalet_booking'%}?chalet_id={{ selected_chalet.id }}";
+                            } else {
+                                alert('{% trans "Failed to approve this booking" %}');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                } else{
+                    window.location.reload();
+                }
+            });
+            $('#checkinBookingBtn').click(function(event) {
+                var bookingId = $(this).data('booking-id');
+                $('#loader').show();
+                $('#hotelTable').addClass('blurred');
+
+                    $.ajax({
+                        url: '{% url "chalet-manage-booking" %}',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: {
+                            id: bookingId,
+                            action: 'check-in'
+                        },
+                        success: function(data) {
+                            if (data.success) {
+                                window.location.href = "{%url 'chalet_booking'%}?chalet_id={{ selected_chalet.id }}";
+                            } else {
+                                alert('{% trans "Failed to change the status of the booking" %}');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                } 
+            );
+        {% comment %} }); {% endcomment %}
+
+
+        {% comment %} document.getElementById('uploadButton').onclick = function() {
+            document.getElementById('fileInput').click(); // Trigger the file input when button is clicked
+        }; {% endcomment %}
+
+        // jQuery method to trigger file input click
+        $(document).ready(function() {
+
+
+            $('#fileInput').change(function(event) {
+                var files = event.target.files; // Get all selected files
+                var maxSize = 500 * 1024; // Maximum file size in bytes (500 KB)
+                var maxFiles = 5; // Maximum number of files allowed
+
+                var errorMessage = '';
+
+                if (files.length != maxFiles) {
+                    errorMessage = '{% trans "You must upload" %} ' + maxFiles + '{% trans "files." %}';
+                } 
+                else {
+                    var bookingId = $(this).data('booking-id'); // Get the booking ID from data attribute
+
+                    var formData = new FormData();
+                    for (var i = 0; i < files.length; i++) {
+                        if (files[i].size > maxSize) {
+                            errorMessage = '{% trans "One or more files exceed the maximum size of 500 KB." %}';
+                            break;
+                        }
+                        formData.append('images[]', files[i]); // Append each file to FormData with a unique key
+                    }
+                    formData.append('id', bookingId);
+                }
+
+                if (errorMessage) {
+                    alert(errorMessage); // Display error message
+                    event.target.value = ''; // Clear the input
+                    return;
+                }
+
+                $.ajax({
+                    url: '/chalets/upload_images/' + bookingId + '/',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}' // CSRF token for security
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        console.log('Upload successful:', data); // Log success message and response data
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error uploading files:', error); // Log error message if upload fails
+                    }
+                });
+            });
+        });
+
+
+        
+    </script>
+    
+</body>
+</html>

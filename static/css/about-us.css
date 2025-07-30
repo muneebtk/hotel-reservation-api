@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+
+main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        font-size: 25px;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+
+    p{
+        font-size: 16px;
+    }
+
+    ul{
+        font-size: 16px;
+    }
+
+    .about-us-container{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+
+
+        /* Please remove this if dont want to
+         limit the length of the main container */
+
+        @media(min-width:1400px){
+            width: 1200px;
+        }
+
+        .arabic-lang{
+            font-family: "IBM Plex Sans Arabic";
+            margin-top: 100px;
+        }
+        .english-lang{
+            font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+            margin-top: 100px;
+            margin-bottom: 100px;
+
+            .item-sub-content{
+                .item-sub-title{
+                    display: flex;
+                    flex-direction: row !important;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 20px;
+
+                    img{
+                        transform: scaleX(-1);
+                    }
+                }
+            }
+        }
+
+        .arabic-lang,.english-lang{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+
+            .item{
+                width: 100%;
+
+                .item-content{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    padding: 24px;
+                    border-radius: 12px;
+                    background-color: #ffd6d6;
+
+                    .item-sub-content{
+                        .item-sub-title{
+                            display: flex;
+                            flex-direction: row-reverse;
+                            align-items: center;
+                            justify-content: start;
+                            gap: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

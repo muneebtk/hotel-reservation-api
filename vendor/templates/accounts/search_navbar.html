@@ -1,0 +1,405 @@
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <title>Super User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'chalets/css/search-nav-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+</head>
+
+<div class="w3-main content-box">
+    <div class="w3-white w3-padding-16 responsive-div">
+        <button type="button" class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <div class="top_nav_bar">
+            <div class="w3-container w3-cell nav-search-container">
+                <button class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i> 
+                    <input type="text" class="input-size" placeholder="{% trans 'Search' %}">
+                </button>
+            </div>  
+            <div class="nav_right_section">
+                <div class="toggle_div">
+                    {% if request.path == '/vendor/dashboard/' or request.path == '/chalets/dashboard_overview' %} 
+                        {% include 'accounts/toggle_button.html' %}
+                    {% endif %}
+                </div>
+                <!-- Notification Bell Icon with Badge -->
+                <button type="button" class=" search-btn notification-bell">
+                    <i class="fa-regular fa-bell fa-2xl"></i>
+                    <!-- Notification Badge -->
+                    <span id="notification-badge">
+                        0
+                    </span>
+                </button>
+
+                <div class="top-nav-division"></div>
+
+                <div class="user-icon-container">
+                    <i class="fa-solid fa-user fa-xl user-icon"></i>
+
+                    <div class="user-icon-dropdown">
+                        <div class="user-icon-dropdown-content">
+                            <span class="drop-user-name">
+                                {% if request.user.get_full_name %}
+                                    {{ request.user.get_full_name |title }}
+                                {% else %}
+                                    {% trans "Admin" %}
+                                {% endif %}
+                            </span>
+                            <label for="languageSelect">Select Language</label>
+                                <select class="drop-language_selection lang-select" id="languageSelect">
+                                    {% for lang_code, lang_name in LANGUAGES %}
+                                        <option value="{{ lang_code }}" {% if request.LANGUAGE_CODE == lang_code %} selected {% endif %}>
+                                            {{ lang_name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="mobile-logout">
+                                        <button id="mob-logout-button" class="logout-btn" type="button"><i class="fas fa-power-off"></i> <span>{% trans 'Logout' %}</span></button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="user-name">
+                 {% if selected_hotel %}
+                    {% if selected_hotel.owner_name %}
+                        {% if request.LANGUAGE_CODE == "ar" %}
+                        {{ selected_hotel.owner_name.owner_name_arabic }}
+                        {% else %}
+                        {{ selected_hotel.owner_name.owner_name }}
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.get_full_name %}
+                            {{ request.user.get_full_name|title }}
+                        {% else %}
+                            {% trans "Admin" %}
+                        {% endif %}
+                    {% endif %}
+                {% elif selected_chalet %}
+                    {% if selected_chalet.owner_name %}
+                        {% if request.LANGUAGE_CODE == "ar" %}
+                        {{ selected_chalet.owner_name.owner_name_arabic }}
+                        {% else %}
+                        {{ selected_chalet.owner_name.owner_name }}
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.get_full_name %}
+                            {{ request.user.get_full_name|title }}
+                        {% else %}
+                            {% trans "Admin" %}
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if request.user.get_full_name %}
+                        {{ request.user.get_full_name|title }}
+                    {% else %}
+                        {% trans "Admin" %}
+                    {% endif %}
+                {% endif %}
+                </span>
+                <div class="w3-cell lang-selection-container">
+                    <select class="language_selection lang-select" id="languageSelect">
+                        {% for lang_code, lang_name in LANGUAGES %}
+                            <option value="{{ lang_code }}" {% if request.LANGUAGE_CODE == lang_code %} selected {% endif %}>
+                                {{ lang_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                 <div class="dektop-logout">
+                     {% include 'accounts/logout_button.html' %}
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div class="modal-overlay"></div>
+<div class="notification-modal">
+    <div class="notification-modal-header">
+        <h3>Notifications</h3>
+        <span class="close-btn">&times;</span>
+    </div>
+    <div class="notification-content" id="notification-list">
+        <!-- Dynamic notifications will be appended here -->
+    </div>
+</div>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Toastr CSS and JS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    // Show the modal when the logout button is clicked
+    document.getElementById('mob-logout-button').addEventListener('click', function() {
+        document.getElementById('confirmationModal').style.display = 'block';
+    });
+    document.getElementById('desk-logout-button').addEventListener('click', function() {
+        document.getElementById('confirmationModal').style.display = 'block';
+    });
+
+    // Confirm logout
+    document.getElementById('confirmLogout').addEventListener('click', function() {
+        document.getElementById('logout-form').submit();
+    });
+
+    // Cancel and close the modal
+    document.getElementById('cancelLogout').addEventListener('click', function() {
+        document.getElementById('confirmationModal').style.display = 'none';
+    });
+
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('confirmationModal')) {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function () {
+
+        //dropdown menu
+        const userIconContainer = document.querySelector('.user-icon-container');
+        const userIconDropdown = document.querySelector('.user-icon-dropdown');
+        const userIcon = document.querySelector('.user-icon');
+
+            if( innerWidth <= 768){
+                userIconContainer.addEventListener('click', function () {
+                    userIconDropdown.classList.add("active");
+                })
+        
+                document.addEventListener('click', function (event) {
+                    if (!userIconContainer.contains(event.target)) {
+                        userIconDropdown.classList.remove("active");
+                    }
+                });
+            }
+
+
+
+
+        const notificationBadge = document.getElementById('notification-badge');
+        const notificationList = document.getElementById('notification-list');
+
+        // Toast configuration (optional: customize appearance)
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000,
+        };
+
+        async function loadNotifications() {
+            try {
+                const response = await fetch("/vendor/unread-notifications/");
+                if (response.ok) {
+                    const notifications = await response.json();
+                    if (notifications.length > 0) {
+                        notificationBadge.textContent = notifications.length;
+                        notificationBadge.style.display = 'inline';
+                        notifications.forEach(notification => {
+                            if (isValidNotificationId(notification.id)) {
+                                addNotificationToList(notification.id, notification.message, notification.timestamp);
+                            }
+                        });
+                    } else {
+                        showNoNotificationsMessage();
+                    }
+                } else {
+                    console.error("Failed to fetch unread notifications");
+                }
+            } catch (error) {
+                console.error("Error loading unread notifications:", error);
+            }
+        }
+
+        const notificationSocket = new WebSocket(
+            `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws/notifications/`
+        );
+
+        notificationSocket.onopen = function(e) {
+            console.log("WebSocket connection opened:", e);
+        };
+
+        notificationSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log("Data received via WebSocket:", data);
+
+            try {
+                if (data.notification && data.notification.message) {
+                    const { id, message, timestamp } = data.notification;
+
+                    if (isValidNotificationId(id)) {
+                        addNotificationToList(id, message, timestamp);
+                        updateNotificationBadge();
+
+                        // Show toaster for the new notification
+                        toastr.success(message, "New Notification");
+                    }
+                }
+            } catch (error) {
+                console.error("Error parsing WebSocket message:", error);
+            }
+        };
+
+        notificationSocket.onerror = function(e) {
+            console.error("WebSocket encountered an error:", e);
+        };
+
+        notificationSocket.onclose = function(e) {
+            console.warn("Notification socket closed unexpectedly:", e);
+        };
+
+        function isValidNotificationId(id) {
+            return !isNaN(id) && Number.isInteger(Number(id));
+        }
+
+        function updateNotificationBadge() {
+            let badgeCount = parseInt(notificationBadge.textContent) || 0;
+            badgeCount += 1;
+            notificationBadge.textContent = badgeCount;
+            notificationBadge.style.display = 'inline';
+        }
+
+        function addNotificationToList(id, message, timestamp) {
+            const noNotificationsMessage = document.querySelector('.no-notifications');
+            if (noNotificationsMessage) {
+                noNotificationsMessage.remove();
+            }
+
+            const newNotification = document.createElement('div');
+            newNotification.classList.add('notification-item');
+            newNotification.setAttribute("id", `notification-${id}`);
+            newNotification.innerHTML = `
+                <p style="font-size: 18px;">${message}</p>
+                <small>${new Date(timestamp).toLocaleString()}</small>
+                <span class="mark-as-read">Mark as Read</span>
+                
+            `;
+
+            newNotification.querySelector(".mark-as-read").addEventListener("click", () => {
+                if (id) {
+                    markAsRead(id, newNotification);
+                }
+            });
+
+            notificationList.prepend(newNotification);
+        }
+
+        function showNoNotificationsMessage() {
+            const noNotificationsMessage = document.createElement('div');
+            noNotificationsMessage.classList.add('no-notifications');
+            noNotificationsMessage.textContent = "No notifications!";
+            notificationList.appendChild(noNotificationsMessage);
+            notificationBadge.style.display = 'none';
+        }
+
+        async function markAsRead(notificationId, notificationElement) {
+            try {
+                const response = await fetch("/vendor/unread-notifications/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    },
+                    body: new URLSearchParams({ notification_id: notificationId })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === "success") {
+                        notificationElement.classList.add("read");
+                        updateNotificationBadgeOnRead();
+                    }
+                } else {
+                    console.error("Failed to mark notification as read");
+                }
+            } catch (error) {
+                console.error("Error marking notification as read:", error);
+            }
+        }
+
+        function updateNotificationBadgeOnRead() {
+            let badgeCount = parseInt(notificationBadge.textContent) || 0;
+            if (badgeCount > 1) {
+                badgeCount -= 1;
+                notificationBadge.textContent = badgeCount;
+            } else {
+                notificationBadge.style.display = 'none';
+            }
+        }
+
+        const bellIcon = document.querySelector('.notification-bell');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const notificationModal = document.querySelector('.notification-modal');
+        const closeBtn = document.querySelector('.notification-modal .close-btn');
+
+        function openModal() {
+            modalOverlay.classList.add('show-modal');
+            notificationModal.classList.add('show-modal');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('show-modal');
+            notificationModal.classList.remove('show-modal');
+        }
+
+        bellIcon.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        function resetNotificationBadge() {
+            notificationBadge.style.display = notificationList.children.length > 0 ? 'inline' : 'none';
+        }
+
+        console.log("Script loaded successfully");
+
+        loadNotifications();
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+            function updateLanguage(selectedLanguage) {
+                // const selectedLanguage = $('#languageSelect').val();
+                const isArabic = selectedLanguage === 'ar';
+
+                $.ajax({
+                    url: "{% url 'set_language' %}",
+                    type: "POST",
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    data: { language_code: selectedLanguage },
+                    success: function(data) {
+                        location.reload(); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating language:', error);
+                    }
+                });
+            }
+
+            // $('#languageSelect').change(function() {
+            //     updateLanguage();
+            // });
+
+            document.querySelectorAll(".lang-select").forEach((selectBox)=>{
+                selectBox.addEventListener("change", function(){
+                    const selectedLanguage = this.value;
+                    updateLanguage(selectedLanguage);
+                })
+            })
+        });
+</script>
+
+
+
+

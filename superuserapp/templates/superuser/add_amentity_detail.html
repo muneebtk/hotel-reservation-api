@@ -1,0 +1,280 @@
+{% load static %}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+
+    <style>
+        /* Button styles */
+        .btn-custom {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        /* Modal styles */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .custom-modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .custom-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .custom-close:hover,
+        .custom-close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Form group styles */
+        .custom-form-group {
+            margin-bottom: 15px;
+            padding: 1%;
+        }
+
+        .custom-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+
+        .custom-form-group input[type="text"],
+        .custom-form-group input[type="email"],
+        .custom-form-group input[type="file"] {
+            width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            outline: none;
+            background-color: #EDF0F9;
+        }
+
+        /* Radio button styles */
+        .custom-radio-group input[type="radio"] {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-radio-group input[type="radio"]:checked {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+        }
+
+        .custom-radio-group input[type="radio"]+label {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        /* Form actions styles */
+        .custom-form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .custom-cancel-btn,
+        .custom-add-btn {
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .custom-cancel-btn {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+
+        .custom-cancel-btn:hover {
+            background-color: #f2f2f2;
+        }
+
+        .custom-add-btn {
+            background-color: #b71c1c;
+            color: #fff;
+        }
+
+        .custom-add-btn:hover {
+            background-color: #8e0000;
+        }
+
+        /* File upload styles */
+        .custom-file-upload {
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-file-upload span {
+            margin-left: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .custom-form-group .custom-radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-form-group .custom-radio-group input[type="radio"],
+        .custom-form-group .custom-radio-group label {
+            margin-right: 10px;
+        }
+        .custom-blur {
+            filter: blur(5px);
+            pointer-events: none; 
+        }
+    </style>
+</head>
+<!-- Include the Modal HTML -->
+ <body>
+    <div id="amenitiesModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h2 class="modal-title">+ {% trans "Add Amenities" %}</h2>
+            <form id="addAmenityForm" enctype="multipart/form-data">
+                <input type="hidden" name="hotel_id" value="{{ hotel.id }}" />
+                
+                <div class="custom-form-group">
+                    <label for="amenityName">{% trans "Amenity Name" %}</label>
+                    <input type="text" id="amenityName" name="amenity_name" placeholder="{% trans 'Enter the amenity name' %}" required>
+                </div>
+            
+                <div class="custom-form-group">
+                    <label>{% trans "Amenity Icon" %}</label>
+                    <div class="custom-file-upload">
+                        <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="imagePreview" alt="Image Preview" style="cursor: pointer; max-width: 100%; max-height: 100px;">
+                        <input style="position: absolute; opacity: 0; cursor: pointer; width: 50%; height: 0%;" type="file" id="amenityIcon" name="icon" accept="image/jpeg, image/png" required>
+                    </div>
+                    <p class="custom-file-upload-note">{% trans "(Upload JPEG/PNG files)" %}</p>
+                    <span id="imageError" class="text-danger" style="color: #85080C;"></span>
+                </div>
+            
+                <span id="error_message" class="text-danger" style="color: #85080C; display: none;">{% trans 'Amenity with this name already exists' %}</span>
+                <div class="custom-form-actions">
+                    <button type="button" class="custom-cancel-btn" onclick="window.location.reload();">{% trans "Cancel" %}</button>
+                    <button type="submit" class="custom-add-btn" id="addAmenityBtn">{% trans "Add" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var addedAmenities = []; 
+
+        document.getElementById('addAmenityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var formData = new FormData(this);
+
+            fetch("{% url 'add_amenity_to_hotel' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('error_message').style.display = 'block';
+                    document.getElementById('error_message').innerText = data.error;
+                } else {
+                    document.getElementById('error_message').style.display = 'none';
+
+                    // Add the new amenity to the UI
+                    var featureContainer = document.querySelector('.feature-container');
+                    var featureItem = document.createElement('div');
+                    featureItem.className = 'feature-item';
+                    featureItem.setAttribute('data-id', data.amenity.id);
+                    featureItem.innerHTML = `
+                        <img src="${data.amenity.icon_url}" alt="${data.amenity.name}" class="amenity-icon" style="width: 20px;">
+                        &nbsp;
+                        <span>${data.amenity.name}</span>
+                        <button class="remove-btn" onclick="removeAmenity(${data.amenity.id})">×</button>
+                    `;
+                    featureContainer.appendChild(featureItem);
+
+                    addedAmenities.push(data.amenity.id);
+
+                    var modal = document.getElementById('amenitiesModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+
+                    document.getElementById('addAmenityForm').reset();
+                    }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function removeAmenity(amenityId) {
+            var featureItem = document.querySelector(`.feature-item[data-id='${amenityId}']`);
+            if (featureItem) {
+                featureItem.remove();
+                addedAmenities = addedAmenities.filter(id => id !== amenityId);
+            }
+        }
+
+
+        document.getElementById('amenityIcon').addEventListener('change', function(event) {
+            var imagePreview = document.getElementById('imagePreview');
+            var file = event.target.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // Reset the preview image to the default icon if no file is selected
+                imagePreview.src = "{% static 'icons/teenyicons_image-solid.png' %}";
+            }
+        });
+
+
+
+    </script>
+</body>

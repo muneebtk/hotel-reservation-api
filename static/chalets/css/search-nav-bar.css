@@ -1,0 +1,321 @@
+input {
+    outline: none;
+}
+
+.nav_right_section {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+@media (max-width: 992px) {
+    .top_nav_bar {
+        padding-left: 0px !important;
+    }
+
+}
+
+.language_selection {
+    padding: 8px;
+    border: 1px solid #AF0C0C;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: #AE1F24;
+    font-size: large;
+    cursor: pointer;
+    outline: none;
+}
+
+#languageSelect option {
+    cursor: pointer;
+}
+
+.toggle_div {
+    margin-right: 0%;
+}
+
+.user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    /* Adjust the width as per your design */
+    display: inline-block;
+
+    @media(max-width: 768px) {
+        display: none;
+    }
+}
+
+/* Modal Overlay Animation */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Modal Animation */
+.notification-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    /* height: 80vh; */
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* overflow-y: auto; */
+    z-index: 1100;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* Show modal with animation */
+.show-modal {
+    display: block;
+    opacity: 1;
+}
+
+.show-modal .notification-modal {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Modal Header */
+.notification-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    background: #880415;
+    color: white;
+    border-radius: 12px 12px 0 0;
+
+}
+
+.notification-modal-header h3 {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.notification-modal-header .close-btn {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: white;
+}
+
+/* Notification Content */
+.notification-content {
+    padding: 20px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.notification-item:hover {
+    background-color: #f8f8f8;
+}
+
+.notification-item h4 {
+    font-size: 1em;
+    margin: 0;
+    color: #333;
+}
+
+.notification-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+/* Mark-as-read and Animation for Read */
+.notification-item.read {
+    opacity: 0.6;
+    background-color: #f0f0f0;
+    color: #888;
+}
+
+.mark-as-read {
+    cursor: pointer;
+    color: #007bff;
+    font-size: 0.9em;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.view-more {
+    /* position:Absolute; */
+    cursor: pointer;
+    color: #85080c;
+    font-size: 0.9em;
+    display: block;
+}
+
+.content-box {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    @media(max-width:992px) {
+        width: 100%;
+    }
+}
+
+.top_nav_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-search-container {
+    input {
+        border: none;
+        width: 100px;
+        background-color: transparent;
+
+        @media(max-width: 768px) {
+            width: 60px;
+        }
+    }
+}
+
+.nav_right_section {
+    .notification-bell {
+        border: none;
+        background-color: white;
+        position: relative;
+    }
+}
+
+.notification-bell {
+    i {
+        color: rgb(41, 40, 40);
+    }
+
+    #notification-badge {
+        position: absolute;
+        top: -8px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        border-radius: 50px;
+        padding: 2px 6px;
+        font-size: 12px;
+        display: none;
+    }
+}
+
+.user-icon-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #FFD6D6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media(max-width: 768px) {
+        margin-right: 10px;
+    }
+
+    .user-icon {
+        color: #85080C;
+        font-size: 20px;
+    }
+}
+
+.top-nav-division {
+    width: 1px;
+    height: 30px;
+    background-color: #717171;
+    margin: 0 10px;
+
+    @media(max-width: 768px) {
+        margin: 0 3px;
+        margin-right: -8px;
+    }
+}
+
+.responsive-div {
+    display: flex;
+}
+
+.lang-selection-container {
+    @media(max-width: 768px) {
+        display: none;
+    }
+}
+
+.user-icon-container{
+    .user-icon-dropdown{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 2;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 5px;
+        box-shadow: -2px 6px 14px rgb(0 0 0 / 24%);
+        display: none;
+        &.active{
+            display: flex;
+        }
+
+        @media(min-width: 769px) {
+            display: none !important;
+        }
+
+        .drop-language_selection{
+            display: block;
+            width: 100%;
+            border: 2px solid #85080C;
+            border-radius: 50px;
+            padding: 8px;
+
+            &:focus{
+                outline: none;
+            }
+        }
+        .drop-user-name{
+            font-weight: 700;
+            color: #85080C;
+        }
+
+        .logout-btn-container{
+            display: flex;
+
+            #logout-form{
+                margin: 0;
+            }
+        }
+
+        .user-icon-dropdown-content{
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            gap: 8px;
+        }
+    }
+}

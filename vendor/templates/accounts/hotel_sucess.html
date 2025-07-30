@@ -1,0 +1,32 @@
+<div id="successModal" class="modal_message" style="display: none;">
+    <div class="modal_content_message">
+        <p>Hotel has been successfully registered.</p>
+        <button id="okButton" class="ok-button">OK</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+            const successModal = document.getElementById("successModal");
+            if (successModal) {
+                successModal.style.display = "none";
+            }
+
+            const okButton = document.getElementById("okButton");
+            if (okButton) {
+                okButton.addEventListener("click", function() {
+                    window.location.href = "{% url 'loginn' %}";
+                });
+            }
+
+            const closeButton = document.querySelector(".close_message");
+            if (closeButton) {
+                closeButton.addEventListener("click", function() {
+                    if (successModal) {
+                        successModal.style.display = "none";
+                    }
+                });
+            }
+        });
+        
+</script>

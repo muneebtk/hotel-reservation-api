@@ -1,0 +1,16 @@
+/* @font-face {
+    font-family: 'general sans';
+    src: url('fonts/GeneralSans-Regular.otf') format('opentype');
+    
+} */
+@font-face {
+    font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+    src: url('../fonts/GeneralSans-Regular.otf') format('opentype');
+}
+html,body{
+    font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+
+    .rtl{
+        font-family: 'IBMPlexSansArabic';
+    }
+}

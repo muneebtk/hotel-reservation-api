@@ -1,0 +1,171 @@
+{% load static%}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/dashboard-sidebar.css' %}">
+    <style>
+        .hotel-name {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* Distributes space between name and arrow */
+        white-space: nowrap;
+        /* Prevents text from wrapping */
+        overflow: hidden;
+        /* Hides overflowed content */
+        text-overflow: ellipsis;
+        /* Adds ellipsis for overflowed text */
+        max-width: 330px;
+        /* Adjust this value based on your layout */
+        width: 100%;
+        /* Ensure it takes full width of parent */
+        padding: 0 10px;
+        /* Optional: Adds padding for aesthetics */
+
+        @media (max-width:992px){
+            margin-top: 30px;
+        }
+    }
+    .hotel-name select {
+        flex-grow: 1;
+        /* Allows the dropdown to take available space */
+        min-width: 100px;
+        /* Ensure the dropdown has a minimum width */
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 5px;
+        /* Optional: Adds padding for better appearance */
+        margin-bottom: .5rem;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        white-space: nowrap;
+
+        &:focus-visible{
+            outline: none;
+        }
+    }
+    .hotel-dropdown-arrow {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+        font-size: 1.5em;
+    }
+
+    .hotel-dropdown {
+        background-color: transparent;
+        border: none;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        color: inherit;
+    }
+
+    .hotel-dropdown option {
+        background-color: white;
+        color: black;
+    }
+    </style>
+</head>
+
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-collapse w3-top w3-large w3-padding" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topright nav-close-btn">
+        <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+    </a>
+    <div class="w3-container w3-padding-16">
+        {% if hotels %}
+        <div class="dashboard-profile">
+            <form id="hotelForm" method="GET" action="">
+                <div class="hotel-name">
+                    <select name="hotel_id" class="hotel-dropdown" onchange="submitHotelForm()">
+                        {% for hotel in hotels %}
+                        <option value="{{ hotel.id }}"
+                                title="{{ hotel.name }}"
+                                data-approved="{% if hotel.approval_status == 'approved' %}true{% else %}false{% endif %}"
+                                {% if hotel.id == selected_hotel.id %}selected{% endif %}>
+                            {% if request.LANGUAGE_CODE == "ar" %}
+                                {{ hotel.name_arabic }}
+                            {% else %}
+                                {{ hotel.name }}
+                            {% endif %}
+                        </option>
+                        {% endfor %}
+                    </select>                    
+                </div>
+            </form>
+            <img src="{{ selected_hotel.logo.url }}" alt="Hotel Logo">
+            <p>{{ selected_hotel.hotel_id }}</p>
+        </div>
+        {% else %}
+        <p>No Hotel Information Available</p>
+        {% endif %}
+    </div>
+    <div class="w3-bar-block nav-items">
+        <a href="{% url 'dashboard' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'dashboard' %} active {% endif %}">
+        <img src="{% static 'icons/ri_dashboard-fill .png' %}" alt="Dashboard Icon"> &nbsp; &nbsp;{% trans "Dashboard " %}
+        </a>
+        <a href="{% url 'booking'%}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'booking' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group .png' %}" alt="Dashboard Icon">&nbsp; &nbsp;{% trans " Bookings " %} 
+        </a>
+        <a href="{% url 'roommanagement' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'roommanagement' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group.png' %}" alt="Booking Icon">&nbsp; &nbsp;{% trans "Rooms " %} 
+        </a>
+        <a href="{% url 'add_hotel' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'add_hotel' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (7).png' %}" alt="Booking Icon">&nbsp; &nbsp;{% trans "Add Hotel " %} 
+        </a>
+        <a href="{% url 'transaction_detail' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'transaction_detail' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (2).png' %}" alt="Booking Icon">&nbsp; &nbsp;{% trans "Transactions " %} 
+        </a>
+        <a href="{% url 'offer_management' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'offer_management' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (3).png' %}" alt="Room Management Icon">&nbsp; &nbsp;{% trans "Offers & Promo" %} 
+        </a>
+        <a href="{% url 'refund_cancellation_list' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'refund_cancellation_list' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (5).png' %}" alt="Refunds icon">&nbsp; &nbsp;{% trans "Refund" %} 
+        </a>
+        <a href="{% url 'review_rating_vendor' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'review_rating_vendor' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (6).png' %}" alt="Transaction Icon">&nbsp; &nbsp;
+            {% trans "Review & Rating" %}
+        </a>
+        <a href="{% url 'edit_hotel' %}?hotel_id={{ selected_hotel.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'edit_hotel' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (8).png' %}" alt="edit Icon">&nbsp; &nbsp;
+            {% trans "Edit Details" %}
+        </a>
+    </div>
+    <input type="hidden" placeholder="{% trans 'Hotel Management' %}" >
+</nav>
+<script>
+     let previousHotelId = document.querySelector('.hotel-dropdown').value;
+     function submitHotelForm() {
+    const select = document.querySelector('.hotel-dropdown');
+    const selectedOption = select.options[select.selectedIndex];
+
+    if (selectedOption.getAttribute('data-approved') === 'true') {
+        previousHotelId = select.value;
+
+        // Dynamically update the form action
+        const form = document.getElementById('hotelForm');
+        form.action = `/vendor/dashboard/?hotel_id=${select.value}`;
+        form.submit();
+    } else {
+       window.location.href=`/vendor/pending_approval/?hotel_id=${previousHotelId}`
+    }
+}
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const sidebarItems = document.querySelectorAll(".w3-bar-item");
+    //     const currentUrl = window.location.pathname;
+
+    //     sidebarItems.forEach(item => {
+    //         const link = item.getAttribute("href");
+    //         if (link && currentUrl.startsWith(link)) {
+    //             item.classList.add("active");
+    //         }
+    //     });
+    // });
+</script>

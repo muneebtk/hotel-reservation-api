@@ -1,0 +1,637 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/booking-management.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+
+
+     <!-- Sidebar/menu -->
+    {% include 'accounts/hotel_logo_navbar.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+    </div>
+ 
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+        <div class="main-section">
+                <div class="container container-box">
+                    <div class="row justify-content-center">
+                        <input type="number" name="hotel_is" id="selected_hotel" value="{{selected_hotel.id}}" style="display: none;">
+                        <div class="row tabs-container" >
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3 activee" type="button" id="upcoming_bookings_btn">
+                                    {% trans 'Upcoming Bookings' %} <br class="line-break"> ({{booking_instances_len}})
+                                </button>
+                            </div>    
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3" type="button" id="past_bookings_btn">
+                                    {% trans 'Past Bookings' %} <br class="line-break"> ({{past.count }})
+                                </button>
+                            </div>    
+                            
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3" type="button" id="cancelled_bookings_btn">
+                                    {% trans 'Cancelled Bookings' %} <br class="line-break"> ({{cancelled.count}})
+                                </button>
+                            </div>  
+                        </div>
+
+
+                        <div class="row-main" id="hotelTable">
+                           
+                            <div class="row ">
+                                <form method="post" class="filter-form" id="filterForm">
+                                    {% csrf_token %}
+                                    <div class="col-md-4">
+                                            <input type="text" ondblclick="resetDate('datePicker')" id="datePicker" class="form-select select_fromdate fs12 text-black from_date"
+                                                name="date" placeholder="{% trans 'From: Sep 8, 2023' %}" >
+                                    </div>
+                                    <div class="col-md-4">
+                                            <input type="text" ondblclick="resetDate('datePicker1')" id="datePicker1" class="form-select select_todate fs12 text-black to_date"
+                                                name="date" placeholder="{% trans 'To: Sep 8, 2023' %}" >
+                                    </div>
+                                    <div class="col-md-4">
+                                            <select aria-label="Default select example" class="form-select select fs12 text-black white" id="room_type" name="room_type">
+                                                <option value="Room Type">{% trans "Room Type" %}</option>
+                                                {% for type in room_type %}
+                                                    <option value="{{ type.room_types }}">{{ type.room_types|capfirst }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select select fs12 text-black white" id="status_type" name="status_type" style="outline: none;">
+                                            <option value="Status Type">{% trans "Status Type" %}</option>
+                                            <option value="pending">{% trans "Pending" %}</option>
+                                            <option value="booked">{% trans "Booked" %}</option>
+                                            <option value="confirmed">{% trans "Confirmed" %}</option>
+                                            <option value="rejected">{% trans "Rejected" %}</option>
+                                            <option value="expired">{% trans "Expired" %}</option>
+                                            <option value="cancelled">{% trans "Cancelled" %}</option>
+                                            <option value="completed">{% trans "Completed" %}</option>
+                                            <option value="check-in">{% trans "Check-In" %}</option>
+
+                                        </select>
+                                    </div>
+                                
+                                    <div class="col-md-4">
+                                        <button class="bg-85080c text-white btn-blue px-3 f" type="button" id="search_button">
+                                            <i class="fa-solid fa-magnifying-glass"></i>{% trans "Search" %} 
+                                        </button>
+                                    </div>
+                                </form>    
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="table-responsive table-container">
+                                    <table class="w3-table text-center responsive-table" >
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right">{% trans "Sl. No." %}</th>
+                                                <th class="border-right">{% trans "Guest Name" %}</th>
+                                                <th class="border-right">{% trans "Contact Number" %}</th>
+                                                <th class="border-right">{% trans "Room Type" %}</th>
+                                                <th class="border-right">{% trans "Check-In" %}</th>
+                                                <th class="border-right">{% trans "Check-Out" %}</th>
+                                                <th class="border-right">{% trans "Status" %}</th>
+                                                <th colspan="3" > {% trans "Action" %} </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color" id="search_results">
+                                            {% if booking_data %}
+                                                {% for item in booking_data %}
+                                                    <tr>
+                                                        <td class="border-right">{{ forloop.counter }}</td>
+                                                        <td class="border-right">{{ item.booking.booking_fname|capfirst }}</td>
+                                                        <td class="border-right">{{ item.booking.booking_mobilenumber }}</td>
+                                                        <td class="border-right">{{ item.room_types|capfirst }}</td>
+                                                        <td class="border-right">{{ item.booking.checkin_date }}</td>
+                                                        <td class="border-right">{{ item.booking.checkout_date }}</td>
+                                                        <td class="border-right">{{ item.booking.status|title }}</td>
+                                                        <td class="color-grey">
+                                                            <a href="{% url 'user' item.booking.id %}" class="textdecoration-none view-btn" data-book-id="{{ item.booking.id }}">
+                                                                {% trans "View" %}
+                                                            </a>
+                                                        </td>
+                                                        <!-- {% if item.booking.status != 'cancelled' %}
+                                                            <td class="color-grey">
+                                                                <a href="#" class="book_edit"
+                                                                    onclick="document.getElementById('id02').style.display='block'"
+                                                                    style="text-decoration: none;" data-book-id="{{ item.booking.id }}">
+                                                                    <i class="fa-solid fa-pen"></i> &nbsp;{% trans "Edit" %}
+                                                                </a>
+                                                            </td>
+                                                        {% else %}
+                                                            <td></td>
+                                                        {% endif %} -->
+                                                    </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="8" style="text-align: center;">{% trans "No data found" %}</td>
+                                                </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                {% if current_page.paginator.num_pages > 0 %}
+                    <div id="pagination" class="pagination">
+                        
+                        <!-- Previous Button -->
+                        {% if current_page.has_previous %}
+                            <a href="#" class="previous-page pagination-link" data-page="{{ current_page.previous_page_number }}" title="Previous Page">
+                                <span class="previous-button">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                            </a>
+                        {% else %}
+                            <span class="disabled-button disabled-button-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        {% endif %}
+                        
+                        <!-- Page Numbers -->
+                        <div class="page-numbers">
+                            {% for num in current_page.paginator.page_range %}
+                                {% if current_page.paginator.num_pages > 3 %}
+                                    {% if num >= current_page.number and num < current_page.number|add:3 %}
+                                        {% if num == current_page.number %}
+                                            <span class="current-page">{{ num }}</span>
+                                        {% else %}
+                                            <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    {% if num == current_page.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Next Button -->
+                        {% if current_page.has_next %}
+                            <a href="#" class="next-page pagination-link" data-page="{{ current_page.next_page_number }}" title="Next Page">
+                                <span class="next-button">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        {% else %}
+                            <span class="disabled-button disabled-button-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        {% endif %}
+                        
+                    </div>
+            
+            {% endif %} 
+
+                <div class="no_data_found" style="display: none; "></div>
+                <div class="col-md-4">
+                    <div id="id02" class="w3-modal">
+                        <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:50% max">
+                
+                            <div class="w3-center"><br>
+                                <span onclick="document.getElementById('id02').style.display='none'"
+                                    class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                
+                            </div>
+                
+                            <div class="w3-margin-left">
+                                <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i> {% trans 'Edit' %}</h3>
+                                <form class="w3-container" action="" method="post">
+                                    {%csrf_token%}
+                                    <div class="w3-section w3-margin-left">
+                                        <div class="w3-cell box_container">
+                                            <div>
+                                                <label for="guest_name">{% trans 'Guest Name' %}</label>
+                                            </div>
+                                            <div>
+                                                <input class=" w3-padding  w3-round-large box_container_input" type="text" id="guest_name"
+                                                    name="guest_name" readonly> 
+                                            </div>
+                                        </div>
+                                
+                                        <div class="w3-cell box_container">
+                                            <div>
+                                                <label for="contact">{% trans 'Contact Number' %}</label>
+                                            </div>
+                                            <div>
+                                                <input class=" w3-padding  w3-round-large box_container_input" type="text" id="contact" name="contact"
+                                                    readonly>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="w3-cell box_container">
+                                            <div>
+                                                <label for="roomtypes">{% trans 'Room Type' %}</label>
+                                            </div>
+                                            <div>
+                                                <input type="text" class="form-control w3-padding w3-round-large box_container_input" id="roomtypes" name="roomtypes" readonly>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="w3-margin-top">
+                                            <div class="w3-cell box_container">
+                                                <div>
+                                                    <label for="check_in">{% trans 'Check in' %} </label>
+                                                </div>
+                                                <div>
+                                                    <input class=" w3-padding  w3-round-large box_container_input" type="text" id="check_in"
+                                                        name="check_in" readonly>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="w3-cell box_container">
+                                                <div>
+                                                    <label for="check_out">{% trans 'Check out' %}</label>
+                                                </div>
+                                                <div>
+                                                    <input class=" w3-padding  w3-round-large box_container_input" type="text" id="check_out"
+                                                        name="check_out" readonly>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="w3-cell box_container">
+                                                <div>
+                                                    <label for="status">{% trans 'Status' %}</label>
+                                                </div>
+                                                <div>
+                                                    <select class=" form-control w3-padding w3-round-large box_container_input" id="status"
+                                                        name="status">
+                                                        <option value="Confirmed">Confirmed</option>
+                                                        <option value="cancelled">Cancelled</option>
+                                                        <option  value="pending">Pending</option>
+                                                        <option value="completed">Completed</option>
+                                                        <option value="check-in">Check In</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="w3-center w3-container w3-margin-top">
+                                            <button class=" w3-round-large w3-margin-right  btn  w3-padding-large"
+                                                onclick="document.getElementById('id02').style.display='none'"
+                                                style="border: 1px solid #85080C; color: #85080C;" type="button">{% trans 'cancel' %}</button>
+                                            <button class="saveEditedBookingBtn w3-round-large  activee btn w3-section w3-padding-large" type="submit"
+                                                id="saveEditedBookingBtn">{% trans 'Save' %}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" value="{{ booking.id }}" id="booking_detail_id">
+
+
+        </div>
+        
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>            
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+            
+    <script>
+        // Script to open and close sidebar
+        const hotel_id=document.getElementById('selected_hotel').value
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        document.getElementsByClassName("top_nav_bar")[0].style.paddingLeft = "0";
+            }
+        function loadershow(){
+        $('.loader-container').css('display','flex');
+        $('#hotelTable').addClass('blurred');
+       }
+        function loaderhide(){
+            $('.loader-container').hide();
+            $('#hotelTable').removeClass('blurred');
+        }
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+        
+     
+
+        $(document).ready(function() {
+            $('#search_button').click(function() {
+                loadershow();
+
+                var fromDate = $('.from_date').val();
+                var toDate = $('.to_date').val();
+                var roomType = $('#room_type').val();
+                var statusType = $('#status_type').val();
+                var activeButtonId = $('.btn.activee').attr('id');
+                setTimeout(function() {
+                $.ajax({
+                    url: `/vendor/booking/?hotel_id=${hotel_id}`,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': window.CSRF_TOKEN
+                    },
+                    data: {
+                        from_date: fromDate,
+                        to_date: toDate,
+                        room_type: roomType,
+                        status_type: statusType,
+                        active_button_id: activeButtonId,
+                    },
+                    success: function(data) {
+
+                        $('.loader-container').hide();
+                        $('#hotelTable').removeClass('blurred');
+
+                        $('table tbody').html($(data).find('table tbody').html());
+                        loaderhide();
+                        const rows = $(data).find('table tbody tr');
+                        const totalRows = rows.length;
+
+                        const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                        console.log(currentPage,"++++++++++++++=");
+                        
+                        if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                            $('.pagination').hide();
+                        } else {
+                            $('.pagination').html($(data).find('.pagination').html()).show();
+                        }
+     
+                        
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        $('.loader-container').hide();
+                        $('#hotelTable').removeClass('blurred');
+                        $('.pagination').hide();
+                        loaderhide();
+                        console.error('Error fetching bookings:', error);
+                        alert('Error fetching bookings. Please try again later.');
+                    }
+                });
+            }, 500); 
+            });
+        });
+
+        $(document).ready(function() {
+            $('#upcoming_bookings_btn').click(function() {
+                loadershow();
+                $('#hotelTable').addClass('blurred');
+                setTimeout(function() {
+                $.ajax({
+                    url: `/vendor/booking/?hotel_id=${hotel_id}`, 
+                    type: 'GET',
+                    success: function(data) {
+                        loaderhide();
+                        $('#hotelTable').removeClass('blurred');
+
+                        $('table tbody').html($(data).find('table tbody').html());
+                        
+
+                        $('.btn').removeClass('activee');
+                        $('#upcoming_bookings_btn').addClass('activee');
+                        const rows = $(data).find('table tbody tr');
+                        const totalRows = rows.length;
+
+                        const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                        if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                            $('.pagination').hide();
+                        } else {
+                            $('.pagination').html($(data).find('.pagination').html()).show();
+                        }
+   
+
+                    },
+                    error: function(xhr, status, error) {
+                        loaderhide();
+                        $('#hotelTable').removeClass('blurred');
+                        $('.pagination').hide();
+                        console.error('Error fetching upcoming appointments:', error);
+                        alert('Error fetching upcoming appointments. Please try again later.');
+                    }
+                });
+            }, 500); 
+            });
+        });
+
+
+        $(document).ready(function() {
+            $('#cancelled_bookings_btn').click(function() {
+                loadershow();
+                $('#hotelTable').addClass('blurred');
+
+                setTimeout(function() {
+                $.ajax({
+                    url: `/vendor/cancelled-appointments/?hotel_id=${hotel_id}`, 
+                    type: 'GET',
+                    success: function(data) {
+                        loaderhide();
+                        $('#hotelTable').removeClass('blurred');
+
+                        $('table tbody').html($(data).find('table tbody').html());
+                        
+
+                        $('.btn').removeClass('activee');
+                        $('#cancelled_bookings_btn').addClass('activee');
+                        $('.pagination').html($(data).find('.pagination').html());
+                        const rows = $(data).find('table tbody tr');
+                        const totalRows = rows.length;
+
+                        const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                        console.log("rows:",rows,"totalRows:",totalRows,"currentPage:",currentPage,"totalRows:",totalRows)
+                        if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                            console.log("==================")
+                            $('.pagination').hide();
+                        } else {
+                            console.log("==================+++++++++++")
+                            $('.pagination').html($(data).find('.pagination').html()).show();
+                        }
+     
+
+                    },
+                    error: function(xhr, status, error) {
+                        loaderhide();
+                        $('#hotelTable').removeClass('blurred');
+                        $('.pagination').hide();
+                        console.error('Error fetching cancelled appointments:', error);
+                        alert('Error fetching cancelled appointments. Please try again later.');
+                    }
+                });
+            }, 500); 
+            });
+        });
+
+        $(document).ready(function() {
+            $('#past_bookings_btn').click(function() {
+                loadershow();
+                $('#hotelTable').addClass('blurred');
+
+                
+                setTimeout(function() {
+                $.ajax({
+                    url: `/vendor/past-bookings/?hotel_id=${hotel_id}`,  
+                    type: 'GET',
+                    success: function(data) {
+                        loaderhide();
+                        $('#hotelTable').removeClass('blurred');
+
+                        $('table tbody').html($(data).find('table tbody').html());
+                        $('.btn').removeClass('activee');
+                        $('#past_bookings_btn').addClass('activee');
+                        const rows = $(data).find('table tbody tr');
+                        const totalRows = rows.length;
+
+                        const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                        if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                            $('.pagination').hide();
+                        } else {
+                            $('.pagination').html($(data).find('.pagination').html()).show();
+                        }
+   
+
+                    },
+                    error: function(xhr, status, error) {
+                        loaderhide();
+                        $('.pagination').hide();
+                        console.error('Error fetching past bookings:', error);
+                        alert('Error fetching past bookings. Please try again later.');
+                    }
+                });
+            }, 500); 
+            });
+        });
+        $(document).on('click', '.pagination-link', function(e) {
+            e.preventDefault();
+            loadershow();
+            const activeButton = $('.btn.activee').attr('id');
+            const page = $(this).data('page');  
+            console.log("Clicked page:", page);
+            
+            var fromDate = $('.from_date').val();
+            var toDate = $('.to_date').val();
+            var roomType = $('#room_type').val();
+            var statusType = $('#status_type').val();
+            var activeButtonId = $('.btn.activee').attr('id');
+            
+            let url = '';
+
+            if (activeButton === 'cancelled_bookings_btn') {
+                url = `/vendor/cancelled-appointments/?page=${page}&fromDate=${fromDate}&toDate=${toDate}&roomType=${roomType}&statusType=${statusType}&activeButtonId=${activeButtonId}&hotel_id=${hotel_id}`;
+            } else if (activeButton === 'past_bookings_btn') {
+                url = `/vendor/past-bookings/?page=${page}&fromDate=${fromDate}&toDate=${toDate}&roomType=${roomType}&statusType=${statusType}&activeButtonId=${activeButtonId}&hotel_id=${hotel_id}`;
+            } else if (activeButton === 'upcoming_bookings_btn') {
+                url = `/vendor/booking/?page=${page}&fromDate=${fromDate}&toDate=${toDate}&roomType=${roomType}&statusType=${statusType}&activeButtonId=${activeButtonId}&hotel_id=${hotel_id}`;
+            }
+            console.log(url,"==================")
+            
+            $.ajax({
+                url: url, 
+                type: 'GET',
+                success: function(data) {
+                    console.log("Response Data:", data);
+                    loaderhide();
+                    $('table tbody').html($(data).find('table tbody').html());
+                    $('.pagination').html($(data).find('.pagination').html());
+
+                    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                    const rows = $(data).find('table tbody tr');
+                    const totalRows = rows.length;
+
+                    console.log("Current Page:", currentPage, "Total Rows:", totalRows);
+
+                    if (currentPage === 1 && totalRows < 15) {
+                        console.log("Hiding pagination for page 1 with less than 2 rows.");
+                        $('.pagination').hide();
+                    } else {
+                        $('.pagination').html($(data).find('.pagination').html()).show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    loaderhide();
+                    $('.pagination').hide();
+                    console.error('Error fetching pagination data:', error);
+                    alert('Error fetching data for pagination. Please try again later.');
+                }
+            });
+        });
+            function updatePagination(data) {
+                const rows = $(data).find('table tbody tr');
+                const totalRows = rows.length;
+
+                const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                console.log(currentPage);
+                
+                if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                    $('.pagination').hide();
+                } else {
+                    $('.pagination').html($(data).find('.pagination').html()).show();
+                }
+        }
+
+        $(document).ready(function () {
+            updatePagination(document);
+            $.ajax({
+                url: `/vendor/booking/?hotel_id=${hotel_id}`,
+                method: 'GET',
+                success: function (data) {
+                    $('table tbody').html($(data).find('table tbody').html());
+                    updatePagination(data);
+                }
+            });
+        });
+
+
+
+    </script>
+    
+</body>
+</html>

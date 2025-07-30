@@ -1,0 +1,72 @@
+{% load i18n %}
+{% load static %}
+<table class="w3-table text-center responsive-table">
+    <thead class="bg-table-head">
+        <tr>
+            
+            <th class="border-right">{% trans "Sl. No." %}</th>
+            <th class="border-right">{% trans "Offer Name" %}</th>
+            <th class="border-right">{% trans "Description" %}</th>
+            <th class="border-right">{% trans "Discount Percentage" %}</th>
+            <th class="border-right">{% trans "Discount Value" %}</th>
+
+            {% if discount == 'promo_code' %}
+                <th class="border-right">{% trans "Promo Code" %}</th>
+                <th class="border-right">{% trans "Max Uses" %}</th>
+                <th class="border-right">{% trans "Validity Period" %}</th>
+            {% elif discount == 'targeted_offers' %}
+                <th class="border-right">{% trans "Targeted Offer Type" %}</th>
+            {% elif discount == 'seasonal_event' %}
+                <th class="border-right">{% trans "Occasion Name" %}</th>
+            {% elif discount == 'loyalty_program' %}
+                <th class="border-right">{% trans "Points Required" %}</th>
+            {% else %}
+                <th class="border-right">{% trans "Minimum Spend" %}</th>
+                <th class="border-right">{% trans "Validity Period" %}</th>
+            {% endif %}
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody class="fs12 table-body-color">
+        {% if offers %}
+            {% for offer in offers %}
+                <tr>
+                    <td class="border-right">{{ forloop.counter }}</td>
+                    <td class="border-right">{{ offer.title }}</td>
+                    <td class="border-right">{{ offer.description|capfirst }}</td>
+                    <td class="border-right">{% if offer.discount_percentage %}{{ offer.discount_percentage }} % {% else %} - {% endif %}</td>
+                    <td class="border-right">{% if offer.discount_value %}{{ offer.discount_value }} {% else %} - {% endif %} </td>
+                    {% if discount == 'promo_code' %}
+                        <td class="border-right">{{ offer.promo_code }}</td>
+                        <td class="border-right">{{ offer.max_uses }}</td>
+                        <td class="border-right">{{ offer.start_date }} to {{ offer.end_date }}</td>
+                    {% elif discount == 'targeted_offers' %}
+                        <td class="border-right">{{ offer.get_promotion_type_display }}</td>
+                    {% elif discount == 'seasonal_event' %}
+                        <td class="border-right">{{ offer.occasion_name }}</td>
+                    {% elif discount == 'loyalty_program' %}
+                        <td class="border-right">{{ offer.points_required }}</td>
+                    {% else %}
+                        <td class="border-right">{% if offer.minimum_spend %}{{ offer.minimum_spend }} {% else %} - {% endif %}</td>
+                        <td class="border-right">{{ offer.start_date }} to {{ offer.end_date }}</td>
+                    {% endif %}
+                    <td class="color-grey">
+                        <a href="#" class="edit-offer" data-offer-id="{{ offer.id }}" style="text-decoration: none;">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </td>
+                    <td class="color-grey">
+                        <a href="#" class="delete-offer" data-delete-id="{{ offer.id }}" style="text-decoration: none;">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="12" style="text-align: center;">{% trans "No data found" %}</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+

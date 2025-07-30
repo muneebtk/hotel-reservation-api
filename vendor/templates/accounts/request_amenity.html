@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/amenity-request.css' %}">
+
+<div id="amenitiesModal" class="modal">
+    <div class="modal-content">
+        <h2><img src="{% static 'icons/ant-design_pull-request-outlined (1).png' %}" alt="" width="20px" height="20px">&nbsp; + {% trans "Request Amenity" %}</h2>
+        <form id="amenityRequestForm">
+            <div class="form-group">
+                <label for="amenityName">{% trans "Amenity Name" %}</label>
+                <input type="text" id="amenityName" placeholder="{% trans 'Enter the amenity name' %}" required>
+                <br>
+                <span id="nameError" style="color: red; display: none;"></span>
+            </div>
+            <div class="form-group">
+                <label for="purpose">{% trans "Purpose of the Request" %}</label>
+                <textarea id="purpose" placeholder="{% trans 'Explain the reason for requesting this amenity' %}" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" onclick="window.location.reload();">{% trans "Cancel" %}</button>
+                <button type="submit" class="add-btn">{% trans "Request" %}</button>
+            </div>
+        </form>
+    </div>
+</div>

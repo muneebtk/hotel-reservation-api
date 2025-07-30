@@ -1,0 +1,36 @@
+{% if registration_success %}
+    <div id="successModal" class="modal_message" style="display: block;">
+        <div class="modal_content_message">
+            <span class="close_message">&times;</span>
+            <p>Chalet has been successfully registered.</p>
+            <button id="okButton" class="ok-button">OK</button>
+        </div>
+    </div>
+    {% endif %}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+            const successModal = document.getElementById("successModal");
+            if (successModal) {
+                successModal.style.display = "block";
+            }
+
+            const okButton = document.getElementById("okButton");
+            if (okButton) {
+                okButton.addEventListener("click", function() {
+                    window.location.href = "{% url 'loginn' %}";
+                });
+            }
+
+            const closeButton = document.querySelector(".close_message");
+            if (closeButton) {
+                closeButton.addEventListener("click", function() {
+                    if (successModal) {
+                        successModal.style.display = "none";
+                    }
+                });
+            }
+        });
+        
+</script>

@@ -1,0 +1,967 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/transaction-detail.css' %}">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+</head>
+<body>
+     <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+        <div class="w3-main main-section">
+            
+            <div class="container container-box">
+                
+                    <div class="row justify-content-center">
+                        <br>
+                        
+                        <div class="row-main" id="hotelTable">
+                            
+                            <div class="row flex flex-wrap gap-1 justify-end">
+                                
+                                <div class="">
+                                    <input ondblclick="resetDate('datePicker')" type="text" id="datePicker" class="form-select fs12 text-black from_date"
+                                         name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                                </div>
+                                <div class="">
+                                    <input ondblclick="resetDate('datePicker1')" type="text" id="datePicker1" class="form-select fs12 text-black to_date"
+                                         name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                                </div>
+                                <div class="">
+                                    <select aria-label="Default select example" class="form-select fs12 text-black white" id="payment_method">
+                                        <option selected value="">{% trans "Payment Method" %}</option>
+                                        {% for method in payment_choices %}
+                                            <option value="{{ method.0 }}">{{ method.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <select aria-label="Default select example" class="form-select fs12 text-black white" id="transaction_status">
+                                        <option selected value="">{% trans "Transaction Status" %}</option>
+                                        {% for method in transaction_status %}
+                                            <option value="{{ method.0 }}">{{ method.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <select aria-label="Default select example" class="form-select fs12 text-black white" id="booking_status">
+                                            <option value="">{% trans "Booking status" %}</option>
+                                            <option value="pending">{% trans "Pending" %}</option>
+                                            <option value="booked">{% trans "Booked" %}</option>
+                                            <option value="confirmed">{% trans "Confirmed" %}</option>
+                                            <option value="rejected">{% trans "Rejected" %}</option>
+                                            <option value="expired">{% trans "Expired" %}</option>
+                                            <option value="cancelled">{% trans "Cancelled" %}</option>
+                                            <option value="completed">{% trans "Completed" %}</option>
+                                            <option value="check-in">{% trans "Check-In" %}</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <input type="text" class="form-select fs12 text-black Name_search" name="Name_search"
+                                        placeholder="{% trans 'Name' %}">
+                                </div>
+                                <div class="">
+                                    <input type="text" class="form-select fs12 text-black transaction_id" name="transaction_id"
+                                        placeholder="{% trans 'Transaction ID' %}">
+                                </div>
+                                <div class="">
+                                    <button class="btn-blue px-3 f" type="button" id="transaction_search">
+                                        <i class="fa-solid fa-magnifying-glass"></i> {% trans "Search" %}
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="row flex flex-wrap gap-1 justify-end align-item-center reporticon">
+                                <h3>{% trans "Export Reports:" %}</h3>
+                                <div onclick="handleExcelClick()" class="excel">{% trans "Excel" %}</div>
+                                <div class="pdf">{% trans "PDF" %}</div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                  <thead>
+                                    <tr>
+                                        <th class="border-right">{% trans 'Sl. No.'%}</th>
+                                        <th id="hotel-name-header" class="border-right">{% trans "Property Name" %}</th>
+                                        <th class="border-right">{% trans "Transaction <br>ID" %}</th>
+                                        <th class="border-right">{% trans "Booking <br>ID" %}</th>
+                                        <th class="border-right"> {% trans "Guest <br>Name" %}</th>
+                                        <th class="border-right"> {% trans "User <br>Name" %}</th>
+                                        <th class="border-right"> {% trans "Booking <br>Mobile Number" %}</th>
+                                        <th class="border-right">{% trans "Transaction <br>Date" %}</th>
+                                        <th class="border-right">{% trans "Booking <br>Time" %}</th>
+                                        <!-- <th class="border-right">{% trans "Booking <br>Date" %}</th> -->
+                                        <th class="border-right">{% trans "Payment <br> Method" %}</th>
+                                       
+                                        <th class="border-right">{% trans "Transaction <br> Status" %}</th>
+                                        <th class="border-right">{% trans "Booking Status" %}</th>
+
+                                        
+                                       
+                                        <th class="border-right">{% trans "Transaction <br> Amount" %}</th>
+                                        <th class="border-right">{% trans "Vendor Earnings" %}</th>
+                                        <th id="hotel-amount-header" class="border-right">{% trans "Property <br> Amount" %}</th>
+                                        <th class="border-right">{% trans "Discount Amount" %}</th>
+                                        <th class="border-right">{% trans "Promo Code Applied" %}</th>
+                                        <th class="border-right">{% trans "Discount Percentage Applied" %}</th>
+                                        <th class="border-right">{% trans "Tax" %}</th>
+                                        <th class="border-right">{% trans "Meal Price" %}</th>
+                                        <th class="border-right">{% trans "Meal Tax " %}</th>
+                                        <th class="border-right">{% trans "Check-In" %}</th>
+                                        <th class="border-right">{% trans "Check-Out" %}</th>
+                                        <th class="border-right">{% trans "Total Members" %}</th>
+                                        <th class="border-right">{% trans "Booked Rooms" %}</th>
+                                        <th class="border-right">{% trans "Room Types" %}</th>
+                                        <th class="border-right">{% trans "Payment gateway Charge" %}</th>
+                                        <th class="border-right">{% trans "Payment gateway <br> Commission for Admin" %}</th>
+                                        <th class="border-right">{% trans "Commission <br> Amount" %}</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% if paginated_transactions %}
+                                        {% for booking in paginated_transactions %}
+                                            <tr>
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        <!-- For hotel booking -->
+                                                        {{ booking.hotel.name|capfirst }}
+                                                    {% elif booking.chalet %}
+                                                        <!-- For chalet booking -->
+                                                        {{ booking.chalet.name|capfirst }}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.transaction_id }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.transaction_id }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                    
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {{ booking.booking_id }}
+                                                    {% elif booking.chalet %}
+                                                        {{ booking.booking_id }}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {{ booking.booking_fname|capfirst }}
+                                                    {% elif booking.chalet %}
+                                                        {{ booking.booking_fname|capfirst }}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.user %}
+                                                        {{ booking.user.user.get_full_name|capfirst }}
+                                                    {% elif booking.user %}
+                                                        {{ booking.user.user.get_full_name|capfirst }}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                  <td class="border-right">
+                                                     {% if booking.hotel %}
+                                                        {% if booking.booking_mobilenumber %}
+                                                            {{ booking.booking_mobilenumber }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.booking_mobilenumber %}
+                                                            {{ booking.booking_mobilenumber }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.modified_at|date:"d/m/Y" }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.modified_at|date:"d/m/Y" }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+
+                                                <td class="border-right">
+                                                        {% if booking.hotel or booking.chalet %}
+                                                            {% if booking %}
+                                                                {{ booking.created_date|date:"h:i A" }}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    </td>
+
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.payment_type.name|default:"N/A"|capfirst }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.payment_type.name|default:"N/A"|capfirst }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.transaction_status|capfirst }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.transaction %}
+                                                            {{ booking.transaction.transaction_status|capfirst }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {{ booking.status|capfirst }}
+                                                    {% elif booking.chalet %}
+                                                        {{ booking.status|capfirst }}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                    
+                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.transaction %}
+                                                            OMR  &nbsp;{{ booking.transaction.amount }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.transaction %}
+                                                            OMR  &nbsp;{{ booking.transaction.amount }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% with booking.transaction.vendor_transaction.first as vendor_transaction %}
+                                                        {% if vendor_transaction %}
+                                                            {% if booking.hotel and booking.transaction %}
+                                                                OMR &nbsp;{{ vendor_transaction.vendor_earnings }}
+                                                            {% elif booking.chalet and booking.transaction %}
+                                                                OMR &nbsp;{{ vendor_transaction.vendor_earnings }}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% with booking.transaction.vendor_transaction.first as vendor_transaction %}
+                                                        {% if vendor_transaction %}
+                                                            {% if booking.hotel and booking.transaction %}
+                                                                OMR  &nbsp;{{ vendor_transaction.base_price }}
+                                                            {% elif booking.chalet and booking.transaction %}
+                                                                OMR &nbsp;{{ vendor_transaction.base_price }}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                </td>
+
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.discount_price %}
+                                                            OMR  &nbsp;{{ booking.discount_price }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.discount_price %}
+                                                            OMR  &nbsp;{{ booking.discount_price }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.promocode_applied %}
+                                                            {{ booking.promocode_applied }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.promocode_applied %}
+                                                            {{ booking.promocode_applied }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td><td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.discount_percentage_applied %}
+                                                            {{ booking.discount_percentage_applied }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.discount_percentage_applied %}
+                                                            {{ booking.discount_percentage_applied }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.tax_and_services %}
+                                                            OMR &nbsp;{{ booking.tax_and_services }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.tax_and_services %}
+                                                            OMR &nbsp;{{ booking.tax_and_services }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.meal_price %}
+                                                            OMR  &nbsp;{{ booking.meal_price }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.meal_price %}
+                                                            OMR &nbsp;{{ booking.meal_price }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.meal_tax %}
+                                                            OMR &nbsp;{{ booking.meal_tax }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.meal_tax %}
+                                                            OMR &nbsp;{{ booking.meal_tax }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.checkin_date %}
+                                                            {{ booking.checkin_date }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.checkin_date %}
+                                                            {{ booking.checkin_date }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.checkout_date %}
+                                                            {{ booking.checkout_date }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.checkout_date %}
+                                                            {{ booking.checkout_date }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.number_of_guests %}
+                                                            {{ booking.number_of_guests }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.number_of_guests %}
+                                                            {{ booking.number_of_guests }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td> <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% if booking.number_of_booking_rooms %}
+                                                            {{ booking.number_of_booking_rooms }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% elif booking.chalet %}
+                                                        {% if booking.number_of_booking_rooms %}
+                                                            {{ booking.number_of_booking_rooms }}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% if booking.hotel %}
+                                                        {% with booking.booked_rooms.all as booked_rooms %}
+                                                            {% if booked_rooms %}
+                                                                {% for booked_room in booked_rooms %}
+                                                                    {{ booked_room.room.room_types.room_types }}{% if not forloop.last %}, {% endif %}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                    {% elif booking.chalet %}
+                                                        N/A
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                
+                                                </td>
+                                    
+                                                <td class="border-right">
+                                                    {% with booking.transaction.admin_transaction.first as admin_transaction %}
+                                                        {% if admin_transaction %}
+                                                            {% if booking.hotel %}
+                                                                {% if admin_transaction.actual_gateway_fee %}            
+                                                                    OMR &nbsp;{{ admin_transaction.actual_gateway_fee }}
+                                                                {% else %}
+                                                                    N/A
+                                                                {% endif %}
+                                                            {% elif booking.chalet %}
+                                                                {% if admin_transaction.actual_gateway_fee %}            
+                                                                    OMR &nbsp;{{ admin_transaction.actual_gateway_fee }}
+                                                                {% else %}
+                                                                    N/A
+                                                                {% endif %}                                                            
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                </td>
+                                                <td class="border-right">
+                                                    {% with booking.transaction.admin_transaction.first as admin_transaction %}
+                                                        {% if admin_transaction %}
+                                                            {% if booking.hotel %}
+                                                                {% if admin_transaction.admin_gateway_fee %}                                                              
+                                                                    OMR &nbsp;{{ admin_transaction.admin_gateway_fee }}
+                                                                {% else %}
+                                                                    N/A
+                                                                {% endif %}
+                                                            {% elif booking.chalet %}
+                                                                {% if admin_transaction.admin_gateway_fee %}                                                              
+                                                                    OMR &nbsp;{{ admin_transaction.admin_gateway_fee }}
+                                                                {% else %}
+                                                                    N/A
+                                                                {% endif %}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% endwith %}
+
+                                                </td>
+                                                
+                
+                                                <td class="border-right">
+                                                    {% with booking.transaction.admin_transaction.first as admin_transaction %}
+                                                            {% if admin_transaction %}
+                                                                {% if booking.hotel %}
+                                                                    {% if admin_transaction.admin_commission %}
+                                                                        OMR &nbsp;{{ admin_transaction.admin_commission }}
+                                                                    {% else %}
+                                                                        N/A
+                                                                    {% endif %}
+                                                                {% elif booking.chalet %}
+                                                                    {% if admin_transaction.admin_commission %}
+                                                                        OMR &nbsp;{{ admin_transaction.admin_commission }}
+                                                                    {% else %}
+                                                                        N/A
+                                                                    {% endif %}
+                                                                {% else %}
+                                                                    N/A
+                                                                {% endif %}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                </td>
+                                                    
+                                                    <!-- <td class=""></td> -->
+                                            </tr>
+                                            
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="25" style="align-items: center;" class="text-center">{% trans "No data found" %}</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                                
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="no_data_found hidden"></div>
+            {% if paginated_transactions %}
+                <div class="pagination">
+                    <!-- Previous Button -->
+                    {% if  paginated_transactions.has_previous %}
+                    
+                        <a href="#" class="previous-page pagination-link" data-page="{{  paginated_transactions.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                    
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                    <div class="page-numbers">
+                        
+                        {% for num in  paginated_transactions.paginator.page_range %}
+                        
+                            {% if paginated_transactions.paginator.num_pages > 3 %}
+                            
+                                {% if num >=  paginated_transactions.number and num <  paginated_transactions.number|add:3 %}
+                                
+                                    {% if num ==  paginated_transactions.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num ==  paginated_transactions.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                
+                    <!-- Next Button -->
+                    {% if  paginated_transactions.has_next %}
+                        <a href="#" class="next-page pagination-link" data-page="{{  paginated_transactions.next_page_number }}" title="Next Page">
+                            <span class="next-button">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div></div>
+            {% endif %}            
+    </div>    
+
+        </div>
+<!-- 
+        <div class="pagination-content" style="text-align:center">
+            <div class="pagination">
+                {% if paginated_transactions.has_previous %}
+                <a href="?page={{ paginated_transactions.previous_page_number }}">&laquo;</a>
+                {% endif %}
+                {% for page in page_range %}
+                <a href="?page={{ page }}"
+                    class="{% if paginated_transactions.number == page %} activee {% endif %}">{{page}}</a>
+                {% endfor %}
+
+                {% if paginated_transactions.has_next %}
+                <a href="?page={{ paginated_transactions.next_page_number }}">&raquo;</a>
+                {% endif %}
+            </div>
+        </div> -->
+
+     
+
+            <!-- </div> -->
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            
+        <script type="text/javascript">
+            window.CSRF_TOKEN = '{{ csrf_token }}';
+        </script>
+
+    <script>
+        
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+        $(document).ready(function() {
+            $('#transaction_search').click(function() {
+
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+
+                var fromDate = $('.from_date').val();
+                var toDate = $('.to_date').val();
+                var payment_method = $('#payment_method').val();
+                // var catergory_type = $('.select_hotel').val();
+                var transaction_status = $('#transaction_status').val();
+                var booking_status = $('#booking_status').val();
+                var Name_search = $('.Name_search').val();
+                var transaction_id = $('.transaction_id').val();
+                var page = $(this).data('page'); 
+
+                console.log(transaction_id);
+
+                //  // Change the table header based on the category type
+                //  if (catergory_type === 'CHALET') {
+                //     $('#hotel-name-header').text('Chalet Name');
+                //     $('#hotel-amount-header').text('Chalet Amount');
+                // } else if (catergory_type === 'HOTEL') {
+                //     $('#hotel-name-header').text('Hotel Name');
+                //     $('#hotel-amount-header').text('Hotel Amount')
+                // }
+
+                setTimeout(function() {
+                    $.ajax({
+                        url: '/super_user/transaction_detail',
+                        type: 'GET',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data: {
+                            from_date: fromDate,
+                            to_date: toDate,
+                            payment_method:payment_method,
+                            // catergory_type:catergory_type,
+                            transaction_status:transaction_status,
+                            booking_status:booking_status,
+                            Name_search:Name_search,
+                            transaction_id:transaction_id,
+                            page: page, 
+
+                        },
+                        success: function(data) {
+                            
+                            clearTimeout(loaderTimeout);
+
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            $('table tbody').html($(data).find('table tbody').html());
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+
+                            const currentPage = parseInt($(data).find('.current-page').text(), 15) || 1;
+
+                            if (currentPage === 1 && totalRows < 15) {
+                                $('.pagination').hide();
+                            } else {
+                                $('.pagination').html($(data).find('.pagination').html()).show();
+                            }  
+
+                            
+                        },
+                        error: function(xhr, status, error) {
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            $('.pagination').hide();
+                            console.error('Error  details:', error);
+                            alert('Error  details. Please try again later.');
+                        }
+                    });
+                }, 500);
+            });
+        });
+        $(document).on('click', '.pagination-link', function (e) {
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+
+                var fromDate = $('.from_date').val();
+                var toDate = $('.to_date').val();
+                var payment_method = $('#payment_method').val();
+                // var catergory_type = $('.select_hotel').val();
+                var transaction_status = $('#transaction_status').val();
+                var booking_status = $('#booking_status').val();
+                var Name_search = $('.Name_search').val();
+                var transaction_id = $('.transaction_id').val();
+                var page = $(this).data('page'); 
+
+
+                console.log(transaction_id);
+
+                setTimeout(function() {
+                    $.ajax({
+                        url: '/super_user/transaction_detail',
+                        type: 'GET',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data: {
+                            from_date: fromDate,
+                            to_date: toDate,
+                            payment_method:payment_method,
+                            transaction_status:transaction_status,
+                            booking_status:booking_status,
+                            Name_search:Name_search,
+                            transaction_id:transaction_id,
+                            page: page, 
+
+                        },
+                        success: function(data) {
+                            
+                            clearTimeout(loaderTimeout);
+
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            $('table tbody').html($(data).find('table tbody').html());
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+
+                            const currentPage = parseInt($(data).find('.current-page').text(), 15) || 1;
+
+                            if (currentPage === 1 && totalRows < 15) {
+                                $('.pagination').hide();
+                            } else {
+                                $('.pagination').html($(data).find('.pagination').html()).show();
+                            }  
+                            
+
+                            
+                        },
+                        error: function(xhr, status, error) {
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            $('.pagination').hide();
+                            console.error('Error Fetching Refund and cancellation details:', error);
+                            alert('Error Fetching Refund and cancellation details. Please try again later.');
+                        }
+                    });
+            });
+        });
+        function updatePagination(data) {
+            const rows = $(data).find('table tbody tr');
+            const totalRows = rows.length;
+
+            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                $('.pagination').hide();
+            } else {
+                $('.pagination').html($(data).find('.pagination').html()).show();
+            }         
+        }
+
+        $(document).ready(function () {
+            updatePagination(document);
+
+            $.ajax({
+                url: '/super_user/transaction_detail',
+                method: 'GET',
+                success: function (data) {
+                    $('table tbody').html($(data).find('table tbody').html());
+                    updatePagination(data);
+                }
+            });
+        });
+
+        var handleExcelClick = () => {
+            var fromDate = $('.from_date').val();
+            var toDate = $('.to_date').val();
+            var payment_method = $('#payment_method').val();
+            var transaction_status = $('#transaction_status').val();
+            var booking_status = $('#booking_status').val();
+            var Name_search = $('.Name_search').val();
+            var transaction_id = $('.transaction_id').val();
+             
+
+            $.ajax({
+                url: '/super_user/admin-transaction-excel-download',
+                method: 'GET',
+                data: {
+                    from_date: fromDate,
+                    to_date: toDate,
+                    payment_method:payment_method,
+                    transaction_status:transaction_status,
+                    booking_status:booking_status,
+                    Name_search:Name_search,
+                    transaction_id:transaction_id,
+                   
+
+                },
+                xhrFields: { responseType: "blob" }, // Expect binary response
+                success: function(response) {
+                    let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    let link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = "transactions.xlsx"; // Auto-download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error downloading Excel:", error);
+                }
+            });         
+        }
+
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- Include Flatpickr CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+     <!-- Include Flatpickr JS -->
+     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+     <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <style>
+        body {
+            font-size:16px;
+            background-color: rgb(233, 228, 228);
+        }
+        .w3-sidebar{
+            background-color: #85080C;
+            color: white;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #f5acac;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 10px;
+            border: none;
+            /* border-right: 1px solid rgba(0, 0, 0, 0.5); */
+        }
+
+
+        thead:first-child th:first-child {
+            border-top-left-radius: 15px;
+        }
+
+        tr:first-child th:last-child {
+            border-top-right-radius: 15px;
+        }
+
+        tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+
+        tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+
+        /* Borders */
+        .user-brd {
+            border: 1px solid #D2D2D2;
+        }
+        .table-body-brd {
+            border-left: 1px solid #D2D2D2;
+            border-right: 1px solid #D2D2D2;
+            border-bottom: 1px solid #D2D2D2;
+        }
+
+
+        .col-md-4 {
+        display: inline-block;
+        margin-right: 28px;
+        }
+
+        .btn{
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            background-color: white;
+        }
+
+        .active{
+            background-color: #85080C;
+            color: white;
+        }
+        
+        .table-body-color{
+            background-color: #fcf3f3;
+
+        }
+        .container-box{
+            /* margin-top:20px; */
+            padding: 20px;
+        }
+        .row-main{
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+        .form-select{
+            padding: 10px;
+            border-radius: 10px;
+            border-color: #f5acac;
+            background-color: white;
+        }
+        .btn-blue{
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 32px;
+            border-color: #85080C;
+            background-color: white;
+            color: #85080C;
+            width: 200px;
+        }
+        .border-right{
+            border-right: 1px solid rgba(0, 0, 0, 0.5);
+            
+        }
+        .color-grey{
+            color: gray;
+        }
+        .btn-search{
+            padding: 10px;
+            border-radius: 32px;
+            width: 200px;
+            border: none;
+            margin-left: 30px;
+            text-align: left;
+            background-color: #D2D2D2
+        }
+        .brown{
+            background-color: #85080C;
+        }
+        .box_container_input{
+            background-color: rgb(243, 240, 240); 
+            width: 250px; 
+            border: none;  
+            margin-right: 40px;
+        }
+        /* new changes */
+        ul{
+            list-style-type: none;
+        }
+        .upload_button{
+            width: 450px;
+        }
+        .row{
+            text-align: center;
+        }
+        /*  */
+        @media (max-width: 1440px) {
+            .container-box{
+                width: 1300px;
+            }
+            .row-main{
+                width: 1300px;
+            }
+            .table-container {
+                width: 1260px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 1260px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .container-box{
+                width: 900px;
+            }
+           .row-main{
+               width: 900px;
+           }
+           .table-container {
+               width: 860px;
+               overflow-x: auto;
+           }
+
+           .responsive-table {
+               width: 860px;
+           }
+           .col-md-4{
+                padding-bottom: 5px;
+            }
+            
+       }
+        
+       @media (max-width: 768px) {
+            .container-box{
+                width: 730px;
+            }
+            
+            .row-main{
+                width: 730px;
+                
+            }
+            .table-container {
+                width: 690px;
+                overflow-x: auto;
+            }
+           
+            .responsive-table {
+                width: 690px;
+            }
+            .box_container{
+                display: flex;
+                margin-bottom: 10px;
+            }
+            
+        }
+        @media (max-width: 425px) {
+            .container-box{
+                width: 380px;
+            }
+            .btn-search{
+                width: 150px;
+            }
+            .row-main{
+                width: 380px;
+            }
+            .table-container {
+                width: 350px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 350px;
+            }
+            .box_container_input{
+                width: 150px;
+            }
+        }
+        @media (max-width: 375px) {
+            .container-box{
+                width: 345px;
+            }
+            .btn-search{
+                width: 120px;
+                
+            }
+            .input-size{
+                width: 40px;
+            }
+            .row-main{
+                width: 345px;
+            }
+            .table-container {
+                width: 310px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 310px;
+            }
+            
+            
+        }
+        @media (max-width: 320px) {
+            .container-box{
+                width: 270px;
+            }
+            .btn-search{
+                width: 118px;
+                margin-left: 4px;
+                
+            }
+            .profile-btn{
+                padding: 10px;
+              
+            }
+            .search-btn{
+                margin-right: auto;
+            }
+            .input-size{
+                width: 20px;
+            }
+            .empty-container{
+                width: 1px;
+            }
+            .row-main{
+                width: 270px;
+            }
+            .table-container {
+                width: 240px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 240px;
+            }
+            
+        }
+       
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <div class="w3-main" style="margin-left:40px; margin-top:auto">
+
+            
+            
+            
+                <div class="container container-box">
+                
+                    
+                    <div class=" justify-content-center">
+
+                        <div class="" >
+                            <div class="col-md-4"> 
+                                <button class="w3-badge w3-xlarge  w3-white" style="border: none;"><i class="fa-solid fa-arrow-left fa-lg " ></i></button>
+                            </div>    
+                          
+                        </div>
+                        
+                        <br>
+
+                        <div class="row-main">
+                            <div class="row ">
+                                <div class="col-md-4">
+                                    
+                                    <form >
+       
+                                        <input type="text" ondblclick="resetDate('datePicker')" id="datePicker" class="form-select select_fromdate fs12 text-black"  style="width: 180px;" name="date" placeholder="From: Sep 8, 2023">
+                                        
+                                    </form>
+                                   
+                                </div>
+                                <div class="col-md-4">
+                                    <form >
+       
+                                        <input type="text" ondblclick="resetDate('datePicker1')" id="datePicker1" class="form-select select_todate fs12 text-black"  style="width: 180px;" name="date" placeholder="To: Sep 8, 2023">
+                                        
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select select_approved fs12 text-black">
+                                            <option value="">All</option>
+                                            <option value="True">Approved</option>
+                                            <option value="False">Not Approved</option>
+                                            
+                                           
+                                        </select>
+                                </div>
+                               
+                                <div class="col-md-4">
+                                    <select aria-label="Default select example" class="form-select select_hotel  fs12 text-black">
+                                        {%for category in categories%}
+                                        <option value="{{category}}">{{category}} </option>
+                                        {%endfor%}
+                                        
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <button class=" btn-blue search_button" type="button">
+                                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                                    </button>
+                                </div>
+
+                                
+                            </div>
+                            <br>
+                            <div class="col-md-12 ">
+                                <div class="table-container">
+                                    <table class="w3-table responsive-table ">
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right">Chalet <br>Name</th>
+                                                <th class="border-right">Chalet Owner <br>Name</th>
+                                                <th class="border-right">Chalet Owner<br>Email</th>
+                                                <th class="border-right">Office <br>Number</th>
+                                                <th class="border-right">GSM <br> Number</th>
+                                                <th class="border-right">Chalet <br> Address</th>
+                                                <th class="border-right">Country</th>
+                                                <th class="border-right">State/ <br> Province</th>
+                                                <th class="border-right">City</th>
+                                                <th class="border-right">Postal/ZIP <br> Code</th>
+                                                <th class="border-right">Room <br> Type</th>
+                                                <th class="border-right">CR <br> Number</th>
+                                                <th class="border-right">Date of <br> Expiry</th>
+                                                <th class="border-right">VAT <br> Number</th>
+                                                <th class=""></th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody class="fs12 table-body-color">
+                                            {%for data in hotel_data%}
+                                            <tr class="">
+                                                <td class="border-right">{{data.name}}</td>
+                                                <td class="border-right">{{data.vendor.user.first_name}}</td>
+                                                <td class="border-right">{{data.vendor.user.email}}</td>
+                                                <td class="border-right">{{data.office_number}}</td>
+                                                <td class="border-right">{{data.vendor.gsm_number}}</td>
+                                                <td class="border-right">{{data.address}}</td>
+                                                <td class="border-right">{{data.country}}</td>
+                                                <td class="border-right">{{data.state}}</td>
+                                                <td class="border-right">{{data.city}}</td>
+                                                <td class="border-right">{{data.city.postal_code}}</td>
+                                                <td class="border-right " >{{data.room_types.all|join:", "}}</td>
+                                                <td class="border-right">{{data.cr_number}}</td>
+                                                <td class="border-right">{{data.date_of_expiry}}</td>
+                                                <td class="border-right">{{data.vat_number}}</td>
+                                                <td class="color-grey"><a href="{%url 'hotel_approval' data.id%}" style="text-decoration: none;">View</a></td>
+                                            </tr>
+                                        {%endfor%}
+
+
+                                                                                            
+<!-- 
+                                            <tr>
+                                                <td class="border-right">Desert Oasis <br> Resort</td>
+                                                <td class="border-right">Fatima Al- <br>Mahrouqi</td>
+                                                <td class="border-right">fathimaalmahrouqi <br>@gmail.com</td>
+                                                <td class="border-right">+96891234567</td>
+                                                <td class="border-right">+96891234567</td>
+                                                <td class="border-right">Al Wahat Al Abyad, <br> Muscat <br>123 Main Street</td>
+                                                <td class="border-right">Oman</td>
+                                                <td class="border-right">Muscat br Governorate</td>
+                                                <td class="border-right">Muscat</td>
+                                                <td class="border-right">130</td>
+                                                <td class="border-right">Standard, <br>Deluxe,Suite</td>
+                                                <td class="border-right">12345</td>
+                                                <td class="border-right">31/12/2025</td>
+                                                <td class="border-right">OM123456789</td>
+                                                <td class=""><a href="#" style="text-decoration: none;">View</a></td>
+                                            </tr>    -->
+
+                                           
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                            
+
+                            
+                        
+                        </div>
+                    </div>
+                </div>
+        
+
+        </div>
+
+        <script type="text/javascript">
+            window.CSRF_TOKEN = '{{ csrf_token }}';
+        </script>
+
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+        $(document).ready(function(){
+            $('.search_button').click(function(event){
+                event.preventDefault();
+                var from_date = $('.select_fromdate').val();
+                var to_date = $('.select_todate').val();   
+                var category_type = $('.select_hotel').val();
+                var approved = $('.select_approved').val();
+                console.log(from_date,to_date,category_type,approved);
+                if(category_type == "HOTEL"){
+                    console.log("+++++++++++");
+                    window.location.href = '/vendor/hotel/table/list/'; 
+                }
+                if(category_type == "CHALET"){
+                    $.ajax({
+                        url:'{%url "chalet_table_list" %}',
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data:{
+                            "from_date":from_date,
+                            "to_date":to_date,
+                            "category_type":category_type,
+                            "approved":approved
+                        },
+                        success:function(data){
+                            $('table tbody').html($(data).find('table tbody').html())
+                        },
+                        error:function(xhr,status,error){
+                            console.error('error :',error);
+                        }
+                    });
+                }
+                
+            })
+        });
+
+        
+    </script>
+    
+</body>
+</html>

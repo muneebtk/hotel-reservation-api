@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{%load static%}
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>1929</title>
+    <link rel="stylesheet" href="{%static 'vendor/css/landing.css'%}">
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+</head>
+<body>
+    <!-- Start Landing Page -->
+    <div class="landing-page">
+        <div class="content">
+            <div class="container">
+                <div class="info">
+                    <img src="{% static 'icons/Booking Logo PNG Black 1.png' %}" alt="logo">
+                    <h1>{% trans 'Awaiting Approval' %}</h1>
+                    <p>{% trans 'Thanks for registering with us! We have sent your request to the administrator and once approved you will be notified through email. Please try again after some time.' %}</p>
+                    <button onclick="location.href='{% url 'dashboard_overviews'%}?chalet_id={{selected_chalet.id}}'">{% trans 'Back' %}</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- End Landing Page -->
+</body>
+</html>

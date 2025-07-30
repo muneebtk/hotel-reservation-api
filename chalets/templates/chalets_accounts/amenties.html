@@ -1,0 +1,591 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amenities</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-*********" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static "chalets/css/amenities.css" %}">  {% endcomment %}
+
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- jQuery (required for Toastr) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+    background-color: #f4f4f4;
+    /* margin: 0;
+    padding: 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 80%;
+    overflow: auto;
+
+    @media(max-width:768px){
+        width: 80%;
+        height: 80%;
+    }
+    @media (max-width: 640px) {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.progress-bar-container {
+    padding: 20px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    margin-bottom: 20px;
+
+    h2{
+        margin-bottom: 1rem;
+    }
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.circle.active {
+    border-color: #85080C;
+    background-color: #85080C;
+}
+
+.step-number {
+    display: none;
+}
+
+.step.active .step-number {
+    display: block;
+    color: #85080C;
+}
+
+.label {
+    margin-top: 10px;
+    color: #888;
+}
+
+.step.active .label {
+    color: #333;
+}
+
+.line {
+    height: 2px;
+    background-color: #ddd;
+    flex-grow: 1;
+    z-index: 0;
+    position: relative;
+    top: -10px;
+    margin: 0 10px;
+}
+
+.line.active {
+    background-color: #85080C;
+}
+
+
+.inner-container {
+    padding: 0 10%;
+
+    h1{
+        text-align: left;
+        margin: 0;
+    }
+    p{
+        margin: 1rem 0;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.amenities-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0 1rem;
+}
+
+.amenities-list li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    gap: 1rem;
+    background-color: #f0f0f0;
+
+    border-radius: .8rem;
+
+}
+
+.amenities-list li:last-child {
+    border-bottom: none;
+}
+
+.amenities-icon {
+    /* margin-right: 20px; */
+}
+
+.amenities-icon i {
+    font-size: 20px;
+    color: #777;
+}
+
+.amenities-text {
+    flex-grow: 1;
+    /* margin-left: 5%; */
+}
+
+.checkbox input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+.checkbox input[type="checkbox"]:checked {
+    border-color: #85080C;
+    background-color: #85080C;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.buttons button {
+    padding: 12px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #85080C;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #85080C;
+}
+
+@media (max-width: 600px) {
+    .progress-bar {
+        flex-direction: column;
+    }
+
+    .line {
+        width: 2px;
+        height: 40px;
+        margin: 10px 0;
+        top: 0;
+    }
+}
+
+
+
+.scrollable-div {
+    height: 500px;
+    /* overflow-y: scroll; */
+
+    @media(max-width:768px){
+        height: auto;
+    }
+}
+
+.scrollable-div::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px;
+    border: 1px solid #85080c;
+}
+
+.scrollable-div::-webkit-scrollbar-track {
+    background: none;
+    border: 1px solid #85080c;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.scrollable-div::-webkit-scrollbar-thumb {
+    background: #85080c;
+    border-radius: 10px;
+}
+
+.scrollable-div::-webkit-scrollbar-thumb:hover {
+    background: #85080c;
+}
+
+.scrollable-div {
+    scrollbar-color: #85080c #f1f1f1;
+    scrollbar-width: thin;
+}
+
+.request-amenity-button {
+    border: 2px dashed #ccc;
+    border-radius: 5%;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.request-amenity-button:hover {
+    background-color: #f0f0f0;
+}
+
+.amenity-img {
+    width:25px;
+    /* Set the desired width */
+    height: 25px;
+    /* Set the desired height */
+    object-fit: cover;
+    /* Ensures the image covers the specified dimensions without distortion */
+}
+.blurred {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+main.main-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+
+#toast-container > div.toast-success {
+    background-image: url("{% static 'icons/Mask group (7).png' %}") !important;
+    background-position: 15px center !important;
+    background-repeat: no-repeat !important;
+    background-size: 30px 30px !important;
+    padding-left: 50px !important; /* Ensures text doesn't overlap with the image */
+    display: flex; /* Align items in one row */
+    align-items: center; /* Vertically center the text */
+}
+
+/* Optional: Style for the message text inside the toastr */
+#toast-container > div.toast-success .toast-message {
+    margin: 0;
+}
+    </style>
+
+</head>
+
+<body>
+    {% include 'accounts/loader_div.html' %}
+    <main class="main-container">
+        <div class="container">
+            <header class="progress-bar-container">
+                <h2>{% trans "Let's finish things up" %}</h2>
+                <div class="progress-bar">
+                    <div class="step active">
+                        <div class="circle active"><span class="step-number">1</span></div>
+                        <span class="label">{% trans 'Amenities' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step">
+                        <div class="circle"><span class="step-number">2</span></div>
+                        <span class="label">{% trans 'Prices' %}</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step">
+                        <div class="circle"><span class="step-number">3</span></div>
+                        <span class="label">{% trans 'Policies' %}</span>
+                    </div>
+                </div>
+            </header>
+            <div class="scrollable-div">
+                <section class="inner-container">
+                    <h1 style="margin-right: 85%;">{% trans 'Amenities' %}</h1>
+                    <p>{% trans 'Please list all amenities available at your property' %}</p>
+                    <form action="{% url 'chalet_ammenities' %}" id="amenitiesForm" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="amenityRequested" name="amenityRequested" value="false">
+                        <ul class="amenities-list">
+                            {% for amenity in amenities %}
+                            <li>
+                                <div class="amenities-icon">
+                                    {% if amenity.icon %}
+                                    <img src="{{ amenity.icon.url }}" alt="{{ amenity.amenity_name }}" class="amenity-img">
+                                    {% else %}
+                                    <i class="fas fa-ban" aria-hidden="true"></i>
+                                    {% endif %}
+                                </div>
+                                {% if request.LANGUAGE_CODE == "ar" %}
+                                <div class="amenities-text">{{ amenity.amenity_name_arabic }}</div>
+                                {% else %}
+                                <div class="amenities-text">{{ amenity.amenity_name }}</div>
+                                {% endif %}
+                                <div class="checkbox">
+                                    <input type="checkbox" value="{{ amenity.amenity_name }}" name="amenities_checked">
+                                </div>
+                            </li>
+                            {% endfor %}
+                            <br>
+                            <div class="checkbox">
+                                <button type="button" id="requestAmenityButton" class="request-amenity-button">
+                                    <img src="{% static 'icons/ant-design_pull-request-outlined (1).png' %}"
+                                        alt="">&nbsp;&nbsp;
+                                    <span>{% trans 'Request amenity' %}</span>
+                                </button>
+                            </div>
+                        </ul>
+                        <!-- Error message container -->
+                        <div id="error-message-container" style="text-align: center;">
+                            <span id="error-message" style="color: red; display: none;">{% trans 'Please select at least one amenity to proceed.' %}</span>
+                            <span id="request-error-message" style="color: red; display: none;">{% trans 'Please wait for the requested amenity to be added before proceeding.' %}</span>
+                        </div>
+                        <div class="buttons">
+                            <button id="backButton">{% trans 'Back' %}</button>
+                            <button id="nextButton">{% trans 'Next' %}</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main> 
+
+     <!-- Render Toastr messages once -->
+     {% if messages %}
+        {% for message in messages %}
+            <script>
+                toastr.{{ message.tags }}("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+
+
+
+    {% include 'accounts/request_amenity.html'%}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <script>
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, window.location.href);
+
+            window.onpopstate = function () {
+                window.history.go(1);
+            };
+        }
+        $(document).ready(function () {
+            // Function to handle Next button click
+            $('#nextButton').click(function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+
+                // Check if at least one amenity is selected
+                if ($('input[name="amenities_checked"]:checked').length === 0) {
+                    $('#error-message').show(); // Show error message
+                    return;
+                } else {
+                    $('#error-message').hide(); // Hide error message if at least one is selected
+                }
+
+
+
+                // Save Number of Guests and Total Price to sessionStorage
+                var numberOfGuests = sessionStorage.getItem('numberOfGuests');
+                var totalPrice = sessionStorage.getItem('totalPrice');
+                if (numberOfGuests) {
+                    sessionStorage.setItem('numberOfGuests', numberOfGuests);
+                }
+                if (totalPrice) {
+                    sessionStorage.setItem('totalPrice', totalPrice);
+                }
+
+
+
+                // Serialize form data
+                var formData = $('#amenitiesForm').serialize();
+
+                // Send Ajax request to save selected amenities
+                $.ajax({
+                    type: 'POST',
+                    url: $('#amenitiesForm').attr('action'),
+                    data: formData,
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log('Response:', response);
+                        // Assuming response contains the URL to redirect to next page
+                        window.location.href = response.next_url; // Redirect to next page
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            const selectedAmenities = JSON.parse(sessionStorage.getItem('selectedAmenities'));
+            console.log(selectedAmenities)
+
+            if (selectedAmenities) {
+                $('input[name="amenities_checked"]').each(function () {
+                    if (selectedAmenities.includes($(this).val())) {
+                        $(this).prop('checked', true);
+                    } else {
+                        $(this).prop('checked', false);
+                    }
+                });
+                // Remove the item from session storage after use
+                sessionStorage.removeItem('selectedAmenities');
+            }
+        });
+        // $('#backButton').click(function (event) {
+        //     event.preventDefault();
+        //     window.location.href = '/vendor/login/';
+        // })
+
+        $(document).ready(function() {
+            var hasOtherChalets = {{ has_other_chalets|yesno:"true,false" }};  // Get the value from the template context
+
+            $('#backButton').click(function (event) {
+                event.preventDefault();
+
+                if (hasOtherChalets) {
+                    // Redirect to dashboard if the vendor has other chalets
+                    window.location.href = '{% url "dashboard_overviews" %}';
+                } else {
+                    // Otherwise, redirect to login page
+                    window.location.href = '/vendor/login/';
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = document.getElementById("amenitiesModal");
+
+            var btn = document.getElementById("requestAmenityButton");
+
+            var span = modal.querySelector(".close");
+
+            btn.addEventListener("click", function () {
+                modal.style.display = "block";
+            });
+
+            // span.addEventListener("click", function () {
+            //     modal.style.display = "none";
+            // });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            var cancelButton = modal.querySelector(".cancel-btn");
+            cancelButton.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+        });
+ 
+
+        $(document).ready(function () {
+            $('#amenityRequestForm').on('submit', function (event) {
+                event.preventDefault();
+                var amenityName = $('#amenityName').val();
+                var purpose = $('#purpose').val();
+                $('#loader').show();
+                $('body').addClass('blurred');
+
+                $.ajax({
+                    url: "{% url 'request_amenity' %}",
+                    type: "POST",
+                    data: {
+                        'amenity_name': amenityName,
+                        'purpose': purpose,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        $('#loader').hide();
+                        $('body').removeClass('blurred');
+                        if (response.success) {
+                            
+                            alert('{% trans "Request sent successfully!" %}'); 
+                            $('#amenityRequested').val('true');
+                            $('#amenitiesModal').hide()
+
+                             // Clear the values of amenityName and purpose
+                            $('#amenityName').val('');
+                            $('#purpose').val('');
+                            // window.location.reload();
+                        
+                           
+                        } else {
+                            alert('{% trans "Failed to send request." %}');
+                        }
+                    },
+                    error: function (xhr, errmsg, err) {
+                        alert('Failed to send request.');
+                    }
+                });
+            });
+          
+        });
+       
+    </script>
+
+</body>
+
+</html>

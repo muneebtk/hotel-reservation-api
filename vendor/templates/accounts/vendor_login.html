@@ -1,0 +1,364 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1929 Login</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/css/sign_in.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"> <!-- Toastify CSS -->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Toastify JS -->
+    </head>
+<body>
+    {% include 'accounts/loader_div.html' %}  
+    <div class="container">
+        <div class="form-container">
+            <div class="logo_lang_container {% if request.LANGUAGE_CODE == 'ar' %}logo-right{% else %}logo-left{% endif %}">
+                <img src="{% static 'icons/1929+3 (1).png' %}" alt="1929 Logo" style="width: 80px; height: 80px; margin-bottom: 10px;">
+            </div>
+
+            <div class="input-container">
+                <div id="sign_bar">
+                    <img class="sign_bar-icon" src="{% static 'icons/Group 633150.png' %}" alt="1929 Logo"> 
+                    <select class="language_selection" id="languageSelect">
+                        {% for lang_code, lang_name in LANGUAGES %}
+                        <option value="{{ lang_code }}" {% if request.LANGUAGE_CODE == lang_code %} selected {% endif %}>
+                            {{ lang_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <form action="{% url 'loginn' %}" method="post" id="login_form" autocomplete="off" >
+                    {% csrf_token %}
+                    <div class="{% if request.LANGUAGE_CODE == 'ar' %}rtl{% endif %} inputs-container">
+                        <div class="align_container">
+                            <label for="email">{% trans 'Email' %}</label>
+                            <input type="email" name="email" id="email" placeholder="{% trans 'Email' %}" required>
+                        </div>
+
+                        <div class="align_container">
+                            <label for="password">{% trans 'Password' %}</label>
+                            <div class="password-input-container">
+                                <input type="password" id="password" name="password" placeholder="{% trans 'Password' %}" required>
+                                <span class="fa fa-fw fa-eye-slash field-icon toggle-password" toggle="#password"></span>
+                            </div>
+                        </div>
+                        
+                        <!-- {% if messages %}
+                            <div style="display: flex; align-items: center; ">
+                                    <span id="password_error" class="error-message" style="color: red;display: {% if request.LANGUAGE_CODE == 'ar' %} none {% endif %};">*{% trans 'Email or Password is incorrect' %}</span>
+                                    {%if request.LANGUAGE_CODE == 'ar'%}
+                                    <span id="password_error" class="error-message" style="color: red;margin-right: auto; font-size: small;">*{% trans 'Email or Password is incorrect' %}</span>
+                                    {%endif%}
+                                <a href="{% url 'Forgot_password' %}" class="forgot forgot-reduced-margin {% if request.LANGUAGE_CODE == 'ar' %}align-left{% endif %}">
+                                    {% trans 'Forgot Password?' %}
+                                </a>
+                            </div>
+                        {%else%}
+                            <a href="{% url 'Forgot_password' %}" class="forgot {% if request.LANGUAGE_CODE == 'ar' %}align-left{% endif %}">
+                                {% trans 'Forgot Password?' %}
+                            </a>
+                        {% endif %} -->
+                        <a href="{% url 'Forgot_password' %}" class="forgot {% if request.LANGUAGE_CODE == 'ar' %}align-left{% endif %} frg-link">
+                            {% trans 'Forgot Password?' %}
+                        </a>
+                    </div>
+
+                    <div class="action-container">
+                        <button type="submit" id="login_in">{% trans 'Log in' %}</button>
+                        <button type="button" id="openModalBtn">{% trans 'Join With Us' %}</button>
+                    </div>
+                </form>
+    
+                <div class="continue-with">
+                    <span class="horizontal-line"></span>
+                    <span>{% trans 'or continue with' %}</span>
+                    <span class="horizontal-line"></span>
+                </div>
+            </div>
+
+            <div class="social-login">
+                <a href="#" class="google">
+                    <img src="{% static 'icons/Group 633084.png' %}" alt="Google Icon" style="width: 40px; height: 40px;">
+                </a>
+                <a href="#" class="facebook">
+                    <img src="{% static 'icons/Group 633085.png' %}" alt="Facebook Icon" style="width: 40px; height: 40px;">
+                </a>
+            </div>
+
+            <div class="continue-with">
+
+                <a href="/privacy-policy/" style="color: black; text-decoration: none;">{% trans 'Privacy Policy' %}</a>
+                <span style="margin: 0 10px;">&bull;</span>
+                <a href="/terms-and-conditions/" style="color: black; text-decoration: none;">{% trans 'Terms & Conditions' %}</a>
+                <span style="margin: 0 10px;">&bull;</span>
+                <a href="/about-us/" style="color: black; text-decoration: none;">{% trans 'About Us' %}</a>
+            </div>
+            
+        </div>
+
+        <div class="image-container">
+            <img src="{% static 'icons/Screenshot 2024-04-03 120308 1.png' %}" alt="Background Image">
+        </div>
+
+    </div>
+
+    {% if notification_messages %}
+        {% for message in notification_messages %}
+            <script>
+                toastr.{{ message.tags }}("{{ message }}");
+            </script>
+        {% endfor %}
+    {% else %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    toastr.{{ message.tags }}("{{ message }}");
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+    <!-- The Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <header>
+                <img src="{% static 'icons/1929+3 (1).png' %}" alt="1929 Way Logo" class="logo" style="width: 75px; height: 75px; margin-left: 7px;">
+            </header>
+            <main>
+                <h1>{% trans 'Join With Us' %}</h1>
+                <div class="options">
+                    {% for category_val, category_lab in category_list %}
+                        <div class="option">
+                            {% if category_val == "HOTEL" %}
+                                <img src="{% static 'icons/hotel.jpg' %}" alt="Hotels">
+                                <div class="overlay">
+                                    <a href="{% url 'register_category' category=category_val %}" onclick="fetch_category(this.getAttribute('id'))" class="more-info" id="{{category_lab}}">{% trans category_val %}<br>
+                                        <p class="info-text">{% trans 'More Info' %}</p>
+                                    </a> 
+                                     
+                                </div>
+                            {% elif category_val == "CHALET" %}
+                                <img src="{% static 'icons/chalet.jpg' %}" alt="Chalet">
+                                <div class="overlay">
+                                    <a href="{% url 'register_chalet' category=category_val %}" onclick="fetch_category(this.getAttribute('id'))" class="more-info" id="{{category_lab}}">{% trans category_val %}<br>
+                                        <p class="info-text">{% trans 'More Info' %}</p>
+                                    </a> 
+                                     
+                                </div>
+                            {% elif category_val == "ENTERTAINMENT" %}
+                                <img src="{% static 'icons/entertainment.jpg' %}" alt="Entertainment">
+                                <div class="overlay">
+                                    <a href="{% url 'register_category' category=category_val %}" onclick="fetch_category(this.getAttribute('id'))" class="more-info" id="{{category_lab}}">{{category_val}} <br>
+                                        <p class="info-text">{% trans 'More Info' %}</p>
+                                    </a>
+                                    <p class="info-text">{% trans 'More Info' %}</p> 
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+     <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    {% if registration_success%}
+    <script>
+         
+        Toastify({
+            text: `<div style="display: flex; align-items: center; margin-left:2%">
+                    <img src="{% static 'icons/Mask group (7).png' %}" style="  margin-right: 15px;">
+                    <div>
+                        <span style="color: #fff; font-weight: 700; font-size: 20px; display: block;">{% trans "Registration successful" %}</span>
+                        <span style="color: #fff; display: block;">{% trans "You have successfully registered." %}</span>
+                    </div>
+                </div>`,
+            duration: 30000,  // Duration in milliseconds
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            className: "custom-toast",
+            offset: {
+                y: "180px", // Offset the notification 180px from the top
+            },
+            style: {
+                width: '20%',
+                height:'10%',
+                background: "#18C07A", // Background color
+                borderRadius: '8px', // Border radius
+                display: 'flex', // Use flexbox to align items
+                alignItems: 'center', // Center items vertically
+                padding: '16px', // Padding for the toast content
+                color: '#fff', // Text color
+                fontSize: '16px', // Font size
+                animation: 'none', // Disable animation
+            },
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            escapeMarkup: false // Allows HTML markup in the text
+        }).showToast();
+
+        setTimeout(function () {
+            window.location.href = "/vendor/login/";
+        }, 1000);
+
+    </script>
+    {% endif %}
+    <script>
+        $(document).ready(function() {
+            function updateLanguage() {
+                const selectedLanguage = $('#languageSelect').val();
+                const isArabic = selectedLanguage === 'ar';
+
+                $.ajax({
+                    url: "{% url 'set_language' %}",
+                    type: "POST",
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    data:
+                    { 
+                        language_code: selectedLanguage 
+                    },
+                    success: function(data) {
+                        window.location.href = window.location.pathname;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating language:', error);
+                    }
+                });
+            }
+
+            $('#languageSelect').change(function() {
+                updateLanguage();
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById("modal");
+            const btn = document.getElementById("openModalBtn");
+            const span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "flex";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+        $(document).ready(function() {
+            $(".toggle-password").click(function() {
+                var input = $($(this).attr("toggle"));
+                if (input.attr("type") === "password") {
+                    input.attr("type", "text");
+                    $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+                } else {
+                    input.attr("type", "password");
+                    $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+                }
+            });
+        });
+
+
+        var closeButtons = document.querySelectorAll(".close_message");
+        closeButtons.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var modal = this.closest(".modal_message");
+                if (modal) {
+                    modal.style.display = "none";
+                    window.location.href = "{% url 'loginn' %}";
+                }
+            });
+        });
+        
+
+        $(document).ready(function() {
+            $("#login_form").on("submit", function(event) {
+                $(".loader-container").fadeIn();
+
+                $(".container").addClass("blurred");
+
+                $("#login_in, #openModalBtn, #email, #password, .forgot").attr("disabled", true);
+
+                setTimeout(function() {
+                   
+
+                    $("#login_in, #openModalBtn, #email, #password, .forgot").attr("disabled", false);
+
+                    $("#login_form").off("submit").submit();
+                    $(".loader-container").fadeOut();
+                },  2000); 
+
+                return false;
+            });
+        });
+
+        $(document).ready(function() {
+            
+            if (sessionStorage.getItem('selectedPrices')) {
+                
+                sessionStorage.removeItem('selectedPrices');
+            }
+            
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+        // Get the current language code
+        const languageCode = "{{ request.LANGUAGE_CODE }}";
+
+        // Get the signBar element
+        //const signBar = document.getElementById('sign_bar');
+
+       /* if (languageCode === 'ar') {
+            Object.assign(signBar.style, {
+                gap: '20px',
+                display: 'flex',
+                alignItems: 'end',
+                width: '75%',
+                justifyContent: 'end',
+                flexDirection: 'column',
+            });
+        } else {
+            Object.assign(signBar.style, {
+                gap: '10px', 
+                display: 'flex',
+                alignItems: 'center',
+                width: '80%',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+            });
+        }*/
+    });
+
+
+
+    </script>
+</body>
+</html>

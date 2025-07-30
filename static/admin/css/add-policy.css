@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    background-color: #F4F4F4;
+    font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+.w3-sidebar {
+    background-color: #85080C;
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.add-policy-button {
+    padding: 10px 15px;
+    background-color: #800000;
+    /* Dark red color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+
+}
+
+.policy-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.policy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 18px;
+    margin: 0;
+}
+
+.policy-title {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.policy-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    /* Pushes this container to the far right */
+
+    @media (max-width:640px) {
+        flex-direction: column;
+    }
+}
+
+.cancellation-policies-header {
+    background-color: #ffe6e6;
+    color: #800000;
+}
+
+
+.edit-policy-button {
+    padding: 5px 10px;
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-policy-button i {
+    font-size: 14px;
+}
+
+.delete-policy-button {
+    padding: 5px 10px;
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.delete-policy-button i {
+    font-size: 14px;
+}
+
+.policy-content {
+    padding: 15px;
+    color: #333;
+    font-size: 14px;
+}
+
+.policy-content ul {
+    padding-left: 20px;
+}
+
+.policy-content ul li {
+    margin-bottom: 10px;
+}
+
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #f0f4ff;
+    background-color: #f0f4ff;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    color: #990000;
+    border: 2px solid #990000;
+    width: 45%;
+}
+
+.save-btn {
+    background-color: #990000;
+    color: white;
+    border: 2px solid #990000;
+    width: 45%;
+}
+
+/* Add styles for policy input group */
+.policy-input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.policy-input-group input {
+    flex: 1;
+}
+
+.remove-policy-btn {
+    margin-left: 10px;
+    font-size: 20px;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.addPolicyBtn {
+
+    border: 2px dashed #ced4da;
+}
+
+.policy-input-group-edit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.policy-input-group-edit input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.remove-policy-btn-edit {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+
+.error-messages {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.3s ease;
+
+    @media (max-width:640px) {
+        width: 90%;
+    }
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* Uniform spacing between buttons */
+    margin-top: 20px;
+}
+
+.btn-confirm,
+.btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 120px;
+    /* Uniform button size */
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.btn-confirm {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #495057;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.main-section {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+
+    @media(max-width: 992px) {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    @media (max-width:640px) {
+        padding: 1rem;
+    }
+}
+
+.add-policy-btn {
+    border: 2px dashed #ced4da;
+}
+
+.edit-policy-btn {
+    border: 2px dashed #ced4da;
+}
+
+#policyFieldsContainer,
+#policyFieldsContainerEdit {
+    max-height: 200px;
+    overflow-y: auto;
+}

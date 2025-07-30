@@ -1,0 +1,76 @@
+{% load static %}
+{% load i18n %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/edit-amenities.css' %}">
+</head>
+<body>
+    <div id="editAmenityModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>{% trans 'Edit Amenity' %}</h2>
+            <form id="editAmenityForm" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <input type="hidden" id="editAmenityId" name="amenity_id" value="">
+                <div class="input-containers">
+                    <div class="form-group">
+                        <label for="editAmenityName">{% trans 'Amenity Name(English)' %}</label>
+                        <input type="text" id="editAmenityName" name="amenity_name" placeholder="{% trans 'Enter the amenity name' %}" required>
+                        <span id="editEnglishError" class="text-85080C hidden"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAmenityNameArabic">{% trans 'Amenity Name(Arabic)' %}</label>
+                        <input type="text" id="editAmenityNameArabic" name="amenity_name_arabic" placeholder="{% trans 'Enter the amenity name' %}" required>
+                        <span id="editArabicError" class="text-85080C hidden"></span>
+                    </div>
+    
+                    <div class="form-group">
+                        <label>{% trans 'Amenity Type' %}</label>
+                        <div class="radio-group">
+                            <input type="radio" id="editPropertyAmenity" name="amenity_type" value="Property_amenity">
+                            <label for="editPropertyAmenity">{% trans 'Property Amenities' %}</label>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input type="radio" id="editRoomAmenity" name="amenity_type" value="Room_amenity">
+                            <label for="editRoomAmenity">{% trans 'Room Amenites' %}</label>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label>{% trans 'Upload Amenity Icon' %}</label>
+                        <div class="file-upload">
+                            <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="editImagePreview" alt="Image Preview"
+                                style="cursor: pointer; max-width: 100%; max-height: 100px;">
+                            <input style="position: absolute; opacity: 0; cursor: pointer; width: 50%; height: 0%;" type="file"
+                                id="editAmenityIcon" name="icon" accept="image/jpeg, image/png">
+                        </div>
+                        <p class="file-upload-note">{% trans '(Upload JPEG/PNG files)' %}</p>
+                        <span id="editImageError" class="text-85080C hidden"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>{% trans 'Status' %}</label>
+                        <div class="radio-group">
+                            <input type="radio" id="editActive" name="status" value="Active">
+                            <label for="editActive">{% trans 'Active' %}</label>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input type="radio" id="editInactive" name="status" value="Inactive">
+                            <label for="editInactive">{% trans 'In Active' %}</label>
+                        </div>
+                    </div>
+                </div>
+                <span id="edit_error_message" class="text-85080C hidden">{% trans 'Amenity with this name already exists' %}</span>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn edit-amenities-cancel-btn">{% trans 'Cancel' %}</button>
+                    <button type="submit" class="update-btn">{% trans 'Save' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.edit-amenities-cancel-btn').addEventListener('click', function () {
+            document.querySelector('#editAmenityModal').style.display = 'none';
+        })
+    </script>
+
+</body>

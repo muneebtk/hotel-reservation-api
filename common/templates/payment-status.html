@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status</title>
+    <link rel="stylesheet" href="{% static 'common/css/payment-status.css' %}">
+</head>
+<body>
+    <div class="outer-div">
+        {% if language == "en" %}
+            {% if request.GET.status == "success" %}
+                <h2>Payment Status: Success</h2>
+                <h4>Your Payment has been successful. You will be redirected to the confirmation page soon!</h4>
+            {% elif request.GET.status == "failed" %}
+                <h2>Payment Status: Failed</h2>
+                <h4>Your Payment has failed. You will be redirected soon!</h5>
+            {% elif request.GET.status == "expired" %} 
+                <h2>Payment Status: Expired</h2>
+                <h4>Your Payment has expired. You will be redirected soon!</h5>       
+            {% endif %}
+        {% elif language == "ar" %}
+            {% if request.GET.status == "success" %}
+                <h2>حالة الدفع: ناجح                </h2>
+                <h4>لقد تم الدفع بنجاح. سيتم إعادة توجيهك إلى صفحة التأكيد قريبًا!                </h4>
+            {% elif request.GET.status == "failed" %}
+                <h2>حالة الدفع: فشل                </h2>
+                <h4>لقد فشلت عملية الدفع الخاصة بك. سيتم إعادة توجيهك قريبًا!                </h4>
+            {% elif request.GET.status == "expired" %} 
+                <h2>حالة الدفع: منتهية الصلاحية                </h2>
+                <h4>انتهت صلاحية الدفع الخاص بك. سيتم إعادة توجيهك قريبًا!                </h4>       
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>

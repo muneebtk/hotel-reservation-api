@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="{% static 'chalets/css/chalet-transaction-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu" id="myOverlay"></div> 
+        <div class="w3-main main-section">       
+            <div class="container container-box">
+                    <div class="row justify-content-center">
+                        <div class="row-main w-full" id="hotelTable">
+                            <div class="row ">
+                                <div class="col-md-4 filter-tab-container">
+                                    <div class="col-md-4">
+                                        <input type="text" id="datePicker"
+                                            class="form-select select_fromdate fs12 text-black from_date" ondblclick="resetDate('datePicker')"
+                                            name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="datePicker1" class="form-select select_todate fs12 text-black to_date"
+                                        ondblclick="resetDate('datePicker1')" name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select select fs12 text-black" id ="payment_method">
+                                            <option selected disabledv value="">{% trans 'Payment Method' %}</option>
+                                            {% for method in payment_choices %}
+                                                <option value="{{ method.0 }}">{{ method.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select fs12 text-black white" id="transaction_status">
+                                            <option selected value="">{% trans "Transaction Status" %}</option>
+                                            {% for method in transaction_status %}
+                                                <option value="{{ method.0 }}">{{ method.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select aria-label="Default select example" class="form-select fs12 text-black white" id="booking_status">
+                                                <option value="">{% trans "Booking status" %}</option>
+                                                <option value="pending">{% trans "Pending" %}</option>
+                                                <option value="booked">{% trans "Booked" %}</option>
+                                                <option value="confirmed">{% trans "Confirmed" %}</option>
+                                                <option value="rejected">{% trans "Rejected" %}</option>
+                                                <option value="expired">{% trans "Expired" %}</option>
+                                                <option value="cancelled">{% trans "Cancelled" %}</option>
+                                                <option value="completed">{% trans "Completed" %}</option>
+                                                <option value="check-in">{% trans "Check-In" %}</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-4 search-btn-icon">
+                                        <button class=" btn-blue px-3 f" type="button" id="chalet_transaction_search">
+                                            <i class="fa-solid fa-magnifying-glass"></i> {% trans 'Search' %}
+                                        </button>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row flex flex-wrap gap-1 justify-end align-item-center reporticonchalet">
+                                    <h3>{% trans "Export Reports:" %}</h3>
+                                    <div onclick="handleExcelClick()" class="excel">{% trans "Excel" %}</div>
+                                    <div class="pdf">{% trans "PDF" %}</div>
+                                </div>
+
+                            <div>
+                            <div class="col-md-12 ">
+                                <div class="table-container w-full" style="overflow-x: auto;">
+                                    <table class="w3-table responsive-table w-full">
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right">{% trans "Sl. No." %}</th>
+                                                <th  class="border-right">{% trans "Transaction <br>ID" %}</th>
+                                                <th class="border-right">{% trans "Booking <br>ID" %}</th>
+                                                <th  class="border-right"> {% trans "Guest <br>Name" %}</th>
+                                                <th  class="border-right"> {% trans "User <br>Name" %}</th>
+                                                <th class="border-right"> {% trans "Booking <br>Mobile Number" %}</th>
+                                                <th  class="border-right">{% trans "Transaction <br>Date" %}</th>
+                                                 <th class="border-right">{% trans "Booking <br>Time" %}</th>
+                                                <!-- <th  class="border-right">{% trans "Booking <br>Date" %}</th> -->
+                                                <th class="border-right">{% trans "Payment <br> Method" %}</th>
+                                                <th class="border-right">{% trans "Transaction <br> Amount" %}</th>
+                                                <th class="border-right">{% trans "Discount Amount" %}</th>
+                                                <th class="border-right">{% trans "Promo Code Applied" %}</th>
+                                                <th class="border-right">{% trans "Discount Percentage Applied" %}</th>
+                                                <th class="border-right">{% trans "Transaction <br> Status" %}</th>
+                                                <th class="border-right">{% trans "Booking Status" %}</th>
+                                                <th id="hotel-amount-header" class="border-right">{% trans "Property <br> Amount" %}</th>
+                                                <th class="border-right">{% trans "Tax" %}</th> 
+                                                <th class="border-right">{% trans "Check-In" %}</th>
+                                                <th class="border-right">{% trans "Check-Out" %}</th>
+                                                <th class="border-right">{% trans "Total Members" %}</th>
+                                                <th class="border-right">{% trans "Booked Rooms" %}</th>
+                                                <th class="border-right">{% trans "Payment <br> Gateway <br> Charge" %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                        <!-- <div class="col-md-4" >  -->
+                                            {% if bookings %}               
+                                            {% for booking in bookings %}
+                                            <tr>
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right">{% if booking.transaction.transaction_id %} {{ booking.transaction.transaction_id }} {% else %} N\A {% endif %}</td>
+
+                                                <td class="border-right">{{ booking.booking_id }}</td>
+                                                <td class="border-right">{{ booking.booking_fname|capfirst }}</td>
+                                                <td class="border-right">{{ booking.user.user.get_full_name|capfirst }}</td>
+                                                <td class="border-right">{{ booking.booking_mobilenumber}}</td>
+                                                <td class="border-right">{% if booking.transaction.modified_at %} {{ booking.transaction.modified_at|date:"d/m/Y" }} {% else %} N\A {% endif %}</td>
+                                                <td class="border-right">{% if booking.created_date %} {{ booking.created_date|date:"h:i A" }} {% else %} N\A {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction.payment_type %} {{ booking.transaction.payment_type|capfirst }} {% else %} N\A {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction.amount %} OMR &nbsp;{{ booking.transaction.amount }} {% else %} N\A {% endif %}</td>
+                                                <td class="border-right">{% if booking.discount_price %}OMR &nbsp;{{ booking.discount_price }}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.promocode_applied %}{{ booking.promocode_applied }}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.discount_percentage_applied %}{{ booking.discount_percentage_applied}}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction.transaction_status %}{{ booking.transaction.transaction_status|capfirst }}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.status %}{{ booking.status|capfirst }}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction.vendor_transaction %} OMR &nbsp;{{ booking.transaction.vendor_transaction.first.base_price }} {% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.tax_and_services %}OMR &nbsp;{{ booking.tax_and_services }}{% else %} N/A {% endif %}</td>
+                                                <td class="border-right">{% if booking.checkin_date %}{{ booking.checkin_date }}{% else %} N/A {% endif %}</td>        
+                                                <td class="border-right">{% if booking.checkout_date %}{{ booking.checkout_date }}{% else %} N/A {% endif %}</td>        
+                                                <td class="border-right">{% if booking.number_of_guests %}{{ booking.number_of_guests }}{% else %} N/A {% endif %}</td>        
+                                                <td class="border-right">{% if booking.number_of_booking_rooms %}{{ booking.number_of_booking_rooms }}{% else %} N/A {% endif %}</td>       
+                                                <td class="border-right">
+                                                    {% if booking.transaction.admin_transaction %}
+                
+                                                        {% if booking.transaction %}
+                                                            {% if booking.transaction.admin_transaction.first.gateway_fee %}
+                                                                OMR  &nbsp;{{ booking.transaction.admin_transaction.first.gateway_fee }}
+                                                            {% else %}
+                                                                N/A
+                                                            {% endif %}
+                                                        {% else %}
+                                                            N/A
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                
+                                            </td>
+                                              </tr>
+                                            {% endfor %}   
+                                            {%else%}
+                                            <tr>
+                                                <td colspan="20" class="text-center">{% trans 'No data found' %}</td>
+                                            </tr>
+                                            {%endif%}                                         
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        {% if bookings %}
+        <div class="pagination">
+            <!-- Previous Button -->
+            {% if  bookings.has_previous %}
+            <a href="#" class="previous-page pagination-link" data-page="{{  bookings.previous_page_number }}" title="Previous Page">
+                <span class="previous-button">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                </a>
+            {% else %}
+                <span class="disabled-button disabled-button-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+            {% endif %}                
+                            
+        <div class="page-numbers">
+            {% for num in  bookings.paginator.page_range %}
+                {% if  bookings.paginator.num_pages > 3 %}
+                    {% if num >=  bookings.number and num <  bookings.number|add:3 %}
+                        {% if num ==  bookings.number %}
+                            <span class="current-page">{{ num }}</span>
+                        {% else %}
+                            <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if num ==  bookings.number %}
+                        <span class="current-page">{{ num }}</span>
+                    {% else %}
+                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    
+        <!-- Next Button -->
+        {% if bookings.has_next %}
+        <a href="#" class="next-page pagination-link" data-page="{{ bookings.next_page_number }}" title="Next Page">
+            <span class="next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
+        {% else %}
+            <span class="disabled-button disabled-button-next">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+        {% endif %}
+    </div>
+    {%else%}
+    <div></div>
+    {% endif %}           
+
+
+         <!-- </div> -->
+         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         
+     <script type="text/javascript">
+         window.CSRF_TOKEN = '{{ csrf_token }}';
+     </script>
+
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+        $(document).ready(function () {
+    $('#chalet_transaction_search').click(function () {
+        $('.loader-container').css('display', 'flex');
+        $('#hotelTable').addClass('blurred');
+
+        var loaderTimeout = setTimeout(function () {
+            $('.loader-container').hide();
+            $('#hotelTable').removeClass('blurred');
+        }, 1000);
+
+        var fromDate = $('.from_date').val();
+        var toDate = $('.to_date').val();
+        var payment_method = $('#payment_method').val();
+        var transaction_status = $('#transaction_status').val()
+        var booking_status = $('#booking_status').val()
+        var page = $(this).data('page') || 1; 
+        var urlParams = new URLSearchParams(window.location.search);
+        var chaletId = urlParams.get('chalet_id');
+        setTimeout(function () {
+            $.ajax({
+                url: `/chalets/chalet_transaction?chalet_id=${chaletId}`,
+                type: 'POST',
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                data: {
+                    from_date: fromDate,
+                    to_date: toDate,
+                    payment_method: payment_method,
+                    transaction_status:transaction_status,
+                    booking_status:booking_status,
+                    page: page // Include the page number in the request
+                },
+                success: function (data) {
+                    var tableContent = $(data).find('table tbody').html();
+                    $('table tbody').html(tableContent);
+
+                    var rowCount = $(data).find('table tbody tr').length;
+                    console.log('Row Count:', rowCount); 
+
+                    var paginationContent = $(data).find('.pagination').html();
+                    if (rowCount < 15 && page === 1) {
+                        $('.pagination').hide();
+                    } else if ($.trim(paginationContent)) {
+                        $('.pagination').html(paginationContent); 
+                        $('.pagination').show(); 
+                    } else {
+                        $('.pagination').hide();
+                    }
+
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                    clearTimeout(loaderTimeout);
+                },
+                error: function (xhr, status, error) {
+                    clearTimeout(loaderTimeout);
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                    console.error('Error Fetching Refund and Cancellation Details:', error);
+                    alert('Error Fetching Refund and Cancellation Details. Please try again later.');
+                }
+            });
+        }, 500);
+    });
+
+    $(document).on('click', '.pagination a', function (e) {
+        e.preventDefault(); 
+        var page = $(this).data('page') || 1; 
+        console.log('Pagination clicked. Page:', page); 
+        $('#chalet_transaction_search').data('page', page).click(); 
+    });
+});
+        function updatePagination(data) {
+            const rows = $(data).find('table tbody tr');
+            const totalRows = rows.length;
+
+            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                $('.pagination').hide();
+            } else {
+                $('.pagination').html($(data).find('.pagination').html()).show();
+            }
+
+    }
+
+        $(document).ready(function () {
+            updatePagination(document);
+            updatePagination(document);
+            var urlParams = new URLSearchParams(window.location.search);
+            var chaletId = urlParams.get('chalet_id');
+        
+            $.ajax({
+                url: `/chalets/chalet_transaction?chalet_id=${chaletId}`,
+                method: 'GET',
+                success: function (data) {
+                $('table tbody').html($(data).find('table tbody').html());
+                    updatePagination(data);
+                }
+            });
+        });
+        var handleExcelClick = () => {
+            var fromDate = $('.from_date').val();
+            var toDate = $('.to_date').val();
+            var payment_method = $('#payment_method').val();
+            var transaction_status = $('#transaction_status').val()
+            var booking_status = $('#booking_status').val()
+            
+            var urlParams = new URLSearchParams(window.location.search);
+            var chaletId = urlParams.get('chalet_id');
+
+            $.ajax({
+                url: `/chalets/chalet-transaction-excel-download/?chalet_id=${chaletId}`,
+                method: 'GET',
+                data: {
+                    from_date: fromDate,
+                    to_date: toDate,
+                    payment_method:payment_method,
+                    transaction_status:transaction_status,
+                    booking_status:booking_status
+                },
+                xhrFields: { responseType: "blob" }, // Expect binary response
+                success: function(response) {
+                    let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    let link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = "transactions.xlsx"; // Auto-download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error downloading Excel:", error);
+                }
+            });         
+        }
+
+
+
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,1401 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/room-management.css' %}">
+
+  
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    {% comment %} <script src="{% static 'vendor/js/search-select.js' %}"></script> {% endcomment %}
+    
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'accounts/hotel_logo_navbar.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+    </div>
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+        <input type="number" name="hotel_is" id="selected_hotel" value="{{selected_hotel.id}}" style="display: none;">
+
+        <div class="w3-main main-section">
+                <div class="container container-box">
+                    <div class="row justify-content-center">
+                        <div class="row tabs-container" >
+                            <div class="col-md-4">
+                                <button class="btn btn-red px-3 available_button activee" type="button" id="available_btn">
+                                    {% trans "Available Rooms" %}
+                                </button>
+                            </div>    
+                                      
+                            <!-- <div class="col-md-4">
+                                <button class="btn btn-red px-3 booked_button" type="button" id="booked_btn">
+                                    {% trans "Booked Rooms" %}
+                                </button>
+                            </div>     
+                                                  -->
+                        </div>          
+                        <br>
+                        <div class="row-main" id="hotelTable">
+                            <div class="row action-items">
+                                <div class="action-item">
+                                    <div class="col-md-4">
+                                            <select aria-label="Default select example" class="form-select select_roomtype fs12 text-black white" style="outline: none;">
+                                                <option value="Room Type">{% trans "Room Type" %}</option>
+                                                {% for type in room_types_obj %}
+                                                    {% if request.LANGUAGE_CODE == 'ar' %}
+                                                    <option value="{{ type.room_types.id }}">{{ type.room_types.room_types_arabic  }}</option>
+                                                    {% else %}
+                                                    <option value="{{ type.room_types.id }}">{{ type.room_types.room_types|capfirst }}</option>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input ondblclick="resetDate('datePicker')" type="text" id="datePicker"
+                                            class="form-select select_fromdate fs12 text-black from_date"
+                                            name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                                    </div>
+                                    <input type="number" name="hotel_is" id="selected_hotel" value="{{selected_hotel.id}}" style="display: none;">
+                                    <div class="col-md-4">
+                                        <button class=" btn-blue search_button" type="button">
+                                            <i class="fa-solid fa-magnifying-glass"></i>{% trans "Search" %} 
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="action-item">
+                                    <div class="col-md-4 ">
+                                        <a href="#" onclick="document.getElementById('id01').style.display='flex'" id="add_button" class="btn add-room-btn"> {% trans "Add Rooms" %}</a>
+
+                                        <div id="id01" class="modal-container">
+                                            <div class="add-room w3-card-4 w3-round-xlarge">
+                                                <div class="w3-center"><br>
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal" id="close_button">&times;</span>
+                                                </div>
+                                                <div class="">
+                                                    <div>
+                                                        <h3 class="w3-margin"><i class="fa-solid fa-pen"></i>{% trans "ADD" %}</h3>
+                                                    </div>
+                                                    <form class="w3-container myform" action="{% url 'room_add' %}?hotel_id={{ selected_hotel.id }}" method="post" enctype="multipart/form-data" style="max-height: 80vh;overflow:auto;">
+                                                        {% csrf_token %}
+                                                        <input id="csrf" value={{csrf_token}} style="display:none">
+                                                        <div class="modal-inputs-container">
+                                    
+                                                            <!-- Room Type Field -->
+                                                            <div class="w3-cell box_container">
+                                                                <div>
+                                                                    <label for="roomtypes">{% trans "Room Type" %}</label>
+                                                                </div>
+                                                                <div>
+                                                                    <select class="form-control w3-padding w3-round-large box_container_input" id="roomtypes" name="roomtypes" 
+                                                                        onchange="fetchRoomTypeDetails()">
+                                                                        <option value="">{% trans "Select a room type" %}</option>
+                                                                        {% for type in room_type %}
+                                                                        {{type.id}}
+                                                                            {% if request.LANGUAGE_CODE == 'ar' %}
+                                                                            <option value="{{ type.id }}">{{ type.room_type_arabic }}</option>
+                                                                            {% else %}
+                                                                            <option value="{{ type.id }}">{{ type.room_type|capfirst }}</option>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                    
+                                                                </div>
+                                                                <div>
+                                                                    <span id="roomtypes_error" class="error-message"></span>
+                                                                </div>
+                                                            </div>
+
+
+                                    
+                                                            <!-- Room Number Field -->
+                                                            <div class="w3-cell box_container">
+                                                                <div>
+                                                                    <label for="number_of_rooms">{% trans "Number of Rooms" %}</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input class="w3-padding w3-round-large box_container_input" type="text" id="number_of_rooms" name="number_of_rooms" placeholder="{% trans 'Please enter number of rooms' %}" required>
+                                                                </div>
+                                                                <div>
+                                                                    <span id="number_of_rooms_error" class="error-message"></span>
+                                                                </div>
+                                                            </div>
+                                
+                                                            <div class="w3-cell box_container">
+                                                                <div>
+                                                                    <label for="pice_per_night">{% trans "Price-Per-Night" %}</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input class="w3-padding w3-round-large box_container_input" type="text" id="pice_per_night" name="pice_per_night" placeholder="{% trans 'Please enter a price' %}" required>
+                                                                </div>
+                                                                <div>
+                                                                    <span id="pice_per_night_error" class="error-message"></span>
+                                                                </div>
+                                                            </div>
+                                                                <!-- Amenities Field -->
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="amenities">{% trans "Amenities" %}</label>
+                                                                    </div>
+                                                                    <div class="input-group">
+                                                                        <input type="text" readonly id="amenities" class="form-control dropdown-toggle w3-padding w3-round-large box_container_input" placeholder="{% trans 'Select Amenities' %}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <ul class="dropdown-menu dropdown-menu-end" id="amenitiesDropdown" aria-labelledby="amenitiesInput">
+                                                                            {% for amenity in amenities %}
+                                                                                <li>
+                                                                                    <label class="dropdown-item">
+                                                                                        <input name="amenities" type="checkbox" value="{{ amenity.amenity_name }}" class="amenities_checkbox"> {% if request.LANGUAGE_CODE == 'en' %}
+                                                                                        {{ amenity.amenity_name|title }}
+                                                                                        {% elif request.LANGUAGE_CODE == 'ar' %}
+                                                                                            {% if amenity.amenity_name_arabic %}
+                                                                                                {{ amenity.amenity_name_arabic|title }}
+                                                                                            {% else %}
+                                                                                                {{ amenity.amenity_name|title }}
+                                                                                            {% endif %}
+                                                                                        {% endif %}
+                                                                                    </label>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="amenities_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+                                    
+                                                                <!-- Meals Field -->
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="meals">{% trans "Meals" %}</label>
+                                                                    </div>
+                                                                    <div class="input-group">
+                                                                        <input type="text" readonly id="meals" class="form-control dropdown-toggle w3-padding w3-round-large box_container_input" placeholder="{% trans 'Select meal options' %}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <ul class="dropdown-menu dropdown-menu-end" id="mealsDropdown" aria-labelledby="mealsInput">
+                                                                            {% for value in meals_choices %}
+                                                                                <li>
+                                                                                    <label class="dropdown-item">
+                                                                                        <input name="meals" type="checkbox" value="{{ value }}" class="meals_checkbox"> {{ value }}
+                                                                                    </label>
+                                                                                </li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="meals_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Tax for Meals Field -->
+                                                                <div class="w3-cell box_container">
+                                                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                                                        <label for="meal_tax">{% trans "Tax for Meals" %}</label>
+                                                                        <label for="meal_tax_toggle" class="flex items-center cursor-pointer">
+                                                                            <div class="relative">
+                                                                                <input id="meal_tax_toggle" type="checkbox" class="sr-only" onchange="toggleMealTaxInput()" />
+                                                                                <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
+                                                                                <div class="dot absolute w-6 h-6 bg-red rounded-full shadow -left-1 -top-1 transition"></div>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="w3-padding w3-round-large box_container_input" type="text" id="meal_tax" name="meal_tax" placeholder="{% trans 'Enter meal tax' %}" disabled>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="meal_tax_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+
+                                                                <!-- Adults Field -->
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="adults">{% trans "Adults" %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="w3-padding w3-round-large box_container_input" type="number" id="adults" name="adults" value="1" min="1" required>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="adults_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+    
+                                                                     <!-- Weekend Price Field -->
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="weekend_price">{% trans "Weekend Price (Optional)" %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="w3-padding w3-round-large box_container_input" type="text" id="weekend_price" name="weekend_price" placeholder="{% trans 'Enter weekend price' %}"  >
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="weekend_price_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="children">{% trans "Children" %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="w3-padding w3-round-large box_container_input" type="number" id="children" name="children" value="0" min="0">
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="children_error" class="error-message"></span>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="d-flex gap-2 space-between">
+                                                            <div class="box_container">
+                                                                <label for="refund">{% trans "Refund and Cancellation" %}</label>
+                                                                <div class="refund-radio-group">
+                                                                    {% if refundpolicycategories %}
+                                                                        {% for categories in refundpolicycategories %}
+                                                                        <div class="input-item">
+                                                                            <input type="radio" id="refund-check-{{ categories.id }}" name="refund-check" value="{{ categories.id }}">
+                                                                            <label for="refund-check-{{ categories.id }}">
+                                                                                {% if request.LANGUAGE_CODE == "ar" %}
+                                                                                    {{ categories.name_arabic }}
+                                                                                {% else %}
+                                                                                    {{ categories.name }}
+                                                                                {% endif %}
+                                                                            </label> 
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                        <span id="refund_error" class="error-message" ></span>
+                                                                    {% endif %}
+                                                                    <span id="policy_error" class="error-message" ></span>
+                                                                    <div class="refund-details-container"> 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="w3-cell box_container">
+                                                                <div class="add-images"  id="image-placeholder" style="position: relative;">
+                                                                    <label>{% trans "Add Images" %}</label>
+                                                                    <div class="image-placeholder">
+                                                                        <img src="{% static 'icons/teenyicons_image-solid.png' %}" id="upload-icon" alt="Upload Icon" style="cursor: pointer;">
+                                                                        <input style="position: absolute; opacity: 0; cursor: pointer; width: 50%; height: 0%;" type="file" id="standard_images-add" name="standard_images-add" multiple>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="upload-message-add" style="color: green;"></div>
+                                                                <div id="image-add-errorr" style="color: red;"></div>
+                                                            </div>
+                                                            <div id="standard_images-preview" style="margin-top: 10px;"></div>
+                                                            <!-- Buttons -->
+                                                        </div>
+                                                        <div class="w3-center w3-container">
+                                                            <button class="w3-button w3-round-large w3-margin-right btn w3-padding-large" onclick="document.getElementById('id01').style.display='none'" style="border: 1px solid #85080C; color: #85080C;" type="button" id="cancel_button">{% trans "Cancel" %}</button>
+                                                            <button class="w3-round-large btn w3-section w3-padding-large" type="submit" onclick="validateAndConfirm(event);" style="background-color: #85080C;color: white;">{% trans "Add" %}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <br>
+                            <div class="col-md-12">
+                                <div class="table-container w-full">
+                                    <table class="w3-table responsive-table w-full">
+                                        <thead class="bg-table-head">
+                                            <tr>
+                                                <th class="border-right">{% trans "Sl. No." %}</th>
+                                                <th class="border-right">{% trans "Room Type" %}</th>
+                                                <th class="border-right">{% trans "Number of Rooms" %}</th>
+                                                <th class="border-right">{% trans "Number of Available Rooms" %} <br>(<span id="available-date"></span>)</th>
+                                                <th class="border-right">{% trans "Number of Booked Rooms" %} <br> (<span id="selected-date"></span>)</th>
+                                                <th class="border-right">{% trans "Occupancy" %}</th>
+                                                <th class="border-right">{% trans "Price-Per-Night" %}</th>
+                                                {% comment %} <th class="border-right">{% trans "Commission Amount" %}</th> {% endcomment %}
+                                                
+                                                <th class="border-right">{% trans "Weekend Price" %}</th>
+                                                <th colspan="2"> {% trans "Action" %} </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color table_body">
+                                            {% if room_data %}
+                                                {% for room in room_data %}
+                                                    <tr>
+                                                        <td class="border-right">{{ forloop.counter }}</td>
+                                                        <td class="border-right data_roomtype">
+                                                            {% if request.LANGUAGE_CODE == "ar" %}
+                                                            {{ room.room_types.room_types_arabic }}
+                                                            {% else %}
+                                                            {{ room.room_types.room_types}}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="border-right data_roomnumber">{{ room.number_of_rooms }}</td>
+                                                        <td class="border-right data_roomnumber">{{ room.available_rooms }}</td>
+                                                        <td class="border-right data_roomnumber">{{ room.booked_rooms }}</td>
+                                                        <td class="border-right data_occupancy">{{ room.total_occupancy }}</td>
+                                                        <td class="border-right">{{ room.price_per_night }}</td>
+                                                        {% comment %} <td class="border-right">{{ room.commission_amount }}</td> {% endcomment %}
+                                                        
+                                                        <td class="border-right">
+                                                            {% if room.weekend_price %}
+                                                                {{ room.weekend_price.weekend_price }}
+                                                            {% else %}
+                                                                {% trans "Not specified" %}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="color-grey">
+                                                                {% if is_available_view %}
+                                                                <div class="table-action-btn-container">
+                                                                    <a href="{% url 'view_room' room.id %}?hotel_id={{ selected_hotel.id }}" class="textdecoration-none view-btn" onclick="window.location.reload()">
+                                                                        {% trans "View" %}
+                                                                    </a>
+    
+                                                                    <a href="{% url 'room_remove_view' room.id %}" 
+                                                                       onclick="return confirm('{% trans "Are you sure you want to delete this room?" %}');" 
+                                                                       class="textdecoration-none delete-btn">
+                                                                        <i class="fa-solid fa-trash"></i> {% trans "Delete" %}
+                                                                    </a>
+                                                                </div>
+                                                                {% endif %}
+                                                            </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="9" class="text-center">{% trans "No data found" %}</td>
+                                                </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="no_data_found" style="display: none; "></div>
+        </div>
+        
+        {% if room_data.paginator.num_pages > 1 %}
+        
+            <div class="pagination-content" style="margin-left: 55%;">
+                
+                <div class="pagination">
+                    {% if room_data.has_previous %}
+                        <a href="?page={{ room_data.previous_page_number }}">&laquo; </a>
+                    {% endif %}
+
+                    {% for page in room_data.paginator.page_range %}
+                        <a href="?page={{ page }}" class="{% if room_data.number == page %} active {% endif %}">{{ page }}</a>
+                    {% endfor %}
+
+                    {% if room_data.has_next %}
+                    {{room_data.has_next}}
+                        <a href="?page={{ room_data.next_page_number }}"> &raquo;</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+     
+        
+        
+
+        <script>
+            var languageCode = "{{ request.LANGUAGE_CODE }}";
+        </script>
+
+        <script>
+
+            var roomNumber = document.getElementById("number_of_rooms").value;
+            var pricePerNight = document.getElementById("pice_per_night").value;
+            var weekendPrice = document.getElementById("weekend_price").value;
+            var pricePerNight = document.getElementById("pice_per_night").value;
+            console.log(roomNumber)
+            console.log(pricePerNight)
+            console.log(weekendPrice)
+            console.log(pricePerNight)
+
+        </script>
+    
+        <script>
+            function toggleMealTaxInput() {
+                const mealTaxInput = document.getElementById("meal_tax");
+                mealTaxInput.disabled = !document.getElementById("meal_tax_toggle").checked;
+                if(mealTaxInput.disabled){
+                    document.getElementById("meal_tax_error").innerText = "";
+                }
+            }
+            </script>
+        
+    <script>
+        const hotel_id = document.getElementById('selected_hotel')?.value;
+
+        document.getElementById('upload-icon').addEventListener('click', function() {
+            document.getElementById('standard_images-add').click();
+        });
+
+        var selectedFiles = [];
+        document.getElementById('standard_images-add').addEventListener('change', function() {
+            console.log(document.getElementById('standard_images-add'),"===========document.getElementById('standard_images-add')=========document.getElementById('standard_images-add')=========")
+            var files = this.files;
+            console.log(files,"===========files=========files=========")
+            var messageContainer = document.getElementById('upload-message-add');
+            console.log(messageContainer,"===========messageContainer=========messageContainer=========")
+            const addImagesError = document.getElementById('image-add-errorr');
+            console.log(addImagesError,"===========addImagesError=========addImagesError=========")
+            var validExtensions = ['image/jpeg', 'image/png'];
+            
+            for (var i = 0; i < files.length; i++) {
+                if (!validExtensions.includes(files[i].type)) {
+                    alert("{% trans 'Only PNG and JPEG images are allowed.' %}");
+                    this.value = ''; // Clear the selected files
+                    return;
+                }
+            }
+
+            if (selectedFiles.length + files.length > 5) {
+                alert('You can select up to 5 images only.');
+                this.value = ''; // Clear the selected files
+                selectedFiles = []
+                messageContainer.innerHTML =''
+                return;
+            }
+
+            // Add new files to the selected files list
+            for (var i = 0; i < files.length; i++) {
+                selectedFiles.push(files[i]);
+            }
+            // Create a new DataTransfer object
+            var dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+
+            // Assign the DataTransfer object to the input element
+            var fileInput = document.getElementById('standard_images-add');
+            fileInput.files = dataTransfer.files;
+            // Update the message container
+            messageContainer.innerHTML = selectedFiles.length + ' {% trans "image(s) uploaded." %}';
+            if (selectedFiles.length < 5){
+                var remainingImages = 5 - selectedFiles.length;
+                console.log(remainingImages,"===========remainingImages=========remainingImages=========")
+                addImagesError.textContent = remainingImages + ' {% trans "images remaining to upload." %}';
+                console.log(addImagesError.textContent,"===========addImagesError.textContent=========addImagesError.textContent=========")
+            }
+            else{
+                addImagesError.textContent = '';
+            }
+            
+
+        });
+
+
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d",
+                defaultDate: new Date()
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        function updateDateInHeaders() {
+        const dateInput = document.getElementById("datePicker");
+        const selectedDate = dateInput.value || dateInput.placeholder.replace('From: ', '');
+        
+        document.getElementById("available-date").textContent = selectedDate;
+        document.getElementById("selected-date").textContent = selectedDate;
+
+      }
+
+        window.addEventListener("DOMContentLoaded", updateDateInHeaders);
+
+        // document.getElementById("datePicker").addEventListener("input", updateDateInHeaders);
+
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+
+    
+        
+        var isValid = true;
+        function validateAndConfirm(event) {
+            var roomNumber = document.getElementById("number_of_rooms").value;
+            var weekendPrice = document.getElementById("weekend_price").value;
+            var pricePerNight = document.getElementById("pice_per_night");
+            const pricePerNightValue = pricePerNight.value.trim();
+            const priceRegex =  /^\d+(\.\d{1,3})?$/;
+
+            const pricePerNightFloat = parseFloat(pricePerNightValue);
+           
+        
+            var roomType = document.getElementById("roomtypes").value;
+            console.log("Roomtype ID============",roomType)
+            var amenities = document.querySelectorAll(".amenities_checkbox:checked");
+            var roomNumberError = document.getElementById("number_of_rooms_error").textContent.trim();
+            
+            var mealsCheckboxes = document.querySelectorAll('.meals_checkbox:checked');
+            console.log(mealsCheckboxes,"mealsCheckboxesmealsCheckboxes")
+            var mealsError = document.getElementById("meals_error");
+
+            document.getElementById("number_of_rooms_error").innerText = "";
+            console.log( document.getElementById("number_of_rooms_error"))
+            document.getElementById("pice_per_night_error").innerText = "";
+            document.getElementById("weekend_price_error").innerText = "";
+            //document.getElementById("image-add-errorr").innerText = "";
+            document.getElementById("amenities_error").innerText = "";
+            document.getElementById("roomtypes_error").innerText = "";
+
+            console.log(roomNumber.value,"==================roomNumber")
+            console.log(pricePerNight.value,"==================pricePerNight")
+            console.log(weekendPrice.value,"==================weekendPrice")
+            console.log(pricePerNight.value,"==================pricePerNight")
+            // document.getElementById("occupancy_error").innerText = "";
+            mealsError.innerText = "";
+            let selectedCategory = document.querySelector("input[name='refund-check']:checked");
+            console.log("Selected category:", selectedCategory ? selectedCategory.value : "None selected");
+            if (!selectedCategory) {
+                document.getElementById("refund_error").innerText = "{% trans 'You must select a refund category' %}.";
+                isValid = false;
+            } else {
+                document.getElementById("refund_error").innerText = "";
+
+                // Get the selected category label text
+                let selectedLabel = document.querySelector(`label[for="${selectedCategory.id}"]`);
+                let selectedText = selectedLabel ? selectedLabel.innerText.trim().toLowerCase() : "";
+                console.log(selectedText);
+
+                // Validate policies based on the category selected
+                if (selectedText === 'no refund'|| selectedText ==='لا يوجد استرداد' ) {
+                    let selectedPolicies = document.querySelectorAll(".policy-checkbox:checked");
+                    if (selectedPolicies.length === 0) {
+                        isValid = true;
+                        document.getElementById("refund_error").innerText = "";
+                    } 
+                }
+                else{
+                    let selectedPolicies = document.querySelectorAll(".policy-checkbox:checked");
+                    console.log("selected policies :" ,selectedPolicies.length)
+                    if (selectedPolicies.length === 0) {
+                        isValid = false;
+                        document.getElementById("refund_error").innerText = "{% trans 'You must select one refund policy' %}.";
+                    } 
+                    else {
+                            selectedPolicies.forEach(policy => {
+                                let policyId = policy.id.split("-")[1]; 
+                                let validityInput = document.querySelector(`#validity-${policyId}`); 
+                                console.log(policyId)
+                                console.log(validityInput)
+                                if (validityInput) {
+                                    console.log("Validity Input Exists");
+                                    if (validityInput.value.trim() === "") {
+                                        isValid = false;
+                                        var message= "{% trans 'You must provide a value for validity-specific policies.' %}.";
+                                        alert(message)
+                                        validityInput.focus(); 
+                                    }
+                                    else{
+                                        isValid = true;
+                                    }
+                                } else {
+                                    console.log("Validity Input Does Not Exist");
+                                    isValid = true;
+                                    document.getElementById("refund_error").innerText = "";
+                                }
+                            });
+                        }
+            }
+    }
+         // Get the meal tax field
+            var mealTaxField = document.getElementById("meal_tax");
+            var mealTaxError = document.getElementById("meal_tax_error");
+
+            if (!mealTaxField.disabled) {  // Only validate if it's not disabled
+                var mealTaxValue = mealTaxField.value.trim();
+                
+                if (mealTaxValue === "" || parseFloat(mealTaxValue) <= 0) {
+                    mealTaxError.innerText = "{% trans 'Please enter a valid meal tax greater than 0.' %}";
+                    isValid = false;
+                } else if (isNaN(mealTaxValue)) {
+                    mealTaxError.innerText = "{% trans 'Meal tax must be a number or decimal value.' %}";
+                    isValid = false;
+                } else if (!priceRegex.test(mealTaxValue)) {
+                    mealTaxError.innerText = "{% trans 'Meal tax must be a valid number (up to two decimal places).' %}";
+                    isValid = false;
+                } else if (parseFloat(mealTaxValue) > 99.99) {
+                    mealTaxError.innerText = "{% trans 'Meal tax cannot exceed 99.99.' %}";
+                    isValid = false;
+                } else {
+                    mealTaxError.innerText = ""; // Clear error if valid
+                }
+            }
+
+
+            
+            if (roomType === ""){
+                document.getElementById("roomtypes_error").innerText = '{% trans "Please select a roomtype from the dropdown to add this room" %}';
+                isValid = false;
+            }
+
+            if (!/^\d+$/.test(roomNumber || roomNumber.trim() === "")) {
+                document.getElementById("number_of_rooms_error").innerText = '{% trans "Room number must be a number." %}';
+                console.log(isValid)
+                console.log("regex")
+                isValid = false;
+            } else if (roomNumber.length < 1 || roomNumber.length > 6 ) {
+                console.log(isValid)
+                console.log("room length")
+                document.getElementById("number_of_rooms_error").innerText = '{% trans "Please enter room number between 1 to 6 characters." %}';
+                isValid = false;
+            } 
+            
+            
+
+
+            if (pricePerNightValue.trim() === "" || parseFloat(pricePerNightValue) <= 0) {
+                document.getElementById("pice_per_night_error").innerText = '{% trans "Please enter a valid amount greater than 0." %}';
+                isValid = false;
+            
+            
+            }else if (isNaN(pricePerNightValue)){
+                document.getElementById("pice_per_night_error").innerText = '{% trans "Price must be a number or decimal value." %}';
+                isValid = false;
+
+            }else if (pricePerNightValue && !priceRegex.test(pricePerNightValue)) {
+                document.getElementById("pice_per_night_error").innerText = "{{ 'Price per night must be a valid  number (up to 3 decimal places).'|safe }}";
+                isValid = false;
+            }else if (pricePerNightFloat > 99999999.99) {
+                document.getElementById("pice_per_night_error").innerText = "{% trans 'Price per night cannot exceed 99999999.99.' %}";
+                isValid = false;
+            }
+            else {
+                document.getElementById("pice_per_night_error").innerText = "";
+            }
+
+            if (weekendPrice.trim() !== "") {
+                if (isNaN(weekendPrice) && weekendPrice !== "Not specified") {
+                    document.getElementById("weekend_price_error").innerText = '{% trans "Please enter a valid amount greater than 0." %}';
+                    isValid = false;
+                }
+                else if (weekendPrice && !priceRegex.test(weekendPrice.trim()) && weekendPrice !== "Not specified") {
+                document.getElementById("weekend_price_error").innerText = "{{ 'weekendPrice must be a valid number (up to 3 decimal  places).'|safe }}";
+                isValid = false;
+            } 
+            else {
+                    document.getElementById("weekend_price_error").innerText = "";
+                }
+            } else {
+                // Clear the error message if the field is optional and left empty
+                document.getElementById("weekend_price_error").innerText = "";
+            }
+            //validate refund 
+           
+            
+            
+            // Validate Amenities
+            if (amenities.length === 0) {
+                document.getElementById("amenities_error").innerText = '{% trans "Please select at least one amenity." %}';
+                isValid = false;
+            } else {
+                document.getElementById("amenities_error").innerText = "";
+            }
+            
+            var selectedMeals = Array.from(mealsCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            var noMealsSelected = selectedMeals.includes("No meals");
+            
+            if (selectedMeals.length === 0) {
+                mealsError.innerHTML = '{% trans "Please select at least one meal option." %}';
+                isValid = false;
+            } else if (noMealsSelected && selectedMeals.length > 1) {
+                mealsError.innerHTML = '{% trans "You cannot select other meal options <br> when No meals is selected." %}';
+                isValid = false;
+            }
+
+            // Adults validation
+            const adultsField = document.getElementById('adults');
+            const adultsError = document.getElementById('adults_error');
+            adultsError.innerText = '';
+            console.log(adultsField.value)
+            if (!adultsField.value.trim() || parseInt(adultsField.value, 10) < 1) {
+                adultsError.innerText = "{% trans 'Adults field cannot be empty and must have at least 1 adult.' %}";
+                adultsError.style.color = 'red';
+                isValid = false;
+            } else if (parseInt(adultsField.value, 10) > 4) {
+                adultsError.innerText = "{% trans 'A room cannot have more than 4 adults.' %}";
+                adultsError.style.color = 'red';
+                isValid = false;
+            } else {
+                adultsError.innerText = ""; // Clear the error message
+            }
+            // Validate your images here
+
+            var imageInput = document.getElementById("standard_images-add");
+            if (imageInput) {
+                console.log("imageInputimageInput=============")
+                var images = imageInput.files;
+                console.log(images.length,"========images.length==========")
+                if (images.length !== 5) {
+                    console.log(images.length !== 5,"=======images.length !== 5===========")
+                    document.getElementById("image-add-errorr").innerText = "{% trans 'You must upload 5 images' %}.";
+                    console.log(document.getElementById("image-add-errorr"))
+                    isValid = false;
+                    console.log(isValid,"======isValid============")
+                } else  {
+                    console.log("elseeeeeeeeeee==================")
+                    document.getElementById("image-add-errorr").innerText = "";
+                }
+            } else {
+                console.log("Image input not found. Possibly images are already uploaded.");
+            }
+
+            // Children validation
+            const childrenField = document.getElementById('children');
+            const childrenError = document.getElementById('children_error');
+            childrenError.innerText = '';
+
+            if (!childrenField.value.trim() || parseInt(childrenField.value, 10) < 0) {
+                childrenError.innerText = "{% trans 'Children field cannot be empty and must be 0 or a positive number.' %}";
+                childrenError.style.color = 'red';
+                isValid = false;
+            } else if (parseInt(childrenField.value, 10) > 4) {
+                childrenError.innerText = "{% trans 'A room cannot have more than 4 children.' %}";
+                childrenError.style.color = 'red';
+                isValid = false;
+            } else {
+                childrenError.innerText = ""; // Clear the error message
+            }
+            console.log(isValid)
+
+            if (isValid) {
+                console.log("Price:", document.getElementById("weekend_price").value);
+                if (confirm("{% trans 'Are you sure you want to add this room?' %}")) {
+                    //showLoader();
+                    console.log("About to submit form...");
+                    console.log("Price:", document.getElementById("pice_per_night").value);
+                    document.querySelector('form.myform').submit(); 
+                } else {
+                    event.preventDefault();  
+                }
+            } else {
+                event.preventDefault();  
+            }
+        }
+
+        function showLoader() {
+            $("#id01").hide();
+            $('.loader-container').css('display', 'flex');
+            $('#hotelTable').addClass('blurred');
+
+            // setTimeout(function() {
+            //     $('#loader').hide();
+            //     $('#hotelTable').removeClass('blurred');
+                
+            // }, 3000); 
+        }
+        
+        
+
+           
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const amenitiesInput = document.getElementById('amenities');
+            const dropdownMenu = document.getElementById('amenitiesDropdown');
+
+            amenitiesInput.addEventListener('click', function() {
+                dropdownMenu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!dropdownMenu.contains(event.target) && event.target !== amenitiesInput) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+
+            const checkboxes = document.querySelectorAll('.amenities_checkbox');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selected = [];
+                    checkboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            selected.push(cb.nextSibling.textContent.trim());
+                        }
+                    });
+                    amenitiesInput.value = selected.join(', ');
+                });
+            });
+
+            const mealsInput = document.getElementById('meals');
+            const mealsDropdown = document.getElementById('mealsDropdown');
+
+            mealsInput.addEventListener('click', function() {
+                mealsDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mealsDropdown.contains(event.target) && event.target !== mealsInput) {
+                    mealsDropdown.classList.remove('show');
+                }
+            });
+
+            const mealCheckboxes = document.querySelectorAll('.meals_checkbox');
+            mealCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selectedMeals = [];
+                    mealCheckboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            selectedMeals.push(cb.value);
+                        }
+                    });
+                    mealsInput.value = selectedMeals.join(', ');
+                });
+            });
+        });
+
+
+
+        
+        $(document).ready(function() {
+            $('#cancel_button').click(function() {
+                $('.myform')[0].reset();
+                window.location.reload(true);
+            });
+        });
+
+        
+        $(document).ready(function() {
+            $('#close_button').click(function() {
+                
+                $('.myform')[0].reset();
+                window.location.reload(true);
+            });
+        });
+            
+            $(document).ready(function(){
+                $('.search_button').click(function(event){
+                    event.preventDefault();
+                    var roomtype_value = $('.select_roomtype').val();
+                    var active_btn_id = $('.btn.activee').attr('id');
+                    var search_date= $('.from_date').val();
+                    passvalue(roomtype_value,active_btn_id, search_date,null)
+                    
+                })
+                // Handle pagination click
+                $(document).on('click', '.pagination a', function(e) {
+                    e.preventDefault();
+                    const page = $(this).text();
+                    console.log(page,"========pagepagepagepage")
+                    const roomtype_value = $('.select_roomtype').val();
+                    const active_btn_id = $('.btn.activee').attr('id');
+                    const search_date= $('.from_date').val();
+                    passvalue(roomtype_value, active_btn_id, search_date, page);
+                });
+                $(document).on('click', '.pagination a', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove existing active class from all pagination links
+                    $('.pagination a').removeClass('active');
+                
+                    // Add active class to the clicked link
+                    $(this).addClass('active');
+                
+                    const page = $(this).text().trim();  // get page number
+                    const roomtype_value = $('.select_roomtype').val();
+                    const active_btn_id = $('.btn.activee').attr('id');
+                
+                    passvalue(roomtype_value, active_btn_id, page);
+                });
+
+            function passvalue(roomtype_value=null,active_btn_id,search_date, page){
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+                console.log(hotel_id)
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+                console.log(search_date)
+                setTimeout(function() {
+                    $.ajax({
+                        url:`{% url "roommanagement" %}?page=${page}&hotel_id=${hotel_id}`,
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data:{
+                            "roomtype_value":roomtype_value,
+                            
+                            "active_btn_id":active_btn_id,
+                            "search_date":search_date
+                        },
+                        dataType:'json',
+                        success: function(response) {
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+
+                            let table_body = $(".table_body");
+                            table_body.empty();
+                            updateDateInHeaders()
+                            if (response.rooms.length > 0) {
+                                let counter = 1
+                                response.rooms.forEach(function(room) {
+                                    console.log(room);
+                                    let editTd = '';
+                                    let deleteTd = '';
+                                    const viewUrl = `${room.id}/`;  
+                                    const deleteUrl = `/vendor/roommanagement/delete/${room.id}/`;
+                                    if (room.is_available_view) {
+                                        editTd = `
+                                            <a href="${viewUrl}" class="textdecoration-none view-btn">
+                                                {% trans "View" %}
+                                            </a>
+                                        `
+                                        deleteTd = `
+                                           <a href="${deleteUrl}" onclick="return confirm('{% trans "Are you sure you want to delete this room?" %}');" class="textdecoration-none delete-btn">
+                                                <i class="fa-solid fa-trash"></i> {% trans "Delete" %}
+                                            </a>
+                                            `
+                                    }
+                                    let roomName = languageCode === "en" ? room.roomtypes : room.roomtypes_arabic;
+
+                                    let row = `<tr>
+                                        <td class="border-right">${counter}</td>
+                                        <td class="border-right">${roomName}</td>
+                                        <td class="data_roomnumber border-right">${room.number_of_rooms}</td>
+                                        <td class="data_roomnumber border-right">${room.available_rooms}</td>
+                                        <td class="data_roomnumber border-right">${room.booked_rooms}</td>
+                                        <td class="border-right data_occupancy">${room.occupancy}</td>
+                                        <td class="border-right">${room.price}</td>
+                                        {% comment %} <td class="border-right">${room.commission_amount}</td> {% endcomment %}
+                                        
+                                        <td class="border-right">${room.weekend_price}</td>
+                                        <td class="color-grey">
+                                            <div class="table-action-btn-container">
+                                                ${editTd}
+                                                ${deleteTd}
+                                            </div>
+                                        </td>
+                                    </tr>`;
+                                    
+                                    table_body.append(row);
+                                    counter++;
+                                });
+                                $('.no_data_found').hide();
+                                console.log(response.num_pages,"=========response.num_pagesresponse.num_pages")
+                                if (response.num_pages && response.num_pages > 1) {
+                                    $('.pagination-content').show();
+                                } else {
+                                    $('.pagination-content').hide();
+                                }
+                            } else {
+                                let noDataRow = `<tr><td colspan="8" style="text-align: center;">No data found</td></tr>`;
+                                table_body.append(noDataRow);
+
+                            }
+                        },
+                        error:function(xhr,status,error){
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            console.error('error :',error);
+                        }
+                    });
+                }, 500); 
+            }
+            
+        });
+        
+        $(document).ready(function(){
+            $('.booked_button').click(function(event){
+                event.preventDefault();
+                // Hide the last column header and all its corresponding cells
+                $('#add_button').hide();
+                $('th:last-child').remove();
+
+                $('.border-right.last_col').removeClass('border-right');
+                booked_data();
+            });
+
+            $('.available_button').click(function(event){
+                event.preventDefault();
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+                setTimeout(function() {
+                    location.reload();
+                }, 500); 
+            });
+
+           
+
+            function booked_data() {
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+
+                setTimeout(function() {
+                    $.ajax({
+                        url: '{% url "roomanagement_booked" %}',
+                        type: 'GET',
+                        success: function(data) {
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+
+                            var tableContent = $(data).find('table tbody').html();
+                            var paginationContent = $(data).find('.pagination-content').html(); // Retrieve pagination content
+                            console.log(tableContent,"tableContenttableContenttableContenttableContent")
+                            console.log(paginationContent,"paginationContentpaginationContent")
+                            if ($.trim(tableContent).length > 0) {
+                                
+                                $('table tbody').html(tableContent);
+                                $('.no_data_found').hide(); 
+                                $('.pagination-content').hide(); // Hide pagination
+                            } else {
+                                $('table tbody').html('<tr><td colspan="7" style="text-align: center;">No data found</td></tr>');
+                                $('.pagination-content').hide(); // Hide pagination
+                            }
+                            $('.btn').removeClass('activee');
+                            $('.booked_button').addClass('activee');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('error :', error);
+                        }
+                    });
+                }, 500);
+            }
+        });
+
+
+$(document).on('change', 'input[name="refund-check"]', function () {
+    var categoryId = $(this).val();
+    console.log("Selected Category ID:", categoryId);
+
+    var policyContainer = $('.refund-details-container');
+
+    // **Clear and force refresh before fetching new data**
+    policyContainer.empty().hide();  
+
+    if (categoryId) {
+        $.ajax({
+            url: '/vendor/get-refund-policies/',
+            type: 'GET',
+            data: { category_id: categoryId, _: new Date().getTime() }, // Prevent caching
+            dataType: 'json',
+            success: function (response) {
+                console.log("Response Data:", response);
+
+                if (response.length > 0) {
+                    var policyHtml = "";
+                    response.forEach(function (policy) {
+                        console.log('Appending policy:', policy.title,policy.title_arabic);
+                        if (policy.title.toLowerCase() === "no refund" || policy.title_arabic.toLowerCase() === "no refund") {
+                        noRefundPolicyFound = true; // Mark that a "No refund" policy is found
+                        return; // Skip appending this policy
+                    }
+                        var policyTitle = (languageCode === "ar") ? policy.title_arabic : policy.title;
+                        policyHtml += `
+                            <div class="refund-input">
+                            <div class="input-item">
+                                <input type="checkbox" class="policy-checkbox" id="policy-${policy.id}">
+                                
+                                <label for="policy-${policy.id}">
+                                    ${policyTitle}
+                                </label>
+                            </div>`;
+                                if (policy.is_validity_specific) {
+                                    if (policy.is_validity_specific) {
+                                    policyHtml += `
+                                        <span id="error-${policy.id}" class="error-message-1" style="display:none;"></span>
+                                        <input type="text" id="validity-${policy.id}" class="policy-validity-input" 
+                                            placeholder="{% trans 'Enter hours for refund eligibility' %}">
+                                    `;
+                                }
+
+                        }
+
+
+                        if (policy.is_percentage_specific) {
+                            policyHtml += `
+                                <input type="text" id="percentage-${policy.id}" class="policy-percentage-input" 
+                                    placeholder="Enter the refund percentage">`;
+                        }
+
+                        policyHtml += `</div>`;
+                    });
+
+                    // **Force update UI and ensure it displays**
+                    policyContainer.html(policyHtml).fadeIn();
+                    policyContainer.find('.policy-checkbox:first').focus();
+                    console.log('Policies appended successfully');
+                } else {
+                    policyContainer.html('<p>No refund policies available for this category.</p>').fadeIn();
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("AJAX Error:", error);
+            }
+        });
+    }
+});
+
+
+$(document).on('change', '.policy-checkbox', function () {
+    console.log("checking the checkbox")
+    var errorSpan = $('.error-message-1'); // Error message is now above
+    var addButton = $('.btn[type="submit"]'); // Submit button
+    $('.policy-checkbox').not(this).prop('checked', false);
+    $('.policy-validity-input, .policy-percentage-input').val('');
+    $('.policy-validity-input, .policy-percentage-input').prop('disabled', true);
+    $(this).closest('.refund-input').find('.policy-validity-input, .policy-percentage-input').prop('disabled', false);
+    errorSpan.hide();
+    addButton.prop('disabled', false);
+});
+$(document).on('input', '.policy-validity-input', function () {
+    var value = $(this).val().trim();
+    var errorSpan = $(this).prev('.error-message-1'); // Error message is now above
+    var addButton = $('.btn[type="submit"]'); // Submit button
+
+    if (!/^\d+$/.test(value) || value < 0 || value > 100 || value.length > 4) {
+        $(this).addClass('invalid-input');
+        errorSpan.css({
+        'color': 'red' ,
+        'font-size' :'1rem'  // Set text color to red
+    });
+        errorSpan.show().text("{% trans 'Enter a valid number between 0 and 100' %}");
+
+        // Add shake effect
+        errorSpan.addClass('shake');
+        setTimeout(() => errorSpan.removeClass('shake'), 500);
+
+        $(this).focus();  
+        addButton.prop('disabled', true);
+
+    } else {
+        $(this).removeClass('invalid-input');
+        errorSpan.hide();
+        addButton.prop('disabled', false);
+
+    }
+});
+
+if (isValid){
+document.querySelector("form.myform").addEventListener("submit", function (event) {
+    event.preventDefault(); 
+
+    let selectedCategory = document.querySelector("input[type='radio'][name='refund-check']:checked");
+    console.log("Selected category:", selectedCategory ? selectedCategory.value : "None selected");
+
+
+    // Retrieve the associated label using the selectedCategory's id
+    let selectedLabel = document.querySelector(`label[for="${selectedCategory.id}"]`);
+    let selectedText = selectedLabel ? selectedLabel.innerText.trim().toLowerCase() : "";
+
+    console.log("Selected category label:", selectedText);
+    var roomNumber = document.getElementById("number_of_rooms").value;
+    var pricePerNight = document.getElementById("pice_per_night").value;
+    var weekendPrice = document.getElementById("weekend_price").value;
+    var adults = document.getElementById("adults").value;
+    console.log(roomNumber)
+    console.log(pricePerNight)
+    console.log(weekendPrice)
+    console.log(adults)
+
+    let refundData = [];
+
+    if (selectedText === 'no refund'|| selectedText ==='لا يوجد استرداد') {
+        refundData.push({
+            selected_category: selectedCategory.value, // No refund category selected
+            policy_id: null, // No policies for No Refund
+            validity: null,
+            percentage: null
+        });
+    } else {
+        // Otherwise, gather policy data
+        let selectedPolicies = document.querySelectorAll(".policy-checkbox:checked");
+
+        selectedPolicies.forEach(policy => {
+            let policyId = policy.id.split("-")[1]; // Extract policy ID
+            let validity = document.querySelector(`#validity-${policyId}`)?.value || null;
+            let percentage = document.querySelector(`#percentage-${policyId}`)?.value || null;
+
+            refundData.push({
+                selected_category: selectedCategory.value,
+                policy_id: policyId,
+                validity: validity,
+                percentage: percentage
+            });
+        });
+    }
+
+    // Append the refundData to a hidden input field
+    let hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "refund_policies";
+    hiddenInput.value = JSON.stringify(refundData);
+    this.appendChild(hiddenInput);
+
+    // Submit the form after appending the data
+    this.submit();
+    $('.loader-container').css('display', 'flex');
+    $('#hotelTable').addClass('blurred');
+});
+}
+
+    </script>
+
+    <script>
+        function fetchRoomTypeDetails(){
+            var roomType = document.getElementById("roomtypes").value;
+            console.log(roomType,"=====roomtype inside fetchRoomTypeDetails")
+            $.ajax({
+                url: `{% url 'retrive_roomtype_details' %}?hotel_id=${hotel_id}`,
+                method: 'GET',
+                data: { room_type: roomType ,langCode:languageCode },
+                async: false,  // Makes sure the validation happens before form submission
+                success: function(response) {
+                    console.log(response)
+                    if (response.status){
+                        alert(response.message)
+                        document.getElementById("roomtypes").value = "";
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching room data:", error);
+                    isValid = false;
+                }
+            });
+
+        }
+        
+        
+        
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Define fields and their corresponding error message elements
+            const errorFields = [
+
+                { input: "#adults", error: "#adults_error" },
+                { input: "#children", error: "#children_error" },
+                { input: "#pice_per_night", error: "#pice_per_night_error" },
+                { input: "#weekend_price", error: "#weekend_price_error" },
+                { input: "#amenities", error: "#amenities_error" },
+                { input: "#meals", error: "#meals_error" },
+                { input: "#roomtypes", error: "#roomtypes_error" },
+                //{ input: "#meal_tax", error: "#meal_tax_error" }, // Adjust if meal tax has a different error ID
+                { input: "#standard_images-add", error: "#image-add-errorr" },
+                { input: "input[name='refund-check']", error: "#refund_error" },
+                { input: "#number_of_rooms", error: "number_of_rooms_error"}
+            ];
+    
+            // Listen for input or change and clear error messages
+            errorFields.forEach(function (field) {
+                $(field.input).on("input change", function () {
+                    $(field.error).text("");
+                });
+            });
+    
+            // Clear error for amenities checkboxes
+            $('#amenitiesDropdown input[type="checkbox"]').on('change', function () {
+                $('#amenities_error').text('');
+            });
+    
+            // Clear error for meals checkboxes
+            $('#mealsDropdown input[type="checkbox"]').on('change', function () {
+                $('#meals_error').text('');
+            });
+    
+            // Clear refund radio error
+            $('input[name="refund-check"]').on('change', function () {
+                $('#refund_error').text('');
+            });
+    
+            // Optional: Clear standard image error on file input
+            $('#standard_images-add').on('change', function () {
+                $('#image-add-errorr').text('');
+            });
+        });
+    </script>
+
+
+    <script>
+        const refundCheck = document.querySelector('#refund-check')
+        const refundNonCheck = document.querySelector('#non-refund-check')
+        const refundDetails = document.querySelector('.refund-details-container')
+        const hoursCheck = document.querySelector('#check-hours')
+        const hoursCheckInput = document.querySelector('.check-hours-input')
+
+
+        refundCheck.addEventListener('change', function() {
+            if (this.checked) {
+                refundDetails.style.display = 'flex'
+            }
+        })
+        refundNonCheck.addEventListener('change', function(){
+            if (this.checked) {
+                refundDetails.style.display = 'none'
+            }
+        })
+
+        hoursCheck.addEventListener('change', function(){
+                hoursCheckInput.disabled = !this.checked
+        })
+ 
+
+    
+
+
+
+
+
+
+
+        
+
+    </script>
+</body>
+</html>

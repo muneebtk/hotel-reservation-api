@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Approval Notification</title>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .footer {
+            margin-top: 20px;
+            /* text-align: center; */
+            color: #888;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Chalet Approval Notification</h2>
+        <p>Congratulations! Your Chalet "<span style="font-weight: 700;">{{ hotel_name }}</span>" has been approved by the owner.</p>
+        <p>You can now log in using your credentials and start managing your hotel.</p>
+        <!-- <a href="https://yourhotelmanagementsite.com/login" class="button">Log In</a> -->
+        <div class="footer">
+            <p>This email was sent to you by 1929 owner. If you have any questions,please contact us at support</p>
+        </div>
+    </div>
+</body>
+</html>

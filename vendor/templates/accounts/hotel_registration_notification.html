@@ -1,0 +1,13 @@
+{% extends 'accounts/base_email_template.html' %}
+
+{% block title %}New Hotel Registration{% endblock %}
+
+{% block content %}
+    <h2>New Hotel Registration</h2>
+    <p>A new hotel has been registered in the system:</p>
+    <ul>
+        <li><strong>Hotel Name:</strong> {{ hotel_name }}</li>
+        <li><strong>Hotel Address:</strong> {{ hotel_address }}</li>
+    </ul>
+    <p>Please review the new registration at your earliest convenience.</p>
+{% endblock %}

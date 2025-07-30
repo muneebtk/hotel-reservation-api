@@ -1,0 +1,855 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/user-management.css' %}">
+</head>
+
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <div class="w3-main main-section">
+        <div class="container-box">
+            <div class="row-main">
+                {% comment %} <h2 class="text-center text-717171">{% trans "User Management" %}</h2> {% endcomment %}
+
+                <!-- Filter Section -->
+                <div class="filter-container">
+                    <form method="get" action="" class="filter-form">
+                        <!-- Name Filter -->
+                        <input type="text" name="name" id="filter-name" placeholder="{% trans 'Search By Name' %}" value="{{ request.GET.name }}"/>
+
+                        <!-- Status Filter -->
+                        <select name="status" id="filter-status">
+                            <option value="">{% trans "All Status" %}</option>
+                            <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>{% trans "Active" %}</option>
+                            <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>{% trans "Inactive" %}</option>
+                        </select>
+
+                        <!-- Operating System Filter -->
+                        <select name="os" id="filter-os">
+                            <option value="">{%trans "All OS" %}</option>
+                            <option value="Windows" {% if request.GET.os == 'Windows' %}selected{% endif %}>{% trans "Windows" %}</option>
+                            <option value="Android" {% if request.GET.os == 'Android' %}selected{% endif %}>{% trans "Android" %}</option>
+                            <option value="iOS" {% if request.GET.os == 'iOS' %}selected{% endif %}>{% trans "iOS" %} </option>
+                        </select>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="filter-action">
+                            <i class="fa-solid fa-magnifying-glass"></i>{% trans "Search" %}
+                        </button>
+                        
+                    </form>
+                    
+                    <button class="add-admin">
+                        + {% trans "Add Admin" %}
+                    </button>
+                 
+                    
+                </div>
+                    <div class="row flex flex-wrap gap-1 justify-end align-item-center reporticon">
+                                <h3>{% trans "Export Reports:" %}</h3>
+                                <div onclick="handleExcelClick()" class="excel">{% trans "Excel" %}</div>
+                                <div class="pdf">{% trans "PDF" %}</div>
+                    </div>
+
+                <div class="table-container">
+                    <table class="responsive-table">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Sl No" %}</th>
+                                <th>{% trans "Name" %}</th>
+                                <th>{% trans "Email" %}</th>
+                                <th>{% trans "Status" %}</th>
+                                <th>{% trans "Mobile Number" %}</th>
+                                <th>{% trans "Registration Date" %}</th>
+                                <th>{% trans "Total Bookings" %}</th>
+                                <th>{% trans "Wallet Balance" %}</th>
+                                <th>{% trans "Operating System" %}</th>
+                                <th>{% trans "User Type" %}</th>
+                                <th>{% trans "Change status" %}</th>
+                                <th>{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if page_obj.object_list %}
+                            {% for user in page_obj.object_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{% if user.get_full_name %} {{ user.get_full_name|title }} {%else%} N/A {%endif%}</td>
+                                <td>{% if user.email %} {{ user.email }} {%else%} N/A {%endif%}</td>
+                                <td>
+                                    <span id="status-{{ user.id }}"
+                                        class="badge {% if user.is_active %}activee{% else %}inactive{% endif %}">
+                                        {% if user.is_active %}{% trans 'Active' %}{% else %}{% trans 'Inactive' %}{% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                {% if user.phone_number and user.phone_number != 'N/A' %}
+                                    {{ user.phone_number }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                              <td>
+                                {% if user.created_date %}
+                                    {{ user.created_date|date:"d-m-Y" }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                                <td>{{user.booking_count}}</td>
+                                <td>{% if user.wallet_balance != 'N/A' and user.wallet_balance > 0 %}
+                                            OMR {{ user.wallet_balance }}
+                                        {% else %}
+                                            {{ user.wallet_balance }}
+                                        {% endif %}
+                                </td>
+                                <td>
+                                    {% if user.user_details %}
+                                    {{ user.user_details.operating_system|default:"Unknown" }}
+                                    {% else %}
+                                    Unknown
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if user.vendor_profile.category == 'superadmin' %}
+                                        {% trans 'Superadmin' %}
+                                    {% elif user.vendor_profile.category == 'admin' %}
+                                        {% trans 'Admin' %}
+                                    {% else %}
+                                        {% trans 'User' %}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button
+                                        class="btn status-action-btn {% if user.is_active %}btn-danger{% else %}btn-active{% endif %}"
+                                        onclick="toggleStatus({{ user.id }})" id="toggle-btn-{{ user.id }}">
+                                        {% if user.is_active %}
+                                        <i class="fas fa-user-slash"></i> {% trans "Deactivate" %}
+                                        {% else %}
+                                        <i class="fas fa-user-check"></i> {% trans "Activate" %}
+                                        {% endif %}
+                                    </button>
+                                </td>
+                                <td>
+                                    {% if user.vendor_profile.category %}
+                                        <!-- Super Admin can edit and delete all users -->
+                                        {% if request.user.vendor_profile.category == "superadmin" %}
+                                        <div class="table-action-btn-container">
+                                            <a href="#" class="edit-admin edit-btn textdecoration-none" data-edit-id="{{ user.id }}" id="edit-admin">
+                                                <i class="fa-solid fa-pen"></i>{% trans "Edit" %}
+                                            </a>
+                                            <a href="#" class="delete-admin delete-btn textdecoration-none" data-delete-id="{{ user.id }}" id="delete-admin">
+                                                <i class="fa-solid fa-trash"></i>{% trans "Delete" %}
+                                            </a>
+                                        </div>
+
+                                        <!-- Admin can only edit other admin profile, and cannot edit Super Admins -->
+                                        {% elif request.user.vendor_profile.category == "admin" and user.vendor_profile.category == "admin" %}
+                                            <a href="#" class="edit-admin edit-btn textdecoration-none" data-edit-id="{{ user.id }}" id="edit-admin">
+                                                <i class="fa-solid fa-pen"></i>{% trans "Edit" %}
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 20px; color: #717171;">
+                                    {% trans 'No results found for your search criteria.' %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div id="pagination-container">
+                         {% if page_obj %}
+                            <div class="pagination">
+                                <!-- Previous Button -->
+                                {% if page_obj.has_previous %}
+                                <a href="#" class="previous-page pagination-link" data-page="{{ page_obj.previous_page_number }}" title="Previous Page">
+                                    <span class="previous-button">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                </a>
+                                {% else %}
+                                    <span class="disabled-button disabled-button-prev">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                {% endif %}
+
+                                <div class="page-numbers">
+                                    {% for num in page_obj.paginator.page_range %}
+                                        {% if page_obj.paginator.num_pages > 3 %}
+                                            {% if num >= page_obj.number and num < page_obj.number|add:3 %}
+                                                {% if num == page_obj.number %}
+                                                    <span class="current-page">{{ num }}</span>
+                                                {% else %}
+                                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% else %}
+                                            {% if num == page_obj.number %}
+                                                <span class="current-page">{{ num }}</span>
+                                            {% else %}
+                                                <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Next Button -->
+                                {% if page_obj.has_next %}
+                                <a href="#" class="next-page pagination-link" data-page="{{ page_obj.next_page_number }}" title="Next Page">
+                                    <span class="next-button">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                {% else %}
+                                    <span class="disabled-button disabled-button-next">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                        <div></div>
+                        {% endif %}
+                    </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="add-admin-modal">
+        <div class="add-admin-modal-content">
+            <button class="add-admin-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="add-modal-header">
+                <h2><i class="fas fa-add"></i>{% trans "Add Admin" %}</h2>
+            </div>
+            <div class="modal-inputs">
+                <div class="input-container">
+                    <div class="input-item">
+                        <label for="first_name">{% trans "First Name" %}</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="{% trans 'Enter first name' %}">
+                    </div>
+                    <div class="input-item">
+                        <label for="last_name">{% trans "Last Name" %}</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="{% trans 'Enter last name' %}">
+                    </div>
+                </div>
+
+                <div class="input-item">
+                    <label for="email">{% trans "Email" %}</label>
+                    <input type="email" id="email" name="email" placeholder='{% trans "Enter email" %}'>
+                </div>
+                <div class="input-item">
+                    <label for="password">{% trans "Password" %}</label>
+                    <input type="password" id="password" name="password" placeholder='{% trans "Enter password" %}'>
+                </div>
+                <div class="input-item">
+                    <label for="confirm_password">{% trans "Confirm Password" %}</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder='{% trans "Confirm Password" %}'>
+                </div>
+                <div class="input-item status-container">
+                    <label for="status">{% trans "Status" %}</label>
+                    <div class="input-container">
+                        <div class="input-item">
+                            <input type="radio" id="active" name="is_active" value="true" checked>
+                            <label for="active">{% trans "Active" %}</label>
+                        </div>
+                        <div class="input-item">
+                            <input type="radio" id="inactive" name="is_active" value="false">
+                            <label for="inactive">{% trans "Inactive" %}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-button-container">
+                <button type="button" class="action-button add-admin-modal-cancel">{% trans "Cancel" %}</button>
+                <button type="submit" class="action-button">{% trans "Save" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-admin-modal edit-admin-modal">
+        <div class="add-admin-modal-content">
+            <button class="add-admin-modal-close edit-admin-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="add-modal-header">
+                <h2><i class="fas fa-pencil"></i>&nbsp;{% trans "Edit Admin" %}</h2>
+            </div>
+            <div class="modal-inputs">
+                <div class="input-container">
+                    <div class="input-item">
+                        <label for="edit_first_name">{% trans "First Name" %}</label>
+                        <input type="text" id="edit_first_name" name="edit_first_name" placeholder='{% trans "Enter first name" %}'>
+                    </div>
+                    <div class="input-item">
+                        <label for="edit_last_name">{% trans "Last Name" %}</label>
+                        <input type="text" id="edit_last_name" name="edit_last_name" placeholder='{% trans "Enter last name" %}'>
+                    </div>
+                </div>
+
+                <div class="input-item">
+                    <label for="edit_email">{% trans "Email" %}</label>
+                    <input type="email" id="edit_email" name="edit_email" placeholder='{% trans "Enter email" %}'>
+                </div>
+                <div class="input-item">
+                    <label for="edit_password">{% trans "Password" %}</label>
+                    <input type="password" id="edit_password" name="edit_password" placeholder='{% trans "Enter password" %}'>
+                </div>
+                <div class="input-item">
+                    <label for="confirm_password">{% trans "Confirm Password" %}</label>
+                    <input type="password" id="edit_confirm_password" name="edit_confirm_password" placeholder='{% trans "Confirm password" %}'>
+                </div>
+                <div class="input-item status-container">
+                    <label for="status">{% trans "Status" %}</label>
+                    <div class="input-container">
+                        <div class="input-item">
+                            <input type="radio" id="edit_active" name="is_active" value="true" checked>
+                            <label for="active">{% trans "Active" %}</label>
+                        </div>
+                        <div class="input-item">
+                            <input type="radio" id="edit_inactive" name="is_active" value="false">
+                            <label for="inactive">{% trans "Inactive" %}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-button-container">
+                <button type="button" class="action-button edit-admin-modal-cancel">{% trans "Cancel" %}</button>
+                <button type="submit" class="action-button" id="edit_save">{% trans "Save" %}</button>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <script>
+        function toggleStatus(userId) {
+            const formData = new FormData();
+            formData.append("user_id", userId);
+
+            fetch("{% url 'toggle_user_status' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: formData 
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        const statusBadge = document.getElementById(`status-${userId}`);
+                        const button = document.getElementById(`toggle-btn-${userId}`);
+
+                        if (data.is_active) {
+                            statusBadge.className = "badge activee";
+                            statusBadge.textContent = "{% trans 'Active' %}";
+                            button.className = "btn status-action-btn btn-danger";
+                            button.innerHTML = '<i class="fas fa-user-slash"></i> {% trans "Deactivate" %}';
+                        } else {
+                            statusBadge.className = "badge inactive";
+                            statusBadge.textContent = "{% trans 'Inactive' %}";
+                            button.className = "btn status-action-btn btn-active";
+                            button.innerHTML = '<i class="fas fa-user-check"></i> {% trans "Activate" %}';
+                        }
+                    } else {
+                        alert("Error: " + (data.error || "Unable to toggle status."));
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+
+    <script>
+        const addAdminBtn = document.querySelector('.add-admin');
+        const closeModalBtn = document.querySelector('.add-admin-modal-close');
+        const cancelModalBtn = document.querySelector('.add-admin-modal-cancel')
+
+        addAdminBtn.addEventListener('click', function () {
+            document.querySelector('.add-admin-modal').style.display = 'flex';
+            document.getElementById("active").checked = true;
+        });
+        closeModalBtn.addEventListener('click', function () {
+            document.querySelector('.add-admin-modal').style.display = 'none';
+        });
+        cancelModalBtn.addEventListener('click', function () {
+            document.querySelector('.add-admin-modal').style.display = 'none';
+        });
+
+        const editAdminBtns = document.querySelectorAll('.edit-admin');
+        const closeEditModalBtn = document.querySelector('.edit-admin-modal-close');
+        const cancelEditModalBtn = document.querySelector('.edit-admin-modal-cancel')
+
+        $(document).on("click", ".edit-admin", function (e) {
+                e.preventDefault(); // Prevent default anchor link behavior
+
+                let userId = $(this).data("edit-id");
+
+                fetch(`/super_user/edit-admin/${userId}/`, {
+                    method: "GET",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        $("#edit_first_name").val(data.first_name);
+                        $("#edit_last_name").val(data.last_name);
+                        $("#edit_email").val(data.email);
+
+                        if (data.status) {
+                            $("#edit_active").prop("checked", true);
+                        } else {
+                            $("#edit_inactive").prop("checked", true);
+                        }
+
+                        $(".edit-admin-modal").attr("data-user-id", userId);
+                        $(".edit-admin-modal").css("display", "flex");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        closeEditModalBtn.addEventListener('click', function () {
+            document.querySelector('.edit-admin-modal').style.display = 'none';
+            $(".edit-error-message").remove();
+            document.getElementById("edit_password").value = "";
+            document.getElementById("edit_confirm_password").value = "";
+        });
+        cancelEditModalBtn.addEventListener('click', function () {
+            document.querySelector('.edit-admin-modal').style.display = 'none';
+            $(".edit-error-message").remove();
+            document.getElementById("edit_password").value = "";
+            document.getElementById("edit_confirm_password").value = "";
+        });
+
+        $(document).ready(function () {
+            $("#edit_save").click(function (e) {
+                e.preventDefault();
+
+                $(".edit-error-message").remove();
+
+                let userId = $(".edit-admin-modal").attr("data-user-id");
+                let firstName = $("#edit_first_name").val().trim();
+                let lastName = $("#edit_last_name").val().trim();
+                let email = $("#edit_email").val().trim();
+                let password = $("#edit_password").val().trim();
+                let confirmPassword = $("#edit_confirm_password").val().trim();
+                let isActive = $("#edit_active").is(":checked");
+
+                let isValid = true;
+
+                if (!firstName) {
+                    showEditError("#edit_first_name", "{% trans 'First Name is required.' %}");
+                    isValid = false;
+                } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
+                    showEditError("#edit_first_name", "{% trans 'First Name can only contain alphabets and spaces.' %}");
+                    isValid = false;
+                }
+
+                if (!lastName) {
+                    showEditError("#edit_last_name", "{% trans 'Last Name is required.' %}");
+                    isValid = false;
+                } else if (!/^[A-Za-z\s]+$/.test(lastName)) {
+                    showEditError("#edit_last_name", "{% trans 'Last Name can only contain alphabets and spaces.' %}");
+                    isValid = false;
+                }
+
+                if (!email || !validateEmail(email)) {
+                    showEditError("#edit_email", "{% trans 'Valid Email is required.' %}");
+                    isValid = false;
+                }
+
+                if (password && !validatePassword(password)) {
+                    showEditError("#edit_password", "{% trans 'Password must be at least 8 characters, include 1 uppercase, 1 lowercase, and 1 special character.' %}");
+                    isValid = false;
+                }
+
+                if (password && password !== confirmPassword) {
+                    showEditError("#edit_confirm_password", "{% trans 'Passwords do not match.'%}");
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    console.log("Validation failed. Form submission prevented.");
+                    return;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: `/super_user/edit-admin/${userId}/`,
+                    data: {
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                        password: password,
+                        is_active: isActive,
+                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: function (response) {
+                        alert(response.success);
+                        $(".edit-admin-modal").hide();
+                        location.reload();
+                    },
+                    error: function (xhr) {
+                        let response = xhr.responseJSON;
+                        if (response && response.error) {
+                            alert(response.error);
+                        } else {
+                            alert("{% trans 'Something went wrong! Please try again.' %}");
+                        }
+                    }
+                });
+            });
+
+            function showEditError(selector, message) {
+                $(selector).after(`<span class="edit-error-message" style="color: red; font-size: 12px;">${message}</span>`);
+            }
+
+            function validatePassword(password) {
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                return passwordRegex.test(password);
+            }
+
+        });
+        const validTLDs = [
+            'com', 'org', 'net', 'int', 'edu', 'gov', 'mil', 'arpa', 'biz', 'info', 'pro', 'name',
+            'aero', 'coop', 'museum', 'asia', 'cat', 'jobs', 'mobi', 'tel', 'travel', 'xxx', 'idv', 'me','app',
+            // Add other valid TLDs as needed
+            'us', 'uk', 'ca', 'de', 'fr', 'jp', 'cn', 'in', 'au', 'br', 'za', 'ru', 'it', 'es' // Example ccTLDs
+        ];
+        function validateEmail(email) {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailPattern.test(email)) return false;
+
+                const domain = email.split('@')[1];
+                const domainParts = domain.split('.');
+
+                if (domainParts.length < 2 || domainParts[domainParts.length - 1].length < 2) {
+                    return false;
+                }
+
+                // Removed the TLD whitelist check
+                // if (!validTLDs.includes(tld)) return false;
+
+                if (domainParts.some(part => part.length === 0)) {
+                    return false;
+                }
+
+                if (domain.length > 253) {
+                    return false;
+                }
+
+                const localPart = email.split('@')[0];
+                if (localPart.length > 64) {
+                    return false;
+                }
+
+                return true;
+                }
+        // $("input[name='is_active']").change(function () {
+        //     $(".status-container .error-message").remove();
+        // });
+
+            $(document).ready(function () {
+                $(".error-message").remove();            
+
+            $(".add-admin-modal button[type='submit']").click(function (e) {
+                e.preventDefault();
+                $(".error-message").remove();
+
+                let firstName = $("#first_name").val().trim();
+                let lastName = $("#last_name").val().trim();
+                let email = $("#email").val().trim();
+                let password = $("#password").val();
+                let confirmPassword = $("#confirm_password").val();
+                let status = $(".add-admin-modal input[name='is_active']:checked").val();
+
+                let isValid = true;
+
+                function showError(selector, message) {
+                    $(selector).after(`<span class="error-message" style="color: red; font-size: 12px;">${message}</span>`);
+                    isValid = false;
+                }
+
+                if (!firstName) {
+                    showError("#first_name", "{% trans 'First name cannot be empty.' %}");
+                }
+
+                else if (firstName && !firstName.match(/^[A-Za-z\s]+$/)) {
+                    showError("#first_name", "{% trans 'First name can only contain letters and spaces.' %}");
+                }
+
+                if (!lastName) {
+                    showError("#last_name", "{% trans 'Last name cannot be empty.' %}");
+                }
+
+                else if (lastName && !lastName.match(/^[A-Za-z\s]+$/)) {
+                    showError("#last_name", "{% trans 'Last name can only contain letters and spaces.' %}");
+                }
+                if (!email) {
+                    showError("#email", "{% trans 'Email cannot be empty.' %}");
+                } else if (!validateEmail(email)) {
+                    showError("#email", "{% trans 'Please enter a valid email address.' %}");
+                }
+
+                if (!password) {
+                    showError("#password", "{% trans 'Password cannot be empty.' %}");
+                }
+
+                else if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                    showError("#password", "{% trans 'Password must be at least 8 characters and include uppercase, lowercase, a number, and a special character.' %}");
+                }
+                if (password !== confirmPassword) {
+                    showError("#confirm_password", "{% trans 'Passwords do not match.' %}");
+                }
+
+                if (!isValid) return;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/super_user/user-management/",
+                    data: {
+                        first_name: firstName,
+                        last_name: lastName,
+                        email: email,
+                        password: password,
+                        confirm_password: confirmPassword,
+                        is_active: status,
+                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: function (response) {
+                        alert("{% trans 'New admin added successfully!' %}");
+                        $(".add-admin-modal").hide();
+                        $(".add-admin-modal input").val("");
+                        $("input[name='is_active']").prop("checked", false);
+                        window.location.reload();
+                    },
+                    error: function (response) {
+                        let errors = response.responseJSON.errors;
+                        if (errors) {
+                            Object.keys(errors).forEach(key => {
+                                showError(`#${key}`, errors[key]);
+                            });
+                        } else {
+                            alert("{% trans 'Something went wrong. Please try again.' %}");
+                        }
+                    }
+                });
+            });
+
+            // Close modal and reset fields
+            $(".add-admin-modal-close, .add-admin-modal-cancel").click(function () {
+                $(".add-admin-modal").hide();
+                $(".error-message").remove();
+                $(".add-admin-modal input").val("");
+                $("input[name='is_active']").prop("checked", false);
+            });
+        });
+         $(document).ready(function () {
+        $(document).on('click', '.pagination-link', function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+
+            $('.loader-container').css('display', 'flex');
+            $('.table-container').addClass('blurred');
+            var page = $(this).data('page');
+            var name = $('#filter-name').val();
+            var status = $('#filter-status').val();
+            var os = $('#filter-os').val();
+
+            $.ajax({
+                url: '{%url "user-management" %}',
+                type: 'GET',
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                data: {
+                "name": name,
+                "status": status,
+                "os": os,
+                "page": page
+            },
+                success: function (data) {
+                    $('.table-container').removeClass('blurred');
+                    $('.loader-container').hide();
+                    $('table thead').html($(data).find('thead').html());
+                    $('table tbody').html($(data).find('tbody').html());
+                    $('#pagination-container').html($(data).find('#pagination-container').html());
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                    alert("{% trans 'Error fetching pagination data. Please try again later.' %}");
+
+                    $('.loader-container').hide();
+                    $('.table-container').removeClass('blurred');
+                }
+            });
+        });
+    });
+
+    function updatePagination(data) {
+            const rows = $(data).find('table tbody tr');
+            const totalRows = rows.length;
+
+            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+
+                $('#pagination-container').hide();
+            } else {
+                $('#pagination-container').show();
+            }         
+        }
+
+        $(document).ready(function () {
+            updatePagination(document);
+            var page = $(this).data('page');
+            var name = $('#filter-name').val();
+            var status = $('#filter-status').val();
+            var os = $('#filter-os').val();
+            $.ajax({
+                url: '{%url "user-management" %}',
+                method: 'GET',
+                data: {
+                "name": name,
+                "status": status,
+                "os": os,
+                "page": page
+            },
+                success: function (data) {
+                    $('table tbody').html($(data).find('table tbody').html());
+                    updatePagination(data);
+                }
+            });
+        });
+
+   $(document).on("click", ".delete-admin", function (e) {
+            e.preventDefault();
+            console.log("delete is clicked");
+
+            let adminId = $(this).data("delete-id");
+            let row = $(this).closest("tr");
+
+            if (confirm("{% trans 'Are you sure you want to delete this admin?' %}")) {
+                $.ajax({
+                    type: "POST",
+                    url: "/super_user/delete-admin/",
+                    data: {
+                        admin_id: adminId,
+                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert("{% trans 'Admin deleted successfully!' %}");
+                            row.remove();
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+
+                            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                            if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+
+                                $('#pagination-container').hide();
+                            } else {
+                                $('#pagination-container').show();
+                            }  
+                        } else {
+                            alert("{% trans 'Error: ' %}" + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("{% trans 'Something went wrong: ' %}" + xhr.responseText);
+                    }
+                });
+            }
+        });
+         var handleExcelClick = () => {
+            var name = $('#filter-name').val();
+            var status = $('#filter-status').val();
+            var os = $('#filter-os').val();
+             
+            $.ajax({
+                url: '/super_user/user_management_excel_download',
+                method: 'GET',
+                data: {
+                    name: name,
+                    status: status,
+                    os: os
+
+                },
+                xhrFields: { responseType: "blob" }, // Expect binary response
+                success: function(response) {
+                    let blob = new Blob([response], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    let link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = "user_management.xlsx"; // Auto-download
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error downloading Excel:", error);
+                }
+            });         
+        }
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-*********" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <!-- <link rel="stylesheet" href="/final_step.css"> -->
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            font-family: 'IBMPlexSansArabic', 'SF Pro Display', sans-serif;
+        
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            min-height: 350px;
+            overflow-y: auto;
+            max-height: 100%;
+            padding: 1rem;
+        }
+        
+        .progress-bar-container {
+            padding: 0 40px 2rem 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            position: relative;
+        }
+        
+        .circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            z-index: 1;
+        }
+        
+        .circle.active {
+            border-color: #85080c;
+            background-color: #85080c;
+            color: #fff;
+        }
+        
+        .circle.active i {
+            display: inline-block;
+            color: #fff;
+        }
+        
+        .step-number {
+            display: none;
+        }
+        
+        .step.active .step-number {
+            display: block;
+            color: #85080c;
+        }
+        
+        .label {
+            margin-top: 10px;
+            color: #888;
+        }
+        
+        .step.active .label {
+            color: #333;
+        }
+        
+        .line {
+            height: 2px;
+            background-color: #ddd;
+            flex-grow: 1;
+            z-index: 0;
+            position: relative;
+            top: -10px;
+            margin: 0 10px;
+        }
+        
+        .line.active {
+            background-color: #85080c;
+        }
+        
+        .inner-container {
+            padding-left: 10px;
+        }
+        
+        .title {
+            margin-right: 85%;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .buttons button {
+            padding: 12px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #85080c;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .buttons button:hover {
+            background-color: #85080c;
+        }
+        
+        .policy-section {
+            background-color: #edf0f9;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .card-policy-section {
+            background-color: #edf0f9;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .policy-section label {
+            margin-bottom: 5px;
+        }
+        
+        .policy-section p {
+            margin-bottom: 10px;
+        }
+        
+        .id-proof input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #85080c;
+            border-radius: 50%;
+            outline: none;
+            margin-right: 10px;
+            margin-bottom: -5px;
+        }
+        
+        .id-proof input[type="checkbox"]:checked {
+            background-color: #85080c;
+        }
+        
+        @media (max-width: 600px) {
+            .progress-bar {
+                flex-direction: column;
+            }
+        
+            .line {
+                width: 2px;
+                height: 40px;
+                margin: 10px 0;
+                top: 0;
+            }
+        }
+        
+        .policy-section {
+            background-color: #EDF0F9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .policy-section label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .policy-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .policy-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .policy-option label {
+            margin-right: 10px;
+        }
+        
+        .policy-option input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #85080C;
+            /* Red border */
+            border-radius: 50%;
+            /* Circular shape */
+            outline: none;
+            margin-left: auto;
+            /* Push checkbox button to the right */
+        }
+        
+        .policy-option input[type="checkbox"]:checked {
+            background-color: #85080C;
+            /* Red background when checked */
+        }
+        
+        .scrollable-div {
+            height: 200px;
+            overflow-y: scroll;
+        }
+        
+        .scrollable-div::-webkit-scrollbar {
+            width: 12px;
+            border-radius: 10px;
+            border: 1px solid #85080c;
+        }
+        
+        .scrollable-div::-webkit-scrollbar-track {
+            background: none;
+            border: 1px solid #85080c;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+        
+        .scrollable-div::-webkit-scrollbar-thumb {
+            background: #85080c;
+            border-radius: 10px;
+        }
+        
+        .scrollable-div::-webkit-scrollbar-thumb:hover {
+            background: #85080c;
+        }
+        
+        .scrollable-div {
+            scrollbar-color: #85080c #f1f1f1;
+            scrollbar-width: thin;
+        }
+        
+        
+        
+        /* ######################## */
+        .image-section {
+            text-align: center;
+        }
+        
+        .image-selection-container {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .image-item {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .hotel-image {
+            width: 8rem;
+            height: 6rem;
+            object-fit: cover;
+            border-radius: 10px;
+        
+            @media (max-width:768px) {
+                width: 7rem;
+                height: 5rem;
+            }
+        
+            @media (max-width:640px) {
+                width: 7rem;
+                height: 5rem;
+            }
+        }
+        
+        .radio-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .radio-container input[type="radio"] {
+            display: none;
+        }
+        
+        .radio-container label {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #b71c1c;
+            /* Dark red color */
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .radio-container input[type="radio"]:checked+label {
+            background-color: #b71c1c;
+        }
+        
+        .datetime-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: .8rem;
+        }
+        
+        .datetime-input {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .datetime-input input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .datetime-container {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        
+            .datetime-input {
+                flex: 1;
+                max-width: 45%;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .datetime-input {
+                width: 100%;
+            }
+        }
+        
+        main.main-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        h2.header-title {
+            margin-bottom: 2rem;
+        }
+        
+        p.inner-subtitle {
+            margin: .8rem 0;
+        }
+        
+        .font-bold {
+            font-weight: bold;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .p-0 {
+            padding: 0;
+        }
+        
+        .text-green {
+            color: green;
+        }
+        
+        .text-red {
+            color: red;
+        }
+        
+        .hidden {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <main class="main-container">
+        <div class="container">
+            <header class="progress-bar-container">
+                <h2 class="header-title">{% trans 'Almost finished!' %}</h2>
+                <div class="progress-bar">
+                    <div class="step active">
+                        <div class="circle active"><i class="fas fa-check"></i></div>
+                        <span class="label">{% trans 'Amenities' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step active">
+                        <div class="circle active"><i class="fas fa-check"></i></div>
+                        <span class="label">{% trans 'Prices' %}</span>
+                    </div>
+                    <div class="line active"></div>
+                    <div class="step active">
+                        <div class="circle active"><span class="step-number">3</span></div>
+                        <span class="label">{% trans 'Policies' %}</span>
+                    </div>
+                </div>
+            </header>
+            <section class="inner-container">
+                <form action="{%url 'final_step_chalet'%}" method="post" id="policyForm">
+                    {%csrf_token%}
+                    <h1 class="title">{% trans 'Policies' %}</h1>
+                    <p>{% trans 'Please list all policies applicable at your property' %}</p>
+                    <div class="scrollable-div">
+                     
+                        <div class="policy-section">
+                            <h1>{% trans 'Check-In & Check-Out' %}</h1>
+                            <label>{% trans 'Please ensure to mention both your check-in and check-out dates' %}</label>
+                            <div class="datetime">
+                                <div class="datetime-container" style="background-color: #fff;">
+                                    <div class="datetime-input">
+                                        <span>{% trans 'Check in' %}</span>
+                                        <input type="time" id="checkin" name="checkin">
+                                    </div>
+                                    <div class="datetime-input">
+                                        <span>{% trans 'Check out' %}</span>
+                                        <input type="time" id="checkout" name="checkout">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        {% if has_identity_proof %}
+                            <div class="card-policy-section">
+                                <label style="font-weight: bold;">{% trans 'Acceptable Identity Proofs' %}</label>
+                                <br>
+                                <br>
+                                <div class="id-proof">
+                                    {% for id in id_policy %}
+                                        <input type="checkbox" id="id-proof-{{ id.id }}" name="id-proof" value="{{ id.id }}">
+                                        <label for="id-proof-{{ id.id }}">{{ id.title }}</label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        
+                        {% for category in policy_categories %}
+                            <div class="policy-section">
+                                <h1>{{ category.category.name }}</h1>
+                                <div class="policy-text">
+                                    {% for policy in category.policy_names.all %}
+                                        <div class="policy-option">
+                                            <label for="policy-{{ policy.id }}">{{ policy.title }}</label>
+                                            <input type="checkbox" id="policy-{{ policy.id }}" name="policy-checkbox" value="{{ policy.id }}">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+    
+                        <div class="policy-section ">
+                            <h1>{% trans 'Select a Highlight Image for Your Chalet' %}</h1>
+                            <div class="image-section">
+                                <div class="image-selection-container">
+                                    {% for image in chalet_images.chalet_images.all %}
+                                    <div class="image-item">
+                                        <img src="{{ image.image.url }}" alt="chalet Image {{ forloop.counter }}" class="hotel-image">
+                                        <div class="radio-container">
+                                            <input type="radio" id="highlight-image-{{ forloop.counter }}" name="highlight_image" value="{{ image.id }}">
+                                            <label for="highlight-image-{{ forloop.counter }}"></label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="error-message-container" style="text-align: center; padding-top:0%;">
+                        <span id="nextday-notification" style="color: green; display: none;">{% trans 'The chosen check-out time is considered for the next day.' %}</span><br>
+                        <span id="datetime-error-message" style="color: red; display: none;">{% trans 'Please provide both check-in and check-out times.' %}</span><br>
+                        <span id="idproof-error-message" style="color: red; display: none;">{% trans 'Please select at least one acceptable identity proof.' %}</span><br>
+                        <span id="highlight-image-error-message" style="color: red; display: none;">{% trans 'Please select a highlight image.' %}</span>
+                    </div>
+    
+                
+                    <div class="buttons">
+                        <button id="backButton" class="back-button">{% trans 'Back' %}</button>
+                        <button type="submit" id="savebutton" class="Save-button">{% trans 'Save' %}</button>
+                    </div>
+    
+                    
+                </form>
+            </section>
+            <div id="chaletData" data-chalet-id="{{chalet_id}}" style="display: none;"></div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var chaletId = document.getElementById('chaletData').getAttribute('data-chalet-id');
+        console.log("chalet",chaletId)
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, window.location.href);
+
+            window.onpopstate = function () {
+                window.history.go(1);
+            };
+        }
+        $(document).ready(function () {
+            loadFormData();
+            function storeFormData() {
+                let selectedCheckboxes = [];
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+                    selectedCheckboxes.push(checkbox.value);
+                });
+
+                let checkinTime = document.getElementById('checkin').value;
+                let checkoutTime = document.getElementById('checkout').value;
+
+                sessionStorage.setItem('selectedCheckboxes', JSON.stringify(selectedCheckboxes));
+                sessionStorage.setItem('checkinTime', checkinTime);
+                sessionStorage.setItem('checkoutTime', checkoutTime);
+            }
+
+            // Function to load form data from session storage
+            function loadFormData() {
+                let selectedCheckboxes = JSON.parse(sessionStorage.getItem('selectedCheckboxes') || '[]');
+                selectedCheckboxes.forEach((value) => {
+                    document.querySelector(`input[type="checkbox"][value="${value}"]`).checked = true;
+                });
+
+                let checkinTime = sessionStorage.getItem('checkinTime');
+                let checkoutTime = sessionStorage.getItem('checkoutTime');
+                if (checkinTime) {
+                    document.getElementById('checkin').value = checkinTime;
+                }
+                if (checkoutTime) {
+                    document.getElementById('checkout').value = checkoutTime;
+                }
+            }
+            // Function to handle Back button click
+            $('#backButton').click(function (e) {
+                storeFormData();
+                e.preventDefault(); // Prevent default form submission
+
+                // Send Ajax request to get selected amenities and reload form
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "back_price" %}', // Replace with your Django URL to fetch selected amenities
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("Success");
+                        console.log(response)
+
+                        // Store prices, total price, and guests in sessionStorage
+                        if (response.selected_price) {
+                            sessionStorage.setItem('selectedPrices', JSON.stringify(response.selected_price));
+                        }
+                        if (response.total_price) {
+                            sessionStorage.setItem('totalPrice', response.total_price);
+                        }
+                        if (response.number_of_guests) {
+                            sessionStorage.setItem('numberOfGuests', response.number_of_guests);
+                        }
+                         /* if (response.weekend_price) {
+                            sessionStorage.setItem('weekend_price', response.weekend_price);
+                        } */
+                        if (response.payment_types && Array.isArray(response.payment_types)) {
+                            sessionStorage.setItem('selectedPayments', JSON.stringify(response.payment_types));
+                        } else {
+                            console.warn("payment_types is not an array or is undefined.");
+                        }
+
+                        // Redirect to the price page
+                        window.location.href = '/chalets/price/?chalet_id=' + encodeURIComponent(chaletId);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            $('#savebutton').click(function (e) {
+                var isValid = true;
+
+                // Clear previous error messages
+                $('#datetime-error-message').hide();
+                $('#nextday-notification').hide();
+                $('#datetime-error').hide();
+
+                var checkinTime = $('#checkin').val();
+                var checkoutTime = $('#checkout').val();
+
+                // If either field is empty
+                if (!checkinTime || !checkoutTime) {
+                    $('#datetime-error-message').text('Please provide both check-in and check-out times.').show();
+                    isValid = false;
+                } else {
+                    // Get current date and set times
+                    var today = new Date();
+                    var checkinDateTime = new Date(today.toISOString().split('T')[0] + 'T' + checkinTime);
+                    
+                    // Create the checkout date as today
+                    var checkoutDateTime = new Date(today.toISOString().split('T')[0] + 'T' + checkoutTime);
+
+                    // Check if checkout time is earlier than or equal to check-in time
+                    if (checkoutDateTime <= checkinDateTime) {
+                        // Move checkout to the next day if it's earlier or same as check-in
+                        checkoutDateTime.setDate(today.getDate() + 1);
+
+                        // Show specific message in green when checkout is considered for the next day
+                        $('#nextday-notification').text('The chosen check-out time is considered for the next day.').show();
+                    } else {
+                        $('#nextday-notification').hide(); // Hide next day message if it's not applicable
+                    }
+
+                    // If the check-out time is still invalid after adjustment, show the error
+                    if (checkinDateTime >= checkoutDateTime) {
+                        $('#datetime-error').text('Check-out time should be greater than check-in times.').show();
+                        isValid = false;
+                    } else {
+                        $('#datetime-error').hide(); // Hide the check-out time error if valid
+                    }
+                }
+
+                var hasIdentityProof = {{ has_identity_proof|lower }};  // Get the value from Django context
+                if (hasIdentityProof && $('input[name="id-proof"]:checked').length === 0) {
+                    $('#idproof-error-message').show();
+                    isValid = false;
+                } else {
+                    $('#idproof-error-message').hide();
+                }
+
+                // Check if a highlight image is selected
+                if ($('input[name="highlight_image"]:checked').length === 0) {
+                    $('#highlight-image-error-message').show();
+                    isValid = false;
+                } else {
+                    $('#highlight-image-error-message').hide();
+                }
+
+                // Prevent form submission if validation fails
+                if (!isValid) {
+                    e.preventDefault();
+                } else {
+                    // If all validations pass, remove stored session data
+                    sessionStorage.removeItem('selectedPrices');
+                    sessionStorage.removeItem('selectedCheckboxes');
+                    sessionStorage.removeItem('checkinTime');
+                    sessionStorage.removeItem('checkoutTime');
+                    sessionStorage.removeItem('selectedPayments')
+                    sessionStorage.removeItem('totalPrice')
+                    sessionStorage.removeItem('numberOfGuests')
+
+                }
+            });
+
+            // Ensure only one image can be selected at a time
+            $('input[name="highlight_image"]').on('change', function() {
+                $('input[name="highlight_image"]').not(this).prop('checked', false);
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

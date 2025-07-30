@@ -1,0 +1,32 @@
+{% load i18n %}
+{%load static%}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>1929</title>
+    <link rel="stylesheet" href="{%static 'vendor/css/landing.css'%}">
+    <link rel="stylesheet" href="{% static 'vendor/css/sign_in.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+</head>
+<body>
+    <!-- Start Landing Page -->
+    <div class="{% if request.LANGUAGE_CODE == 'ar' %}rtl{% endif %}">
+    <div class="landing-page">
+        <div class="content">
+            <div class="container">
+                <div class="info">
+                    <img src="{% static 'icons/Booking Logo PNG Black 1.png' %}" alt="logo">
+                    <h1>{% trans 'Want To Register Hotel' %}</h1>
+                    <p>{% trans 'Thank you for your interest in registering your hotel with us!' %}</p>
+                    <button onclick="location.href='/chalets/hotelregister/HOTEL/'">{% trans 'Register' %}</button>
+                    <button onclick="location.href='{%url 'dashboard_overviews'%}'">{% trans 'Back' %}</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- End Landing Page -->
+</body>
+</html>

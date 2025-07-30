@@ -1,0 +1,4213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-12 15:52+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: models.py:16 models.py:35 templates/accounts/offer_promotion.html:94
+msgid "Active"
+msgstr "نشيط"
+
+#: models.py:17 models.py:36
+msgid "Inactive"
+msgstr "غير نشط"
+
+#: models.py:18 models.py:37
+msgid "Deleted"
+msgstr "تم الحذف"
+
+#: models.py:182
+msgid "No meals"
+msgstr "لا وجبات"
+
+#: models.py:183 templates/accounts/price.html:47
+msgid "Breakfast"
+msgstr "إفطار"
+
+#: models.py:184 templates/accounts/price.html:58
+msgid "Lunch"
+msgstr "غداء"
+
+#: models.py:185 templates/accounts/price.html:69
+msgid "Dinner"
+msgstr "عشاء"
+
+#: templates/accounts/ad_page.html:20
+msgid "Want To Register Chalet"
+msgstr "تريد تسجيل الشاليه"
+
+#: templates/accounts/ad_page.html:21
+msgid "Thank you for your interest in registering your chalet with us!"
+msgstr "شكرًا لك على اهتمامك بتسجيل الشاليه الخاص بك معنا!"
+
+#: templates/accounts/ad_page.html:22 templates/accounts/ad_page_hotel.html:23
+#: templates/accounts/chalet_register.html:290
+#: templates/accounts/registration_form.html:355
+msgid "Register"
+msgstr "تسجيل"
+
+#: templates/accounts/ad_page.html:23 templates/accounts/ad_page_hotel.html:24
+#: templates/accounts/amenties.html:90
+#: templates/accounts/dashboard_overview.html:403
+#: templates/accounts/dashboard_overview.html:463
+#: templates/accounts/final_step.html:121
+#: templates/accounts/pending_approval.html:21
+#: templates/accounts/price.html:169
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/accounts/ad_page_hotel.html:21
+msgid "Want To Register Hotel"
+msgstr "تريد تسجيل الفندق"
+
+#: templates/accounts/ad_page_hotel.html:22
+msgid "Thank you for your interest in registering your hotel with us!"
+msgstr "شكرًا لك على اهتمامك بتسجيل فندقك معنا!"
+
+#: templates/accounts/amenties.html:30
+msgid "Let's finish things up"
+msgstr "دعونا ننهي الأمور"
+
+#: templates/accounts/amenties.html:34 templates/accounts/amenties.html:50
+#: templates/accounts/booking_view.html:524
+#: templates/accounts/final_step.html:23 templates/accounts/price.html:24
+#: templates/accounts/room_management.html:144
+#: templates/accounts/room_management.html:439
+#: templates/accounts/room_management_view.html:227
+msgid "Amenities"
+msgstr "المرافق"
+
+#: templates/accounts/amenties.html:39 templates/accounts/final_step.html:28
+#: templates/accounts/price.html:29 templates/accounts/price.html:39
+msgid "Prices"
+msgstr "السعر"
+
+#: templates/accounts/amenties.html:44
+#: templates/accounts/edit_hotel_policy.html:90
+#: templates/accounts/edit_hotel_policy.html:122
+#: templates/accounts/final_step.html:33 templates/accounts/final_step.html:40
+#: templates/accounts/price.html:34
+msgid "Policies"
+msgstr "سياسات"
+
+#: templates/accounts/amenties.html:51
+msgid "Please list all amenities available at your property"
+msgstr "يرجى ذكر جميع وسائل الراحة المتوفرة في الممتلكات الخاصة بك"
+
+#: templates/accounts/amenties.html:80
+msgid "Request amenity"
+msgstr "طلب وسائل الراحة"
+
+#: templates/accounts/amenties.html:86
+#: templates/accounts/edit_amentity_detail.html:191
+msgid "Please select at least one amenity to proceed."
+msgstr "يرجى تحديد وسيلة راحة واحدة على الأقل للمتابعة."
+
+#: templates/accounts/amenties.html:87
+msgid "Please wait for the requested amenity to be added before proceeding."
+msgstr "يرجى الانتظار حتى تتم إضافة الميزة المطلوبة قبل المتابعة."
+
+#: templates/accounts/amenties.html:91 templates/accounts/price.html:170
+msgid "Next"
+msgstr "التالي"
+
+#: templates/accounts/amenties.html:212
+msgid "Amenity Name is required and must contain only letters"
+msgstr "اسم الميزة مطلوب ويجب أن يحتوي على أحرف فقط"
+
+#: templates/accounts/amenties.html:235
+msgid "Request sent successfully!"
+msgstr "تم إرسال الطلب بنجاح!"
+
+#: templates/accounts/amenties.html:246
+msgid "Failed to send request."
+msgstr "فشل في إرسال الطلب."
+
+#: templates/accounts/booking_management.html:39
+msgid "Upcoming Bookings"
+msgstr "الحجوزات القادمة"
+
+#: templates/accounts/booking_management.html:44
+msgid "Past Bookings"
+msgstr "الحجوزات الماضية"
+
+#: templates/accounts/booking_management.html:50
+#: templates/accounts/dashboard_overview.html:356
+msgid "Cancelled Bookings"
+msgstr "الحجوزات الملغاة"
+
+#: templates/accounts/booking_management.html:63
+#: templates/accounts/manage_promo_code.html:406
+#: templates/accounts/refund_and_cancellation.html:40
+#: templates/accounts/review_rating.html:41
+#: templates/accounts/transaction_detail.html:41
+msgid "From: Sep 8, 2023"
+msgstr "من: 8 سبتمبر 2023"
+
+#: templates/accounts/booking_management.html:67
+#: templates/accounts/manage_promo_code.html:411
+#: templates/accounts/refund_and_cancellation.html:44
+#: templates/accounts/review_rating.html:45
+#: templates/accounts/transaction_detail.html:45
+msgid "To: Sep 8, 2023"
+msgstr "إلى: 8 سبتمبر 2023"
+
+#: templates/accounts/booking_management.html:71
+#: templates/accounts/booking_management.html:105
+#: templates/accounts/booking_management.html:246
+#: templates/accounts/dashboard_overview.html:123
+#: templates/accounts/register_view_table.html:516
+#: templates/accounts/room_management.html:64
+#: templates/accounts/room_management.html:98
+#: templates/accounts/room_management.html:314
+#: templates/accounts/room_management.html:390
+#: templates/accounts/room_management_view.html:180
+msgid "Room Type"
+msgstr "نوع الغرفة"
+
+#: templates/accounts/booking_management.html:79
+msgid "Status Type"
+msgstr "نوع الحالة"
+
+#: templates/accounts/booking_management.html:80
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: templates/accounts/booking_management.html:81
+msgid "Booked"
+msgstr "حجزت"
+
+#: templates/accounts/booking_management.html:82
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#: templates/accounts/booking_management.html:83
+msgid "Rejected"
+msgstr "مرفوض"
+
+#: templates/accounts/booking_management.html:84
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+#: templates/accounts/booking_management.html:85
+msgid "Completed"
+msgstr "مكتمل"
+
+#: templates/accounts/booking_management.html:91
+#: templates/accounts/manage_promo_code.html:426
+#: templates/accounts/offer_promotion.html:54
+#: templates/accounts/register_view_table.html:490
+#: templates/accounts/review_rating.html:66
+#: templates/accounts/room_management.html:72
+#: templates/accounts/search_navbar.html:17
+#: templates/accounts/transaction_detail.html:59
+msgid "Search"
+msgstr "بحث"
+
+#: templates/accounts/booking_management.html:102
+#: templates/accounts/dashboard_overview.html:119
+#: templates/accounts/manage_promo_code.html:520
+#: templates/accounts/offer_promotion.html:75
+#: templates/accounts/refund_and_cancellation.html:88
+#: templates/accounts/review_rating.html:77
+#: templates/accounts/room_management.html:313
+#: templates/accounts/transaction_detail.html:69
+msgid "Sl. No."
+msgstr "التسلسل"
+
+#: templates/accounts/booking_management.html:103
+#: templates/accounts/booking_management.html:226
+#: templates/accounts/dashboard_overview.html:120
+#: templates/accounts/refund_and_cancellation.html:91
+msgid "Guest Name"
+msgstr "اسم الضيف"
+
+#: templates/accounts/booking_management.html:104
+#: templates/accounts/booking_management.html:236
+#: templates/accounts/dashboard_overview.html:121
+msgid "Contact Number"
+msgstr "رقم الاتصال"
+
+#: templates/accounts/booking_management.html:106
+#: templates/accounts/dashboard_overview.html:125
+msgid "Check-In"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+
+#: templates/accounts/booking_management.html:107
+#: templates/accounts/dashboard_overview.html:126
+msgid "Check-Out"
+msgstr "الخروج"
+
+#: templates/accounts/booking_management.html:108
+#: templates/accounts/booking_management.html:276
+#: templates/accounts/dashboard_overview.html:124
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/accounts/booking_management.html:109
+#: templates/accounts/room_management.html:321
+msgid "Action"
+msgstr "الإجراءات"
+
+#: templates/accounts/booking_management.html:125
+#: templates/accounts/register_view_table.html:544
+#: templates/accounts/register_view_table.html:593
+#: templates/accounts/room_management.html:346
+#: templates/accounts/room_management.html:1251
+msgid "View"
+msgstr "معاينة"
+
+#: templates/accounts/booking_management.html:133
+#: templates/accounts/booking_management.html:220
+#: templates/accounts/manage_promo_code.html:539
+#: templates/accounts/manage_promo_code.html:558
+#: templates/accounts/offer_promotion.html:125
+#: templates/accounts/offer_promotion.html:211
+#: templates/accounts/review_rating.html:104
+#: templates/accounts/review_rating.html:116
+#: templates/accounts/room_management.html:383
+#: templates/accounts/room_management_view.html:170
+msgid "Edit"
+msgstr "تحرير"
+
+#: templates/accounts/booking_management.html:143
+#: templates/accounts/dashboard_overview.html:147
+#: templates/accounts/manage_promo_code.html:545
+#: templates/accounts/offer_promotion.html:137
+#: templates/accounts/refund_and_cancellation.html:118
+#: templates/accounts/review_rating.html:133
+#: templates/accounts/room_management.html:361
+#: templates/accounts/transaction_detail.html:103
+msgid "No data found"
+msgstr "لاتوجد بيانات"
+
+#: templates/accounts/booking_management.html:256
+#: templates/accounts/final_step.html:50
+msgid "Check in"
+msgstr "الدخول"
+
+#: templates/accounts/booking_management.html:266
+#: templates/accounts/final_step.html:54
+msgid "Check out"
+msgstr "الخروج"
+
+#: templates/accounts/booking_management.html:293
+#: templates/accounts/manage_promo_code.html:504
+#: templates/accounts/manage_promo_code.html:619
+msgid "cancel"
+msgstr "إلغاء"
+
+#: templates/accounts/booking_management.html:295
+#: templates/accounts/edit_hotel_detail.html:537
+#: templates/accounts/edit_hotel_policy.html:101
+#: templates/accounts/edit_hotel_policy.html:129
+#: templates/accounts/final_step.html:122
+#: templates/accounts/manage_promo_code.html:505
+#: templates/accounts/manage_promo_code.html:620
+#: templates/accounts/offer_promotion.html:409
+#: templates/accounts/offer_promotion.html:637
+#: templates/accounts/room_management.html:477
+#: templates/accounts/room_management_view.html:394
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/accounts/booking_view.html:438
+msgid "User Management"
+msgstr "إدارة المستخدمين"
+
+#: templates/accounts/booking_view.html:449
+msgid "Booking ID:"
+msgstr "معرف الحجز:"
+
+#: templates/accounts/booking_view.html:473
+msgid "Customer Details"
+msgstr ":تفاصيل العميل"
+
+#: templates/accounts/booking_view.html:474
+msgid "Name:"
+msgstr "اسم:"
+
+#: templates/accounts/booking_view.html:475
+msgid "Email Id:"
+msgstr "معرف البريد الإلكتروني:"
+
+#: templates/accounts/booking_view.html:476
+msgid "Contact Number:"
+msgstr "رقم الاتصال"
+
+#: templates/accounts/booking_view.html:480
+msgid "Booking Info"
+msgstr "معلومات الحجز"
+
+#: templates/accounts/booking_view.html:481
+msgid "Booking Date:"
+msgstr "تاريخ الحجز:"
+
+#: templates/accounts/booking_view.html:482
+msgid "Check In:"
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول:"
+
+#: templates/accounts/booking_view.html:483
+msgid "Check Out:"
+msgstr "تسجيل الخروج :"
+
+#: templates/accounts/booking_view.html:484
+msgid "Room Types:"
+msgstr "نوع الغرفة:"
+
+#: templates/accounts/booking_view.html:492
+msgid "Room & Members:"
+msgstr "الغرفة والأعضاء:"
+
+#: templates/accounts/booking_view.html:492
+msgid "Room"
+msgstr "غرفة"
+
+#: templates/accounts/booking_view.html:492
+msgid "Adult"
+msgstr "بالغ"
+
+#: templates/accounts/booking_view.html:498
+msgid "Pricing Structure"
+msgstr "هيكل التسعير"
+
+#: templates/accounts/booking_view.html:499
+msgid "Base Price:"
+msgstr "السعر الأساسي:"
+
+#: templates/accounts/booking_view.html:500
+msgid "Tax Fees:"
+msgstr "الرسوم الضريبية:"
+
+#: templates/accounts/booking_view.html:501
+msgid "Meal Price:"
+msgstr "سعر الوجبة:"
+
+#: templates/accounts/booking_view.html:502
+msgid "Meal Tax:"
+msgstr "ضريبة الوجبة:"
+
+#: templates/accounts/booking_view.html:503
+msgid "Discount Price"
+msgstr "سعر الخصم"
+
+#: templates/accounts/booking_view.html:504
+msgid "Service Fees:"
+msgstr "رسوم الخدمة:"
+
+#: templates/accounts/booking_view.html:506
+msgid "Payment Method:"
+msgstr "طريقة الدفع:"
+
+#: templates/accounts/booking_view.html:507
+msgid "Admin commission:"
+msgstr "عمولة المسؤول:"
+
+#: templates/accounts/booking_view.html:508
+msgid "Payment gateway fee:"
+msgstr "رسوم بوابة الدفع:"
+
+#: templates/accounts/booking_view.html:510
+msgid "Transaction Status:"
+msgstr "حالة المعاملة:"
+
+#: templates/accounts/booking_view.html:513
+msgid "Total Amount:"
+msgstr "المبلغ الإجمالي:"
+
+#: templates/accounts/booking_view.html:543
+msgid "Cancel "
+msgstr " اﻟﻐﺎء"
+
+#: templates/accounts/booking_view.html:543
+#: templates/accounts/booking_view.html:546
+msgid " Booking"
+msgstr "  الحجز"
+
+#: templates/accounts/booking_view.html:546
+msgid "Approve "
+msgstr " الموافقة على"
+
+#: templates/accounts/booking_view.html:550
+msgid "Send "
+msgstr "يرسل"
+
+#: templates/accounts/booking_view.html:550
+msgid "Booking"
+msgstr "الحجز"
+
+#: templates/accounts/booking_view.html:550
+msgid " Reminder"
+msgstr "تذكير"
+
+#: templates/accounts/booking_view.html:591
+msgid "Are you sure you want to cancel this booking?"
+msgstr "هل أنت متأكد أنك تريد إلغاء هذا الحجز؟"
+
+#: templates/accounts/booking_view.html:604
+msgid "Booking is cancelled"
+msgstr "تم إلغاء الحجز"
+
+#: templates/accounts/booking_view.html:624
+msgid "Are you sure you want to approve this booking?"
+msgstr "هل أنت متأكد أنك تريد الموافقة على هذا الحجز؟"
+
+#: templates/accounts/booking_view.html:637
+msgid "Booking is approved"
+msgstr "تمت الموافقة على الحجز"
+
+#: templates/accounts/booking_view.html:640
+msgid "Failed to approve this booking"
+msgstr "فشلت الموافقة على هذا الحجز"
+
+#: templates/accounts/booking_view.html:666
+msgid "Reminder email sent"
+msgstr "تم إرسال رسالة تذكير بالبريد الإلكتروني"
+
+#: templates/accounts/booking_view.html:697
+msgid "You can only upload a total of "
+msgstr "يمكنك فقط تحميل إجمالي"
+
+#: templates/accounts/booking_view.html:697
+msgid "files."
+msgstr "ملفات."
+
+#: templates/accounts/booking_view.html:703
+msgid "One or more files exceed the maximum size of 500 KB."
+msgstr "يتجاوز ملف واحد أو أكثر الحد الأقصى للحجم وهو 500 كيلو بايت."
+
+#: templates/accounts/booking_view.html:707
+#: templates/accounts/edit_hotel_detail.html:1348 views.py:4333
+msgid "Only JPEG and PNG files are allowed."
+msgstr "يُسمح فقط بملفات JPEG وPNG"
+
+#: templates/accounts/chalet_register.html:42
+msgid "Chalet Owner Registration Form"
+msgstr "استمارة تسجيل مالك الشاليه"
+
+#: templates/accounts/chalet_register.html:46
+msgid "Chalet Name In English"
+msgstr "اسم الشاليه بالانجليزي"
+
+#: templates/accounts/chalet_register.html:47
+msgid "Enter chalet name"
+msgstr "أدخل اسم الشاليه"
+
+#: templates/accounts/chalet_register.html:50
+msgid "Chalet Name in Arabic"
+msgstr "اسم الشاليه بالعربي"
+
+#: templates/accounts/chalet_register.html:57
+msgid " Owner Name In English "
+msgstr "اسم المالك بالانجليزي"
+
+#: templates/accounts/chalet_register.html:58
+msgid "Enter owner name"
+msgstr "اسم مالك الفندق"
+
+#: templates/accounts/chalet_register.html:63
+msgid "Owner Name In Arabic"
+msgstr "اسم المالك بالعربي"
+
+#: templates/accounts/chalet_register.html:72
+#: templates/accounts/edit_hotel_detail.html:100
+#: templates/accounts/edit_hotel_detail.html:103
+#: templates/accounts/register_view_table.html:508
+#: templates/accounts/register_view_table.html:560
+#: templates/accounts/registration_form.html:77
+msgid "Office Number"
+msgstr "رقم المكتب"
+
+#: templates/accounts/chalet_register.html:73
+#: templates/accounts/registration_form.html:78
+msgid "Ex-22555555"
+msgstr "مثال-22555555"
+
+#: templates/accounts/chalet_register.html:79
+#: templates/accounts/edit_hotel_detail.html:225
+#: templates/accounts/edit_hotel_detail.html:228
+#: templates/accounts/register_view_table.html:518
+#: templates/accounts/register_view_table.html:568
+#: templates/accounts/registration_form.html:234
+msgid "CR Number"
+msgstr "رقم السجل التجاري"
+
+#: templates/accounts/chalet_register.html:80
+#: templates/accounts/registration_form.html:235
+msgid "Enter CR number"
+msgstr "أدخل رقم السجل التجاري"
+
+#: templates/accounts/chalet_register.html:92
+#: templates/accounts/register_view_table.html:562
+msgid "Chalet Address"
+msgstr "عنوان الشاليه"
+
+#: templates/accounts/chalet_register.html:95
+#: templates/accounts/registration_form.html:116
+msgid "Search here"
+msgstr "ابحث هنا"
+
+#: templates/accounts/chalet_register.html:96
+#: templates/accounts/chalet_register.html:97
+#: templates/accounts/chalet_register.html:1203
+#: templates/accounts/registration_form.html:117
+#: templates/accounts/registration_form.html:118
+#: templates/accounts/registration_form.html:1300
+msgid "Choose my current location"
+msgstr "اختر موقعي الحالي"
+
+#: templates/accounts/chalet_register.html:104
+msgid "Governorate\\State"
+msgstr "المحافظة / الولاية"
+
+#: templates/accounts/chalet_register.html:106
+msgid "Enter your Governorate\\state Name"
+msgstr "أدخل اسم المحافظة\\الولاية"
+
+#: templates/accounts/chalet_register.html:110
+#: templates/accounts/edit_hotel_detail.html:165
+#: templates/accounts/edit_hotel_detail.html:167
+#: templates/accounts/register_view_table.html:513
+#: templates/accounts/register_view_table.html:565
+#: templates/accounts/registration_form.html:131
+msgid "City"
+msgstr "المدينة"
+
+#: templates/accounts/chalet_register.html:112
+#: templates/accounts/registration_form.html:133
+msgid "Enter your city name"
+msgstr "أدخل اسم مدينتك"
+
+#: templates/accounts/chalet_register.html:116
+#: templates/accounts/edit_hotel_detail.html:173
+#: templates/accounts/edit_hotel_detail.html:175
+#: templates/accounts/register_view_table.html:511
+#: templates/accounts/register_view_table.html:563
+#: templates/accounts/registration_form.html:137
+msgid "Country"
+msgstr "الدولة"
+
+#: templates/accounts/chalet_register.html:118
+#: templates/accounts/registration_form.html:139
+msgid "Enter your country name"
+msgstr "أدخل اسم بلدك"
+
+#: templates/accounts/chalet_register.html:131
+#: templates/accounts/edit_hotel_detail.html:135
+#: templates/accounts/registration_form.html:159
+msgid "Account Number"
+msgstr "رقم الحساب"
+
+#: templates/accounts/chalet_register.html:132
+#: templates/accounts/edit_hotel_detail.html:137
+#: templates/accounts/registration_form.html:160
+msgid "Enter your Account Number"
+msgstr "أدخل رقم حسابك"
+
+#: templates/accounts/chalet_register.html:136
+#: templates/accounts/edit_hotel_detail.html:126
+#: templates/accounts/edit_hotel_detail.html:129
+#: templates/accounts/registration_form.html:164
+msgid "Locality"
+msgstr "محلية"
+
+#: templates/accounts/chalet_register.html:137
+#: templates/accounts/registration_form.html:165
+msgid "Enter your locality"
+msgstr "أدخل منطقتك"
+
+#: templates/accounts/chalet_register.html:138
+#: templates/accounts/registration_form.html:166
+msgid "Locality not found"
+msgstr "لم يتم العثور على المنطقة"
+
+#: templates/accounts/chalet_register.html:146
+#: templates/accounts/edit_hotel_detail.html:143
+#: templates/accounts/registration_form.html:173
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#: templates/accounts/chalet_register.html:147
+#: templates/accounts/edit_hotel_detail.html:145
+#: templates/accounts/registration_form.html:174
+msgid "Enter your Bank Name"
+msgstr "أدخل اسم البنك الخاص بك"
+
+#: templates/accounts/chalet_register.html:153
+#: templates/accounts/edit_hotel_detail.html:152
+#: templates/accounts/registration_form.html:180
+msgid "Account Holder Name"
+msgstr "اسم صاحب الحساب"
+
+#: templates/accounts/chalet_register.html:154
+#: templates/accounts/edit_hotel_detail.html:154
+#: templates/accounts/registration_form.html:181
+msgid "Enter your Account Holder Name"
+msgstr "أدخل اسم صاحب الحساب الخاص بك"
+
+#: templates/accounts/chalet_register.html:162
+#: templates/accounts/edit_hotel_detail.html:241
+#: templates/accounts/edit_hotel_detail.html:244
+#: templates/accounts/register_view_table.html:520
+#: templates/accounts/register_view_table.html:570
+#: templates/accounts/registration_form.html:227
+msgid "VAT Number"
+msgstr "رقم ضريبة القيمة المضافة"
+
+#: templates/accounts/chalet_register.html:163
+#: templates/accounts/registration_form.html:228
+msgid "Enter VAT number"
+msgstr "رقم ضريبة القيمة المضافة"
+
+#: templates/accounts/chalet_register.html:181
+msgid "Chalet Description in English"
+msgstr "وصف الشاليه بالانجليزي"
+
+#: templates/accounts/chalet_register.html:182
+msgid "Enter a few words about your chalet"
+msgstr "أدخل بضع كلمات عن الشاليه الخاص بك"
+
+#: templates/accounts/chalet_register.html:189
+msgid "Chalet Description in Arabic"
+msgstr "وصف الشاليه بالعربي"
+
+#: templates/accounts/chalet_register.html:199
+msgid "Chalet Policies In English"
+msgstr "سياسات الشاليه بالانجليزي"
+
+#: templates/accounts/chalet_register.html:200
+msgid "Enter your chalet policies"
+msgstr "أدخل سياسات الشاليه الخاصة بك"
+
+#: templates/accounts/chalet_register.html:207
+msgid "Chalet Policies In Arabic"
+msgstr "سياسات الشاليه بالعربي"
+
+#: templates/accounts/chalet_register.html:215
+msgid "Chalet Type"
+msgstr "نوع الشاليه"
+
+#: templates/accounts/chalet_register.html:217
+msgid "Choose your Chalet Type"
+msgstr "اختر نوع الشاليه الخاص بك"
+
+#: templates/accounts/chalet_register.html:233
+msgid "Chalet Logo"
+msgstr "شعار الشاليه"
+
+#: templates/accounts/chalet_register.html:240
+#: templates/accounts/chalet_register.html:263
+#: templates/accounts/edit_hotel_detail.html:407
+#: templates/accounts/edit_hotel_detail.html:434
+#: templates/accounts/registration_form.html:287
+#: templates/accounts/registration_form.html:310
+msgid "(Upload JPEG/PNG files)"
+msgstr "(تحميل ملفات JPEG/PNG)"
+
+#: templates/accounts/chalet_register.html:245
+msgid "Chalet Images"
+msgstr "صور شاليه"
+
+#: templates/accounts/chalet_register.html:272
+msgid "The size of a single chalet image file should not exceed 30 MB"
+msgstr "يجب ألا يتجاوز حجم ملف صورة الشاليه الواحد 30 ميجابايت"
+
+#: templates/accounts/chalet_register.html:273
+#: templates/accounts/registration_form.html:338
+msgid "Always take the picture in bright natural light"
+msgstr "التقط الصورة دائمًا في ضوء طبيعي ساطع"
+
+#: templates/accounts/chalet_register.html:274
+#: templates/accounts/registration_form.html:339
+msgid "Upload minimum 5 images"
+msgstr "قم بتحميل 5 صور على الأقل"
+
+#: templates/accounts/chalet_register.html:275
+#: templates/accounts/registration_form.html:340
+msgid "Attach proofs of Address, CR, and VAT"
+msgstr "إرفاق إثباتات العنوان والسجل التجاري وضريبة القيمة المضافة"
+
+#: templates/accounts/chalet_register.html:281
+msgid "I agree to the "
+msgstr "أنا أوافق على"
+
+#: templates/accounts/chalet_register.html:283
+msgid "Terms"
+msgstr "شروط"
+
+#: templates/accounts/chalet_register.html:283
+msgid "And"
+msgstr "و"
+
+#: templates/accounts/chalet_register.html:283
+msgid "Conditions"
+msgstr "شروط"
+
+#: templates/accounts/chalet_register.html:793
+msgid "Chalet with same email already exist"
+msgstr "الشاليه بنفس البريد الإلكتروني موجود بالفعل"
+
+#: templates/accounts/chalet_register.html:835
+#: templates/accounts/vendor_login.html:194
+msgid "Registration successful"
+msgstr "تم التسجيل بنجاح"
+
+#: templates/accounts/chalet_register.html:836
+#: templates/accounts/vendor_login.html:195
+msgid "You have successfully registered."
+msgstr "لقد قمت بالتسجيل بنجاح."
+
+#: templates/accounts/chalet_register.html:921
+#: templates/accounts/registration_form.html:984
+#: templates/accounts/room_management.html:610
+#: templates/accounts/room_management.html:668
+msgid "images remaining to upload."
+msgstr "الصور المتبقية للتحميل."
+
+#: templates/accounts/chalet_register.html:1054
+#: templates/accounts/registration_form.html:1106
+msgid "Could not retrieve current address"
+msgstr "تعذر استرداد العنوان الحالي"
+
+#: templates/accounts/chalet_register.html:1058
+#: templates/accounts/registration_form.html:1110
+msgid "Error fetching current address"
+msgstr "حدث خطأ أثناء جلب العنوان الحالي"
+
+#: templates/accounts/chalet_register.html:1063
+#: templates/accounts/registration_form.html:1115
+msgid "Error getting current location"
+msgstr "حدث خطأ أثناء الحصول على الموقع الحالي"
+
+#: templates/accounts/chalet_register.html:1066
+#: templates/accounts/registration_form.html:1118
+msgid "Geolocation is not supported by this browser"
+msgstr "تحديد الموقع الجغرافي غير مدعوم من هذا المتصفح"
+
+#: templates/accounts/chalet_register.html:1105
+#: templates/accounts/registration_form.html:1160
+msgid "Address not found"
+msgstr "لم يتم العثور على العنوان"
+
+#: templates/accounts/chalet_register.html:1249
+#: templates/accounts/registration_form.html:1346
+msgid "This email already exists."
+msgstr "هذا البريد الإلكتروني موجود بالفعل."
+
+#: templates/accounts/chalet_register.html:1269
+#: templates/accounts/registration_form.html:1366
+msgid "The date must be today or future."
+msgstr "يجب أن يكون التاريخ اليوم أو المستقبل."
+
+#: templates/accounts/chalet_register.html:1328
+msgid "Please enter Chalet Name."
+msgstr "الرجاء إدخال اسم الشاليه."
+
+#: templates/accounts/chalet_register.html:1331
+#, python-brace-format
+msgid "Chalet Name should be at least ${chaletNameMinLength} characters long."
+msgstr "يجب ألا يقل طول اسم الشاليه عن ${chaletNameMinLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1334
+#, python-brace-format
+msgid "Chalet Name should not exceed ${chaletNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم الشاليه ${chaletNameMaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1343
+msgid "Please enter chalet Name in Arabic."
+msgstr "الرجاء إدخال اسم الشاليه باللغة العربية."
+
+#: templates/accounts/chalet_register.html:1346
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should be at least ${NameArabicMinLength} characters "
+"long."
+msgstr ""
+"اسم الشاليه باللغة العربية يجب أن يكون على الأقل ${NameArabicMinLength} حرفا "
+"طويل."
+
+#: templates/accounts/chalet_register.html:1349
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should not exceed ${NameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يتجاوز اسم الشاليه باللغة العربية ${NameArabicMaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1357
+msgid "Please enter Chalet Owner Name."
+msgstr "الرجاء إدخال اسم مالك الشاليه."
+
+#: templates/accounts/chalet_register.html:1360
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should be at least ${chaletOwnerNameMinLength} characters "
+"long."
+msgstr ""
+"يجب أن يتكون اسم مالك الشاليه من ${chaletOwnerNameMinLength} حرفًا على الأقل "
+"طويل."
+
+#: templates/accounts/chalet_register.html:1363
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should not exceed ${chaletOwnerNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم مالك الشاليه ${chaletOwnerNameMaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1367
+msgid "Chalet Owner Name must contain letters only."
+msgstr "يجب أن يحتوي اسم مالك الشاليه على أحرف فقط."
+
+#: templates/accounts/chalet_register.html:1375
+msgid "Please enter Chalet Owner Name in Arabic."
+msgstr "الرجاء إدخال اسم مالك الشاليه باللغة العربية."
+
+#: templates/accounts/chalet_register.html:1378
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should be at least "
+"${chaletOwnerNameArabicMinLength} characters long."
+msgstr ""
+"يجب أن يكون اسم مالك الشاليه باللغة العربية على الأقل "
+"${chaletOwnerNameArabicMinLength} أحرف طويلة."
+
+#: templates/accounts/chalet_register.html:1381
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should not exceed "
+"${chaletOwnerNameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يزيد اسم مالك الشاليه باللغة العربية "
+"${chaletOwnerNameArabicMaxLength} عن حرف واحد."
+
+#: templates/accounts/chalet_register.html:1385
+msgid "Chalet Owner Name in Arabic must contain Arabic letters only."
+msgstr "يجب أن يحتوي اسم مالك الشاليه باللغة العربية على حروف عربية فقط."
+
+#: templates/accounts/chalet_register.html:1399
+#: templates/accounts/registration_form.html:1628
+msgid "Invalid office number."
+msgstr "رقم المكتب غير صالح"
+
+#: templates/accounts/chalet_register.html:1401
+#: templates/accounts/edit_hotel_detail.html:1031
+#: templates/accounts/registration_form.html:1630
+msgid "Office Number should be 15 digits or less."
+msgstr "يجب أن يتكون رقم المكتب من 15 رقمًا أو أقل."
+
+#: templates/accounts/chalet_register.html:1416
+#: templates/accounts/registration_form.html:1645
+msgid "Please enter Hotel Address."
+msgstr "الرجاء إدخال عنوان الفندق."
+
+#: templates/accounts/chalet_register.html:1419
+msgid "Chalet Address should not exceed 300 characters."
+msgstr "يجب ألا يتجاوز عنوان الشاليه 300 حرف."
+
+#: templates/accounts/chalet_register.html:1427
+msgid "Please select a State/Province."
+msgstr "الرجاء تحديد الولاية/المقاطعة."
+
+#: templates/accounts/chalet_register.html:1430
+msgid "State/Province name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم الولاية/المقاطعة 50 حرفًا."
+
+#: templates/accounts/chalet_register.html:1440
+#: templates/accounts/edit_hotel_detail.html:1070
+#: templates/accounts/registration_form.html:1528
+msgid "City cannot be empty."
+msgstr "لا يمكن أن تكون المدينة فارغة."
+
+#: templates/accounts/chalet_register.html:1443
+#: templates/accounts/registration_form.html:1531
+#, python-brace-format
+msgid "City should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا تتجاوز المدينة ${stmaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1450
+#: templates/accounts/edit_hotel_detail.html:1086
+#: templates/accounts/registration_form.html:1538
+msgid "Country cannot be empty."
+msgstr "لا يمكن أن تكون البلدان فارغة."
+
+#: templates/accounts/chalet_register.html:1453
+#: templates/accounts/registration_form.html:1542
+#, python-brace-format
+msgid "Country should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا يتجاوز البلد ${stmaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1461
+#: templates/accounts/edit_hotel_detail.html:1121
+#: templates/accounts/registration_form.html:1694
+msgid "Please enter the account number."
+msgstr "الرجاء إدخال رقم الحساب."
+
+#: templates/accounts/chalet_register.html:1465
+msgid "Account Number should not exceed 20 digits."
+msgstr "يجب ألا يتجاوز رقم الحساب 20 رقمًا."
+
+#: templates/accounts/chalet_register.html:1469
+#: templates/accounts/edit_hotel_detail.html:1127
+#: templates/accounts/registration_form.html:1700
+msgid "Account Number must contain only numeric digits."
+msgstr "يجب أن يحتوي رقم الحساب على أرقام رقمية فقط."
+
+#: templates/accounts/chalet_register.html:1476
+#: templates/accounts/edit_hotel_detail.html:1141
+#: templates/accounts/registration_form.html:1711
+msgid "Please enter the account holder name."
+msgstr "الرجاء إدخال اسم صاحب الحساب."
+
+#: templates/accounts/chalet_register.html:1481
+msgid "Account Holder should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز صاحب الحساب 50 حرفًا."
+
+#: templates/accounts/chalet_register.html:1485
+msgid "Account Holder name should only contain alphabets."
+msgstr "يجب أن يحتوي اسم صاحب الحساب على حروف أبجدية فقط."
+
+#: templates/accounts/chalet_register.html:1491
+#: templates/accounts/edit_hotel_detail.html:1158
+#: templates/accounts/registration_form.html:1725
+msgid "Please enter the Bank Name."
+msgstr "الرجاء إدخال اسم البنك."
+
+#: templates/accounts/chalet_register.html:1496
+#: templates/accounts/edit_hotel_detail.html:1161
+#: templates/accounts/registration_form.html:1728
+msgid "Bank Name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم البنك 50 حرفًا."
+
+#: templates/accounts/chalet_register.html:1510
+#, python-brace-format
+msgid "Account Number should not exceed ${localityMaxLength} characters."
+msgstr "يجب ألا يتجاوز رقم الحساب ${localityMaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1525
+#: templates/accounts/registration_form.html:1908
+#, python-brace-format
+msgid "Locality should not exceed ${localityArabicMaxLength} characters."
+msgstr "يجب ألا تتجاوز المنطقة المحلية ${localityArabicMaxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1543
+#: templates/accounts/registration_form.html:1746
+msgid "Please enter CR Number."
+msgstr "الرجاء إدخال رقم السجل التجاري."
+
+#: templates/accounts/chalet_register.html:1546
+#: templates/accounts/registration_form.html:1749
+#, python-brace-format
+msgid "CR Number should not exceed ${crMaxLength} characters."
+msgstr "يجب ألا يتجاوز رقم السجل التجاري ${crMaxLength} حرفًا."
+
+#: templates/accounts/chalet_register.html:1556
+#, python-brace-format
+msgid ""
+"VAT Number should be between ${vatMinLength} and ${vatMaxLength} digits."
+msgstr ""
+"يجب أن يتراوح رقم ضريبة القيمة المضافة بين ${vatMinLength} و${vatMaxLength} "
+"من الأرقام."
+
+#: templates/accounts/chalet_register.html:1573
+#, python-brace-format
+msgid "Post Office/Postal Box should not exceed ${maxLength} characters."
+msgstr "مكتب البريد/صندوق البريد يجب ألا يتجاوز ${maxLength} من الأحرف."
+
+#: templates/accounts/chalet_register.html:1590
+#, python-brace-format
+msgid ""
+"House/Building/Apartment number should not exceed ${buildingNumberMaxLength} "
+"characters."
+msgstr ""
+"يجب ألا يتجاوز رقم المنزل/المبنى/الشقة ${buildingNumberMaxLength} الشخصيات."
+
+#: templates/accounts/chalet_register.html:1594
+msgid "House/Building/Apartment number should not be empty"
+msgstr "يجب ألا يكون رقم المنزل/المبنى/الشقة فارغًا"
+
+#: templates/accounts/chalet_register.html:1608
+#: templates/accounts/registration_form.html:1842
+msgid "Please agree to the terms and conditions."
+msgstr "يرجى الموافقة على الشروط والأحكام."
+
+#: templates/accounts/chalet_register.html:1616
+#: templates/accounts/chalet_register.html:1619
+#: templates/accounts/registration_form.html:1850
+#: templates/accounts/registration_form.html:1853
+msgid "Please upload a minimum of 5 images."
+msgstr "يرجى تحميل ما لا يقل عن 5 صور."
+
+#: templates/accounts/chalet_register.html:1628
+msgid "Please upload only JPEG or PNG images for chalet images."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لصور الشاليه."
+
+#: templates/accounts/chalet_register.html:1638
+msgid "Please upload a Chalet Logo."
+msgstr "يرجى تحميل شعار الشاليه."
+
+#: templates/accounts/chalet_register.html:1646
+msgid "Please upload only JPEG or PNG images for the chalet logo."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لشعار الشاليه."
+
+#: templates/accounts/dashboard_overview.html:65
+msgid "Bookings Rates"
+msgstr "أسعار الحجوزات"
+
+#: templates/accounts/dashboard_overview.html:73
+msgid "Cancellation Rates"
+msgstr "معدلات الإلغاء"
+
+#: templates/accounts/dashboard_overview.html:81
+msgid "Average Daily Rates"
+msgstr "متوسط ​​الأسعار اليومية"
+
+#: templates/accounts/dashboard_overview.html:89
+msgid "Review Rates"
+msgstr "مراجعة الأسعار"
+
+#: templates/accounts/dashboard_overview.html:104
+msgid "Latest Bookings"
+msgstr "أحدث الحجوزات"
+
+#: templates/accounts/dashboard_overview.html:108
+msgid "View All"
+msgstr "عرض الكل"
+
+#: templates/accounts/dashboard_overview.html:122
+#: templates/accounts/room_management.html:120
+#: templates/accounts/room_management.html:315
+#: templates/accounts/room_management.html:402
+#: templates/accounts/room_management_view.html:87
+#: templates/accounts/room_management_view.html:203
+msgid "Room Number"
+msgstr "رقم الغرفة"
+
+#: templates/accounts/dashboard_overview.html:254
+msgid "Visitor Statistics"
+msgstr "إحصائيات الزوار"
+
+#: templates/accounts/dashboard_overview.html:287
+msgid "Visitors"
+msgstr "الزوار"
+
+#: templates/accounts/dashboard_overview.html:316
+msgid "Reservation Statistics"
+msgstr "حالة الإلغاء"
+
+#: templates/accounts/dashboard_overview.html:348
+msgid "Confirmed Bookings"
+msgstr "الحجوزات الملغاة"
+
+#: templates/accounts/dashboard_overview.html:352
+msgid "Pending Bookings"
+msgstr "الحجوزات القادمة"
+
+#: templates/accounts/dashboard_overview.html:481
+#: templates/accounts/offer_promotion.html:1493
+msgid "Error fetching data. Please try again later."
+msgstr "حدث خطأ أثناء جلب البيانات. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/accounts/edit_amentity_detail.html:174
+msgid "Add Amenities"
+msgstr "أضف وسائل الراحة"
+
+#: templates/accounts/edit_amentity_detail.html:178
+#: templates/accounts/room_management.html:147
+#: templates/accounts/room_management.html:442
+#: templates/accounts/room_management_view.html:231
+msgid "Select Amenities"
+msgstr "حدد وسائل الراحة"
+
+#: templates/accounts/edit_amentity_detail.html:195
+msgid "Amenity with this name already exists"
+msgstr "وسائل الراحة بهذا الاسم موجودة بالفعل"
+
+#: templates/accounts/edit_amentity_detail.html:197
+#: templates/accounts/edit_hotel_policy.html:100
+#: templates/accounts/edit_hotel_policy.html:128
+#: templates/accounts/edit_hotel_policy.html:140
+#: templates/accounts/forgot_password_email.html:46
+#: templates/accounts/logout_button.html:20
+#: templates/accounts/offer_promotion.html:407
+#: templates/accounts/offer_promotion.html:636
+#: templates/accounts/password_rest.html:49
+#: templates/accounts/request_amenity.html:21
+#: templates/accounts/review_rating.html:232
+#: templates/accounts/review_rating.html:272
+#: templates/accounts/review_rating.html:341
+#: templates/accounts/room_management.html:295
+#: templates/accounts/room_management.html:476
+#: templates/accounts/room_management_view.html:393
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: templates/accounts/edit_amentity_detail.html:198
+#: templates/accounts/room_management.html:296
+msgid "Add"
+msgstr "يضيف"
+
+#: templates/accounts/edit_amentity_detail.html:211
+msgid "Search and select amenities"
+msgstr "البحث واختيار وسائل الراحة"
+
+#: templates/accounts/edit_amentity_detail.html:249
+#: templates/accounts/room_management.html:880
+msgid "Please select at least one amenity."
+msgstr "يرجى اختيار وسيلة راحة واحدة على الأقل."
+
+#: templates/accounts/edit_hotel.html:47
+#: templates/accounts/edit_hotel_detail.html:43
+msgid "Edit Hotel Details"
+msgstr "تعديل تفاصيل الفندق"
+
+#: templates/accounts/edit_hotel.html:55
+#: templates/accounts/edit_hotel_policy.html:35
+msgid "Edit Hotel Policies"
+msgstr "تعديل سياسات الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:50
+#: templates/accounts/edit_hotel_detail.html:53
+#: templates/accounts/register_view_table.html:505
+msgid "Hotel Name"
+msgstr "اسم الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:59
+msgid "Hotel Name/اسم الفندق"
+msgstr "اسم الفندق/اسم الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:62
+msgid "Arabic Name"
+msgstr "الاسم العربي"
+
+#: templates/accounts/edit_hotel_detail.html:69
+#: templates/accounts/edit_hotel_detail.html:72
+#: templates/accounts/register_view_table.html:506
+msgid "Hotel Owner Name"
+msgstr "اسم مالك الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:78
+msgid "Hotel Owner Name/اسم مالك الفندق"
+msgstr "اسم مالك الفندق/اسم مالك الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:81
+msgid "Hotel Owner Name In Arabic"
+msgstr "اسم مالك الفندق باللغة العربية"
+
+#: templates/accounts/edit_hotel_detail.html:92
+#: templates/accounts/register_view_table.html:507
+msgid "Hotel Owner Email"
+msgstr "بريد مالك الفندق الإلكتروني"
+
+#: templates/accounts/edit_hotel_detail.html:95
+msgid "Owner Mail"
+msgstr "بريد المالك"
+
+#: templates/accounts/edit_hotel_detail.html:108
+#: templates/accounts/edit_hotel_detail.html:111
+#: templates/accounts/register_view_table.html:510
+#: templates/accounts/registration_form.html:113
+msgid "Hotel Address"
+msgstr "عنوان الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:116
+#: templates/accounts/registration_form.html:125
+msgid "Governorate/State"
+msgstr "المحافظة / الولاية"
+
+#: templates/accounts/edit_hotel_detail.html:118
+#: templates/accounts/register_view_table.html:512
+msgid "State/Province"
+msgstr "الولاية / المحافظة"
+
+#: templates/accounts/edit_hotel_detail.html:181
+#: templates/accounts/edit_hotel_detail.html:184
+#: templates/accounts/register_view_table.html:509
+#: templates/accounts/register_view_table.html:561
+#: templates/accounts/registration_form.html:143
+msgid "GSM Number"
+msgstr "رقم الجوال"
+
+#: templates/accounts/edit_hotel_detail.html:189
+#: templates/accounts/registration_form.html:189
+msgid "Hotel Type"
+msgstr "نوع الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:192
+#: templates/accounts/registration_form.html:191
+msgid "Choose your Hotel Type"
+msgstr "اختر نوع الفندق الخاص بك"
+
+#: templates/accounts/edit_hotel_detail.html:208
+#: templates/accounts/register_view_table.html:517
+#: templates/accounts/registration_form.html:206
+msgid "Hotel Rating"
+msgstr "تقييمات الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:211
+#: templates/accounts/registration_form.html:208
+msgid "Select hotel rating"
+msgstr "اختر تصنيف الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:233
+msgid "Date Of Expiry"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#: templates/accounts/edit_hotel_detail.html:236
+#: templates/accounts/register_view_table.html:519
+#: templates/accounts/register_view_table.html:569
+#: templates/accounts/registration_form.html:221
+msgid "Date of Expiry"
+msgstr "تاريخ الانتهاء"
+
+#: templates/accounts/edit_hotel_detail.html:250
+#: templates/accounts/price.html:121
+msgid "Payments Accepted"
+msgstr "المدفوعات مقبولة"
+
+#: templates/accounts/edit_hotel_detail.html:258
+#: templates/accounts/price.html:131
+msgid "All"
+msgstr "جميع"
+
+#: templates/accounts/edit_hotel_detail.html:287
+msgid "Meal Price"
+msgstr "سعر الوجبة"
+
+#: templates/accounts/edit_hotel_detail.html:294
+#: templates/accounts/edit_hotel_detail.html:302
+#: templates/accounts/edit_hotel_detail.html:311
+msgid "Enter price"
+msgstr "أدخل السعر"
+
+#: templates/accounts/edit_hotel_detail.html:322
+msgid "Hotel Description"
+msgstr "وصف الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:324
+#: templates/accounts/edit_hotel_detail.html:332
+msgid "Enter a few words about your hotel"
+msgstr "أدخل بضع كلمات عن فندقك"
+
+#: templates/accounts/edit_hotel_detail.html:330
+msgid "Hotel Description/وصف الفندق"
+msgstr "وصف الفندق/وصف الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:343
+msgid "Hotel Policies"
+msgstr "سياسات الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:346
+#: templates/accounts/edit_hotel_detail.html:355
+msgid "Enter a few words about your hotel policies"
+msgstr "أدخل بضع كلمات حول سياسات فندقك"
+
+#: templates/accounts/edit_hotel_detail.html:352
+msgid "Hotel Policies/سياسات الفندق"
+msgstr "سياسات الفندق/سياسات الفنادق"
+
+#: templates/accounts/edit_hotel_detail.html:366
+#: templates/accounts/registration_form.html:292
+msgid "Hotel Images"
+msgstr "صور الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:415
+#: templates/accounts/registration_form.html:280
+msgid "Hotel Logo"
+msgstr "شعار الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:443
+msgid "Property Amenities"
+msgstr "مرافق المنشأة"
+
+#: templates/accounts/edit_hotel_detail.html:467
+#: templates/accounts/room_management_view.html:149
+msgid "No amenities available."
+msgstr "لا توجد وسائل الراحة المتاحة."
+
+#: templates/accounts/edit_hotel_detail.html:479
+msgid "Supporting Documents"
+msgstr "الوثائق الداعمة"
+
+#: templates/accounts/edit_hotel_detail.html:505
+msgid "Hotel Taxes"
+msgstr "ضرائب الفندق"
+
+#: templates/accounts/edit_hotel_detail.html:523
+msgid "Enter percentage"
+msgstr "أدخل النسبة المئوية"
+
+#: templates/accounts/edit_hotel_detail.html:624
+msgid "You can upload up to 3 documents. You have already uploaded 3."
+msgstr "يمكنك تحميل ما يصل إلى 3 وثائق. لقد قمت بالفعل بتحميل 3."
+
+#: templates/accounts/edit_hotel_detail.html:631
+#, python-brace-format
+msgid ""
+"You can upload up to 3 documents. You can only upload ${remaining} more."
+msgstr "يمكنك تحميل ما يصل إلى 3 وثائق. يمكنك تحميل ${remaining} فقط فقط."
+
+#: templates/accounts/edit_hotel_detail.html:698
+#: templates/accounts/edit_hotel_detail.html:1372
+msgid "Please upload exactly 3 documents."
+msgstr "يرجى تحميل 3 وثائق بالضبط."
+
+#: templates/accounts/edit_hotel_detail.html:700
+msgid "You can upload a maximum of 3 documents."
+msgstr "يمكنك تحميل 3 مستندات كحد أقصى."
+
+#: templates/accounts/edit_hotel_detail.html:751
+#: templates/accounts/edit_hotel_detail.html:827
+msgid "Please upload at least 5 images."
+msgstr "يرجى تحميل 5 صور على الأقل."
+
+#: templates/accounts/edit_hotel_detail.html:757
+#: templates/accounts/edit_hotel_detail.html:1305
+msgid "Hotel logo is required. Please upload a logo."
+msgstr "شعار الفندق مطلوب. يرجى تحميل الشعار."
+
+#: templates/accounts/edit_hotel_detail.html:841
+#, python-brace-format
+msgid ""
+"${imageLabel} is in an invalid format. Please upload a JPEG, PNG, or GIF "
+"image."
+msgstr "تنسيق ${imageLabel} غير صالح. يُرجى تحميل صورة JPEG أو PNG أو GIF."
+
+#: templates/accounts/edit_hotel_detail.html:919
+msgid "Hotel Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم الفندق فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:923
+msgid "Hotel Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم الفندق بين 3 و100 حرف."
+
+#: templates/accounts/edit_hotel_detail.html:967
+msgid "Hotel Arabic Name cannot be empty."
+msgstr "لا يمكن أن يكون الاسم العربي للفندق فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:971
+msgid "Hotel Arabic Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول الاسم العربي للفندق بين 3 و100 حرف."
+
+#: templates/accounts/edit_hotel_detail.html:981
+msgid "Hotel Owner Name cannot be empty."
+msgstr "لا يمكن أن يكون اسم مالك الفندق فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:984
+msgid "Hotel Owner Name must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم مالك الفندق بين 3 و100 حرف."
+
+#: templates/accounts/edit_hotel_detail.html:987
+#: templates/accounts/registration_form.html:1597
+msgid "Hotel Owner Name must contain letters only."
+msgstr "يجب أن يحتوي اسم مالك الفندق على أحرف فقط."
+
+#: templates/accounts/edit_hotel_detail.html:996
+msgid "Hotel Owner Name Arabic cannot be empty."
+msgstr "لا يمكن أن يكون اسم مالك الفندق فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:999
+msgid "Hotel Owner Name Arabic must be between 3 and 100 characters long."
+msgstr "يجب أن يتراوح طول اسم مالك الفندق باللغة العربية بين 3 و100 حرف."
+
+#: templates/accounts/edit_hotel_detail.html:1002
+msgid "Hotel Owner Name Arabic must contain Arabic letters only."
+msgstr "اسم مالك الفندق باللغة العربية يجب أن يحتوي على حروف عربية فقط."
+
+#: templates/accounts/edit_hotel_detail.html:1012
+msgid "Hotel Owner Email cannot be empty."
+msgstr "لا يمكن أن يكون البريد الإلكتروني لمالك الفندق فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:1015
+#: templates/accounts/registration_form.html:1618
+msgid "Please enter a valid email address."
+msgstr "يرجى إدخال عنوان بريد إلكتروني صالح."
+
+#: templates/accounts/edit_hotel_detail.html:1024
+msgid "Office Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم المكتب فارغاً."
+
+#: templates/accounts/edit_hotel_detail.html:1028
+msgid "invalid office number."
+msgstr "رقم المكتب غير صالح."
+
+#: templates/accounts/edit_hotel_detail.html:1041
+msgid "Hotel Address cannot be empty."
+msgstr "لا يمكن أن يكون عنوان الفندق فارغاً."
+
+#: templates/accounts/edit_hotel_detail.html:1044
+msgid "Hotel Address must be between 1 and 300 characters long."
+msgstr "يجب أن يتراوح طول عنوان الفندق بين 1 و300 حرف."
+
+#: templates/accounts/edit_hotel_detail.html:1055
+msgid "State/Province cannot be empty."
+msgstr "لا يمكن ترك حقل الولاية/المقاطعة فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:1059
+msgid "State/Province should not exceed 50 characters long."
+msgstr "يجب ألا يتجاوز طول الولاية/المقاطعة 50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1073
+msgid "City must be between 2 and 50 characters long."
+msgstr "يجب أن يتراوح طول المدينة بين 2 و50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1090
+msgid "Country must be 50 characters long."
+msgstr "يجب أن يتكون طول البلد من 50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1100
+msgid "GSM Number cannot be empty."
+msgstr "لا يمكن أن يكون رقم GSM فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:1104
+#: templates/accounts/registration_form.html:1660
+msgid "Invalid GSM number."
+msgstr "رقم GSM غير صالح"
+
+#: templates/accounts/edit_hotel_detail.html:1109
+msgid "GSM Number must be between 3 and 15 digits."
+msgstr "يجب أن يتراوح رقم GSM بين 3 و15 رقمًا."
+
+#: templates/accounts/edit_hotel_detail.html:1124
+msgid "Account Number should be between 9 and 20 digits."
+msgstr "يجب أن يتراوح رقم الحساب بين 9 و20 رقمًا."
+
+#: templates/accounts/edit_hotel_detail.html:1130
+#: templates/accounts/registration_form.html:1703
+msgid "Account Number cannot contain only zeros."
+msgstr "لا يمكن أن يحتوي رقم الحساب على جميع الأرقام الصفرية فقط."
+
+#: templates/accounts/edit_hotel_detail.html:1144
+#: templates/accounts/registration_form.html:1714
+msgid "Account Holder name should not exceed 50 characters."
+msgstr "يجب ألا يتجاوز اسم صاحب الحساب 50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1147
+#: templates/accounts/registration_form.html:1717
+msgid ""
+"Account Holder name should only contain alphabets, spaces, hyphens, and "
+"apostrophes."
+msgstr ""
+"يجب أن يحتوي اسم صاحب الحساب فقط على الحروف الهجائية والمسافات والواصلات "
+"والفواصل العليا."
+
+#: templates/accounts/edit_hotel_detail.html:1164
+#: templates/accounts/registration_form.html:1731
+msgid "Bank Name should only contain alphabets, spaces, and &."
+msgstr "يجب أن يحتوي اسم البنك على الحروف الهجائية والمسافات و& فقط."
+
+#: templates/accounts/edit_hotel_detail.html:1177
+msgid "Locality must be between 3 and 50 characters long."
+msgstr "يجب أن يتراوح طول المنطقة المحلية بين 3 و50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1191
+msgid "CR Number is required."
+msgstr "مطلوب رقم السجل التجاري."
+
+#: templates/accounts/edit_hotel_detail.html:1195
+#, python-brace-format
+msgid "CR Number must not exceed ${crMaxLength} characters."
+msgstr "يجب ألا يتجاوز رقم السجل التجاري ${crMaxLength} حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1208
+msgid "Date of Expiry cannot be empty."
+msgstr "لا يمكن أن يكون تاريخ انتهاء الصلاحية فارغًا."
+
+#: templates/accounts/edit_hotel_detail.html:1212
+msgid "Please enter a valid date in YYYY-MM-DD format."
+msgstr "الرجاء إدخال تاريخ صالح بتنسيق YYYY-MM-DD."
+
+#: templates/accounts/edit_hotel_detail.html:1216
+msgid "Date of Expiry must be a future date."
+msgstr "يجب أن يكون تاريخ انتهاء الصلاحية تاريخًا مستقبليًا."
+
+#: templates/accounts/edit_hotel_detail.html:1227
+msgid "VAT Number must be between 2 to 12 digits"
+msgstr "يجب أن يتراوح رقم ضريبة القيمة المضافة بين 2 إلى 12 رقمًا"
+
+#: templates/accounts/edit_hotel_detail.html:1244
+#: templates/accounts/price.html:158
+msgid "Please select your accepted payment methods."
+msgstr "يرجى تحديد طرق الدفع المقبولة لديك."
+
+#: templates/accounts/edit_hotel_detail.html:1256
+msgid "Hotel Rating must be selected."
+msgstr "يجب تحديد تصنيفات الفندق."
+
+#: templates/accounts/edit_hotel_detail.html:1278
+#: templates/accounts/registration_form.html:1685
+msgid "Please Select Hotel Rating."
+msgstr "الرجاء تحديد تصنيف الفندق."
+
+#: templates/accounts/edit_hotel_detail.html:1290
+msgid "At least one amenity must be selected."
+msgstr "يجب اختيار وسائل راحة واحدة على الأقل."
+
+#: templates/accounts/edit_hotel_detail.html:1313
+msgid "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+msgstr "نوع الملف غير صالح. يرجى تحميل صورة JPEG، PNG، أو GIF."
+
+#: templates/accounts/edit_hotel_detail.html:1335
+#, python-brace-format
+msgid ""
+"Please upload at least ${requiredTotalImages} images (1 main and 4 "
+"additional)."
+msgstr ""
+"يُرجى تحميل ما لا يقل عن ${requiredTotalImages} من الصور (واحدة رئيسية "
+"و4إضافي)."
+
+#: templates/accounts/edit_hotel_detail.html:1339
+#, python-brace-format
+msgid "You can only upload up to ${requiredTotalImages} images."
+msgstr "يمكنك فقط تحميل ما يصل إلى ${requiredTotalImages} من الصور."
+
+#: templates/accounts/edit_hotel_detail.html:1355
+msgid "Each image must be less than 1MB."
+msgstr "يجب أن يكون حجم كل صورة أقل من 1 ميجابايت."
+
+#: templates/accounts/edit_hotel_detail.html:1397
+#: templates/accounts/room_management.html:135
+msgid "Please enter a price"
+msgstr "الرجاء إدخال السعر"
+
+#: templates/accounts/edit_hotel_detail.html:1404
+#: templates/accounts/price.html:360
+msgid "Please enter a valid price"
+msgstr "الرجاء إدخال سعر صالح"
+
+#: templates/accounts/edit_hotel_detail.html:1418
+msgid ""
+"Please enter a valid number greater than or equal to 0. Characters are not "
+"allowed."
+msgstr "الرجاء إدخال رقم صالح أكبر من أو يساوي 0. غير مسموح بالأحرف."
+
+#: templates/accounts/edit_hotel_policy.html:37
+#: templates/accounts/edit_hotel_policy.html:75
+#: templates/accounts/edit_hotel_policy.html:97
+msgid "Add New Policy"
+msgstr "إضافة سياسة جديدة"
+
+#: templates/accounts/edit_hotel_policy.html:46
+#: templates/accounts/edit_hotel_policy.html:112
+msgid "Edit Policy"
+msgstr "سياسة الحيوانات الأليفة"
+
+#: templates/accounts/edit_hotel_policy.html:49
+#: templates/accounts/edit_hotel_policy.html:136
+msgid "Delete Policy"
+msgstr "حذف السياسة"
+
+#: templates/accounts/edit_hotel_policy.html:66
+msgid "No policies available."
+msgstr "لا توجد سياسات متاحة."
+
+#: templates/accounts/edit_hotel_policy.html:80
+#: templates/accounts/edit_hotel_policy.html:117
+#: templates/accounts/offer_promotion.html:252
+#: templates/accounts/offer_promotion.html:465
+msgid "Category"
+msgstr "فئة"
+
+#: templates/accounts/edit_hotel_policy.html:81
+msgid "Enter or select the policy category"
+msgstr "أدخل أو حدد فئة السياسة"
+
+#: templates/accounts/edit_hotel_policy.html:92
+#: templates/accounts/edit_hotel_policy.html:171
+#: templates/accounts/edit_hotel_policy.html:356
+#: templates/accounts/edit_hotel_policy.html:430
+msgid "Enter the policy"
+msgstr "أدخل السياسة"
+
+#: templates/accounts/edit_hotel_policy.html:118
+msgid "Enter the policy category"
+msgstr "أدخل فئة السياسة"
+
+#: templates/accounts/edit_hotel_policy.html:125
+msgid "Add new policy"
+msgstr "إضافة سياسة جديدة"
+
+#: templates/accounts/edit_hotel_policy.html:137
+msgid "Are you sure you want to delete this policy?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه السياسة؟"
+
+#: templates/accounts/edit_hotel_policy.html:137
+msgid "This action cannot be undone."
+msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+#: templates/accounts/edit_hotel_policy.html:139
+msgid "Yes, Delete"
+msgstr "نعم، احذف"
+
+#: templates/accounts/edit_hotel_policy.html:236
+msgid "Category cannot be empty."
+msgstr "لا يمكن أن تكون الفئة فارغة."
+
+#: templates/accounts/edit_hotel_policy.html:240
+#: templates/accounts/edit_hotel_policy.html:470
+msgid "Category name must be 50 characters or less."
+msgstr "يجب أن يكون اسم الفئة 50 حرفًا أو أقل."
+
+#: templates/accounts/edit_hotel_policy.html:243
+#: templates/accounts/edit_hotel_policy.html:475
+msgid "Category name must contain only alphabetic characters and spaces."
+msgstr "يجب أن يحتوي اسم الفئة على أحرف أبجدية ومسافات فقط."
+
+#: templates/accounts/edit_hotel_policy.html:248
+#: templates/accounts/edit_hotel_policy.html:497
+msgid "At least one policy must be provided."
+msgstr "يجب توفير سياسة واحدة على الأقل."
+
+#: templates/accounts/edit_hotel_policy.html:302
+msgid "An error occurred while saving policies."
+msgstr "حدث خطأ أثناء حفظ السياسات."
+
+#: templates/accounts/edit_hotel_policy.html:305
+msgid "Please enter a category and at least one policy."
+msgstr "الرجاء إدخال فئة وسياسة واحدة على الأقل."
+
+#: templates/accounts/edit_hotel_policy.html:468
+msgid "Category name cannot be empty or contain only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة فارغًا أو يحتوي على مسافات فقط."
+
+#: templates/accounts/edit_hotel_policy.html:480
+msgid "Category name cannot be only spaces."
+msgstr "لا يمكن أن يكون اسم الفئة مسافات فقط."
+
+#: templates/accounts/edit_hotel_policy.html:489
+msgid "Policy "
+msgstr "سياسة"
+
+#: templates/accounts/edit_hotel_policy.html:489
+msgid " cannot be empty or contain only spaces."
+msgstr "لا يمكن أن تكون فارغة أو تحتوي على مسافات فقط."
+
+#: templates/accounts/edit_hotel_policy.html:579
+msgid "Policy has been deleted"
+msgstr "تم حذف السياسة"
+
+#: templates/accounts/edit_hotel_policy.html:583 views.py:3979
+msgid "Something went wrong"
+msgstr "حدث خطأ ما"
+
+#: templates/accounts/final_step.html:19 templates/accounts/price.html:20
+msgid "Almost finished!"
+msgstr "تقريبا انتهيت!"
+
+#: templates/accounts/final_step.html:41
+msgid "Please list all policies applicable at your property"
+msgstr "يرجى إدراج كافة السياسات المطبقة في الممتلكات الخاصة بك"
+
+#: templates/accounts/final_step.html:45
+msgid "Check-In & Check-Out"
+msgstr "الدخول الخروج "
+
+#: templates/accounts/final_step.html:46
+msgid "Please ensure to mention both your check-in and check-out dates"
+msgstr "يرجى التأكد من ذكر تاريخي تسجيل الوصول والمغادرة"
+
+#: templates/accounts/final_step.html:65
+msgid "Acceptable Identity Proofs"
+msgstr "إثباتات الهوية المقبولة"
+
+#: templates/accounts/final_step.html:96
+msgid "Select a Highlight Image for Your Hotel"
+msgstr "اختر صورة مميزة لفندقك"
+
+#: templates/accounts/final_step.html:114
+msgid "The chosen check-out time is considered for the next day."
+msgstr "يتم أخذ وقت تسجيل المغادرة المختار في الاعتبار في اليوم التالي."
+
+#: templates/accounts/final_step.html:115
+msgid "Please provide both check-in and check-out times."
+msgstr "يرجى تقديم أوقات تسجيل الوصول والمغادرة."
+
+#: templates/accounts/final_step.html:116
+msgid "Please select at least one acceptable identity proof."
+msgstr "يرجى تحديد إثبات هوية مقبول واحد على الأقل."
+
+#: templates/accounts/final_step.html:117
+msgid "Please select a highlight image."
+msgstr "الرجاء اختيار صورة مميزة."
+
+#: templates/accounts/forgot_password_email.html:36
+#: templates/accounts/forgot_password_email.html:38
+#: templates/accounts/registration_form.html:70
+#: templates/accounts/registration_form.html:71
+#: templates/accounts/vendor_login.html:44
+#: templates/accounts/vendor_login.html:45
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: templates/accounts/forgot_password_email.html:41
+msgid "Email address not found"
+msgstr "عنوان البريد الإلكتروني غير موجود"
+
+#: templates/accounts/forgot_password_email.html:45
+msgid "Send Link"
+msgstr "أرسل الرابط"
+
+#: templates/accounts/forgot_password_email.html:50
+#: templates/accounts/forgot_password_email.html:81
+msgid "Please click on the link sent to your email"
+msgstr "الرجاء الضغط على الرابط الذي تم إرساله إلى بريدك الإلكتروني"
+
+#: templates/accounts/forgot_password_email.html:56
+msgid "Didn't get the link?"
+msgstr "لم تحصل على الرابط؟"
+
+#: templates/accounts/forgot_password_email.html:59
+msgid "Resend"
+msgstr "إعادة إرسال"
+
+#: templates/accounts/forgot_password_email.html:80
+msgid "Link sent successfully"
+msgstr "تم إرسال الرابط بنجاح"
+
+#: templates/accounts/hotel_logo_navbar.html:27
+msgid "Dashboard "
+msgstr "لوحة القيادة"
+
+#: templates/accounts/hotel_logo_navbar.html:30
+msgid " Bookings "
+msgstr "الحجوزات "
+
+#: templates/accounts/hotel_logo_navbar.html:33
+msgid "Rooms "
+msgstr "الغرف"
+
+#: templates/accounts/hotel_logo_navbar.html:36
+msgid "Transactions "
+msgstr "المعاملات"
+
+#: templates/accounts/hotel_logo_navbar.html:39
+msgid "Offers & Promo"
+msgstr "العروض والحملات الترويجية"
+
+#: templates/accounts/hotel_logo_navbar.html:42
+msgid "Refund"
+msgstr "المبالغ المستردة"
+
+#: templates/accounts/hotel_logo_navbar.html:46
+msgid "Review & Rating"
+msgstr "مراجعات وتقييمات"
+
+#: templates/accounts/hotel_logo_navbar.html:50
+msgid "Edit Details"
+msgstr "تحرير التفاصيل"
+
+#: templates/accounts/hotel_logo_navbar.html:53
+msgid "Hotel Management"
+msgstr "إدارة الفندق"
+
+#: templates/accounts/logout_button.html:11
+#: templates/accounts/search_navbar.html:58
+msgid "Logout"
+msgstr "تسجيل خروج"
+
+#: templates/accounts/logout_button.html:18
+msgid "Logout From Dashboard?"
+msgstr "هل أنت متأكد ؟ هل تريد الخروج ؟"
+
+#: templates/accounts/logout_button.html:19
+msgid "Yes"
+msgstr "نعم"
+
+#: templates/accounts/manage_promo_code.html:403
+msgid "Promo Code Management"
+msgstr "إدارة كود الخصم"
+
+#: templates/accounts/manage_promo_code.html:417
+#: templates/accounts/offer_promotion.html:78
+#: templates/accounts/offer_promotion.html:264
+#: templates/accounts/offer_promotion.html:483
+msgid "Discount Percentage"
+msgstr "نسبة الخصم"
+
+#: templates/accounts/manage_promo_code.html:431
+#: templates/accounts/manage_promo_code.html:444
+msgid "Create New Promo Code"
+msgstr "إنشاء كود خصم جديد"
+
+#: templates/accounts/manage_promo_code.html:450
+#: templates/accounts/manage_promo_code.html:521
+#: templates/accounts/manage_promo_code.html:565
+msgid "Code name"
+msgstr "اسم الكود"
+
+#: templates/accounts/manage_promo_code.html:458
+#: templates/accounts/manage_promo_code.html:522
+#: templates/accounts/manage_promo_code.html:573
+msgid "Discount percentage"
+msgstr "نسبة الخصم"
+
+#: templates/accounts/manage_promo_code.html:467
+#: templates/accounts/manage_promo_code.html:582
+msgid "Validity From"
+msgstr "الصلاحية من"
+
+#: templates/accounts/manage_promo_code.html:477
+#: templates/accounts/manage_promo_code.html:591
+msgid "Validity To"
+msgstr "صلاحية ل"
+
+#: templates/accounts/manage_promo_code.html:486
+#: templates/accounts/manage_promo_code.html:524
+#: templates/accounts/manage_promo_code.html:601
+msgid "Usage limits"
+msgstr "حدود الاستخدام"
+
+#: templates/accounts/manage_promo_code.html:495
+#: templates/accounts/manage_promo_code.html:525
+#: templates/accounts/manage_promo_code.html:610
+msgid "Applicable conditions"
+msgstr "الشروط القابلة للتطبيق"
+
+#: templates/accounts/manage_promo_code.html:523
+msgid "Validity period"
+msgstr "فترة الصلاحية"
+
+#: templates/accounts/manage_promo_code.html:540
+#: templates/accounts/offer_promotion.html:128
+#: templates/accounts/review_rating.html:107
+#: templates/accounts/review_rating.html:119
+#: templates/accounts/room_management.html:352
+#: templates/accounts/room_management.html:1256
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/accounts/manage_promo_code.html:656
+msgid "Validity From date must be today or in the future."
+msgstr "الصلاحية من التاريخ يجب أن تكون اليوم أو في المستقبل."
+
+#: templates/accounts/manage_promo_code.html:662
+msgid "Validity To date must be today or in the future."
+msgstr "الصلاحية حتى الآن يجب أن تكون اليوم أو في المستقبل."
+
+#: templates/accounts/offer_promotion.html:36
+msgid "Offer Creation And Management"
+msgstr "إنشاء العرض وإدارته"
+
+#: templates/accounts/offer_promotion.html:44
+#: templates/accounts/offer_promotion.html:470
+msgid "Common Promotion"
+msgstr "ترقية عامة"
+
+#: templates/accounts/offer_promotion.html:45
+#: templates/accounts/offer_promotion.html:471
+msgid "Promo Code Specific"
+msgstr "الرمز الترويجي محدد"
+
+#: templates/accounts/offer_promotion.html:60
+msgid "Create New Offer"
+msgstr "إنشاء عرض جديد"
+
+#: templates/accounts/offer_promotion.html:76
+#: templates/accounts/offer_promotion.html:228
+#: templates/accounts/offer_promotion.html:439
+msgid "Offer Name"
+msgstr "اسم العرض"
+
+#: templates/accounts/offer_promotion.html:77
+#: templates/accounts/offer_promotion.html:238
+#: templates/accounts/offer_promotion.html:451
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/accounts/offer_promotion.html:81
+#: templates/accounts/offer_promotion.html:315
+#: templates/accounts/offer_promotion.html:540
+msgid "Promo Code"
+msgstr "الرمز الترويجي"
+
+#: templates/accounts/offer_promotion.html:82
+#: templates/accounts/offer_promotion.html:326
+#: templates/accounts/offer_promotion.html:552
+msgid "Max Uses"
+msgstr "الاستخدامات القصوى"
+
+#: templates/accounts/offer_promotion.html:83
+#: templates/accounts/offer_promotion.html:92
+msgid "Validity Period"
+msgstr "فترة الصلاحية"
+
+#: templates/accounts/offer_promotion.html:85
+#: templates/accounts/offer_promotion.html:363
+#: templates/accounts/offer_promotion.html:591
+msgid "Targeted Offer Type"
+msgstr "نوع العرض المستهدف"
+
+#: templates/accounts/offer_promotion.html:87
+#: templates/accounts/offer_promotion.html:380
+#: templates/accounts/offer_promotion.html:608
+msgid "Occasion Name"
+msgstr "اسم المناسبة"
+
+#: templates/accounts/offer_promotion.html:89
+#: templates/accounts/offer_promotion.html:393
+#: templates/accounts/offer_promotion.html:622
+msgid "Points Required"
+msgstr "النقاط المطلوبة"
+
+#: templates/accounts/offer_promotion.html:91
+#: templates/accounts/offer_promotion.html:280
+#: templates/accounts/offer_promotion.html:501
+msgid "Minimum Spend"
+msgstr "الحد الأدنى للإنفاق"
+
+#: templates/accounts/offer_promotion.html:120
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+#: templates/accounts/offer_promotion.html:291
+#: templates/accounts/offer_promotion.html:338
+#: templates/accounts/offer_promotion.html:513
+#: templates/accounts/offer_promotion.html:564
+msgid "Valid From"
+msgstr "صالح من"
+
+#: templates/accounts/offer_promotion.html:301
+#: templates/accounts/offer_promotion.html:348
+#: templates/accounts/offer_promotion.html:525
+#: templates/accounts/offer_promotion.html:576
+msgid "Valid To"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#: templates/accounts/offer_promotion.html:367
+#: templates/accounts/offer_promotion.html:595
+msgid "Early Bird"
+msgstr "الطائر المبكر"
+
+#: templates/accounts/offer_promotion.html:368
+#: templates/accounts/offer_promotion.html:596
+msgid "Last Minute"
+msgstr "اللحظة الأخيرة"
+
+#: templates/accounts/offer_promotion.html:369
+#: templates/accounts/offer_promotion.html:597
+msgid "Family Package"
+msgstr "الحزمة العائلية"
+
+#: templates/accounts/offer_promotion.html:426
+msgid "Add New Offer"
+msgstr "إضافة عرض جديد"
+
+#: templates/accounts/offer_promotion.html:443
+msgid "Enter offer name"
+msgstr "أدخل اسم العروض"
+
+#: templates/accounts/offer_promotion.html:455
+msgid "Enter offer description here..."
+msgstr "أدخل وصف العرض هنا..."
+
+#: templates/accounts/offer_promotion.html:488
+msgid "Enter discount percentage"
+msgstr "أدخل نسبة الخصم"
+
+#: templates/accounts/offer_promotion.html:505
+msgid "Enter minimum spend"
+msgstr "أدخل الحد الأدنى للإنفاق"
+
+#: templates/accounts/offer_promotion.html:698
+#: templates/accounts/offer_promotion.html:1151
+msgid "Offer Name is required."
+msgstr "اسم العروض مطلوب."
+
+#: templates/accounts/offer_promotion.html:703
+#: templates/accounts/offer_promotion.html:1155
+msgid "Offer Name cannot exceed 30 characters."
+msgstr "لا يمكن أن يتجاوز اسم العروض 30 حرفًا."
+
+#: templates/accounts/offer_promotion.html:709
+#: templates/accounts/offer_promotion.html:1160
+msgid "Description is required."
+msgstr "الوصف مطلوب."
+
+#: templates/accounts/offer_promotion.html:714
+#: templates/accounts/offer_promotion.html:1164
+msgid "Description cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز الوصف 100 حرف."
+
+#: templates/accounts/offer_promotion.html:720
+#: templates/accounts/offer_promotion.html:1169
+msgid "You need to enter discount percentage to proceed."
+msgstr "تحتاج إلى إدخال نسبة الخصم للمتابعة."
+
+#: templates/accounts/offer_promotion.html:725
+#: templates/accounts/offer_promotion.html:1174
+msgid "Please enter a valid discount percentage (between 0 and 100)."
+msgstr "الرجاء إدخال نسبة خصم صالحة (بين 0 و100)."
+
+#: templates/accounts/offer_promotion.html:739
+msgid "Minimum spend must be a whole number (no decimals)."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا (بدون أرقام عشرية)."
+
+#: templates/accounts/offer_promotion.html:744
+msgid "Please enter a valid minimum spend."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق."
+
+#: templates/accounts/offer_promotion.html:749
+msgid "Please specify a valid start date."
+msgstr "الرجاء تحديد تاريخ بدء صالح."
+
+#: templates/accounts/offer_promotion.html:754
+msgid "Please specify a valid end date."
+msgstr "الرجاء تحديد تاريخ انتهاء صالح."
+
+#: templates/accounts/offer_promotion.html:766
+#: templates/accounts/offer_promotion.html:818
+#: templates/accounts/offer_promotion.html:1211
+#: templates/accounts/offer_promotion.html:1277
+msgid "Valid From date cannot be in the past."
+msgstr "لا يمكن أن يكون تاريخ البدء الصحيح في الماضي"
+
+#: templates/accounts/offer_promotion.html:770
+#: templates/accounts/offer_promotion.html:822
+#: templates/accounts/offer_promotion.html:1214
+#: templates/accounts/offer_promotion.html:1281
+msgid "Validity To date cannot be in the past."
+msgstr "لا يمكن أن تكون الصلاحية حتى الآن في الماضي."
+
+#: templates/accounts/offer_promotion.html:774
+msgid "Start date cannot be later than the end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/accounts/offer_promotion.html:787
+#: templates/accounts/offer_promotion.html:1228
+msgid "Promo code is required."
+msgstr "الرمز الترويجي مطلوب."
+
+#: templates/accounts/offer_promotion.html:792
+msgid "Promo code cannot exceed 50 characters."
+msgstr "لا يمكن أن يتجاوز الرمز الترويجي 50 حرفًا."
+
+#: templates/accounts/offer_promotion.html:798
+#: templates/accounts/offer_promotion.html:1258
+msgid "Please specify a valid number of max uses below 1999999999."
+msgstr "يرجى تحديد عدد صحيح من الاستخدامات القصوى أدناه 1999999999."
+
+#: templates/accounts/offer_promotion.html:803
+#: templates/accounts/offer_promotion.html:808
+#: templates/accounts/offer_promotion.html:1195
+#: templates/accounts/offer_promotion.html:1199
+#: templates/accounts/offer_promotion.html:1262
+#: templates/accounts/offer_promotion.html:1267
+msgid "Please specify a valid date."
+msgstr "يرجى تحديد تاريخ صالح."
+
+#: templates/accounts/offer_promotion.html:827
+#: templates/accounts/offer_promotion.html:1217
+#: templates/accounts/offer_promotion.html:1286
+msgid "Start date cannot be later than end date."
+msgstr "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء."
+
+#: templates/accounts/offer_promotion.html:835
+#: templates/accounts/offer_promotion.html:1295
+msgid "Please select a targeted offer type."
+msgstr "الرجاء تحديد نوع العرض المستهدف."
+
+#: templates/accounts/offer_promotion.html:844
+#: templates/accounts/offer_promotion.html:1303
+msgid "Occasion name is required."
+msgstr "اسم المناسبة مطلوب."
+
+#: templates/accounts/offer_promotion.html:849
+#: templates/accounts/offer_promotion.html:1307
+msgid "Occasion name cannot be a number."
+msgstr "لا يمكن أن يكون اسم المناسبة رقمًا."
+
+#: templates/accounts/offer_promotion.html:854
+msgid "Occasion name cannot exceed 100 characters."
+msgstr "لا يمكن أن يتجاوز اسم المناسبة 100 حرف."
+
+#: templates/accounts/offer_promotion.html:864
+#: templates/accounts/offer_promotion.html:1315
+msgid "Please specify the points required."
+msgstr "يرجى تحديد النقاط المطلوبة."
+
+#: templates/accounts/offer_promotion.html:919
+#: templates/accounts/offer_promotion.html:1033
+#: templates/accounts/review_rating.html:306
+msgid "Error fetching pagination data. Please try again later."
+msgstr "حدث خطأ أثناء جلب بيانات ترقيم الصفحات. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/accounts/offer_promotion.html:958
+msgid "Error submitting the form. Please try again later."
+msgstr "حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/accounts/offer_promotion.html:1186
+msgid "Minimum spend is required."
+msgstr "مطلوب الحد الأدنى للإنفاق."
+
+#: templates/accounts/offer_promotion.html:1188
+msgid "Minimum spend must be a whole number without decimal points."
+msgstr "يجب أن يكون الحد الأدنى للإنفاق عددًا صحيحًا بدون نقاط عشرية."
+
+#: templates/accounts/offer_promotion.html:1190
+msgid "Please enter a valid minimum spend greater than zero."
+msgstr "الرجاء إدخال حد أدنى صالح للإنفاق أكبر من الصفر."
+
+#: templates/accounts/offer_promotion.html:1246
+msgid "Promo code already exists."
+msgstr "الرمز الترويجي موجود بالفعل."
+
+#: templates/accounts/offer_promotion.html:1351
+msgid "Error updating offer. Please try again later."
+msgstr "حدث خطأ أثناء تحديث العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/accounts/offer_promotion.html:1364
+msgid "Are you sure you want to delete this offer?"
+msgstr "هل أنت متأكد أنك تريد حذف هذا العرض؟"
+
+#: templates/accounts/offer_promotion.html:1377
+msgid "Error deleting offer. Please try again later."
+msgstr "حدث خطأ أثناء حذف العرض. يرجى المحاولة مرة أخرى لاحقا."
+
+#: templates/accounts/password_rest.html:29
+#: templates/accounts/password_rest.html:31
+#: templates/accounts/registration_form.html:87
+#: templates/accounts/vendor_login.html:49
+#: templates/accounts/vendor_login.html:51
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/accounts/password_rest.html:34
+#: templates/accounts/registration_form.html:1791
+msgid ""
+"Password must be at least 8 characters long and include a mix of letters "
+"(lower-case & upper-case), numbers, and symbols."
+msgstr ""
+"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتتضمن مزيجًا من الأحرف(الأحرف "
+"الصغيرة والأحرف الكبيرة)، والأرقام، والرموز."
+
+#: templates/accounts/password_rest.html:38
+#: templates/accounts/password_rest.html:40
+#: templates/accounts/registration_form.html:99
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/accounts/password_rest.html:43
+msgid "Passwords do not match"
+msgstr "كلمة المرور غير مطابقة"
+
+#: templates/accounts/password_rest.html:48
+msgid "Confirm"
+msgstr "يتأكد"
+
+#: templates/accounts/password_rest.html:54
+msgid "You can now log in with your new password."
+msgstr "يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة الخاصة بك."
+
+#: templates/accounts/password_rest.html:55
+msgid "Go to Login"
+msgstr "اذهب لتسجيل الدخول"
+
+#: templates/accounts/password_rest.html:99
+msgid "Password changed"
+msgstr "تم تغيير كلمة السر"
+
+#: templates/accounts/password_rest.html:100
+msgid "Your password has been changed successfully"
+msgstr "لقد تم تغيير كلمة المرور الخاصة بك بنجاح"
+
+#: templates/accounts/password_rest.html:136
+msgid "Link expired.Request for new link again"
+msgstr "انتهت صلاحية الرابط. اطلب الرابط الجديد مرة أخرى"
+
+#: templates/accounts/pending.html:20
+#: templates/accounts/pending_approval.html:19
+msgid "Awaiting Approval"
+msgstr "في انتظار الموافقة"
+
+#: templates/accounts/pending.html:21
+#: templates/accounts/pending_approval.html:20
+msgid ""
+"Thanks for registering with us! We have sent your request to the "
+"administrator and once approved you will be notified through email. Please "
+"try again after some time."
+msgstr ""
+"شكرًا لتسجيلك معنا! لقد أرسلنا طلبك إلى المسؤول وبمجرد الموافقة سيتم إعلامك "
+"عبر البريد الإلكتروني. من فضلك حاول مرة أخرى بعد مرور بعض الوقت."
+
+#: templates/accounts/pending.html:22
+msgid "Try Again"
+msgstr "حاول ثانية"
+
+#: templates/accounts/price.html:40
+msgid "Please enter the price details"
+msgstr "الرجاء إدخال تفاصيل السعر"
+
+#: templates/accounts/price.html:50 templates/accounts/price.html:61
+#: templates/accounts/price.html:72
+msgid "OMR Enter"
+msgstr "OMR أدخل"
+
+#: templates/accounts/price.html:82
+msgid "Tax Information"
+msgstr "المعلومات الضريبية"
+
+#: templates/accounts/price.html:86
+msgid "If Applicable"
+msgstr "إذا كان ذلك ممكنا"
+
+#: templates/accounts/price.html:106
+msgid "أدخل النسبة المئوية (مثال: 5٪)"
+msgstr ""
+
+#: templates/accounts/price.html:106
+#, python-format
+msgid "Enter percentage (e.g. 5%%)"
+msgstr "أدخل النسبة المئوية (على سبيل المثال 5%%)"
+
+#: templates/accounts/price.html:154
+msgid "Please check the corresponding checkbox for the entered price."
+msgstr "يرجى تفعيل خانة الاختيار للمبلغ الذي تم إدخاله."
+
+#: templates/accounts/price.html:155
+msgid "Please enter a price value."
+msgstr "الرجاء إدخال سعر صالح."
+
+#: templates/accounts/price.html:156
+msgid "The amount must be zero or greater."
+msgstr "يجب أن يكون التاريخ اليوم أو المستقبل."
+
+#: templates/accounts/price.html:157
+msgid ""
+"Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., "
+"5 or 12.5)."
+msgstr ""
+"قيمة الضريبة غير صالحة. يرجى إدخال قيمة صحيحة بين 0.00 و 99.99 (مثل 5 أو "
+"12.5)."
+
+#: templates/accounts/price.html:162
+msgid "Please enable 'If applicable' toggle if entering tax."
+msgstr "يرجى تفعيل خيار 'إذا كان ذلك ينطبق' عند إدخال الضريبة."
+
+#: templates/accounts/price.html:165
+msgid "Invalid tax value. Please enter a valid amount (e.g., 5 or 12.5)."
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:49
+#: templates/accounts/refund_and_cancellation.html:93
+msgid "Booking Source"
+msgstr "رقم الحجز"
+
+#: templates/accounts/refund_and_cancellation.html:66
+#: templates/accounts/refund_and_cancellation.html:95
+msgid "Cancelation Status"
+msgstr "حالة الإلغاء"
+
+#: templates/accounts/refund_and_cancellation.html:77
+msgid " Search"
+msgstr "بحث"
+
+#: templates/accounts/refund_and_cancellation.html:89
+msgid "Transaction ID"
+msgstr "رقم المعاملة"
+
+#: templates/accounts/refund_and_cancellation.html:90
+msgid "Booking ID"
+msgstr "رقم الحجز"
+
+#: templates/accounts/refund_and_cancellation.html:92
+msgid "Refund Date"
+msgstr "تاريخ الاسترداد"
+
+#: templates/accounts/refund_and_cancellation.html:94
+msgid "Refund Amount"
+msgstr "مبلغ الاسترداد"
+
+#: templates/accounts/register_view_table.html:514
+#: templates/accounts/register_view_table.html:566
+msgid "Postal/ZIP Code"
+msgstr "الرمز البريدي / صندوق البريد"
+
+#: templates/accounts/register_view_table.html:515
+msgid "Number of Rooms"
+msgstr "عدد الغرف"
+
+#: templates/accounts/register_view_table.html:557
+msgid "Chalet Name"
+msgstr "اسم الشاليه"
+
+#: templates/accounts/register_view_table.html:558
+msgid "Chalet Owner Name"
+msgstr "اسم مالك الشاليه"
+
+#: templates/accounts/register_view_table.html:559
+msgid "Chalet Owner Email"
+msgstr "بريد مالك الشاليه الإلكتروني"
+
+#: templates/accounts/register_view_table.html:564
+msgid "State/ Province"
+msgstr "الولاية / المحافظة"
+
+#: templates/accounts/register_view_table.html:567
+msgid "Propert Type"
+msgstr "أنواع العقارات"
+
+#: templates/accounts/registration_form.html:39
+msgid "Hotel Owner Registration Form\\استمارة تسجيل مالك الفندق"
+msgstr "استمارة تسجيل مالك الفندق"
+
+#: templates/accounts/registration_form.html:43
+#: templates/accounts/registration_form.html:44
+msgid "Hotel Name(English)"
+msgstr "اسم الفندق بالانجليزي"
+
+#: templates/accounts/registration_form.html:55
+#: templates/accounts/registration_form.html:56
+msgid "Owner Name(English)"
+msgstr "اسم المالك بالانجليزي"
+
+#: templates/accounts/registration_form.html:89
+msgid "Enter Your Password"
+msgstr "ادخل رقمك السري"
+
+#: templates/accounts/registration_form.html:101
+msgid "Re-enter your password"
+msgstr "أعد إدخال كلمة المرور"
+
+#: templates/accounts/registration_form.html:127
+msgid "Governorate/state"
+msgstr "المحافظة / الولاية"
+
+#: templates/accounts/registration_form.html:144
+msgid "Enter your GSM number"
+msgstr "أدخل رقم جي إس إم الخاص بك"
+
+#: templates/accounts/registration_form.html:242
+#: templates/accounts/registration_form.html:243
+msgid "Hotel Description(English)"
+msgstr "وصف الفندق بالانجليزي"
+
+#: templates/accounts/registration_form.html:261
+#: templates/accounts/registration_form.html:262
+msgid "Hotel Policies(English)"
+msgstr "سياسات الفندق بالانجليزي"
+
+#: templates/accounts/registration_form.html:317
+msgid "Required Documents"
+msgstr "الوثائق المطلوبة"
+
+#: templates/accounts/registration_form.html:321
+msgid "Supported file formats: PDF, PNG, JPEG"
+msgstr "تنسيقات الملفات المدعومة: PDF، PNG، JPEG"
+
+#: templates/accounts/registration_form.html:323
+msgid "Each File size should be less than 5MB"
+msgstr "يجب أن يكون حجم كل ملف أقل من 5 ميغابايت"
+
+#: templates/accounts/registration_form.html:337
+msgid "The size of a single hotel image file should not exceed 30 MB"
+msgstr "يجب ألا يتجاوز حجم ملف صورة الفندق الواحد 30 ميجابايت"
+
+#: templates/accounts/registration_form.html:347
+msgid "I Agree to the Terms and Conditions"
+msgstr "انا اوافق على الشروط والاحكام"
+
+#: templates/accounts/registration_form.html:864
+msgid "Hotel with same email already exist"
+msgstr "الفندق الذي يحمل نفس البريد الإلكتروني موجود بالفعل"
+
+#: templates/accounts/registration_form.html:948
+msgid "Only JPEG/PNG files are allowed."
+msgstr "يُسمح فقط بملفات JPEG وPNG"
+
+#: templates/accounts/registration_form.html:967
+msgid "This image already exists."
+msgstr "هذه الصورة موجودة بالفعل"
+
+#: templates/accounts/registration_form.html:1225
+msgid "Select Room Types"
+msgstr "حدد أنواع الغرف"
+
+#: templates/accounts/registration_form.html:1505
+msgid "State/Province should only contain alphabetic characters."
+msgstr "يجب أن تحتوي الولاية/المقاطعة على أحرف أبجدية فقط."
+
+#: templates/accounts/registration_form.html:1515
+msgid "State cannot be empty."
+msgstr "لا يمكن ترك حقل الولاية/المقاطعة فارغًا."
+
+#: templates/accounts/registration_form.html:1521
+#, python-brace-format
+msgid "State should not exceed ${stmaxLength} characters."
+msgstr "يجب ألا تتجاوز الحالة أحرف ${stmaxLength}."
+
+#: templates/accounts/registration_form.html:1562
+msgid "Please enter Hotel Name."
+msgstr "الرجاء إدخال اسم الفندق."
+
+#: templates/accounts/registration_form.html:1565
+#, python-brace-format
+msgid "Hotel Name should be at least ${hotelNameMinLength} characters long."
+msgstr "يجب ألا يقل طول اسم الفندق عن ${hotelNameMinLength} من الأحرف."
+
+#: templates/accounts/registration_form.html:1568
+#, python-brace-format
+msgid "Hotel Name should not exceed ${hotelNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم الفندق ${hotelNameMaxLength} من الأحرف."
+
+#: templates/accounts/registration_form.html:1575
+msgid "Please enter Hotel Name in Arabic."
+msgstr "الرجاء إدخال اسم الفندق باللغة العربية."
+
+#: templates/accounts/registration_form.html:1578
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should be at least ${hotelNameArabicMinLength} "
+"characters long."
+msgstr ""
+"اسم الفندق باللغة العربية يجب أن يكون على الأقل ${hotelNameArabicMinLength} "
+"الشخصيات طويلة."
+
+#: templates/accounts/registration_form.html:1581
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should not exceed ${hotelNameArabicMaxLength} "
+"characters."
+msgstr ""
+"اسم الفندق باللغة العربية يجب ألا يتجاوز ${hotelNameArabicMaxLength} "
+"الشخصيات."
+
+#: templates/accounts/registration_form.html:1588
+msgid "Please enter Hotel Owner Name."
+msgstr "الرجاء إدخال اسم مالك الفندق."
+
+#: templates/accounts/registration_form.html:1591
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should be at least ${hotelOwnerNameMinLength} characters "
+"long."
+msgstr ""
+"يجب أن يتكون اسم مالك الفندق من ${hotelOwnerNameMinLength} حرفًا على الأقل "
+"طويل."
+
+#: templates/accounts/registration_form.html:1594
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should not exceed ${hotelOwnerNameMaxLength} characters."
+msgstr "يجب ألا يتجاوز اسم مالك الفندق ${hotelOwnerNameMaxLength} من الأحرف."
+
+#: templates/accounts/registration_form.html:1603
+msgid "Please enter Hotel Owner Name in Arabic."
+msgstr "الرجاء إدخال اسم مالك الفندق باللغة العربية."
+
+#: templates/accounts/registration_form.html:1606
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should be at least "
+"${hotelOwnerNameArabicMinLength} characters long."
+msgstr ""
+"يجب أن يكون اسم مالك الفندق باللغة العربية على "
+"الأقل${hotelOwnerNameArabicMinLength} أحرف طويلة."
+
+#: templates/accounts/registration_form.html:1609
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should not exceed "
+"${hotelOwnerNameArabicMaxLength} characters."
+msgstr ""
+"يجب ألا يتجاوز اسم مالك الفندق باللغة "
+"العربية${hotelOwnerNameArabicMaxLength} أحرف."
+
+#: templates/accounts/registration_form.html:1612
+msgid "Hotel Owner Name in Arabic must contain Arabic letters only."
+msgstr "يجب أن يحتوي اسم مالك الفندق باللغة العربية على حروف عربية فقط."
+
+#: templates/accounts/registration_form.html:1649
+msgid "Hotel Address should not exceed 300 characters."
+msgstr "يجب ألا يتجاوز عنوان الفندق 300 حرف."
+
+#: templates/accounts/registration_form.html:1662
+msgid "GSM Number should be 15 digits or less."
+msgstr "يجب أن يتكون رقم GSM من 15 رقمًا أو أقل."
+
+#: templates/accounts/registration_form.html:1697
+msgid "Account Number should be between 9 and 16 digits."
+msgstr "يجب أن يتراوح رقم الحساب بين 9 و16 رقمًا."
+
+#: templates/accounts/registration_form.html:1759
+#, python-brace-format
+msgid ""
+"VAT Number should consist of only digits and be between ${vatMinLength} and "
+"${vatMaxLength} digits long."
+msgstr ""
+"يجب أن يتكون رقم ضريبة القيمة المضافة من أرقام فقط وأن يتراوح بين "
+"${vatMinLength} و${vatMaxLength} أرقام طويلة."
+
+#: templates/accounts/registration_form.html:1797
+msgid "Please confirm Password."
+msgstr "الرجاء تأكيد كلمة المرور."
+
+#: templates/accounts/registration_form.html:1802
+msgid "Passwords do not match. Please re-enter."
+msgstr "كلمة المرور غير مطابقة. الرجاء إعادة الإدخال."
+
+#: templates/accounts/registration_form.html:1811
+msgid "Please upload a minimum of 3 supporting documents."
+msgstr "يرجى تحميل ما لا يقل عن 3 وثائق داعمة."
+
+#: templates/accounts/registration_form.html:1812
+msgid "Maximum 3 files allowed for Supporting Documents."
+msgstr "الحد الأقصى المسموح به هو 3 ملفات للمستندات الداعمة."
+
+#: templates/accounts/registration_form.html:1830
+msgid "Only PDF, JPEG, and PNG files are allowed."
+msgstr "يُسمح فقط بملفات PDF وJPEG وPNG."
+
+#: templates/accounts/registration_form.html:1862
+msgid "Please upload only JPEG or PNG images for hotel images."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لصور الفندق."
+
+#: templates/accounts/registration_form.html:1872
+msgid "Please upload a Hotel Logo."
+msgstr "يرجى تحميل شعار الفندق."
+
+#: templates/accounts/registration_form.html:1880
+msgid "Please upload only JPEG or PNG images for the hotel logo."
+msgstr "يرجى تحميل صور JPEG أو PNG فقط لشعار الفندق."
+
+#: templates/accounts/registration_form.html:1892
+#, python-brace-format
+msgid "Locality should not exceed ${localityMaxLength} characters."
+msgstr "يجب ألا تتجاوز المنطقة المحلية ${localityMaxLength} من الأحرف."
+
+#: templates/accounts/request_amenity.html:8
+msgid "Request Amenity"
+msgstr "طلب وسائل الراحة"
+
+#: templates/accounts/request_amenity.html:11
+msgid "Amenity Name"
+msgstr "اسم وسائل الراحة"
+
+#: templates/accounts/request_amenity.html:12
+msgid "Enter the amenity name"
+msgstr "أدخل اسم الميزة"
+
+#: templates/accounts/request_amenity.html:17
+msgid "Purpose of the Request"
+msgstr "الغرض من الطلب"
+
+#: templates/accounts/request_amenity.html:18
+msgid "Explain the reason for requesting this amenity"
+msgstr "اشرح سبب طلب هذه الميزة"
+
+#: templates/accounts/request_amenity.html:22
+msgid "Request"
+msgstr "طلب"
+
+#: templates/accounts/review_rating.html:50
+#: templates/accounts/review_rating.html:79
+msgid "Rating"
+msgstr "التقييم"
+
+#: templates/accounts/review_rating.html:59
+#: templates/accounts/review_rating.html:80
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/accounts/review_rating.html:78
+msgid "User Name"
+msgstr "اسم المستخدم"
+
+#: templates/accounts/review_rating.html:81
+msgid "Review Text"
+msgstr " مراجعة نص"
+
+#: templates/accounts/review_rating.html:82
+msgid "Response"
+msgstr "الردود"
+
+#: templates/accounts/review_rating.html:99
+msgid "See more"
+msgstr "شاهد المزيد"
+
+#: templates/accounts/review_rating.html:126
+msgid "Respond"
+msgstr "يستجيب"
+
+#: templates/accounts/review_rating.html:209
+msgid "Write Respond Review"
+msgstr "اكتب مراجعة الرد"
+
+#: templates/accounts/review_rating.html:218
+#: templates/accounts/review_rating.html:258
+msgid "Review"
+msgstr "مراجعة"
+
+#: templates/accounts/review_rating.html:224
+#: templates/accounts/review_rating.html:265
+msgid "Response cannot be empty"
+msgstr "لا يمكن أن تكون الاستجابة فارغة"
+
+#: templates/accounts/review_rating.html:225
+#: templates/accounts/review_rating.html:266
+msgid "Response should be between 5 - 250 characters."
+msgstr "يجب أن تكون الإجابة بين 5 - 250 حرفًا."
+
+#: templates/accounts/review_rating.html:234
+#: templates/accounts/review_rating.html:274
+msgid "Post"
+msgstr "نشر"
+
+#: templates/accounts/review_rating.html:250
+msgid "Edit Respond Review"
+msgstr "تحرير مراجعة الرد"
+
+#: templates/accounts/review_rating.html:305
+msgid "Error Fetching Reviews. Please try again later."
+msgstr "حدث خطأ أثناء تحميل المراجعات. يُرجى المحاولة لاحقًا."
+
+#: templates/accounts/review_rating.html:307
+msgid "Failed to submit the response. Please try again."
+msgstr "فشل إرسال الرد. يُرجى المحاولة مرة أخرى."
+
+#: templates/accounts/review_rating.html:308
+msgid "Response submitted successfully!"
+msgstr "تم إرسال الرد بنجاح!"
+
+#: templates/accounts/review_rating.html:309
+msgid "Error deleting response. Please try again later."
+msgstr "حدث خطأ أثناء حذف الرد. يُرجى المحاولة لاحقًا."
+
+#: templates/accounts/review_rating.html:310
+#: templates/accounts/review_rating.html:333
+msgid "Are you sure you want to delete this response?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه الإجابة؟"
+
+#: templates/accounts/review_rating.html:311
+msgid "Response deleted successfully!"
+msgstr "تم حذف الرد بنجاح!"
+
+#: templates/accounts/review_rating.html:312 views.py:2111 views.py:2203
+#: views.py:2253 views.py:2349 views.py:2384 views.py:2432 views.py:2479
+#: views.py:3737
+msgid "An unexpected error occurred. Please try again."
+msgstr "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى."
+
+#: templates/accounts/review_rating.html:318
+#: templates/accounts/review_rating.html:338
+msgid "OK"
+msgstr "نعم"
+
+#: templates/accounts/room_management.html:48
+msgid "Available Rooms"
+msgstr " الغرف المتاحة "
+
+#: templates/accounts/room_management.html:54
+msgid "Booked Rooms"
+msgstr "الغرف المحجوزة"
+
+#: templates/accounts/room_management.html:79
+msgid "Add Rooms"
+msgstr "إضافة غرف"
+
+#: templates/accounts/room_management.html:88
+msgid "ADD"
+msgstr "يضيف"
+
+#: templates/accounts/room_management.html:103
+msgid "Select a room type"
+msgstr "اختر نوع الغرفة"
+
+#: templates/accounts/room_management.html:123
+msgid "Please enter a room number"
+msgstr "الرجاء إدخال رقم الغرفة"
+
+#: templates/accounts/room_management.html:132
+#: templates/accounts/room_management.html:317
+#: templates/accounts/room_management_view.html:94
+msgid "Price-Per-Night"
+msgstr "سعر الليلة الواحدة"
+
+#: templates/accounts/room_management.html:174
+#: templates/accounts/room_management_view.html:255
+msgid "Meals"
+msgstr "وجبات"
+
+#: templates/accounts/room_management.html:177
+#: templates/accounts/room_management_view.html:258
+msgid "Select meal options"
+msgstr "حدد خيارات الوجبات"
+
+#: templates/accounts/room_management.html:196
+#: templates/accounts/room_management_view.html:107
+#: templates/accounts/room_management_view.html:303
+msgid "Tax for Meals"
+msgstr "الضريبة على الوجبات"
+
+#: templates/accounts/room_management.html:206
+#: templates/accounts/room_management_view.html:316
+msgid "Enter meal tax"
+msgstr "أدخل ضريبة الوجبات"
+
+#: templates/accounts/room_management.html:221
+#: templates/accounts/room_management_view.html:274
+msgid "Adults"
+msgstr "الكبار"
+
+#: templates/accounts/room_management.html:234
+#: templates/accounts/room_management_view.html:288
+msgid "Weekend Price (Optional)"
+msgstr "سعر عطلة نهاية الأسبوع (اختياري)"
+
+#: templates/accounts/room_management.html:237
+#: templates/accounts/room_management_view.html:292
+msgid "Enter weekend price"
+msgstr "أدخل سعر عطلة نهاية الأسبوع"
+
+#: templates/accounts/room_management.html:246
+#: templates/accounts/room_management_view.html:328
+msgid "Children"
+msgstr "أطفال"
+
+#: templates/accounts/room_management.html:257
+#: templates/accounts/room_management_view.html:340
+msgid "Refund and Cancellation"
+msgstr "الاسترداد والإلغاء"
+
+#: templates/accounts/room_management.html:282
+#: templates/accounts/room_management.html:465
+msgid "Add Images"
+msgstr "إضافة الصور"
+
+#: templates/accounts/room_management.html:316
+#: templates/accounts/room_management.html:414
+#: templates/accounts/room_management_view.html:91
+msgid "Occupancy"
+msgstr "الإشغال"
+
+#: templates/accounts/room_management.html:318
+msgid "Commission Amount"
+msgstr "مبلغ العمولة"
+
+#: templates/accounts/room_management.html:320
+msgid "Weekend Price"
+msgstr "سعر عطلة نهاية الأسبوع"
+
+#: templates/accounts/room_management.html:339
+msgid "Not specified"
+msgstr "غير محدد"
+
+#: templates/accounts/room_management.html:350
+#: templates/accounts/room_management.html:1255
+msgid "Are you sure you want to delete this room?"
+msgstr "هل أنت متأكد أنك تريد حذف هذه الغرفة؟"
+
+#: templates/accounts/room_management.html:427
+#: templates/accounts/room_management_view.html:214
+msgid "Price-per night"
+msgstr "السعر لليلة"
+
+#: templates/accounts/room_management.html:581
+msgid "Only PNG and JPEG images are allowed."
+msgstr "يُسمح فقط بالصور PNG وJPEG."
+
+#: templates/accounts/room_management.html:607
+#: templates/accounts/room_management.html:663
+msgid "image(s) uploaded."
+msgstr "تم تحميل الصورة (الصور)."
+
+#: templates/accounts/room_management.html:720
+#: templates/accounts/room_management_view.html:909
+msgid "You must select a refund category"
+msgstr "يجب عليك تحديد فئة استرداد الأموال"
+
+#: templates/accounts/room_management.html:743
+#: templates/accounts/room_management_view.html:929
+msgid "You must select one refund policy"
+msgstr "يجب عليك تحديد سياسة استرداد واحدة"
+
+#: templates/accounts/room_management.html:755
+msgid "You must provide a value for validity-specific policies."
+msgstr "يجب عليك توفير قيمة للسياسات الخاصة بالصلاحية."
+
+#: templates/accounts/room_management.html:779
+msgid "Please enter a valid meal tax greater than 0."
+msgstr "يرجى إدخال ضريبة وجبات صالحة أكبر من 0."
+
+#: templates/accounts/room_management.html:782
+msgid "Meal tax must be a number or decimal value."
+msgstr "يجب أن تكون ضريبة الوجبات رقمًا أو قيمة عشرية."
+
+#: templates/accounts/room_management.html:785
+msgid "Meal tax must be a valid number (up to two decimal places)."
+msgstr "يجب أن تكون ضريبة الوجبات رقمًا صالحًا (بحد أقصى منزلتين عشريتين)."
+
+#: templates/accounts/room_management.html:788
+msgid "Meal tax cannot exceed 99.99."
+msgstr "لا يمكن أن تتجاوز ضريبة الوجبات 99.99."
+
+#: templates/accounts/room_management.html:798
+msgid "Please select a roomtype from the dropdown to add this room"
+msgstr "يرجى اختيار نوع الغرفة من القائمة المنسدلة لإضافة هذه الغرفة."
+
+#: templates/accounts/room_management.html:803
+#: templates/accounts/room_management_view.html:733
+msgid "Room number must be a number."
+msgstr "يجب أن يكون رقم الغرفة رقمًا."
+
+#: templates/accounts/room_management.html:810
+msgid "Please enter room number between 1 to 6 characters."
+msgstr "الرجاء إدخال رقم الغرفة بين 1 إلى 6 أحرف."
+
+#: templates/accounts/room_management.html:825
+#: templates/accounts/room_management.html:979
+#: templates/accounts/room_management.html:1154
+#: templates/accounts/room_management_view.html:753
+msgid "Room number already exists."
+msgstr "رقم الغرفة موجود بالفعل."
+
+#: templates/accounts/room_management.html:839
+#: templates/accounts/room_management.html:860
+#: templates/accounts/room_management_view.html:817
+msgid "Please enter a valid amount greater than 0."
+msgstr "الرجاء إدخال مبلغ صالح أكبر من 0."
+
+#: templates/accounts/room_management.html:844
+msgid "Price must be a number or decimal value."
+msgstr "يجب أن يكون السعر رقمًا أو قيمة عشرية."
+
+#: templates/accounts/room_management.html:847
+msgid "Price per night must be a valid number (up to 3 decimal places)."
+msgstr "يجب أن يكون سعر الليلة رقما صالحا (حتى 3 منازل عشرية)."
+
+
+#: templates/accounts/room_management.html:851
+#: templates/accounts/room_management_view.html:804
+msgid "Price per night cannot exceed 99999999.99."
+msgstr "لا يمكن أن يتجاوز سعر الليلة الواحدة 99999999.99."
+
+#: templates/accounts/room_management.html:872
+msgid "You must upload 5 images"
+msgstr "يجب عليك تحميل 5 صور"
+
+#: templates/accounts/room_management.html:890
+msgid "Please select at least one meal option."
+msgstr "يرجى تحديد خيار وجبة واحدة على الأقل."
+
+#: templates/accounts/room_management.html:893
+msgid "You cannot select other meal options <br> when No meals is selected."
+msgstr "لا يمكنك تحديد خيارات وجبات أخرى <br> عند تحديد عدم وجود وجبات."
+
+#: templates/accounts/room_management.html:903
+msgid "Adults field cannot be empty and must have at least 1 adult."
+msgstr ""
+"لا يمكن أن يكون حقل البالغين فارغًا ويجب أن يحتوي على شخص بالغ واحد على الأقل."
+
+#: templates/accounts/room_management.html:907
+msgid "A room cannot have more than 4 adults."
+msgstr "لا يمكن أن تتسع الغرفة لأكثر من 4 أشخاص بالغين."
+
+#: templates/accounts/room_management.html:920
+msgid "Children field cannot be empty and must be 0 or a positive number."
+msgstr "لا يمكن أن يكون حقل الأطفال فارغًا ويجب أن يكون 0 أو رقمًا موجبًا."
+
+#: templates/accounts/room_management.html:924
+#: templates/accounts/room_management_view.html:898
+msgid "A room cannot have more than 4 children."
+msgstr "لا يمكن أن تحتوي الغرفة على أكثر من 4 أطفال."
+
+#: templates/accounts/room_management.html:933
+msgid "Are you sure you want to add this room?"
+msgstr "هل أنت متأكد أنك تريد إضافة هذه الغرفة؟"
+
+#: templates/accounts/room_management.html:968
+msgid "Room number must be digits only."
+msgstr "يجب أن يتكون رقم الغرفة من أرقام فقط."
+
+#: templates/accounts/room_management.html:991
+msgid "Price per night must be a positive number."
+msgstr "يجب أن يكون سعر الليلة رقمًا موجبًا."
+
+#: templates/accounts/room_management.html:1001
+msgid "You must upload 5 images."
+msgstr "(* يجب تحديد 5 صور *)"
+
+#: templates/accounts/room_management.html:1400
+msgid "Enter hours for refund eligibility"
+msgstr "أدخل ساعات لأهلية استرداد الأموال"
+
+#: templates/accounts/room_management.html:1454
+msgid "Enter a valid number between 0 and 100"
+msgstr "الرجاء إدخال رقم صالح بين 0 و100."
+
+#: templates/accounts/room_management_view.html:33
+msgid "Room Management"
+msgstr "إدارة الغرف"
+
+#: templates/accounts/room_management_view.html:38
+#: templates/accounts/room_management_view.html:42
+msgid "Room Types Images"
+msgstr "صور لأنواع الغرف"
+
+#: templates/accounts/room_management_view.html:66
+msgid "Upload New Photo"
+msgstr "تحميل صورة جديدة"
+
+#: templates/accounts/room_management_view.html:77
+msgid "Room Types"
+msgstr "نوع الغرفة"
+
+#: templates/accounts/room_management_view.html:97
+msgid "Commission"
+msgstr "عمولة"
+
+#: templates/accounts/room_management_view.html:100
+msgid "Total Price"
+msgstr "السعر الإجمالي"
+
+#: templates/accounts/room_management_view.html:103
+msgid "Meals available"
+msgstr "الوجبات المتوفرة"
+
+#: templates/accounts/room_management_view.html:111
+msgid "Refund "
+msgstr "استرداد"
+
+#: templates/accounts/room_management_view.html:117
+msgid "Refund Option"
+msgstr "خيار استرداد الأموال"
+
+#: templates/accounts/room_management_view.html:123
+msgid "Hours"
+msgstr "ساعات"
+
+#: templates/accounts/room_management_view.html:135
+msgid "Room Amenities"
+msgstr "مرافق الغرفة"
+
+#: templates/accounts/room_management_view.html:189
+msgid "Select or type a room type"
+msgstr "حدد أو اكتب نوع الغرفة"
+
+#: templates/accounts/room_management_view.html:375
+msgid "Enter hours for refund policy"
+msgstr "أدخل ساعات لسياسة استرداد الأموال"
+
+#: templates/accounts/room_management_view.html:688
+msgid "Please select atleast one amenities."
+msgstr "يرجى اختيار وسائل راحة واحدة على الأقل."
+
+#: templates/accounts/room_management_view.html:699
+msgid "Select atleast One meals"
+msgstr "اختر وجبة واحدة على الأقل"
+
+#: templates/accounts/room_management_view.html:704
+msgid "You cannot select other meal options when No Meals is selected."
+msgstr "لا يمكنك تحديد خيارات الوجبات الأخرى عند تحديد لا وجبات."
+
+#: templates/accounts/room_management_view.html:714
+msgid ""
+"Please enter a valid room type with only letters and between 3 to 50 "
+"characters."
+msgstr "الرجاء إدخال نوع غرفة صالح بأحرف فقط وبين 3 إلى 50الشخصيات."
+
+#: templates/accounts/room_management_view.html:720
+msgid ""
+"Please add your new room type or select a roomtype from the dropdown to add "
+"this room"
+msgstr ""
+"يرجى إضافة نوع الغرفة الجديد أو اختيار نوع غرفة من القائمة المنسدلة لإضافة "
+"هذه الغرفة"
+
+#: templates/accounts/room_management_view.html:738
+msgid "Room number cannot be empty."
+msgstr "لا يمكن أن يكون رقم الغرفة فارغًا."
+
+#: templates/accounts/room_management_view.html:768
+msgid "Please enter room number  between 1 to 6 characters."
+msgstr "الرجاء إدخال رقم الغرفة بين 1 إلى 6 أحرف."
+
+#: templates/accounts/room_management_view.html:774
+msgid "Room number must be a valid number."
+msgstr "يجب أن يكون رقم الغرفة رقمًا صالحًا."
+
+#: templates/accounts/room_management_view.html:789
+msgid "Price per night cannot be empty."
+msgstr "لا يمكن أن يكون سعر الليلة خاليًا."
+
+#: templates/accounts/room_management_view.html:823
+msgid ""
+"Weekend price must be a valid <br> number (up to two decimal <br> places)."
+msgstr ""
+"يجب أن يكون سعر الليلة رقم <br> صالحًا (ما يصل إلى منزلتين عشريتين <br>)."
+
+#: templates/accounts/room_management_view.html:831
+msgid "Weekend Price  cannot exceed 99999999.99."
+msgstr "لا يمكن أن يتجاوز سعر عطلة نهاية الأسبوع 99999999.99"
+
+#: templates/accounts/room_management_view.html:853
+msgid ""
+"Meal tax must be a valid percentage (up to two decimal places) between 00.00 "
+"and 99.99."
+msgstr ""
+"يجب أن تكون ضريبة الوجبة نسبة مئوية صالحة (حتى منزلتين عشريتين) بين 00.00 و "
+"99.99."
+
+#: templates/accounts/room_management_view.html:861
+msgid "Meal tax must be between 00.00 and 99.99."
+msgstr "يجب أن تتراوح ضريبة الوجبات بين 00.00 و99.99."
+
+#: templates/accounts/room_management_view.html:866
+msgid "Meal tax is required when the toggle is enabled."
+msgstr "مطلوب ضريبة الوجبة عند تمكين التبديل."
+
+#: templates/accounts/room_management_view.html:877
+msgid "Please select at least 1 adult."
+msgstr "يرجى اختيار شخص بالغ واحد على الأقل."
+
+#: templates/accounts/room_management_view.html:881
+msgid "A room cannot have more than 4 adult."
+msgstr "لا يمكن أن تتسع الغرفة لأكثر من 4 أشخاص بالغين."
+
+#: templates/accounts/room_management_view.html:894
+msgid "Please select a valid number of children (0 or more)."
+msgstr "الرجاء تحديد عدد صحيح من الأطفال (0 أو أكثر)."
+
+#: templates/accounts/room_management_view.html:942
+msgid "Please enter a valid number between 0 and 100."
+msgstr "الرجاء إدخال رقم صالح بين 0 و100."
+
+#: templates/accounts/room_management_view.html:948
+msgid "Please enter a number."
+msgstr "الرجاء إدخال رقم"
+
+#: templates/accounts/search_navbar.html:46
+#: templates/accounts/search_navbar.html:67
+msgid "Admin"
+msgstr "مسؤل"
+
+#: templates/accounts/transaction_detail.html:50
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#: templates/accounts/transaction_detail.html:70
+msgid "Transaction <br>ID"
+msgstr "رقم المعاملة"
+
+#: templates/accounts/transaction_detail.html:71
+msgid "Booking <br>ID"
+msgstr "رقم الحجز"
+
+#: templates/accounts/transaction_detail.html:72
+msgid "Guest <br>Name"
+msgstr "اسم الضيف"
+
+#: templates/accounts/transaction_detail.html:73
+msgid "Transaction <br>Date"
+msgstr "تاريخ المعاملة"
+
+#: templates/accounts/transaction_detail.html:74
+msgid "Payment <br> Method"
+msgstr "طريقة الدفع"
+
+#: templates/accounts/transaction_detail.html:75
+msgid "Transaction <br> Type"
+msgstr "نوع المعاملة"
+
+#: templates/accounts/transaction_detail.html:76
+msgid "Transaction <br> Amount"
+msgstr "مبلغ المعاملة"
+
+#: templates/accounts/transaction_detail.html:77
+msgid "Transaction <br> Status"
+msgstr "حالة المعاملة"
+
+#: templates/accounts/transaction_detail.html:78
+msgid "Transaction <br> Reference No:"
+msgstr "مرجع المعاملة"
+
+#: templates/accounts/transaction_detail.html:79
+msgid "Payment <br> Status"
+msgstr "حالة الدفع"
+
+#: templates/accounts/transaction_detail.html:80
+msgid "Payment <br> Gateway"
+msgstr "بوابة الدفع"
+
+#: templates/accounts/vendor_login.html:58
+#: templates/accounts/vendor_login.html:60
+msgid "Email or Password is incorrect"
+msgstr "البريد الالكتروني او كلمة المرور غير صحيحة"
+
+#: templates/accounts/vendor_login.html:63
+#: templates/accounts/vendor_login.html:68
+#: templates/accounts/vendor_login.html:72
+msgid "Forgot Password?"
+msgstr "نسيت كلمة المرور؟"
+
+#: templates/accounts/vendor_login.html:77
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+#: templates/accounts/vendor_login.html:78
+#: templates/accounts/vendor_login.html:139
+msgid "Join With Us"
+msgstr "انضم إلينا"
+
+#: templates/accounts/vendor_login.html:84
+msgid "or continue with"
+msgstr "أو استمر مع"
+
+#: templates/accounts/vendor_login.html:100
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: templates/accounts/vendor_login.html:102
+msgid "Terms & Conditions"
+msgstr "الشروط والأحكام"
+
+#: templates/accounts/vendor_login.html:104
+msgid "About Us"
+msgstr "معلومات عنا"
+
+#: templates/accounts/vendor_login.html:147
+#: templates/accounts/vendor_login.html:155
+#: templates/accounts/vendor_login.html:163
+#: templates/accounts/vendor_login.html:165
+msgid "More Info"
+msgstr "مزيد من المعلومات"
+
+#: views.py:68
+msgid "Invalid language code"
+msgstr "رمز لغة غير صالح"
+
+#: views.py:103
+msgid "Invalid email format!"
+msgstr "تنسيق البريد الإلكتروني غير صالح!"
+
+#: views.py:116
+msgid "No user found with this email."
+msgstr "لم يتم العثور على مستخدم مع هذا البريد الإلكتروني."
+
+#: views.py:134
+msgid "Welcome Super Admin!"
+msgstr "مرحبًا بالمشرف المتميز!"
+
+#: views.py:138
+msgid "Invalid credentials for Super Admin!"
+msgstr "بيانات اعتماد المشرف المتميز غير صالحة!"
+
+#: views.py:155
+msgid "Your account has been deactivated. Please contact the administrator."
+msgstr "لقد تم تعطيل حسابك. يرجى الاتصال بالمسؤول."
+
+#: views.py:168
+msgid "Welcome Admin!"
+msgstr "مرحبا بكم المشرف!"
+
+#: views.py:172 views.py:176
+msgid "Invalid credentials for Admin!"
+msgstr "بيانات اعتماد غير صالحة للمسؤول!"
+
+#: views.py:195
+msgid "Email or Password is incorrect!"
+msgstr "البريد الإلكتروني أو كلمة المرور غير صحيحة!"
+
+#: views.py:203
+msgid "Multiple vendor profiles found with this email. Please contact support."
+msgstr ""
+"تم العثور على ملفات تعريف متعددة للبائعين مع هذا البريد الإلكتروني. يرجى "
+"الاتصال بالدعم."
+
+#: views.py:231 views.py:234 views.py:237 views.py:242 views.py:245
+msgid "Login successful!"
+msgstr "تم تسجيل الدخول بنجاح!"
+
+#: views.py:251
+msgid "Your hotel is not approved!"
+msgstr "لم تتم الموافقة على فندقك!"
+
+#: views.py:253
+msgid "Your chalet is not approved!"
+msgstr "الشاليه الخاص بك لم تتم الموافقة عليه!"
+
+#: views.py:255
+msgid "Neither hotel nor chalet is approved!"
+msgstr "لم تتم الموافقة على الفندق ولا الشاليه!"
+
+#: views.py:263
+msgid "Invalid E-mail or Password"
+msgstr "البريد الإلكتروني أو كلمة المرور غير صالحة"
+
+#: views.py:388
+msgid "Hotel image is required."
+msgstr "صورة الفندق مطلوبة."
+
+#: views.py:390
+msgid "Supporting document is required."
+msgstr "الوثيقة الداعمة مطلوبة."
+
+#: views.py:396
+#, python-format
+msgid "Hotel rating is required when hotel type is '%(hotel_type)s'."
+msgstr "تصنيف الفندق مطلوب عندما يكون نوع الفندق هو '%(hotel_type)s'."
+
+#: views.py:497
+msgid "There was an error processing your request."
+msgstr "حدث خطأ أثناء معالجة طلبك."
+
+#: views.py:500
+msgid "An unexpected error occurred, please try again."
+msgstr "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى."
+
+#: views.py:505 views.py:515 views.py:569 views.py:576
+msgid "This field is required."
+msgstr "هذه الخانة مطلوبه."
+
+#: views.py:507
+msgid "Enter a valid email address."
+msgstr "أدخل عنوان بريد إلكتروني صالح."
+
+#: views.py:510 views.py:578
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحًا."
+
+#: views.py:521 views.py:1267
+msgid "Passwords do not match."
+msgstr "كلمة المرور غير مطابقة."
+
+#: views.py:523
+msgid "Password must be at least 8 characters long."
+msgstr "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل."
+
+#: views.py:685 views.py:774 views.py:927 views.py:992 views.py:1412
+#: views.py:2100 views.py:2496 views.py:2607 views.py:2787 views.py:3444
+#: views.py:3725 views.py:4373 views.py:4399 views.py:4485 views.py:4830
+#: views.py:4954 views.py:5114 views.py:5259
+msgid "Hotel was rejected."
+msgstr "تم رفض الفندق."
+
+#: views.py:692 views.py:787 views.py:933
+msgid "Hotel post approval already completed. Redirecting to the dashboard."
+msgstr ""
+"تم بالفعل الانتهاء من الموافقة على الفندق. إعادة التوجيه إلى لوحة القيادة."
+
+#: views.py:701 views.py:796 views.py:942 views.py:1010
+msgid "Chalet was rejected."
+msgstr "تم رفض الشاليه."
+
+#: views.py:1228
+msgid "Email address not found."
+msgstr "لم يتم العثور على عنوان البريد الإلكتروني."
+
+#: views.py:1278
+msgid "link expired.Request for new link again"
+msgstr "انتهت صلاحية الرابط. اطلب رابطًا جديدًا مرة أخرى"
+
+#: views.py:1289
+msgid "Invalid token or user ID."
+msgstr "الرمز المميز أو معرف المستخدم غير صالح."
+
+#: views.py:1381
+msgid "Hotel status updated successfully."
+msgstr "تم تحديث حالة الفندق بنجاح."
+
+#: views.py:1516
+msgid "An error occurred while processing booking data."
+msgstr "حدث خطأ أثناء معالجة بيانات الحجز."
+
+#: views.py:1809 views.py:2036
+msgid "Booking updated successfully"
+msgstr "تم تحديث الحجز بنجاح"
+
+#: views.py:1865
+msgid "You do not have permission to view this booking."
+msgstr "ليس لديك إذن لعرض هذا الحجز."
+
+#: views.py:1925
+msgid "Your Hotel was rejected."
+msgstr "لقد تم رفض فندقك."
+
+#: views.py:1928
+msgid "Your Hotel is pending approval."
+msgstr "فندقك في انتظار الموافقة."
+
+#: views.py:1938 views.py:3812 views.py:3847 views.py:3878 views.py:3911
+#: views.py:3942 views.py:4360 views.py:5211
+msgid "An unexpected error occurred."
+msgstr "حدث خطأ غير متوقع."
+
+#: views.py:2103
+msgid "Your Hotel is  in pending approval."
+msgstr "فندقك في انتظار الموافقة."
+
+#: views.py:2107 views.py:3733
+msgid "Hotel Not Found."
+msgstr "لم يتم العثور على الفندق."
+
+#: views.py:2340 views.py:3838
+msgid "Offer updated successfully"
+msgstr "تم تحديث العرض بنجاح"
+
+#: views.py:2343
+msgid " Offerpromotion ID doesn't exist."
+msgstr "معرف العرض الترويجي غير موجود."
+
+#: views.py:2374
+msgid "Offer deleted successfully"
+msgstr "تم حذف العرض بنجاح"
+
+#: views.py:2377 views.py:2426 views.py:2473
+msgid "Promotion Not exist."
+msgstr "الترويج غير موجود."
+
+#: views.py:2381
+msgid " Offerpromotion ID needed."
+msgstr "معرف العرض الترويجي مطلوب."
+
+#: views.py:2429 views.py:2476
+msgid "Discount Needed."
+msgstr "الخصم مطلوب."
+
+#: views.py:2955
+msgid "An error occurred. Please try again later."
+msgstr "حدث خطأ. يرجى المحاولة مرة أخرى في وقت لاحق."
+
+#: views.py:2969
+msgid "Invalid category ID"
+msgstr "معرف الفئة غير صالح"
+
+#: views.py:3809
+msgid "Review not found."
+msgstr "لم يتم العثور على المراجعة."
+
+#: views.py:3841 views.py:3875 views.py:3905 views.py:3936
+msgid " RecentReview not found."
+msgstr "لم يتم العثور على المراجعة الأخيرة."
+
+#: views.py:3844 views.py:3908 views.py:3939
+msgid " RecentReview ID not found."
+msgstr "لم يتم العثور على المعرف للمراجعات الأخيرة."
+
+#: views.py:3933
+msgid "Review response deleted successfully"
+msgstr "تم حذف استجابة المراجعة بنجاح"
+
+#: views.py:3953
+msgid "Invalid data"
+msgstr "بيانات غير صالحة"
+
+#: views.py:3958
+msgid "Booking not found"
+msgstr "لم يتم العثور على الحجز"
+
+#: views.py:4004
+msgid "Booking is already cancelled"
+msgstr "تم إلغاء الحجز بالفعل"
+
+#: views.py:4021
+msgid "No email found for this booking"
+msgstr "لم يتم العثور على بريد إلكتروني لهذا الحجز"
+
+#: views.py:4075
+msgid "Vendor Transaction creation failed"
+msgstr "فشل إنشاء معاملة البائع"
+
+#: views.py:4078
+msgid "Transaction creation failed"
+msgstr "فشل إنشاء المعاملة"
+
+#: views.py:4084
+msgid "Only Pending status can be approved"
+msgstr "يمكن الموافقة على الحالة المعلقة فقط"
+
+#: views.py:4085
+msgid "Invalid action"
+msgstr "إجراء غير صالح"
+
+#: views.py:4108
+msgid "Images uploaded successfully"
+msgstr "تم تحميل الصور بنجاح"
+
+#: views.py:4110
+msgid "No images provided"
+msgstr "لم يتم توفير الصور"
+
+#: views.py:4264
+msgid "No files provided."
+msgstr "لم يتم تقديم أي ملفات."
+
+#: views.py:4271
+#, python-format
+msgid "'%(file_name)s' exceeds the maximum size of 500 KB."
+msgstr "يتجاوز '%(file_name)s' الحد الأقصى للحجم وهو 500 كيلو بايت."
+
+#: views.py:4274
+#, python-format
+msgid "'%(file_name)s' is not a valid file type."
+msgstr "إن '%(file_name)s' ليس نوع ملف صالحًا."
+
+#: views.py:4290
+msgid "Files uploaded successfully."
+msgstr "تم تحميل الملفات بنجاح."
+
+#: views.py:4309
+msgid "Room not found"
+msgstr "لم يتم العثور على الغرفة"
+
+#: views.py:4323
+msgid "No file provided."
+msgstr "لم يتم تقديم أي ملف."
+
+#: views.py:4328
+msgid "File exceeds the maximum size of 500 KB."
+msgstr "يتجاوز حجم الملف الحد الأقصى وهو 500 كيلو بايت."
+
+#: views.py:4348
+msgid "Image uploaded successfully."
+msgstr "تم تحميل الصورة بنجاح."
+
+#: views.py:4352
+msgid "Room not found."
+msgstr "لم يتم العثور على الغرفة."
+
+#: views.py:4356
+msgid "Room type image not found."
+msgstr "لم يتم العثور على صورة نوع الغرفة."
+
+#: views.py:4487
+msgid "Hotel is not approved. You need to log out."
+msgstr "الفندق غير معتمد. تحتاج إلى تسجيل الخروج."
+
+#: views.py:4659
+msgid "Email already exists"
+msgstr "البريد الإلكتروني موجود بالفعل"
+
+#: views.py:4805
+msgid "Hotel details saved successfully."
+msgstr "تم حفظ تفاصيل الفندق بنجاح."
+
+#: views.py:4908
+msgid "Policy category not found"
+msgstr "لم يتم العثور على فئة السياسة"
+
+#: views.py:4915
+msgid "Vendor profile not found"
+msgstr "لم يتم العثور على ملف تعريف البائع"
+
+#: views.py:4922
+msgid "Hotel not found"
+msgstr "لم يتم العثور على الفندق"
+
+#: views.py:4937
+msgid "An unexpected error occurred"
+msgstr "حدث خطأ غير متوقع"
+
+#: views.py:4950
+msgid "Hotel not found."
+msgstr "لم يتم العثور على الفندق."
+
+#: views.py:4961 views.py:5117
+msgid "Vendor or hotel not found."
+msgstr "لم يتم العثور على البائع أو الفندق."
+
+#: views.py:4980 views.py:5013
+#, python-format
+msgid "Successfully added new policy to %(category)s."
+msgstr "تمت إضافة سياسة جديدة بنجاح إلى %(category)s."
+
+#: views.py:4984 views.py:5017
+#, python-format
+msgid "Successfully added policy to %(category)s."
+msgstr "تمت إضافة السياسة بنجاح إلى %(category)s."
+
+#: views.py:4987 views.py:5020
+msgid "Policy already exists in this category."
+msgstr "السياسة موجودة بالفعل في هذه الفئة."
+
+#: views.py:5053
+msgid "Policies Created Successfully"
+msgstr "تم إنشاء السياسات بنجاح"
+
+#: views.py:5056
+msgid "Invalid request method"
+msgstr "طريقة الطلب غير صالحة"
+
+#: views.py:5077
+msgid "Invalid amenity IDs. IDs must be integers."
+msgstr "معرفات وسائل الراحة غير صالحة. يجب أن تكون المعرفات أعدادًا صحيحة."
+
+#: views.py:5088
+msgid "An error occurred while adding amenity."
+msgstr "حدث خطأ أثناء إضافة الميزة."
+
+#: views.py:5092
+msgid "Amenities added successfully"
+msgstr "تمت إضافة وسائل الراحة بنجاح"
+
+#: views.py:5096
+msgid "An unexpected error occurred. Please try again later."
+msgstr "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقا."
+
+#: views.py:5098
+msgid "Invalid request"
+msgstr "طلب غير صالح"
+
+#: views.py:5205
+msgid "Policy already exists for this category."
+msgstr "السياسة موجودة بالفعل لهذه الفئة."
+
+#: views.py:5207
+msgid "Policies updated successfully."
+msgstr "تم تحديث السياسات بنجاح."
+
+#: views.py:5223
+msgid "Notification marked as read"
+msgstr "تم وضع علامة على الإشعار كمقروء"
+
+#: views.py:5225
+msgid "Notification not found"
+msgstr "لم يتم العثور على الإخطار"
+
+#: views.py:5266
+msgid "PolicyCategory has been delete successfully"
+msgstr "تم حذف فئة السياسة بنجاح"
+
+#: views.py:5277
+msgid "Booking not found."
+msgstr "لم يتم العثور على الحجز."
+
+#: views.py:5282
+msgid "The booking's checkout date has already passed."
+msgstr "لقد مر تاريخ الخروج من الحجز بالفعل."
+
+#: views.py:5292
+msgid "The page you are looking for is not found!"
+msgstr "الصفحة التي تبحث عنها غير موجودة!"
+
+#: views.py:5299
+msgid "Internal Server Error"
+msgstr "خطأ في الخادم الداخلي"
+
+#: views.py:5306
+msgid "access to the requested resource is forbidden"
+msgstr "الوصول إلى المورد المطلوب محظور"
+
+#: views.py:5313
+msgid "server was unable to process a request due to a client error"
+msgstr "لم يتمكن الخادم من معالجة الطلب بسبب خطأ في العميل"
+
+#~ msgid "Booking Date"
+#~ msgstr "تاريخ الحجز"
+
+#~ msgid "Booking Amount"
+#~ msgstr "مبلغ الحجز"
+
+#~ msgid "Refund Policy "
+#~ msgstr "سياسة استرداد الأموال"
+
+#~ msgid ""
+#~ "(password must contain at least one number and one special characters."
+#~ "Minimum 8 characters)"
+#~ msgstr ""
+#~ "(يجب أن تحتوي كلمة المرور على رقم واحد وحرف خاص واحد على الأقل.الحد "
+#~ "الأدنى 8 أحرف)"
+
+#~ msgid "Cancel Booking"
+#~ msgstr "إلغاء الحجز"
+
+#~ msgid "Approve Booking"
+#~ msgstr "الموافقة على الحجز"
+
+#~ msgid "Close"
+#~ msgstr "إغلاق"
+
+#~ msgid "Price cannot exceed 10 digits."
+#~ msgstr "لا يمكن أن يتجاوز السعر 10 أرقام."
+
+#~ msgid "Payment Type:"
+#~ msgstr "نوع الدفع:"
+
+#~ msgid "Online"
+#~ msgstr "متصل"
+
+#~ msgid "Offline"
+#~ msgstr "غير متصل"
+
+#~ msgid "Locality/اسم المنطقة"
+#~ msgstr "سم المنطقة/اسم المنطقة"
+
+#~ msgid "Locality In Arabic"
+#~ msgstr "المنطقة باللغة العربية"
+
+#~ msgid "House/Building/Apartment No."
+#~ msgstr "رقم المنزل/المبنى/الشقة"
+
+#~ msgid "Postal/ZIP code"
+#~ msgstr "الرمز البريدي / الرمز البريدي"
+
+#~ msgid "Building Number must be between 1 and 10 characters long."
+#~ msgstr "يجب أن يتراوح طول رقم المبنى بين 1 و10 أحرف."
+
+#~ msgid "Building Number cannot be empty."
+#~ msgstr "لا يمكن أن يكون رقم المبنى فارغًا."
+
+#~ msgid "Postal/ZIP code must be between 3 and 15 characters."
+#~ msgstr "يجب أن يتراوح الرمز البريدي/الرمز البريدي بين 3 و15 حرفًا."
+
+#, fuzzy
+#~| msgid "Hotel Name(English)"
+#~ msgid "Amenity Name(English)"
+#~ msgstr "اسم الفندق بالانجليزي"
+
+#, fuzzy
+#~| msgid "Amenity Name"
+#~ msgid "Amenity Name(Arabic)"
+#~ msgstr "اسم وسائل الراحة"
+
+#~ msgid "Amenity Icon"
+#~ msgstr "اسم وسائل الراحة"
+
+#, fuzzy
+#~| msgid "Offer Name is required."
+#~ msgid "Amenity Name (English) is required."
+#~ msgstr "اسم العروض مطلوب."
+
+#, fuzzy
+#~| msgid "Category name must contain only alphabetic characters and spaces."
+#~ msgid ""
+#~ "Amenity Name (English) should contain only English letters and spaces."
+#~ msgstr "يجب أن يحتوي اسم الفئة على أحرف أبجدية ومسافات فقط."
+
+#, fuzzy
+#~| msgid "Bank Name should not exceed 50 characters."
+#~ msgid "Amenity Name (English) should not exceed 100 characters."
+#~ msgstr "يجب ألا يتجاوز اسم البنك 50 حرفًا."
+
+#, fuzzy
+#~| msgid "Offer Name is required."
+#~ msgid "Amenity Name (Arabic) is required."
+#~ msgstr "اسم العروض مطلوب."
+
+#, fuzzy
+#~| msgid "Bank Name should not exceed 50 characters."
+#~ msgid "Amenity Name (Arabic) should not exceed 100 characters."
+#~ msgstr "يجب ألا يتجاوز اسم البنك 50 حرفًا."
+
+#, fuzzy
+#~| msgid "Hotel Owner Name Arabic must contain Arabic letters only."
+#~ msgid "Amenity Name (Arabic) should contain only Arabic letters and spaces."
+#~ msgstr "اسم مالك الفندق باللغة العربية يجب أن يحتوي على حروف عربية فقط."
+
+#, fuzzy
+#~| msgid "Description is required."
+#~ msgid "Amenity Icon is required."
+#~ msgstr "الوصف مطلوب."
+
+#, fuzzy
+#~| msgid "Only JPEG and PNG files are allowed."
+#~ msgid "Only JPEG and PNG image formats are allowed."
+#~ msgstr "يُسمح فقط بملفات JPEG وPNG"
+
+#~ msgid "Expired"
+#~ msgstr "منتهي الصلاحية"
+
+#~ msgid "Each policy name must be 150 characters or less."
+#~ msgstr "يجب أن يكون كل اسم سياسة 150 حرفًا أو أقل."
+
+#~ msgid ""
+#~ "Policy names must contain only alphabetic characters, spaces, periods, "
+#~ "commas, and semicolons."
+#~ msgstr ""
+#~ "يجب أن تحتوي أسماء السياسات على أحرف أبجدية ومسافات ونقاط فقطالفواصل "
+#~ "والفواصل المنقوطة."
+
+#~ msgid " must be 150 characters or less."
+#~ msgstr "يجب أن يكون 150 حرفًا أو أقل."
+
+#~ msgid ""
+#~ " must contain only alphabetic characters, spaces, periods, commas, and "
+#~ "semicolons."
+#~ msgstr ""
+#~ " يجب أن يحتوي فقط على أحرف أبجدية، ومسافات، ونقاط، وفواصل، والفواصل "
+#~ "المنقوطة."
+
+#~ msgid "Room number already exists. "
+#~ msgstr "رقم الغرفة موجود بالفعل."
+
+#~ msgid "Hotel Name In Arabic"
+#~ msgstr "سم الفندق بالعربي"
+
+#~ msgid "Hotel Description in Arabic"
+#~ msgstr "وصف الفندق بالعربي"
+
+#~ msgid "Hotel Policies in Arabic"
+#~ msgstr "سياسات الفندق بالعربي"
+
+#~ msgid "(* must select 5 images *)"
+#~ msgstr "(* يجب تحديد 5 صور *)"
+
+#~ msgid "Enter hotel name "
+#~ msgstr "أدخل اسم الفندق"
+
+#~ msgid "Enter your email"
+#~ msgstr "أدخل اسم المالك"
+
+#~ msgid "Enter your hotel policies"
+#~ msgstr "أدخل سياسات الفندق الخاص بك"
+
+#~ msgid "I Agree to the "
+#~ msgstr "أنا أوافق على"
+
+#~ msgid "Offer Name cannot exceed 255 characters."
+#~ msgstr "لا يمكن أن يتجاوز اسم العرض 255 حرفًا."
+
+#~ msgid "House/Building/Apartment no"
+#~ msgstr "منزل / مبنى / شقة رقم"
+
+#~ msgid "Enter your House/Bulding"
+#~ msgstr "أدخل منزلك / المبنى الخاص بك"
+
+#~ msgid "service"
+#~ msgstr "خدمة"
+
+#~ msgid "Enter your House/Building"
+#~ msgstr "أدخل منزلك / المبنى"
+
+#~ msgid "Booking source"
+#~ msgstr "مصدر الحجز"
+
+#, fuzzy
+#~| msgid "Room number must be a number."
+#~ msgid "Office Number must be a 10-digit number."
+#~ msgstr "يجب أن يكون رقم الغرفة رقمًا."
+
+#, fuzzy
+#~| msgid "Discount Type"
+#~ msgid "Discount Value"
+#~ msgstr "نوع الخصم"
+
+#~ msgid "Please select a Country."
+#~ msgstr "رجاء قم بإختيار دوله."
+
+#~ msgid "Please select a City."
+#~ msgstr "الرجاء اختيار المدينة."
+
+#~ msgid "and"
+#~ msgstr "و"
+
+#~ msgid "1 document selected"
+#~ msgstr "تم اختيار مستند واحد"
+
+#~ msgid "documents selected"
+#~ msgstr "المستندات المختارة"
+
+#~ msgid "Locality cannot be empty."
+#~ msgstr "لا يمكن أن تكون المنطقة فارغة."
+
+#~ msgid "CR Number must contain at least one number."
+#~ msgstr "يجب أن يحتوي رقم السجل التجاري على رقم واحد على الأقل."
+
+#~ msgid "Please enter VAT Number."
+#~ msgstr "الرجاء إدخال رقم ضريبة القيمة المضافة."
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "Locality arabic cannot be empty."
+#~ msgstr "محلية"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "Postal/ZIP code cannot be empty."
+#~ msgstr "محلية"
+
+#, fuzzy
+#~| msgid "Locality"
+#~ msgid "VAT Number cannot be empty."
+#~ msgstr "محلية"
+
+#~ msgid "Hotel Policies cannot be empty."
+#~ msgstr "لا يمكن أن تكون سياسات الفندق فارغة."
+
+#~ msgid "Applicable Conditions"
+#~ msgstr "الشروط القابلة للتطبيق"
+
+#~ msgid ""
+#~ "Password must be at least 12 characters long and include a mix of letters "
+#~ "(lower-case & upper-case), numbers, and symbols."
+#~ msgstr ""
+#~ "يجب أن تتكون كلمة المرور من 12 حرفًا على الأقل وتتضمن مزيجًا من "
+#~ "الحروف(الأحرف الصغيرة والأحرف الكبيرة) والأرقام والرموز."
+
+#~ msgid "CHALET"
+#~ msgstr "شاليه"
+
+#~ msgid "Price must be greater than zero."
+#~ msgstr "يجب أن يكون السعر أكبر من الصفر."
+
+#~ msgid "Check-out time should be greater than check-in times."
+#~ msgstr "يجب أن يكون وقت تسجيل المغادرة أكبر من وقت تسجيل الوصول."
+
+#~ msgid "Cancellation Policy"
+#~ msgstr "سياسة الإلغاء"
+
+#, fuzzy
+#~| msgid "Please select a Country."
+#~ msgid "Please select an occupancy level."
+#~ msgstr "رجاء قم بإختيار دوله."
+
+#~ msgid "Hotel Room images"
+#~ msgstr "صور غرفة الفندق"
+
+#~ msgid "Order ID"
+#~ msgstr "رقم الأمر"
+
+#~ msgid "Booking Summary"
+#~ msgstr "ملخص الحجز"
+
+#~ msgid " Booking Management"
+#~ msgstr "إدارة الحجوزات"
+
+#~ msgid "Manage promo code"
+#~ msgstr "إدارة كود الخصم"
+
+#~ msgid "Enter the number of rooms"
+#~ msgstr "أدخل عدد الغرف"
+
+#~ msgid "Please select at least one Room Type."
+#~ msgstr "يرجى تحديد نوع غرفة واحد على الأقل."
+
+#, fuzzy
+#~ msgid "Room number already exist "
+#~ msgstr "رقم الغرفة موجود بالفعل"
+
+#~ msgid "Please enter valid credentials"
+#~ msgstr "الرجاء إدخال بيانات اعتماد صالحة"
+
+#~ msgid "Sorry,hotel registration not approved yet"
+#~ msgstr "آسف، لم تتم الموافقة على تسجيل الفندق بعد"
+
+#~ msgid "you have successfully signed into your account"
+#~ msgstr "لقد قمت بتسجيل الدخول بنجاح إلى حسابك"
+
+#~ msgid "Enter Your postel/ZIP code"
+#~ msgstr "أدخل الرمز البريدي/الرمز البريدي الخاص بك"
+
+#~ msgid "Room Status"
+#~ msgstr "حالة الغرفة"
+
+#~ msgid "Pice-per night"
+#~ msgstr "السعر لليلة"
+
+#~ msgid "Pice-per night with Breakfast"
+#~ msgstr "سعر الليلة مع وجبة الإفطار "
+
+#~ msgid "Pice-per night with Breakfast and Dinner"
+#~ msgstr "سعر الليلة مع الإفطار والعشاء "
+
+#~ msgid "(*Maximum 5 images allowed)"
+#~ msgstr "(*الحد الأقصى المسموح به هو 5 صور)"
+
+#~ msgid ""
+#~ "Password must contain at least one number, one special character, and be "
+#~ "at least 12 characters long."
+#~ msgstr ""
+#~ "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل، وحرف خاص واحد، وتكون "
+#~ "فيما لا يقل عن 12 أحرف طويلة."
+
+#~ msgid "Free wifi"
+#~ msgstr "واى فاى مجانى"
+
+#~ msgid "Flat Screen TV"
+#~ msgstr "تلفاز بشاشة مسطحة"
+
+#~ msgid "Attached Bathroom"
+#~ msgstr "الحمام المرفق"
+
+#~ msgid "Pool & beach"
+#~ msgstr "حمام السباحة والشاطئ"
+
+#~ msgid "Food & drink"
+#~ msgstr "طعام شراب"
+
+#~ msgid "Shops"
+#~ msgstr "محلات"
+
+#~ msgid "Night club"
+#~ msgstr "ملهى ليلي"
+
+#~ msgid "Gym"
+#~ msgstr "نادي رياضي"
+
+#~ msgid "Darts"
+#~ msgstr "السهام"
+
+#~ msgid "Smoking room"
+#~ msgstr "غرفة التدخين"
+
+#~ msgid "National ID Card"
+#~ msgstr "بطاقة الهوية الوطنية"
+
+#~ msgid "Passport"
+#~ msgstr "جواز سفر"
+
+#~ msgid "Driver's License"
+#~ msgstr "رخصة السائق"
+
+#~ msgid "Government-issued Photo ID"
+#~ msgstr "بطاقة هوية تحمل صورة وصادر عن جهة حكومية"
+
+#~ msgid ""
+#~ "Cancellation must be made at least 48 hours prior to the scheduled check-"
+#~ "in date"
+#~ msgstr ""
+#~ "يجب أن يتم الإلغاء قبل 48 ساعة على الأقل من موعد تسجيل الوصول المقررتاريخ"
+
+#~ msgid "The initial deposit is non-refundable"
+#~ msgstr "الوديعة الأولية غير قابلة للاسترداد"
+
+#~ msgid ""
+#~ "A full refund is provided if cancellation is made within the specified "
+#~ "period"
+#~ msgstr "يتم استرداد كامل المبلغ إذا تم الإلغاء خلال الفترة المحددة"
+
+#~ msgid "No refunds for cancellations made less than 48 hours before check-in"
+#~ msgstr ""
+#~ "لا يمكن استرداد أي مبالغ مقابل الإلغاءات التي تتم قبل أقل من 48 ساعة من "
+#~ "تسجيل الوصول"
+
+#~ msgid "No Smoking allowed in guest room"
+#~ msgstr "لا يسمح بالتدخين في غرفة الضيوف"
+
+#~ msgid "Pets are not permitted"
+#~ msgstr "لا يسمح بالحيوانات الأليفة"
+
+#~ msgid "The maximum occupancy per room is strictly enforced"
+#~ msgstr "يتم تطبيق الحد الأقصى للإشغال لكل غرفة بصرامة"
+
+#~ msgid "Unauthorized parties or gatherings are strictly prohibited"
+#~ msgstr "يمنع منعا باتا إقامة الحفلات أو التجمعات غير المصرح بها"
+
+#~ msgid "Only service animals are allowed on the premises"
+#~ msgstr "يُسمح فقط بتواجد حيوانات الخدمة في المبنى"
+
+#~ msgid ""
+#~ "Pets owners must present documentation for service animals at check-in"
+#~ msgstr ""
+#~ "يجب على أصحاب الحيوانات الأليفة تقديم وثائق خاصة بحيوانات الخدمة عند "
+#~ "تسجيل الوصول"
+
+#~ msgid ""
+#~ "Guests are responsible for any damages caused by their service animals"
+#~ msgstr "يتحمل الضيوف مسؤولية أي أضرار تسببها حيوانات الخدمة الخاصة بهم"
+
+#~ msgid "Pets must remain on a leash or in a carrier when in public area"
+#~ msgstr ""
+#~ "يجب أن تظل الحيوانات الأليفة مقيدة بمقود أو في حاملة عندما تكون في منطقة "
+#~ "عامة"
+
+#~ msgid "Extra beds can be requested and are subject to availability"
+#~ msgstr "يمكن طلب أسرّة إضافية وهي رهن بالتوافر"
+
+#~ msgid "Additional charges may apply for extra bed"
+#~ msgstr "قد يتم تطبيق رسوم إضافية على السرير الإضافي"
+
+#~ msgid ""
+#~ "The total number of occupants per room ,including those with extra beds, "
+#~ "must comply with fire safety regulations"
+#~ msgstr ""
+#~ "إجمالي عدد الأشخاص في كل غرفة، بما في ذلك الأشخاص الذين لديهم أسرّة إضافية،"
+#~ "يجب أن تمتثل للوائح السلامة من الحرائق"
+
+#~ msgid ""
+#~ "To request an additional bed, please contact the front desk in advance"
+#~ msgstr "لطلب سرير إضافي، يرجى الاتصال بمكتب الاستقبال مسبقًا"
+
+#~ msgid "Reject"
+#~ msgstr "رفض"
+
+#~ msgid "Write Rejection Remark"
+#~ msgstr "كتابة ملاحظة الرفض"
+
+#~ msgid "Please fill in this field."
+#~ msgstr "يرجى ملء هذا الحقل."
+
+#~ msgid "HOTEL"
+#~ msgstr "فندق"
+
+#~ msgid "Wallet"
+#~ msgstr "محفظة"
+
+
+#: templates/accounts/booking_view.html:544
+msgid "Check In "
+msgstr "ﺗﺳﺟﯾل اﻟدﺧول"
+
+#: templates/accounts/transaction_detail.html:84
+msgid "Payment <br> Gateway <br> Charge"
+msgstr "رسوم بوابة الدفع"
+
+
+#: templates/accounts/transaction_detail.html:81
+msgid "Booking <br>Date"
+msgstr "تاريخ الحجز"
+
+#: templates/accounts/transaction_detail.html:87
+msgid "Discount Amount"
+msgstr "مبلغ الخصم"
+
+
+#: templates/accounts/transaction_detail.html:93
+msgid "Total Members"
+msgstr "إجمالي الأعضاء"
+
+
+
+#: templates/accounts/transaction_detail.html:110
+msgid "Booking status"
+msgstr "حالة الحجز"
+
+
+#: templates/accounts/room_management_view.html:972
+msgid "The saved changes will be reflected in every Room Type:"
+msgstr "ستنعكس التغييرات المحفوظة في كل نوع من أنواع الغرف:"
+
+#: templates/accounts/room_management_view.html:331
+msgid "Number of Available Rooms"
+msgstr "عدد الغرف المتاحة"
+
+#: templates/accounts/room_management_view.html:336
+msgid "Number of Booked Rooms"
+msgstr "عدد الغرف المحجوزة"
+
+#: templates/accounts/room_management_view.html:140
+msgid "Please enter number of rooms"
+msgstr "الرجاء إدخال عدد الغرف"
+
+#: templates/accounts/edit_hotel_detail.html:161
+msgid "City (Arabic)"
+msgstr "مدينة (عربية)"
+
+#: templates/accounts/edit_hotel_detail.html:1085
+msgid "City name  must contain only English characters."
+msgstr "يجب أن يحتوي اسم المدينة على أحرف إنجليزية فقط."
+
+
+#: templates/accounts/edit_hotel_detail.html:1099
+msgid "City must be  50 characters long."
+msgstr "يجب أن يكون طول المدينة 50 حرفًا."
+
+#: templates/accounts/edit_hotel_detail.html:1103
+msgid "City name (Arabic) must contain only Arabic characters."
+msgstr "يجب أن يحتوي اسم المدينة (العربية) على الأحرف العربية فقط."
+
+
+#: templates/accounts/hotel_logo_navbar.html:120
+msgid  "Add Hotel "
+msgstr "إضافة فندق"
+
+#: templates/accounts/registration_form.html:1578
+msgid "Please enter a valid Hotel name in English."
+msgstr "الرجاء إدخال اسم فندق صالح باللغة الإنجليزية."
+
+#: templates/accounts/registration_form.html:1595
+msgid "Please enter a valid Hotel name in Arabic."
+msgstr "الرجاء إدخال اسم فندق صالح باللغة العربية."
+
+#: templates/accounts/registration_form.html:1786
+msgid "Hotel Description in English must contain English letters only."
+msgstr "يجب أن يحتوي وصف الفندق باللغة الإنجليزية على أحرف إنجليزية فقط."
+
+#: templates/accounts/registration_form.html:1799
+msgid "Hotel Description in Arabic must contain Arabic letters only."
+msgstr "يجب أن يحتوي وصف الفندق باللغة العربية على الأحرف العربية فقط."
+
+
+#: templates/accounts/registration_form.html:1812
+msgid "Hotel Policies in English must contain English letters only."
+msgstr "يجب أن تحتوي سياسات الفندق المكتوبة باللغة الإنجليزية على أحرف إنجليزية فقط."
+
+#: templates/accounts/registration_form.html:1823
+msgid "Hotel Policies in Arabic must contain Arabic letters only."
+msgstr "يجب أن تحتوي سياسات الفندق المكتوبة باللغة العربية على الأحرف العربية فقط."
+
+
+#: templates/accounts/chalet_register.html:1341
+msgid "Please enter a valid Chalet name in English."
+msgstr "الرجاء إدخال اسم شاليه صالح باللغة الإنجليزية"
+  
+
+#: templates/accounts/chalet_register.html:1360
+msgid "Please enter a valid Chalet name in Arabic."
+msgstr "الرجاء إدخال اسم شاليه صالح باللغة العربية."
+
+#: templates/accounts/chalet_register.html:1518
+msgid "Chalet Description in English must contain English letters only."
+msgstr "يجب أن يحتوي وصف الشاليه باللغة الإنجليزية على أحرف إنجليزية فقط."
+
+
+#: templates/accounts/chalet_register.html:1531
+msgid "Chalet Description in Arabic must contain Arabic letters only."
+msgstr "وصف الشاليه باللغة العربية يجب أن يحتوي على الأحرف العربية فقط."
+
+#: templates/accounts/chalet_register.html:1544
+msgid "Chalet Policies in English must contain English letters only."
+msgstr "يجب أن تحتوي سياسات الشاليه المكتوبة باللغة الإنجليزية على أحرف إنجليزية فقط."
+
+#: templates/accounts/chalet_register.html:1555
+msgid "Chalet Policies in Arabic must contain Arabic letters only."
+msgstr "يجب أن تحتوي سياسات الشاليه باللغة العربية على الأحرف العربية فقط."
+
+#: templates/accounts/add_hotel.html:43
+msgid "Enter hotel name"
+msgstr "أدخل اسم الفندق"
+
+#: templates/accounts/registration_form.html:1790
+msgid "Hotel Description in English must contain at most 1000 characters."
+msgstr "يجب أن يحتوي وصف الفندق باللغة الإنجليزية على 1000 حرف كحد أقصى."
+
+#: templates/accounts/registration_form.html:1807
+msgid "Hotel Description in Arabic must contain at most 1000 characters."
+msgstr "وصف الفندق باللغة العربية يجب أن يحتوي على 1000 حرف كحد أقصى."
+
+
+#: templates/accounts/registration_form.html:1824
+msgid "Hotel Policies in English must contain at most 1000 characters."
+msgstr "يجب أن تحتوي سياسات الفندق باللغة الإنجليزية على 1000 حرف كحد أقصى."
+
+#: templates/accounts/registration_form.html:1840
+msgid "Hotel Policies in Arabic must contain at most 1000 characters."
+msgstr "يجب أن تحتوي سياسات الفندق باللغة العربية على 1000 حرف كحد أقصى."
+
+#: templates/accounts/chalet_register.html:1522
+msgid "Chalet Description in English must contain at most 1000 characters."
+msgstr "يجب أن يحتوي وصف الشاليه باللغة الإنجليزية على 1000 حرف على الأكثر."
+
+#: templates/accounts/chalet_register.html:1539
+msgid "Chalet Description in Arabic must contain at most 1000 characters."
+msgstr "وصف الشاليه باللغة العربية يجب أن يحتوي على 1000 حرف كحد أقصى."
+
+
+#: templates/accounts/chalet_register.html:1556
+msgid "Chalet Policies in English must contain at most 1000 characters."
+msgstr "يجب أن تحتوي سياسات الشاليه باللغة الإنجليزية على 1000 حرف كحد أقصى."
+
+#: templates/accounts/chalet_register.html:1571
+msgid "chalet Policies in Arabic must contain at most 1000 characters."
+msgstr "سياسات الشاليه باللغة العربية يجب أن تحتوي على 1000 حرف كحد أقصى."
+
+
+#: templates/accounts/transaction_detail.html:114
+msgid "Promo Code Applied"
+msgstr "تم تطبيق رمز العرض الترويجي"
+
+#: templates/accounts/transaction_detail.html:115
+msgid "Discount Percentage Applied"
+msgstr "تم تطبيق نسبة الخصم"
+

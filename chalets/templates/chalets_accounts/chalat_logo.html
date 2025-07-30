@@ -1,0 +1,93 @@
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/dashboard-sidebar.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    
+</head>
+
+
+
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-collapse w3-top w3-large w3-padding" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topright nav-close-btn">
+        <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+    </a>
+    <div class="w3-container w3-padding-16">
+        {% if chalets %} 
+
+        <div class="dashboard-profile">
+            <form id="chaletForm" method="GET" action="">
+                <div class="chalet-name">
+                    <select name="chalet_id" class="chalet-dropdown" onchange="submitChaletForm()">
+                        {% for chalet in chalets %}
+                        <option value="{{ chalet.id }}" title="{{ chalet.name }}"
+                        data-approved="{% if chalet.approval_status == 'approved' %}true{% else %}false{% endif %}"
+                         {% if chalet.id == selected_chalet.id %}selected{% endif %}>
+                            {% if request.LANGUAGE_CODE == "ar" %}
+                            {{ chalet.name_arabic }}
+                            {% else %}
+                           {{ chalet.name|title }}
+                            {% endif %}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+            <img src="{{ selected_chalet.logo.url }}" alt="Chalet Logo">
+            <p>{{ selected_chalet.chalet_id }}</p>
+        </div>
+        {% else %}
+        <p>No Chalet Information Available</p>
+        {% endif %}
+    </div>
+    <div class="w3-bar-block nav-items">
+        <a href="{% url 'dashboard_overviews' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'dashboard_overviews' %} active {% endif %}">
+            <img src="{% static 'icons/ri_dashboard-fill .png' %}" alt="Dashboard Icon"> &nbsp; &nbsp; {% trans "Dashboard" %}
+        </a>
+        <a href="{% url 'chalet_booking' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_booking' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group.png' %}" alt="Booking Icon"> &nbsp; &nbsp;{% trans "Booking" %}
+        </a>
+        <a href="{% url 'chalet_property' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_property' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group .png' %}" alt="Dashboard Icon">  &nbsp; &nbsp;{% trans "Booking Availability" %}
+        </a>
+        <a href="{% url 'chalet_management' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_management' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group.png' %}" alt="Property Icon">&nbsp; &nbsp;{% trans "Chalet Info" %}
+        </a>
+        <a href="{% url 'chalet_transaction' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_transaction' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (2).png' %}" alt="Transaction Icon">&nbsp; &nbsp; {% trans "Transaction" %}
+        </a>
+        <a href="{% url 'chalet_offers' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_offers' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (3).png' %}" alt="Offers Icon">&nbsp; &nbsp; {% trans "Offers & Promo" %}
+        </a>
+        <a href="{% url 'chalet_refund' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_refund' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (5).png' %}" alt="Refund Icon"> &nbsp; &nbsp; {% trans "Refund" %}
+        </a>
+        <a href="{% url 'chalet_review' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'chalet_review' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (6).png' %}" alt="Review Icon">&nbsp; &nbsp;{% trans "Review & Rating" %}
+        </a>
+       <a href="{% url 'edit_chalet' %}?chalet_id={{ selected_chalet.id }}" onclick="w3_close()" class="w3-bar-item w3-margin-top w3-button w3-padding-large w3-round-large w3-hover-white {% if request.resolver_match.url_name == 'edit_chalet' %} active {% endif %}">
+            <img src="{% static 'icons/Mask group (8).png' %}" alt="edit Icon">&nbsp; &nbsp;{% trans "Edit Details" %}
+        </a> 
+    </div>
+</nav>
+
+<script>
+    let previousHotelId = document.querySelector('.chalet-dropdown').value;
+     function submitChaletForm() {
+    const select = document.querySelector('.chalet-dropdown');
+    const selectedOption = select.options[select.selectedIndex];
+
+    if (selectedOption.getAttribute('data-approved') === 'true') {
+        previousHotelId = select.value;
+
+        // Dynamically update the form action
+        const form = document.getElementById('chaletForm');
+        form.action = `/chalets/dashboard_overview?chalet_id=${select.value}`;
+        form.submit();
+    } else {
+       window.location.href=`/chalets/pending/?chalet_id=${previousHotelId}`
+    }
+}
+</script>

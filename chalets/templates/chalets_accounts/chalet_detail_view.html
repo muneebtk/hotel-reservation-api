@@ -1,0 +1,548 @@
+{% load static%}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <link rel="stylesheet" href="{% static 'chalets/css/chalet-detail-view.css' %}">
+</head>
+<body>
+    {% include 'accounts/loader_div.html' %}  
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %}  
+    <div class="w3-overlay w3-hide-large cursor-pointer" onclick="w3_close()" title="close side menu" id="myOverlay"></div>
+        <div class="w3-main main-section">
+                <div class="container container-box" id="hotelTable">
+                    <div class="row justify-content-center">
+                        <div class="page-nav" >
+                                <button class="back-nav" onclick="window.history.back();">
+                                    <i class="fa-solid fa-arrow-left fa-lg"></i>
+                                </button>
+                                <h4>{% trans "Chalet Management" %}</h4>  
+                        </div>
+                        <div class="row-main">
+                            <h4 class="desk-title"><b>{% trans "Chalet Images" %}</b></h4>
+                            <div class="cards-container">
+                                {% if room_type_images %}
+                                    <div class="card">
+                                        <h4 class="mob-title"><b>{% trans "Chalet Images" %}</b></h4>
+                                        <a href="{{ room_type_images.0.image.url }}" class="image-upload">
+                                            <div class="image-main-container">
+                                                <img src="{{ room_type_images.0.image.url }}">
+                                            </div>
+                                        </a>
+                                        <div class="edit-icon main-image-edit hidden" data-image-id="{{ room_type_images.0.id }}">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </div>
+                                        <input type="file" class="hidden" id="fileInputMain" data-room-id="{{ selected_chalet.id }}" data-image-id="{{ room_type_images.0.id }}">
+                                    
+                                        <div class="secondary-images">
+                                            {% for image in room_type_images %}
+                                            {% if not forloop.first %}
+                                            <div class="image-secondary-container">
+                                                <div class="secondary-img">
+                                                    <a href="{{ image.image.url }}" class="image-upload" data-image-id="{{ image.id }}">
+                                                        
+                                                            <img src="{{ image.image.url }}">
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div class="edit-icon hidden" data-image-id="{{ image.id }}">
+                                                    <i class="fa-solid fa-edit"></i>
+                                                </div>
+                                                <input type="file" id="fileInputSingle{{ image.id }}" class="hidden" data-room-id="{{ selected_chalet.id}}" data-image-id="{{ image.id }}">
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="up-btn">
+                                            <button id="uploadButton" class="upload-button"><strong>{% trans "Upload New Photo" %}</strong></button>
+                                            <input type="file" id="fileInput" class="hidden" data-room-id="{{ room.id }}" multiple>
+                                            {% comment %} <span>{% trans "(* must select 5 images *)" %}</span> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                <div class="card card-border">
+                                    <div class="">
+                                        <div class="w3-cell ">
+                                            <h3><b>{% trans "Chalet Details"%}:{% for room_type in room.room_types.all %}{{room_type|capfirst}}{% endfor %}</b></h3>
+                                        </div>
+                                        <div class="w3-cell w3-padding">
+                                            <span class="w3-pale-green w3-round-large"></span>
+                                            <input type="text" id="bookingStatus" value="{{ booking.status }}" class="hidden">
+                                        </div>
+                                        {% comment %} <div class="w3-cell ">
+                                            <button class="btn book_edit textdecoration-none" room_id="{{ room.id }}" onclick="fetch_data(this.getAttribute('room_id')); document.getElementById('id02').style.display='block';" >
+                                            <img src="{% static 'icons/ri_edit-fill.png' %}"></button>
+                                        </div> {% endcomment %}
+                                    
+                                    </div>
+                                    <div>
+                                        {% comment %} <div class="">
+                                            <p><b>{% trans "Room Number" %}:</b> {{room.room_number}}</p>
+                                        </div>
+              
+                                        <div class="">
+                                            <p><b>{% trans "Occupancy" %}:</b> {{ room.total_occupancy }}</p>
+                                        </div> {% endcomment %}
+                                        {% comment %} <div class="">
+                                            <p><b>{% trans "Price-Per-Night" %}:</b> {{ room.total_price }}</p>
+                                        </div> {% endcomment %}
+                                        
+                                        <div class="">
+                                            <p ><b>{% trans "Price" %} :</b> {{ price_per_night }}</p>
+                                            <p><b>{% trans "Commission" %}:</b> {{ commission_amount|default:"0.00" }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p><b>{% trans "Total Price" %}:</b> {{ total_price }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p ><b>{% trans "No. Of Guests" %} :</b> {{ selected_chalet.number_of_guests }}</p>
+                                            
+                                        </div>
+                                        
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="card">
+                                    <ul>
+                                        <li><h4><b>{% trans "Amenities" %}</b></h4></li>
+                                        {% for amenity in amenities %}
+                                            <li>
+                                                <i class="fa-solid fa-square-check text-85080c"></i> {% if request.LANGUAGE_CODE == 'en' %}
+                                                {{ amenity.amenity_name|title }}
+                                                {% elif request.LANGUAGE_CODE == 'ar' %}
+                                                    {% if amenity.amenity_name_arabic %}
+                                                        {{ amenity.amenity_name_arabic|title }}
+                                                    {% else %}
+                                                        {{ amenity.amenity_name|title }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </li>
+                                        {% empty %}
+                                            <li>{% trans "No amenities available." %}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> 
+</div>
+
+
+<!-- edit modal -->
+<div id="id02" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-round-xlarge">
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+       </div>
+        <div class="w3-margin-left">
+            <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i> {% trans "Edit" %} </h3>
+            <form class="w3-container " id="room_form" action="" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="original_room_number" name="original_room_number">
+              {%csrf_token%}
+              <div class="w3-section w3-margin-left">
+                    <div class="w3-cell box_container">
+                        <div>
+                            <label for="roomtypes">{% trans "Room Type" %}</label>
+                        </div>
+                        <div>
+                            <select class=" form-control w3-padding w3-round-large box_container_input" id="roomtypes1" name ="roomtypes" >
+                                {%for type in room_type%}
+
+                                    <option value="{{type.id}}">{{type|capfirst}}</option>
+                                {%endfor%}
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="w3-cell box_container">
+                        <div>
+                            <label for="room_number">{% trans "Room Number" %}</label>
+                        </div>
+                        <div>
+                            <input class=" w3-padding  w3-round-large box_container_input" type="text" id="room_number1"  name="room_number" required > 
+                        </div>
+                        <div>
+                            <span id="room_number_error1" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="w3-cell box_container">
+                        <div>
+                            <label for="pice_per_night">{% trans "Price-per night" %}</label>
+                        </div>
+                        <div>
+                            <input class=" w3-padding  w3-round-large box_container_input " type="text" id="pice_per_night1" name="pice_per_night" required> 
+                        </div>
+                        <div>
+                            <span id="pice_per_night_error1" class="error-message"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="w3-margin-top ">
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="amenities">{% trans "Amenities" %}</label>
+                            </div>
+                            
+                            <div class="input-group">
+                                <input type="text" readonly id="amenitiesedit" class="form-control dropdown-toggle w3-padding  w3-round-large box_container_input" placeholder="Select Amenities" data-bs-toggle="dropdown" aria-expanded="false">
+                                <ul class="dropdown-menu dropdown-menu-end" id="amenitiesDropdownedit" aria-labelledby="amenitiesInput">
+                                    {% for amenity in amenities %}
+                                    <li>
+                                        <label class="dropdown-item">
+                                            <input name="amenitiesedit" type="checkbox" value="{{ amenity.amenity_name }}" class="amenities_checkbox "> {{ amenity.amenity_name }}
+                                        </label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="meals">{% trans "Meals" %}</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" readonly id="mealsedit" class="form-control dropdown-toggle w3-padding  w3-round-large box_container_input" placeholder="Select meal options" data-bs-toggle="dropdown" aria-expanded="false">
+                                <ul class="dropdown-menu dropdown-menu-end" id="mealsDropdownedit" aria-labelledby="mealsInput">
+                                    {% for value in meals %}
+                                    <li>
+                                        <label class="dropdown-item">
+                                            <input name="mealsedit" type="checkbox" value="{{ value }}" class="meals_checkbox ">{{ value }}
+                                        </label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>    
+
+                        <div class="w3-cell box_container">
+                            <div>
+                                <label for="adults">{% trans "Adults" %}</label>
+                            </div>
+                            <div>
+                                <input class="w3-padding w3-round-large box_container_input" type="number" id="adults" name="adults" value="1" min="1" required>
+                            </div>
+                            <div>
+                                <span id="adults_error" class="error-message"></span>
+                            </div>
+                        </div>
+
+                        <div class="w3-margin-top ">
+                            <!-- Children Field -->
+                            <div class="w3-cell box_container">
+                                <div>
+                                    <label for="children">{% trans "Children" %}</label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input" type="number" id="children" name="children" value="0" min="0">
+                                </div>
+                                <div>
+                                    <span id="children_error" class="error-message"></span>
+                                </div>
+                            </div>
+                        </div>
+                            <div>
+                                <span id="meals-error" class="error-message"></span>
+                            </div>
+                        </div>
+                </div>
+
+
+                    <div class="w3-center w3-container">
+                        <button class="w3-button w3-round-large w3-margin-right  btn  w3-padding-large border-85080c text-85080c" onclick="document.getElementById('id02').style.display='none'" type="button" >{% trans "Cancel" %}</button>
+                        <button class=" w3-round-large btn w3-section w3-padding-large text-white bg-85080c" type="submit" onclick="return validateFormedit()" >{% trans "Save" %}</button>
+                    </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script> 
+    <script>
+        $(document).ready(function() {
+            // Show edit icons for all images when "Upload New Photo" is clicked
+            $('#uploadButton').on('click', function() {
+                $('.edit-icon').show();
+            });
+        
+            // Trigger file input for main large image
+            $('.main-image-edit').on('click', function() {
+                $('#fileInputMain').click();
+            });
+        
+            // Handle file input change for the main large image
+            $('#fileInputMain').change(function(event) {
+                var fileInput = event.target;
+                var files = fileInput.files;
+                var roomId = $(fileInput).data('room-id');
+                var imageId = $(fileInput).data('image-id');
+        
+                if (files.length > 0) {
+                    var file = files[0];
+        
+                    // Perform client-side validation
+                    var maxSize = 500 * 1024;
+                    var allowedTypes = ['image/jpeg', 'image/png'];
+        
+                    if (file.size > maxSize) {
+                        alert('File exceeds the maximum size of 500 KB.');
+                        return;
+                    } else if (!allowedTypes.includes(file.type)) {
+                        alert('Only JPEG and PNG files are allowed.');
+                        return;
+                    }
+        
+                    var formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('room_id', roomId);
+                    formData.append('image_id', imageId);
+        
+                    // Send the file to the server
+                    $.ajax({
+                        url: '{% url "upload_single_chalet_image" %}', // Update with your URL
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Replace the main image dynamically
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('.main-image').attr('src', e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error uploading file:', error);
+                        }
+                    });
+                }
+            });
+        
+            // Trigger file input for other images
+            $('.edit-icon:not(.main-image-edit)').on('click', function() {
+                var imageId = $(this).data('image-id');
+                $('#fileInputSingle' + imageId).click();
+            });
+        
+            // Handle file input change for other images
+            $('input[type="file"]:not(#fileInputMain)').change(function(event) {
+                var fileInput = event.target;
+                var files = fileInput.files;
+                var roomId = $(fileInput).data('room-id');
+                var imageId = $(fileInput).data('image-id');
+        
+                if (files.length > 0) {
+                    var file = files[0];
+        
+                    // Perform client-side validation
+                    var maxSize = 500 * 1024;
+                    var allowedTypes = ['image/jpeg', 'image/png'];
+        
+                    if (file.size > maxSize) {
+                        alert('File exceeds the maximum size of 500 KB.');
+                        return;
+                    } else if (!allowedTypes.includes(file.type)) {
+                        alert('Only JPEG and PNG files are allowed.');
+                        return;
+                    }
+        
+                    var formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('room_id', roomId);
+                    formData.append('image_id', imageId);
+        
+                    // Send the file to the server
+                    $.ajax({
+                        url: '{% url "upload_single_chalet_image" %}', // Update with your URL
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Replace the respective image dynamically
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('a[data-image-id="' + imageId + '"] img').attr('src', e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error uploading file:', error);
+                        }
+                    });
+                }
+            });
+        });
+        
+        
+        document.getElementById('room_form').addEventListener('submit', function(event) {
+            let priceField = document.getElementById('pice_per_night1');
+            var errorMessage = document.getElementById("pice_per_night_error1");
+            let priceValue = parseFloat(priceField.value);
+
+            if (priceValue <= 0) {
+                errorMessage.innerText = "Price cannot be 0 or less.";
+                errorMessage.style.color = "red"; 
+                event.preventDefault();
+            } else if (isNaN(priceValue)) {
+                errorMessage.innerText = "Price must be numbers";
+                errorMessage.style.color = "red"; 
+                event.preventDefault();
+            }
+        });
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        
+       
+        
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const amenitiesInput = document.getElementById('amenitiesedit');
+            const amenitiesDropdown = document.getElementById('amenitiesDropdownedit');
+
+            amenitiesInput.addEventListener('click', function() {
+                amenitiesDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!amenitiesInput.contains(event.target) && !amenitiesDropdown.contains(event.target)) {
+                    amenitiesDropdown.classList.remove('show');
+                }
+            });
+
+            const checkboxes = amenitiesDropdown.querySelectorAll('input[name="amenitiesedit"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selected = [];
+                    checkboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            selected.push(cb.nextSibling.textContent.trim());
+                        }
+                    });
+                    amenitiesInput.value = selected.join(', ');
+                });
+            });
+
+            const mealsInput = document.getElementById('mealsedit');
+            const mealsDropdown = document.getElementById('mealsDropdownedit');
+
+            mealsInput.addEventListener('click', function() {
+                mealsDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mealsDropdown.contains(event.target) && event.target !== mealsInput) {
+                    mealsDropdown.classList.remove('show');
+                }
+            });
+
+            const mealCheckboxes = mealsDropdown.querySelectorAll('input[name="mealsedit"]');
+            mealCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selectedMeals = [];
+                    mealCheckboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            selectedMeals.push(cb.value);
+                        }
+                    });
+                    mealsInput.value = selectedMeals.join(', ');
+                });
+            });
+        });
+
+        function validateFormedit() {
+            const mealCheckboxes = document.querySelectorAll('.meals_checkbox');
+            const mealsError = document.getElementById("meals-error");
+
+            const selectedMeals = Array.from(mealCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const noMealsSelected = selectedMeals.includes('no meals');
+
+            mealsError.innerText = '';
+
+            if (noMealsSelected && selectedMeals.length > 1) {
+                mealsError.innerText = 'You cannot select other meal options when "No Meals" is selected.';
+                mealsError.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+
+        function fetch_data(id){
+            $.ajax({
+                url : '/vendor/roommanagement/edit/' + id + '/',
+                method : "GET",
+                success : function(data){
+                    $("#room_form").attr('action', '/vendor/roommanagement/edit/' + id + '/')
+                    $("#roomtypes1").val(data.roomtypes)
+                    $("#room_number1").val(data.room_number)
+                    $("#total_occupency1").val(data.total_occupancy)
+                    $("#pice_per_night1").val(data.pice_per_night)
+                    $('#original_room_number').val(data.room_number);
+                    $('#adults').val(data.adult);
+                    $('#children').val(data.childrens);
+                    
+
+                    $('#amenitiesDropdownedit input[type="checkbox"]').each(function() {
+                        var amenity = $(this).val();
+                        if (data.amenities.includes(amenity)) {
+                            $(this).prop('checked', true);
+                        } else {
+                            $(this).prop('checked', false);
+                        }
+                    });
+
+                    $('#mealsDropdownedit input[type="checkbox"]').each(function() {
+                        var  meal= $(this).val();
+                        if (data.meal_data.includes(meal)) {
+                            $(this).prop('checked', true);
+                        } else {
+                            $(this).prop('checked', false);
+                        }
+                    });
+                },
+                error: function() {
+                    alert('Failed to fetch details.');
+                }
+            })
+        }
+        
+    </script>
+    
+</body>
+</html>

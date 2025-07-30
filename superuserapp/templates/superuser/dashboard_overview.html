@@ -1,0 +1,550 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/dashboard-overview.css' %}">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- jQuery (required for Toastr) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <style>
+        #toast-container > div.toast-success {
+            background-image: url("{% static 'icons/Mask group (7).png' %}") !important;
+            background-position: 15px center !important;
+            background-repeat: no-repeat !important;
+            background-size: 30px 30px !important;
+        }
+    </style>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000",
+        };
+    </script>
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+    </div>
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+
+    <div class="w3-main main-section" id="hotelTable">
+        <br>
+        <div class="statistics-container">
+            <div class="stat-box">
+                <div class="stat-header">
+                    <span class="stat-percentage">{{ confirmed_rating }}</span>
+                    <span class="stat-value">{{confirmed_count}}</span>
+                </div>
+                <div class="stat-label">{% trans 'Bookings Rates' %}</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-header">
+                    <span class="stat-percentage">{{ cancel_rating }}</span>
+                    <span class="stat-value">{{cancel_count}}</span>
+                </div>
+                <div class="stat-label">{% trans 'Cancellation Rates' %}</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-header">
+                    <span class="stat-percentage">{{ adr_rates }}</span>
+                    <span class="stat-value">{{adr}}</span>
+                </div>
+                <div class="stat-label">{% trans 'Average Daily Rates' %}</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-header">
+                    <span class="stat-percentage">{{ review_rating }}</span>
+                    <span class="stat-value">{{review_count}}</span>
+                </div>
+                <div class="stat-label">{% trans 'Review Rates' %}</div>
+            </div>
+          
+        </div>
+
+        <div class="statistics-container">
+            <div class="stat-box">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_rooms}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Total Number Of Available Rooms' %}  ({{today}})</div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_rooms_booked_today}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Number Of Booked Rooms' %} ({{today}})</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_chalets}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Total Number Of Available Chalets' %} ({{today}})</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_chalets_booked}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Number Of Booked Chalets' %} ({{today}})</div>
+            </div>
+        </div>
+     <div class="statistics-container1">
+               <div class="stat-box1">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_andriod_users}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Number Of Android Users' %}</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-count-header">
+                    <span class="stat-percentage">{{total_ios_users}}</span>
+                </div>
+                <div></div>
+                <div class="stat-count-label">{% trans 'Number Of IOS Users' %}</div>
+            </div>
+           </div>
+           <br>
+    <div  class="charts-container">
+        <div id="visitorStatistics" class="chart"></div>
+        <div id="reservationStats" class="chart"></div>
+    </div>
+        <div class="container container-box">
+            <div class="row justify-content-center">
+                <br>
+                <div class="row-main" >
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5><b>{% trans "Latest Bookings" %}</b></h5>
+                        </div>
+                        <div class="col-md-4" style="float: right;">
+                            <button class="view_all btn" type="button">
+                                {% trans "View All" %}
+                            </button>
+                        </div>
+                    </div>
+    
+                    <br>
+                    <div class="col-md-12">
+                        <div class="table-container">
+                            <table class="w3-table responsive-table">
+                                <thead class="bg-table-head">
+                                    <tr>
+                                        <th class="border-right">{% trans "Sl. No." %}</th>
+                                        <th class="border-right">{% trans "Name" %}</th>
+                                        <th class="border-right">{% trans "Property" %}</th>
+                                        <th class="border-right">{% trans "Guest Name" %}</th>
+                                        <th class="border-right">{% trans "Contact Number" %}</th>
+                                        <th class="border-right">{% trans "Status" %}</th>
+                                        <th class="border-right">{% trans "Transaction Time" %}</th>
+                                        <th class="border-right">{% trans "Check-In" %}</th>
+                                        <th>{% trans "Check-Out" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fs12 table-body-color">
+                                    {% if booking_data %}
+                                        {% for booking in booking_data %}
+                                        <tr>
+                                            <td class="border-right">{{ forloop.counter }}</td>
+                                            {% if booking.hotel %}
+                                                <td class="border-right">{{ booking.hotel.name}}</td>
+                                                <td class="border-right">{% trans "Hotel" %}</td>
+                                                <td class="border-right">{{ booking.booking_fname|capfirst }}</td>
+                                                <td class="border-right">{{ booking.booking_mobilenumber }}</td>
+                                                <td class="border-right">{% if booking.status == "expired" %}Cancelled {% else %} {{ booking.status|title }} {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction %} {{ booking.transaction.modified_at|date:"h:i A" }}{% else %}N/A{% endif %}</td>
+                                                <td class="border-right">{{ booking.checkin_date|date:"Y-m-d" }}</td>
+                                                <td>{{ booking.checkout_date|date:"Y-m-d" }}</td>
+                                            {% else %}
+                                                <td class="border-right">{{ booking.chalet.name}}</td>
+                                                <td class="border-right">{% trans "Chalet" %}</td>
+                                                <td class="border-right">{{ booking.booking_fname|capfirst }}</td>
+                                                <td class="border-right">{{ booking.booking_mobilenumber }}</td>
+                                                <td class="border-right">{% if booking.status == "expired" %}Cancelled {% else %} {{ booking.status|title }} {% endif %}</td>
+                                                <td class="border-right">{% if booking.transaction %} {{ booking.transaction.modified_at|date:"h:i A" }}{% else %}N/A{% endif %}</td>
+                                                <td class="border-right">{{ booking.checkin_date|date:"Y-m-d" }}</td>
+                                                <td>{{ booking.checkout_date|date:"Y-m-d" }}</td>
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;">{% trans "No data found" %}</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no_data_found" style="display: none;"></div>
+            {%if booking_data%}
+            <div id="pagination_container">
+                <div class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 10px;">
+                    <!-- Previous Button -->
+                    {% if booking_data.has_previous %}
+                    <a href="#" class="previous-page pagination-link" data-page="{{ booking_data.previous_page_number }}" title="Previous Page">
+                        <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                <div class="page-numbers" style="display: flex; align-items: center; gap: 3px;">
+                    {% for num in booking_data.paginator.page_range %}
+                        {% if booking_data.paginator.num_pages > 3 %}
+                            {% if num >= booking_data.number and num < booking_data.number|add:3 %}
+                                {% if num == booking_data.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if num == booking_data.number %}
+                                <span class="current-page">{{ num }}</span>
+                            {% else %}
+                                <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+                <!-- Next Button -->
+                {% if booking_data.has_next %}
+                <a href="#" class="next-page pagination-link" data-page="{{ booking_data.next_page_number }}" title="Next Page">
+                    <span class="next-button">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                {% else %}
+                    <span class="disabled-button disabled-button-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                {% endif %}
+            </div>
+            {%else%}
+            <div></div>
+            {% endif %}       
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Render Toastr messages once -->
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                toastr.{{ message.tags }}("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        Highcharts.chart('visitorStatistics', {
+            chart: {
+                type: 'area',
+                style: {
+                    fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif'
+                }
+            },
+            title: {
+                text: '{% trans "Monthly Bookings" %}',
+                align: 'left',
+                style: {
+                    color: '#333',
+                    fontSize: '16px',
+                    fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+
+                }
+            },
+            xAxis: {
+                categories: {{ monthly|safe }},
+                tickmarkPlacement: 'on',
+                labels: {
+                    style: {
+                        color: '#333',
+                        fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    enabled: false // Disable Y-axis labels
+                }
+            },
+            tooltip: {
+                split: true,
+                valueSuffix: ' Bookings'
+            },
+            series: [{
+                name: '{% trans "Bookings" %}',
+                data: {{ monthly_data|safe }},
+                color: '#EF2D28',
+                fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#EF2D28'],
+                        [1, 'rgba(255, 99, 132, 0.1)']
+                    ]
+                }
+            }],
+            credits: {
+                enabled: false // Disables the 'highcharts.com' text
+            }
+        });
+        
+        Highcharts.chart('reservationStats', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif'
+                }
+            },
+            title: {
+                text: '{% trans "Reservation Statistics" %}',
+                align: 'left',
+                style: {
+                    color: '#333',
+                    fontSize: '16px',
+                    fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+                }
+            },
+            xAxis: {
+                categories: {{ weekly|safe }},
+                labels: {
+                    style: {
+                        color: '#333',
+                        fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    style: {
+                        color: '#333'
+                    }
+                }
+            },
+            tooltip: {
+                split: true,
+                valueSuffix:'{% trans " Bookings" %}'
+            },
+            series: [{
+                name: '{% trans "Confirmed Bookings" %}',
+                data: {{ weekly_data|safe }},
+                color: '#FF8E8E',
+                fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+
+            }, {
+                name: '{% trans "Pending Bookings" %}',
+                data: {{ pending_weekly|safe }},
+                color: '#EF2D28',
+                fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+
+            }, {
+                name: '{% trans "Cancelled Bookings" %}',
+                data: {{ cancelled_weekly|safe }},
+                color: '#C42521',
+                fontFamily: 'IBMPlexSansArabic, SF Pro Display, sans-serif',
+
+            }],
+            credits: {
+                enabled: false // Disables the 'highcharts.com' text
+            }
+        });
+        
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+        
+        $(document).ready(function() {
+            $('.view_all').click(function() {
+                $('.loader-container').css('display', 'flex');
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+                var page = 1;
+                setTimeout(function() {
+                    $.ajax({
+                        url:'{% url "view"  %}',  
+                        type: 'GET',
+                        data: {
+                             "page": page
+                             },
+                        success: function(data) {
+                            clearTimeout(loaderTimeout);
+
+                            $('.loader-container').hide();
+                            $('#hotelTable').removeClass('blurred');
+                            $('table tbody').html($(data).find('table tbody').html());
+                            // $('.view_all').hide();
+                            $('.view_all').text('{% trans "Back" %}');
+                            $('.view_all').addClass('back-button');
+                            const rows = $(data).find('table tbody tr');
+                            const totalRows = rows.length;
+                            const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                            if (totalRows === 0) {
+                                const noDataRow = `
+                                    <tr>
+                                        <td colspan="8" style="text-align: center;">No data found</td>
+                                    </tr>
+                                `;
+                                $('table tbody').html(noDataRow); 
+                                $('#pagination_container').hide();
+
+                            }
+                            else if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                                $('#pagination_container').hide();
+                            } else {
+                                $('#pagination_container').html($(data).find('#pagination_container').html()).show();
+                            }        
+
+                        },
+                        error: function(xhr, status, error) {
+                            clearTimeout(loaderTimeout);
+                            $('.loader-container').css('display', 'flex');
+                            console.error('Error fetching latest bookings:', error);
+                            alert('Error fetching latest bookings. Please try again later.');
+                        }
+                    });
+                }, 500);
+            });
+            $(document).on('click', '.back-button', function() {
+                setTimeout(function() {
+                window.location.reload();
+                $("#pagination_container").hide(); 
+            }, 500);
+            });
+        });
+
+        $(document).ready(function () {
+        $("#pagination_container").hide(); 
+    });
+    $(document).ready(function () {
+        $(document).on('click', '.pagination-link', function (e) {
+            e.preventDefault(); 
+            $('.loader-container').css('display', 'flex');
+            $('#hotelTable').addClass('blurred');
+            var page = $(this).data('page');
+            var loaderTimeout = setTimeout(function() {
+                $('.loader-container').hide();
+                $('#hotelTable').removeClass('blurred');
+            }, 1000);
+            $.ajax({
+                url:'{% url "view"  %}',  
+                type: 'GET',
+                data: {
+                    "page": page
+                },
+                success: function (data) {
+                    clearTimeout(loaderTimeout);
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                    $('table tbody').html($(data).find('table tbody').html());
+                    $('#pagination_container').html($(data).find('#pagination_container').html());
+                    const rows = $(data).find('table tbody tr');
+                    const totalRows = rows.length;
+
+                    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+                    if (totalRows === 0) {
+                        const noDataRow = `
+                            <tr>
+                                <td colspan="8" style="text-align: center;">No data found</td>
+                            </tr>
+                        `;
+                        $('table tbody').html(noDataRow); 
+                        $('#pagination_container').hide();
+
+                    }
+                    else if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                        $('#pagination_container').hide();
+                    } else {
+                        $('#pagination_container').html($(data).find('#pagination_container').html()).show();
+                    }        
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                    alert("{% trans 'Error fetching pagination data. Please try again later.' %}");
+
+                    $('.loader-container').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }
+            });
+        });
+    });
+
+        
+    </script>
+    
+</body>
+</html>

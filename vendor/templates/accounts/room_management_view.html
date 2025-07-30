@@ -1,0 +1,1333 @@
+{% load static%}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/room-management-view.css' %}">
+</head>
+<body>
+    {% include 'accounts/loader_div.html' %}  
+    {% include 'accounts/hotel_logo_navbar.html' %}
+    {% include 'accounts/search_navbar.html' %}  
+    </div>
+
+        <div class="w3-main main-section">
+                <div class="container container-box" id="hotelTable">
+                    <div class="row justify-content-center">
+                        <div class="row top-bar" >
+                            <div class="col-md-4"> 
+                                <button class="nav-back"><a href="{% url 'roommanagement' %}?hotel_id={{ selected_hotel.id }}" class="textdecoration-none"><i class="fa-solid fa-arrow-left fa-lg " ></i></a></button>
+                            </div>    
+                            <div class="col-md-4">
+                                <h4>{% trans "Room Management" %}</h4>
+                            </div>    
+                        </div>
+
+                        <div class="row-main">
+                            <h4 class="desk-heading"><b>{% trans "Room Types Images" %}</b></h4>
+                                <div class="room-types-content-container">
+                                    {% if room_type_images %}
+                                    
+                                    <div class="content-item">
+                                        <h4 class="mob-heading"><b>{% trans "Room Types Images" %}</b></h4>
+                                        <a href="{{ room_type_images.0.image.url }}" class="image-upload">
+                                            <img class="w3-round-large main-image" src="{{ room_type_images.0.image.url }}">
+                                        </a>
+                                        <div class="edit-icon main-image-edit hidden" data-image-id="{{ room_type_images.0.id }}">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </div>
+                                        <input type="file" id="fileInputMain" class="hidden" data-room-id="{{ room.room_types.id }}" data-image-id="{{ room_type_images.0.id }}">
+                                        <div class="secondary-image-container">
+                                            {% for image in room_type_images %}
+                                            {% if not forloop.first %}
+                                            <div class="secondary-img">
+                                                <a href="{{ image.image.url }}" class="image-upload" data-image-id="{{ image.id }}">
+                                                    <img class="w3-round-large second-img" src="{{ image.image.url }}">
+                                                </a>
+                                                <div class="edit-icon hidden" data-image-id="{{ image.id }}">
+                                                    <i class="fa-solid fa-edit"></i>
+                                                </div>
+                                                <input type="file" id="fileInputSingle{{ image.id }}" class="hidden" data-room-id="{{ room.room_types.id }}" data-image-id="{{ image.id }}">
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="upload_button-container">
+                                            <button id="uploadButton" class="w3-round-large upload_button btn w3-border"><strong>{% trans "Upload New Photo" %}</strong></button>
+                                            <input type="file" id="fileInput" class="hidden" data-room-id="{{ room.room_types.id }}" multiple>
+                                            {% comment %} <span>{% trans "(* must select 5 images *)" %}</span> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                <div class="content-item w3-border w3-round-large">
+                                    <div class="">
+                                        <div class="w3-cell ">
+                                            <h3><b>{% trans "Room Types"%}:{{room.room_types.room_types|capfirst}}</b></h3>
+                                        </div>
+                                        <div class="w3-cell w3-padding">
+                                            <span class="w3-pale-green w3-round-large"></span>
+                                            <input type="text" id="bookingStatus" value="{{ booking.status }}" class="hidden">
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="">
+                                            <p><b>{% trans "Number of Rooms" %}:</b> {{room.number_of_rooms}}</p>
+                                        </div>
+              
+                                        <div class="">
+                                            <p><b>{% trans "Occupancy" %}:</b> {{ room.total_occupancy }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p><b>{% trans "Price-Per-Night" %}:</b> {{ room.price_per_night }}</p>
+                                        </div>
+                                        <div class="">
+                                            {% comment %} <p><b>{% trans "Commission" %}:</b> {{ commission_amount }}</p> {% endcomment %}
+                                        </div>
+                                        <div class="">
+                                            {% comment %} <p><b>{% trans "Total Price" %}:</b> {{ total_price }}</p> {% endcomment %}
+                                        </div>
+                                        <div class="">
+                                            <p class="capitalize"><b>{% trans "Meals available" %} :</b> {{ meal_choices|join:", " }}</p>
+                                        </div>
+                                        {% if meal_tax_percentage is not None %}
+                                        <div class="">
+                                            <p class="capitalize"><b>{% trans "Tax for Meals" %} :</b> {{ meal_tax_percentage }}</p>
+                                        </div>
+                                        {% endif %}
+                                        <div class="">
+                                            <p class="capitalize"><b>{% trans "Refund " %} :</b> {% if request.LANGUAGE_CODE == 'en' %} {{ refund_policy_category_name }}
+                                                {% else %} {{refund_policy_category_arabic}}    {% endif %}</p>
+                                        </div>
+                                        {% if refund_policy_name or refund_policy_arabic %}
+                                        <div>
+                                            <p class="capitalize">
+                                                <b>{% trans "Refund Option" %} :</b> 
+                                                {% if request.LANGUAGE_CODE == 'en' %} 
+                                                    {{ refund_policy_name }}
+                                                {% else %} 
+                                                    {{ refund_policy_arabic }}    
+                                                {% endif %}
+                                                {% if refund_validity %} ({{ refund_validity }} {% trans "Hours" %}){% endif %}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                         
+                                    </div>
+                                    <button class="btn book_edit textdecoration-none" room_id="{{ room.id }}" onclick="fetch_data(this.getAttribute('room_id')); document.getElementById('id02').style.display='block';" >
+                                        <img src="{% static 'icons/ri_edit-fill.png' %}">
+                                    </button>
+                                </div>
+                                <div class="content-item">
+                                    <ul>
+                                        <li><h4><b>{% trans "Room Amenities" %}</b></h4></li>
+                                        {% for amenity in amenities %}
+                                            <li>
+                                                <i class="fa-solid fa-square-check text-85080C"></i> {% if request.LANGUAGE_CODE == 'en' %}
+                                                {{ amenity.amenity_name|title }}
+                                                {% elif request.LANGUAGE_CODE == 'ar' %}
+                                                    {% if amenity.amenity_name_arabic %}
+                                                        {{ amenity.amenity_name_arabic|title }}
+                                                    {% else %}
+                                                        {{ amenity.amenity_name|title }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </li>
+                                        {% empty %}
+                                            <li>{% trans "No amenities available." %}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div> 
+</div>
+
+
+<!-- edit modal -->
+<div id="id02" class="edit-roomtype-modal-container">
+    <div class="roomtype-modal-content">
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+       </div>
+        <div class="">
+            <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i> {% trans "Edit" %} </h3>
+            <form class="w3-container form-container" id="room_form" action="" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+              <div class="form-elements">
+                <div class="input-containers">
+
+                    <div class="box_container">
+                        <input id="csrf" value={{csrf_token}} class="hidden">
+                        <div>
+                            <label for="roomtypes">{% trans "Room Type" %}</label>
+                        </div>
+                        <div class="relative">
+                            <!-- Input Field -->
+                            <input 
+                                list="roomtypes_list" 
+                                class="form-control w3-padding w3-round-large box_container_input" 
+                                id="roomtypes1" 
+                                name="roomtypes" 
+                                placeholder="{% trans 'Select or type a room type' %}" 
+                                autocomplete="off"
+                                readonly
+                            >
+                            <input type="hidden" id="roomtype_id" name="roomtype_id">
+                            <!-- Datalist for Suggestions -->
+                            <div class="room-type-results-container"></div>
+                    
+                            <!-- Error Message -->
+                            <span id="roomtypes_error" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="box_container">
+                        <div>
+                            <label for="number_of_rooms">{% trans "Number of Rooms" %}</label>
+                        </div>
+                        <div>
+                            <input class=" w3-padding  w3-round-large box_container_input" type="text" id="number_of_rooms1"  name="number_of_rooms" required > 
+                        </div>
+                        <div>
+                            <span id="number_of_rooms_error1" class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="box_container">
+                        <div>
+                            <label for="pice_per_night">{% trans "Price-per night" %}</label>
+                        </div>
+                        <div>
+                            <input class=" w3-padding  w3-round-large box_container_input " type="text" id="pice_per_night1" name="pice_per_night" required> 
+                        </div>
+                        <div>
+                            <span id="pice_per_night_error1" class="error-message"></span>
+                        </div>
+                    </div>
+                    
+
+                        <div class="box_container">
+                            <div>
+                                <label for="amenities">{% trans "Amenities" %}</label>
+                            </div>
+                            
+                            <div class="input-group">
+                                <input type="text" readonly id="amenitiesedit" class="form-control dropdown-toggle w3-padding  w3-round-large box_container_input" placeholder="{% trans 'Select Amenities'%}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <ul class="dropdown-menu dropdown-menu-end" id="amenitiesDropdownedit" aria-labelledby="amenitiesInput">
+                                    {% for amenity in room_amenities %}
+                                    <li>
+                                        <label class="dropdown-item">
+                                            <input name="amenitiesedit" type="checkbox" value="{{ amenity.amenity_name }}" class="amenities_checkbox " data-display-name="{{ amenity.amenity_name|title }}" 
+                                            data-arabic-name="{{ amenity.amenity_name_arabic|default:amenity.amenity_name|title }}"> {% if request.LANGUAGE_CODE == 'en' %}
+                                            {{ amenity.amenity_name|title }}
+                                            {% elif request.LANGUAGE_CODE == 'ar' %}
+                                                {% if amenity.amenity_name_arabic %}
+                                                    {{ amenity.amenity_name_arabic|title }}
+                                                {% else %}
+                                                    {{ amenity.amenity_name|title }}
+                                                {% endif %}
+                                            {% endif %}
+                                        </label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <span id="amneties_error" class="error-message"></span>
+                        </div>
+                        <div class="box_container">
+                            <div>
+                                <label for="meals">{% trans "Meals" %}</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" readonly id="mealsedit" class="form-control dropdown-toggle w3-padding  w3-round-large box_container_input" placeholder="{% trans 'Select meal options'%}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <ul class="dropdown-menu dropdown-menu-end" id="mealsDropdownedit" aria-labelledby="mealsInput">
+                                    {% for value in meals %}
+                                    <li>
+                                        <label class="dropdown-item">
+                                            <input name="mealsedit" type="checkbox" value="{{value}}" class="meals_checkbox ">{{ value|title }}
+                                        </label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <span id="meals-error" class="error-message"></span>
+                        </div>    
+
+                        <div class="box_container">
+                            <div>
+                                <label for="adults">{% trans "Adults" %}</label>
+                            </div>
+                            <div>
+                                <input class="w3-padding w3-round-large box_container_input" type="number" id="adults" name="adults" value="1" min="1" required>
+                            </div>
+                            <div>
+                                <span id="adults_error" class="error-message"></span>
+                            </div>
+                        </div>
+
+
+                            <!-- Weekend Price Field -->
+                            <div class="box_container">
+                                <div>
+                                    <label for="weekend_price">{% trans "Weekend Price (Optional)" %}</label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input" type="text" id="weekend_price"
+                                        name="weekend_price" placeholder="{% trans 'Enter weekend price' %}"
+                                        >
+                                </div>
+                                <div>
+                                    <span id="weekend_price_error" class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <!-- Tax for Meals Field -->
+                            <div class="w3-cell box_container">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <label for="meal_tax">{% trans "Tax for Meals" %}</label>
+                                    <label for="meal_tax_toggle" class="flex items-center cursor-pointer">
+                                        <div class="relative">
+                                            <input id="meal_tax_toggle" type="checkbox" class="sr-only" onchange="toggleMealTaxInput()" {% if meal_tax_percentage is not None %} checked {% endif %} />
+                                            <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
+                                            <div class="dot absolute w-6 h-6 bg-red rounded-full shadow -left-1 -top-1 transition"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input" 
+       type="text" id="meal_tax" name="meal_tax" 
+       
+       placeholder="{% trans 'Enter meal tax' %}"  
+       {% if meal_tax_percentage is None %} disabled {% endif %}>
+
+                                </div>
+                                <div>
+                                    <span id="meal_tax_error" class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <!-- Children Field -->
+                            <div class="box_container">
+                                <div>
+                                    <label for="children">{% trans "Children" %}</label>
+                                </div>
+                                <div>
+                                    <input class="w3-padding w3-round-large box_container_input" type="number" id="children" name="children"
+                                        value="0" min="0">
+                                </div>
+                                <div>
+                                    <span id="children_error" class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <div class="box_container">
+                                <label for="refund">{% trans "Refund and Cancellation" %}</label>
+                                <div class="refund-radio-group">
+                                    {% if refundpolicycategories %}
+                                        {% for categories in refundpolicycategories %}
+                                            <div class="input-item">
+                                                <input type="radio" id="refund-check-{{ categories.id }}" name="refund-check" value="{{ categories.id }}"
+                                                    {% if categories.id == data.refund_policy_category.id %} checked {% endif %}>
+                                                <label for="refund-check-{{ categories.id }}">
+                                                    {% if request.LANGUAGE_CODE == "ar" %}
+                                                        {{ categories.name_arabic }}
+                                                    {% else %}
+                                                        {{ categories.name }}
+                                                    {% endif %}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                        <span id="refund_error" class="error-message"></span>
+                                    {% endif %}
+                                    <div class="refund-details-container">
+                                            {% for policy in refundpolicies %}
+                                                <div class="refund-input">
+                                                    <div class="input-item">
+                                                        <input type="checkbox" name="refund-policy" id="refund-policy-{{ policy.id }}" value="{{ policy.id }}">
+                                                        <label for="refund-policy-{{ policy.id }}">
+                                                            {% if request.LANGUAGE_CODE == "ar" %}
+                                                                {{ policy.title_arabic }}
+                                                            {% else %}
+                                                                {{ policy.title }}
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                    
+                                                    {% if policy.is_validity_specific %}
+                                                        <div class="input-item validity-specific">
+                                                            <label for="refund-hours-{{ policy.id }}"></label>
+                                                            <input class="check-hours-input" type="text" placeholder="{% trans 'Enter hours for refund policy' %}" id="refund-hours-{{ policy.id }}">
+                                                        </div>
+                        
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                            <span id="policy_error" class="error-message"></span>
+                                        </div>
+                                        
+                                </div>
+                        </div>
+                        <div>
+                        </div>
+
+                </div>
+
+
+                    <div class="w3-center w3-container">
+                        <button class="action-btn w3-round-large btn" onclick="document.getElementById('id02').style.display='none'" type="button" >{% trans "Cancel" %}</button>
+                        <button class="action-btn w3-round-large btn" type="submit">{% trans "Save" %}</button>
+                    </div>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const refundRadios = document.querySelectorAll('.refund-radio-group input[type="radio"]');
+    const refundDetails = document.querySelector('.refund-details-container');
+
+    function toggleRefundDetails() {
+        let isRefundAvailable = false;
+
+        refundRadios.forEach(radio => {
+            if (radio.checked) {
+                const label = document.querySelector(`label[for="${radio.id}"]`);
+                if (label && label.textContent.trim() === "Refund Available"||label.textContent.trim() === "الاسترداد متاح" ) {
+                    isRefundAvailable = true;
+                }
+            }
+        });
+
+        refundDetails.style.display = isRefundAvailable ? 'flex' : 'none';
+    }
+
+    toggleRefundDetails();
+
+    refundRadios.forEach(radio => {
+        radio.addEventListener('change', toggleRefundDetails);
+    });
+
+    const selectedRefundPolicyId = "{{ data.refund_policy_category.id }}";
+    if (selectedRefundPolicyId) {
+        const selectedRadio = document.querySelector(`input[name='refund-check'][value='${selectedRefundPolicyId}']`);
+        if (selectedRadio) {
+            selectedRadio.checked = true;
+            toggleRefundDetails(); // Ensure the UI reflects the correct state
+        }
+    }
+});
+
+</script>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script> 
+    <script>
+        function toggleMealTaxInput() {
+            const mealTaxInput = document.getElementById("meal_tax");
+            mealTaxInput.disabled = !document.getElementById("meal_tax_toggle").checked;
+        }
+        </script>
+    <script>
+        $(document).ready(function() {
+            // Show edit icons for all images when "Upload New Photo" is clicked
+            $('#uploadButton').on('click', function() {
+                $('.edit-icon').show();
+            });
+            
+            // Trigger file input for main large image
+            $('.main-image-edit').on('click', function() {
+                $('#fileInputMain').click();
+            });
+        
+            // Handle file input change for the main large image
+            $('#fileInputMain').change(function(event) {
+                var fileInput = event.target;
+                var files = fileInput.files;
+                var roomTypeId = $(fileInput).data('room-id');
+                var imageId = $(fileInput).data('image-id');
+        
+                if (files.length > 0) {
+                    var file = files[0];
+        
+                    // Perform client-side validation
+                    var maxSize = 500 * 1024;
+                    var allowedTypes = ['image/jpeg', 'image/png'];
+        
+                    if (file.size > maxSize) {
+                        alert('File exceeds the maximum size of 500 KB.');
+                        return;
+                    } else if (!allowedTypes.includes(file.type)) {
+                        alert('Only JPEG and PNG files are allowed.');
+                        return;
+                    }
+        
+                    var formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('room_type_id', roomTypeId);
+                    formData.append('image_id', imageId);
+        
+                    // Send the file to the server
+                    $.ajax({
+                        url: '{% url "upload_single_room_image" %}', // Update with your URL
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Replace the main image dynamically
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('.main-image').attr('src', e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error uploading file:', error);
+                        }
+                    });
+                }
+            });
+        
+            // Trigger file input for other images
+            $('.edit-icon:not(.main-image-edit)').on('click', function() {
+                var imageId = $(this).data('image-id');
+                $('#fileInputSingle' + imageId).click();
+            });
+        
+            // Handle file input change for other images
+            $('input[type="file"]:not(#fileInputMain)').change(function(event) {
+                var fileInput = event.target;
+                var files = fileInput.files;
+                var roomTypeId = $(fileInput).data('room-id');
+                var imageId = $(fileInput).data('image-id');
+        
+                if (files.length > 0) {
+                    var file = files[0];
+        
+                    // Perform client-side validation
+                    var maxSize = 500 * 1024;
+                    var allowedTypes = ['image/jpeg', 'image/png'];
+        
+                    if (file.size > maxSize) {
+                        alert('File exceeds the maximum size of 500 KB.');
+                        return;
+                    } else if (!allowedTypes.includes(file.type)) {
+                        alert('Only JPEG and PNG files are allowed.');
+                        return;
+                    }
+        
+                    var formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('room_type_id', roomTypeId);
+                    formData.append('image_id', imageId);
+        
+                    // Send the file to the server
+                    $.ajax({
+                        url: '{% url "upload_single_room_image" %}', // Update with your URL
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // Replace the respective image dynamically
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('a[data-image-id="' + imageId + '"] img').attr('src', e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error uploading file:', error);
+                        }
+                    });
+                }
+            });
+        });
+        
+        document.getElementById('room_form').addEventListener('submit', function(event) {
+            let priceField = document.getElementById('pice_per_night1');
+            var errorMessage = document.getElementById("pice_per_night_error1");
+            let priceValue = parseFloat(priceField.value);
+
+            if (priceValue <= 0) {
+                errorMessage.innerText = "Price cannot be 0 or less.";
+                errorMessage.style.color = "red"; 
+                event.preventDefault();
+            } else if (isNaN(priceValue)) {
+                errorMessage.innerText = "Price must be numbers";
+                errorMessage.style.color = "red"; 
+                event.preventDefault();
+            }
+        });
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        
+      
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const amenitiesInput = document.getElementById('amenitiesedit');
+            const amenitiesDropdown = document.getElementById('amenitiesDropdownedit');
+
+            amenitiesInput.addEventListener('click', function() {
+                amenitiesDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!amenitiesInput.contains(event.target) && !amenitiesDropdown.contains(event.target)) {
+                    amenitiesDropdown.classList.remove('show');
+                }
+            });
+
+            const checkboxes = amenitiesDropdown.querySelectorAll('input[name="amenitiesedit"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selected = [];
+                    checkboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            if ('{{ request.LANGUAGE_CODE }}' === 'ar') {
+                                selected.push(cb.getAttribute('data-arabic-name') || cb.nextSibling.textContent.trim());
+                            } else {
+                                selected.push(cb.getAttribute('data-display-name') || cb.nextSibling.textContent.trim());
+                            }
+                        }
+                    });
+                    amenitiesInput.value = selected.join(', ');
+                });
+            });
+
+            const mealsInput = document.getElementById('mealsedit');
+            const mealsDropdown = document.getElementById('mealsDropdownedit');
+
+            mealsInput.addEventListener('click', function() {
+                mealsDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!mealsDropdown.contains(event.target) && event.target !== mealsInput) {
+                    mealsDropdown.classList.remove('show');
+                }
+            });
+
+            const mealCheckboxes = mealsDropdown.querySelectorAll('input[name="mealsedit"]');
+            mealCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    let selectedMeals = [];
+                    mealCheckboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            let mealText = cb.closest("label").textContent.trim(); // Get capitalized label text
+                            selectedMeals.push(mealText);                        }
+                    });
+                    mealsInput.value = selectedMeals.join(', ');
+                });
+            });
+        });
+        {% comment %} document.getElementById('room_form').addEventListener('submit', validateFormedit); {% endcomment %}
+        const mealsError = document.getElementById("meals-error");
+        const roomtype_error = document.getElementById("roomtypes_error")
+        const roomNumberError = document.getElementById('number_of_rooms_error1');
+        const pricePerNightError = document.getElementById('pice_per_night_error1');
+        const adultsError = document.getElementById('adults_error');
+        const childrenError = document.getElementById('children_error');
+
+
+        function validateFormedit(event) {
+            // Prevent form submission until validation is complete
+            let isvalid=true
+            event.preventDefault();
+
+            // Meal validation (as already provided)
+            const mealCheckboxes = document.querySelectorAll('.meals_checkbox');
+            
+
+            const selectedMeals = Array.from(mealCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            const noMealsSelected = selectedMeals.includes('no meals');
+
+            var roomtype_id = document.getElementById("roomtype_id").value;
+            var roomType = document.getElementById("roomtypes1").value;
+            var amneties= document.getElementById('amenitiesedit').value;
+            if (amneties===""){
+                document.getElementById('amneties_error').innerText="{% trans 'Please select atleast one amenities.' %}";
+                document.getElementById('amneties_error').style.color='red';
+                isvalid= false;
+            }
+            else{
+                document.getElementById('amneties_error').innerText=" ";
+            }
+
+
+            mealsError.innerText = '';
+            if(selectedMeals.length === 0){
+                mealsError.innerText = "{% trans 'Select atleast One meals' %}";
+                mealsError.style.color = 'red';
+                isvalid= false;
+            }
+            else if (noMealsSelected && selectedMeals.length > 1) {
+                mealsError.innerText = "{% trans 'You cannot select other meal options when No Meals is selected.' %}";
+                mealsError.style.color = 'red';
+                isvalid= false;
+            }
+            else{
+                mealsError.innerText = " ";
+            }
+
+            roomtype_error.innerText = ''
+            if (roomType === "" || !/^[a-zA-Z\s]+$/.test(roomType) || roomType.length < 3 || roomType.length > 50) {
+                roomtype_error.innerText = '{% trans "Please enter a valid room type with only letters and between 3 to 50 characters." %}';
+                roomtype_error.style.color = 'red';
+                isvalid= false;
+            }
+
+            if (roomtype_id === ""){
+                roomtype_error.innerText = '{% trans "Please add your new room type or select a roomtype from the dropdown to add this room" %}';
+                roomtype_error.style.color = 'red';
+                isvalid= false;
+            }
+
+
+            const roomNumber = document.getElementById('number_of_rooms1');
+            
+            roomNumberError.innerText = '';
+
+            if (!/^\d+$/.test(roomNumber.value)) {
+
+                roomNumberError.innerText = '{% trans "Room number must be a number." %}';
+                roomNumberError.style.color = 'red';
+                isvalid= false;
+            }
+            if (!roomNumber.value.trim()) {
+                roomNumberError.innerText = "{% trans 'Room number cannot be empty.' %}";
+                roomNumberError.style.color = 'red';
+                isvalid= false;
+            }
+            
+            if (roomNumber.value.length < 1 || roomNumber.value.length > 6){
+                roomNumberError.innerText = '{% trans "Please enter room number  between 1 to 6 characters." %}';
+                roomNumberError.style.color = 'red';
+                isvalid= false;
+
+            }
+            if (roomNumber.value && isNaN(roomNumber.value)) {
+                roomNumberError.innerText = "{% trans 'Room number must be a valid number.' %}";
+                roomNumberError.style.color = 'red';
+                isvalid= false;
+            }
+
+            
+
+            const pricePerNight = document.getElementById('pice_per_night1');
+            
+            pricePerNightError.innerText = '';
+            var languageCode = "{{ request.LANGUAGE_CODE }}";
+    var errorMessageEn = "Price per night must be a valid <br> number (up to three decimal <br> places).";
+    var errorMessageAr = "يجب أن يكون سعر الليلة رقمًا صالحًا <br> (ما يصل إلى ثلاث منازل عشرية).";
+            const pricePerNightValue = pricePerNight.value.trim();
+            const priceRegex = /^(?!0+(?:\.0{1,3})?$)([1-9]\d*(\.\d{1,3})?|0\.\d{1,3})$/;
+
+
+            if (!pricePerNightValue) {
+                pricePerNightError.innerHTML = "{% trans 'Price per night cannot be empty.' %}";
+                pricePerNightError.style.color = 'red';
+                isvalid= false;
+            }
+
+            if (pricePerNightValue && !priceRegex.test(pricePerNightValue)) {
+                pricePerNightError.innerHTML = (languageCode === 'ar') ? errorMessageAr : errorMessageEn;
+                pricePerNightError.style.color = 'red';
+                isvalid = false;
+            }
+            
+            
+
+            const pricePerNightFloat = parseFloat(pricePerNightValue);
+
+            if (pricePerNightFloat > 99999999.99) {
+                pricePerNightError.innerText = "{% trans 'Price per night cannot exceed 99999999.99.' %}";
+                pricePerNightError.style.color = 'red';
+                isvalid= false;
+            }
+// weekp
+            const weekendPrice = document.getElementById('weekend_price');
+            const weekendPriceError = document.getElementById('weekend_price_error');
+            weekendPriceError.innerText = '';
+
+            const weekendPriceValue = weekendPrice.value.trim();
+            const weekendregex = /^(0(\.0{1,3})?|[1-9]\d*(\.\d{1,3})?)$/;
+            
+            if (weekendPriceValue === "0" || weekendPriceValue === "0.0" || weekendPriceValue === "0.00") {
+                weekendPriceError.innerText = "{% trans 'Please enter a valid amount greater than 0.' %}";
+    weekendPriceError.style.color = 'red';
+    isvalid = false;
+            }
+            
+            if (weekendPriceValue && !weekendregex.test(weekendPriceValue)) {
+                weekendPriceError.innerHTML = "{% trans 'Weekend price must be a valid <br> number (up to three decimal <br> places).' %}";
+                weekendPriceError.style.color = 'red';
+                isvalid= false;
+            }
+
+            const weekendPriceFloat = parseFloat(weekendPriceValue);
+
+            if (weekendPriceFloat > 99999999.99) {
+                weekendPriceError.innerText = "{% trans 'Weekend Price  cannot exceed 99999999.99.' %}";
+                weekendPriceError.style.color = 'red';
+                isvalid= false;
+            }
+            
+
+            const mealTaxToggle = document.getElementById('meal_tax_toggle');
+            const mealTax = document.getElementById('meal_tax');
+            const mealTaxError = document.getElementById('meal_tax_error');
+            mealTaxError.innerText = '';
+
+            const mealTaxValue = mealTax.value.trim();
+            
+            const taxRegex = /^\d{1,2}(\.\d{1,2})?$/;
+            
+            if (!mealTaxToggle.checked) {
+                mealTaxError.innerHTML = '';
+                mealTax.value = "";  // Clear input when disabled
+                mealTaxError.innerText = "";
+            }
+
+            if (mealTaxValue && !taxRegex.test(mealTaxValue)) {
+                mealTaxError.innerHTML = "{% trans 'Meal tax must be a valid percentage (up to two decimal places) between 00.00 and 99.99.' %}";
+                mealTaxError.style.color = 'red';
+                isvalid= false;
+            }
+
+            const mealTaxFloat = parseFloat(mealTaxValue);
+
+            if (mealTaxFloat > 99.99) {
+                mealTaxError.innerText = "{% trans 'Meal tax must be between 00.00 and 99.99.' %}";
+                mealTaxError.style.color = 'red';
+                isvalid= false;
+            }
+            if (mealTaxToggle.checked && mealTaxValue === "") {
+                mealTaxError.innerText = "{% trans 'Meal tax is required when the toggle is enabled.' %}";
+                mealTaxError.style.color = 'red';
+                isvalid = false;
+            }
+
+            // Adults validation
+            const adultsField = document.getElementById('adults');
+            
+            adultsError.innerText = '';
+
+            if (!adultsField.value.trim() || parseInt(adultsField.value, 10) < 1) {
+                adultsError.innerText = "{% trans 'Please select at least 1 adult.' %}";
+                adultsError.style.color = 'red';
+                isvalid= false;
+            } else if (parseInt(adultsField.value, 10) > 4) {
+                adultsError.innerText = "{% trans 'A room cannot have more than 4 adult.' %}";
+                adultsError.style.color = 'red';
+                isvalid= false;
+            } else {
+                adultsError.innerText = ""; // Clear the error message
+            }
+
+            // Children validation
+            const childrenField = document.getElementById('children');
+            
+            childrenError.innerText = '';
+
+            if (!childrenField.value.trim() || parseInt(childrenField.value, 10) < 0) {
+                childrenError.innerText = "{% trans 'Please select a valid number of children (0 or more).' %}";
+                childrenError.style.color = 'red';
+                isvalid= false;
+            } else if (parseInt(childrenField.value, 10) > 4) {
+                childrenError.innerText = "{% trans 'A room cannot have more than 4 children.' %}";
+                childrenError.style.color = 'red';
+                isvalid= false;
+            } else {
+                childrenError.innerText = ""; // Clear the error message
+            }
+
+            let selectedCategory = document.querySelector("input[name='refund-check']:checked");
+            console.log("Selected category:", selectedCategory ? selectedCategory.value : "None selected");
+
+            if (!selectedCategory) {
+                document.getElementById("refund_error").innerText = "{% trans 'You must select a refund category' %}.";
+                document.getElementById("refund_error").style.color = 'red';
+                isvalid= false;
+            } 
+            else if (selectedCategory) {
+                document.getElementById("refund_error").innerText = "";
+
+                let selectedLabel = document.querySelector(`label[for="${selectedCategory.id}"]`);
+                let selectedText = selectedLabel ? selectedLabel.innerText.trim().toLowerCase() : "";
+                console.log(selectedText);
+
+                if (selectedText === 'no refund'||selectedText ==='لا يوجد استرداد' ) {
+                    let selectedPolicies = document.querySelectorAll("input[name='refund-policy']:checked");
+                    if (selectedPolicies.length === 0) {
+                        document.getElementById("refund_error").innerText = "";
+                    }
+                } else {
+                    let selectedPolicies = document.querySelectorAll("input[name='refund-policy']:checked");
+                    console.log("selected policies:", selectedPolicies.length);
+                    if (selectedPolicies.length === 0) {
+                        document.getElementById("refund_error").innerText = "{% trans 'You must select one refund policy' %}.";
+                        document.getElementById("refund_error").style.color = 'red';
+                        isvalid= false;
+                    } else {
+                        selectedPolicies.forEach(policy => {
+                            let policyId = policy.value;
+                            let validityInput = document.querySelector(`#refund-hours-${policyId}`);
+                            console.log("policy id_______", policyId);
+                            console.log(validityInput);
+
+                            if (validityInput) {
+                                console.log("Validity Input Exists");
+                                if (isNaN(validityInput.value.trim()) || validityInput.value.trim() < 0 || validityInput.value.trim() > 100 || validityInput.value.length > 4||!/^\d+$/.test(validityInput.value)) {
+                                    var message = "{% trans 'Please enter a valid number between 0 and 100.' %}.";
+                                    document.getElementById("refund_error").innerText = message;
+                                    document.getElementById("refund_error").style.color = 'red';
+                                    validityInput.focus();
+                                    isvalid= false;
+                                } else if (validityInput.value.trim() == "") {
+                                    var message = "{% trans 'Please enter a number.' %}.";
+                                    document.getElementById("refund_error").innerText = message;
+                                    document.getElementById("refund_error").style.color = 'red';
+                                    validityInput.focus();
+                                    isvalid= false;
+                                }
+                            } else {
+                                console.log("Validity Input Does Not Exist");
+                                document.getElementById("refund_error").innerText = "";
+                            }
+                        });
+                    }
+                }
+            } 
+            else{
+                document.getElementById("refund_error").innerText = "";
+            } 
+            if (isvalid) {
+                document.getElementById("room_form").submit();
+                return true;
+            }
+            else{
+                event.preventDefault();  
+            }
+            
+        }
+
+        function fetch_data(id){
+            mealsError.innerText = '';
+            roomNumberError.innerText = '';
+            pricePerNightError.innerText = '';
+            adultsError.innerText = '';
+            childrenError.innerText = '';
+            $.ajax({
+                url : '/vendor/roommanagement/edit/' + id + '/',
+                method : "GET",
+                success : function(data){
+                    $("#room_form").attr('action', '/vendor/roommanagement/edit/' + id + '/')
+                    $("#roomtypes1").val(data.roomtypes)
+                    $("#roomtype_id").val(data.roomtypes_id);
+                    $("#number_of_rooms1").val(data.number_of_rooms)
+                    $("#total_occupency1").val(data.total_occupancy)
+                    $("#pice_per_night1").val(data.pice_per_night);
+                    $("#weekend_price").val(data.weekend_price ? data.weekend_price : null);
+                    $("#meal_tax").val(data.meal_tax)
+                    $('#adults').val(data.adult);
+                    $('#children').val(data.childrens);
+                    console.log(data.refund_policy_id)
+                    if (data.refund_policy_category_id) {
+                    let refundRadio = $("input[name='refund-check'][value='" + data.refund_policy_category_id + "']");
+                    refundRadio.prop("checked", true);
+
+                    const label = $("label[for='" + refundRadio.attr('id') + "']").text().trim();
+                    if (label === "Refund Available" || label ==="الاسترداد متاح") {
+                        $(".refund-details-container").css('display', 'flex');
+                    } else {
+                        $(".refund-details-container").css('display', 'none');
+                    }
+                } else {
+                    $(".refund-details-container").css('display', 'none');
+                }
+                if (data.refund_policy_id) {
+                    $("input[name='refund-policy'][value='" + data.refund_policy_id + "']").prop("checked", true);
+                    
+                    let refundHoursInput = $("#refund-hours-" + data.refund_policy_id);
+                    if (refundHoursInput.length) {
+                        refundHoursInput.closest(".validity-specific").show(); // Ensure the input is visible
+                        refundHoursInput.val(data.validity || ""); // Set the validity hours if available
+                    }
+                }
+                    let selectedAmenities = [];
+                    $('#amenitiesDropdownedit input[type="checkbox"]').each(function() {
+                        var amenity = $(this).val();
+                        if (data.amenities.includes(amenity)) {
+                            $(this).prop('checked', true);
+
+                            if ('{{ request.LANGUAGE_CODE }}' === 'ar') {
+                                selectedAmenities.push($(this).data('arabicName') || amenity);
+                            } else {
+                                selectedAmenities.push($(this).data('displayName') || amenity);
+                            }
+                        } else {
+                            $(this).prop('checked', false);
+                        }
+                    });
+                    $('#amenitiesedit').val(selectedAmenities.join(', '));
+
+
+                    let selectedMeals = [];
+                    $('#mealsDropdownedit input[type="checkbox"]').each(function() {
+                        var meal = $(this).val();
+                        console.log(data.meal_data)
+                        if (data.meal_data.includes(meal)) {
+                            $(this).prop('checked', true);
+                            selectedMeals.push(meal);
+                        } else {
+                            $(this).prop('checked', false);
+                        }
+                    });
+                    $('#mealsedit').val(
+                        selectedMeals.map(meal => meal.charAt(0).toUpperCase() + meal.slice(1)).join(', ')
+                    );                
+                },
+                error: function() {
+                    alert('Failed to fetch details.');
+                }
+            })
+        }
+
+document.addEventListener("DOMContentLoaded", function () {
+    let form = document.querySelector("#room_form");
+
+    form.addEventListener("submit", function (event) {
+        if (!validateFormedit(event)) {
+            event.preventDefault(); 
+            return;
+        }       
+        let selectedCategory = document.querySelector("input[name='refund-check']:checked");
+        if (!selectedCategory) return; // No category selected, exit
+
+        let refundData = [];
+
+        let selectedLabel = document.querySelector(`label[for="${selectedCategory.id}"]`);
+        let selectedText = selectedLabel ? selectedLabel.innerText.trim().toLowerCase() : "";
+
+        if (selectedText === 'no refund'|| selectedText ==='لا يوجد استرداد') {
+            refundData.push({
+                selected_category: selectedCategory.value,
+                policy_id: null,
+                validity: null,
+                percentage: null
+            });
+        } else {
+            // Get the selected refund policy
+            let selectedPolicy = document.querySelector("input[name='refund-policy']:checked");
+
+            if (selectedPolicy) {
+                let policyId = selectedPolicy.value;
+                let validityInput = document.querySelector(`#refund-hours-${policyId}`);
+                let validity = validityInput ? validityInput.value.trim() : null;
+
+                refundData.push({
+                    selected_category: selectedCategory.value,
+                    policy_id: policyId,
+                    validity: validity,
+                    percentage: null 
+                });
+            }
+        }
+
+        // Remove existing hidden input if present
+        let existingInput = document.querySelector("input[name='refund_policies']");
+        if (existingInput) {
+            existingInput.value = JSON.stringify(refundData);
+        } else {
+            let hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "refund_policies";
+            hiddenInput.value = JSON.stringify(refundData);
+            form.appendChild(hiddenInput);
+        }
+
+        // Submit the form
+        form.submit();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const refundPolicyCheckboxes = document.querySelectorAll('input[name="refund-policy"]');
+
+    refundPolicyCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", function () {
+            // If this checkbox is checked, uncheck all others and clear their input fields
+            if (this.checked) {
+                refundPolicyCheckboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== this) {
+                        otherCheckbox.checked = false;
+
+                        // Clear any associated input fields
+                        const otherInput = document.querySelector(`#refund-hours-${otherCheckbox.value}`);
+                        if (otherInput) {
+                            otherInput.value = "";
+                        }
+                    }
+                });
+            }
+
+            // If the user unchecks this checkbox, clear its input field
+            if (!this.checked) {
+                const inputField = document.querySelector(`#refund-hours-${this.value}`);
+                if (inputField) {
+                    inputField.value = "";
+                }
+            }
+
+            // Clear any error message
+            const policyError = document.getElementById('policy_error');
+            if (policyError) {
+                policyError.innerText = ''; 
+            }
+        });
+    });
+});
+
+
+  </script>
+    {% comment %} <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            class SearchBox {
+                constructor() {
+                    this.items = [];
+                    this.input = document.querySelector('#roomtypes1');
+                    this.hiddenInput = document.querySelector('#roomtype_id'); // Hidden input for room type id
+                    this.resultsContainer = document.querySelector('.room-type-results-container');
+    
+                    this.setupEventListeners();
+                    this.fetchItems();
+                }
+    
+                async fetchItems() {
+                    const path = window.location.pathname; // "/vendor/room/35/"
+                    const segments = path.split('/'); // ["", "vendor", "room", "35", ""]
+                    const id = segments[3]; // Get the ID segment
+                    console.log(id);
+                    try {
+                        // Fetch items from the actual API endpoint
+                        const response = await fetch(`/vendor/get_room/${id}`);
+                        console.log(`API URL: /vendor/get_room/${id}`);
+                        const data = await response.json();
+                        this.items = data.roomtypes.map(item => ({
+                            id: item.id,
+                            room_type: item.room_type
+                        }));
+    
+                        // Display the fetched items in the dropdown
+                        this.showResults(this.items);
+                    } catch (error) {
+                        console.error('Error fetching items:', error);
+                    }
+                }
+    
+                async addNewItem(newItem) {
+                    const errorElement = document.getElementById('roomtypes_error'); // Get the error message span
+                    errorElement.innerHTML = ''; // Clear any existing error message
+    
+                    // Validation
+                    if (newItem.length === 0) {
+                        errorElement.innerHTML = 'Room type cannot be empty.';
+                        return false;
+                    }
+                    if (newItem.length < 3) {
+                        errorElement.innerHTML = 'Room type must be at least 3 characters long.';
+                        return false;
+                    }
+                    if (newItem.length > 50) {
+                        errorElement.innerHTML = 'Room type cannot exceed 50 characters.';
+                        return false;
+                    }
+                    const alphabetRegex = /^[A-Za-z\s]+$/;
+                    if (!alphabetRegex.test(newItem)) {
+                        errorElement.innerHTML = 'Room type can only contain alphabets.';
+                        return false;
+                    }
+    
+                    const csrfToken = document.getElementById('csrf').value;
+                    try {
+                        // Perform the API call to add the new item
+                        const response = await fetch('/vendor/room-type-management/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrfToken
+                            },
+                            body: JSON.stringify({ item: newItem })
+                        });
+    
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+    
+                        const data = await response.json();
+    
+                        // Add the new item to the list
+                        this.items.push({
+                            id: data.id,
+                            room_type: data.room_type
+                        });
+    
+                        // Set the input value and hidden input value
+                        this.input.value = data.room_type;
+                        this.hiddenInput.value = data.id;
+                        this.showResults(this.items);
+    
+                        // Hide results
+                        this.hideResults();
+                    } catch (error) {
+                        console.error('Error adding item:', error);
+                    }
+                }
+    
+                async editItem(updatedItem, id) {
+                    const csrfToken = document.getElementById('csrf').value;
+                    try {
+                        // Perform the API call to update the item
+                        const response = await fetch(`/vendor/room-type-management/${id}/`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrfToken
+                            },
+                            body: JSON.stringify({ room_type: updatedItem })
+                        });
+    
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+    
+                        const data = await response.json();
+    
+                        // Update the item in the items array
+                        const itemIndex = this.items.findIndex(item => item.id === id);
+                        if (itemIndex > -1) {
+                            this.items[itemIndex].room_type = data.room_type;
+                        }
+    
+                        // Refresh the suggestions and update the UI
+                        this.showResults(this.items);
+                    } catch (error) {
+                        console.error('Error updating item:', error);
+                    }
+                }
+    
+                setupEventListeners() {
+                    this.input.addEventListener('input', () => this.handleSearch());
+                    this.input.addEventListener('focus', () => this.handleSearch());
+                    document.addEventListener('click', (e) => {
+                        if (!this.input.contains(e.target) && !this.resultsContainer.contains(e.target)) {
+                            this.hideResults();
+                        }
+                    });
+                }
+    
+                handleSearch() {
+                    const searchTerm = this.input.value.toLowerCase();
+                    const filteredItems = this.items.filter(item =>
+                        item.room_type.toLowerCase().includes(searchTerm)
+                    );
+    
+                    this.showResults(filteredItems);
+                }
+    
+                showResults(filteredItems) {
+                    this.resultsContainer.style.display = 'flex';
+                    this.resultsContainer.innerHTML = '';
+    
+                    if (filteredItems.length > 0) {
+                        filteredItems.forEach(item => {
+                            const div = document.createElement('div');
+                            div.className = 'result-item';
+                            div.textContent = item.room_type;
+                            div.onclick = () => {
+                                this.input.value = item.room_type;
+                                this.hiddenInput.value = item.id;
+                                this.hideResults();
+                            };
+    
+                            // Add an "Edit" button
+                            const editButton = document.createElement('button');
+                            editButton.className = 'edit-button';
+                            editButton.textContent = 'Edit';
+                            editButton.onclick = (e) => {
+                                e.stopPropagation(); // Prevent triggering item selection
+                                const newValue = prompt('Edit Room Type', item.room_type);
+                                if (newValue) {
+                                    this.editItem(newValue, item.id);
+                                }
+                            };
+    
+                            div.appendChild(editButton);
+                            this.resultsContainer.appendChild(div);
+                        });
+                    } else if (this.input.value) {
+                        const addNew = document.createElement('div');
+                        addNew.className = 'add-new';
+                        addNew.innerHTML = `
+                            <span>+</span>
+                            <span>Add "${this.input.value}"</span>
+                        `;
+                        addNew.onclick = () => this.addNewItem(this.input.value);
+                        this.resultsContainer.appendChild(addNew);
+                    }
+                }
+    
+                hideResults() {
+                    this.resultsContainer.style.display = 'none';
+                }
+            }
+    
+            // Initialize the search box
+            new SearchBox();
+        });
+    </script> {% endcomment %}
+    
+    
+</body>
+</html>

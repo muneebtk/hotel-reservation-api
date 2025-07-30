@@ -1,0 +1,985 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+
+
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/utilsclasses.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view-edit-btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/chalet-type.css' %}">
+</head>
+<body>
+     <!-- Sidebar/menu -->
+    {% include 'superuser/hotel_logo_navbar.html' %}
+    {% include 'superuser/hotel_top_nav.html' %}
+
+    <div class="loader-container">
+        <div id="loader"></div>
+    </div>
+    <main class="chalet-type-main-container">
+        <div class="main-container">
+            <div class="action-header">
+                <div class="action-items">
+                    <input type="text" placeholder="{% trans 'Name' %}" class="search-input">
+                    <select name="status" id="status-select">
+                        <option value="all">{% trans "All" %}</option>
+                        <option value="active">{% trans "Active" %}</option>
+                        <option value="inactive">{% trans "Inactive" %}</option>
+                    </select>
+                    <button class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>{% trans "Search" %}</span>
+                    </button>
+                </div>
+                <div class="action-items">
+                    <button class="add-new-chalet-type-btn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>{% trans "Add Chalet Type" %}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                {% trans "Chalet Type Icon" %}
+                            </th>
+                            <th>
+                                {% trans "Chalet Type ( English )" %}
+                            </th>
+                            <th>
+                                {% trans "Chalet Type ( Arabic )" %}
+                            </th>
+                            <th>
+                                {% trans "Status" %}
+                            </th>
+                            <th>
+                                {% trans "Action" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% if chalet_type %}
+                        {%for chalet_types in chalet_type%}
+                        <tr>
+                            <td>
+                                {% if chalet_types.icon %}
+                                    <img src="{{ chalet_types.icon.url }}" alt="{{ chalet_types.name }}">
+                                    {% else %}
+                                        <i class="fas fa-ban" aria-hidden="true" style="width:40px;height:40px;margin-left:20%; margin-top: 13%;"></i>
+                                    {% endif %}
+                            </td>
+                            <td>
+                                <span>{{chalet_types.name|title}}</span>
+                            </td>
+                            <td>
+                                <span>{{chalet_types.arabic_name}}</span>
+                            </td>
+                            <td>
+                                <span>{{chalet_types.get_status_display}}</span>
+                            </td>
+                            
+                            <!-- Action Buttons -->
+
+                            <td>
+                                <div class="table-action-btn-container">
+                                    <button class="edit-btn edit-chalet-type-button" data-id="{{chalet_types.id}}">
+                                        <i class="fa-solid fa-pen"></i>
+                                        <span>{% trans "Edit" %}</span>
+                                    </button>
+                                    <button class="delete-btn" data-id="{{chalet_types.id}}">
+                                        <i class="fa-solid fa-trash" ></i>
+                                        <span>{% trans "Delete" %}</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {%else%}
+                        <tr>
+                            <td colspan="6">
+                                {% trans 'No results found for your search criteria.' %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                {%if chalet_type %}
+                <div class="pagination">
+                    <!-- Previous Button -->
+
+                    {% if chalet_type.has_previous %}
+                        <a href="#" class="previous-page pagination-link" data-page="{{  chalet_type.previous_page_number }}" title="Previous Page">
+                            <span class="previous-button">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                    {% endif %}                
+                                    
+                    <div class="page-numbers">
+                        {% for num in  chalet_type.paginator.page_range %}
+                            {% if  chalet_type.paginator.num_pages > 3 %}
+                                {% if num >=   chalet_type.number and num <   chalet_type.number|add:3 %}
+                                    {% if num ==  chalet_type.number %}
+                                        <span class="current-page">{{ num }}</span>
+                                    {% else %}
+                                        <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if num == chalet_type.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a href="#" class="page-button pagination-link" data-page="{{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            
+                    <!-- Next Button -->
+                    {% if chalet_type.has_next %}
+                        <a href="#" class="next-page pagination-link" data-page="{{  chalet_type.next_page_number }}" title="Next Page">
+                            <span class="next-button">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <span class="disabled-button disabled-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {%else%}
+                <div></div>
+            {% endif %}          
+        </div>
+
+
+        <!-- add chalet type modal -->
+        <div class="add-chalet-type-modal-container">
+            <div class="add-chalet-type-modal">
+                <button class="add-modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="add-modal-header">
+                    <h3>{% trans "Add Chalet Type" %}</h3>
+                </div>
+                <form action="{%url 'chalet_type'%}" id="priceform" method="post">
+                    {%csrf_token%}   
+                <div class="add-modal-body">
+                    <div class="input-item">
+                        <label for="chalet-type-name">{% trans "Chalet Type (English)" %}</label>
+                        <input type="text" placeholder="{% trans 'Enter chalet type in english' %}" id="chalet-type-name">
+                        <span id="chalet_name_error" class="hidden text-85080C">{% trans 'Chalet Type(English) required' %}</span>
+                        <span id="name_exist_error" data-error-msg="{% trans 'This Chalet type (English) already exists.' %}" class="hidden text-85080C"></span>
+                    </div>
+                    <div class="input-item">
+                        <label for="chalet-type-name-arabic">{% trans "Chalet Type (Arabic)" %}</label>
+                        <input type="text" placeholder="{% trans 'Enter chalet type in arabic ' %}" id="chalet-type-name-arabic">
+                        <span id="chalet_name_arabic_error" class="hidden text-85080C">{% trans 'Chalet Type(Arabic) required' %}</span>
+                        <span id="arab_exist_error" data-error-msg="{% trans 'This Chalet type (Arabic) already exists.' %}" class="hidden text-85080C"></span>
+                    </div>
+                    <div class="input-item">
+                        <label for="chalet-type-icon-file">{% trans "Chalet Type Icon" %}</label>
+                        <label for="chalet-type-icon-file" class="image-placeholder-icon">
+                            <img src="{% static 'icons/img-placeholder.svg' %}" id="chalet-type-icon" alt="chalet-type-icon">
+                            <input type="file" id="chalet-type-icon-file" name="chalet-type-icon-file" hidden>
+                            <span class="span_font">{% trans "(Upload JPEG/PNG files)" %}</span>
+                            <span id="chalet_type_icon_error" class="hidden text-85080C">{% trans 'Chalet Type icon required' %}</span>
+                            
+                        </label>
+                    </div>
+                    <div class="input-item">
+                        <label for="#">{% trans "Status" %}</label>
+                        <div class="chalet-type-radio-group">
+                            <input type="radio" name="chalet-type-status" id="active-status" value="active" checked>
+                            <label for="active-status" class="active-label">{% trans "Active" %}</label>
+                            <input type="radio" name="chalet-type-status" id="inactive-status" value="inactive">
+                            <label for="inactive-status" class="inactive-label">{% trans "Inactive" %}</label>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class="add-modal-footer">
+                    <button class="modal-cancel add-modal-cancel">{% trans "Cancel" %}</button>
+                    <button class="modal-add">{% trans "Add" %}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- edit chalet type modal -->
+        <div class="edit-chalet-type-modal-container">
+            <div class="edit-chalet-type-modal">
+                <button class="edit-modal-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+        
+                <div class="edit-modal-header">
+                    <h3><i class="fa-solid fa-pen"></i>{% trans "Edit Chalet Type" %}</h3>
+                </div>
+                <div class="edit-modal-body">
+                    <div class="input-item">
+                        <label for="edit-chalet-type-name">{% trans "Chalet Type (English)" %}</label>
+                        <input type="text" id="edit-chalet-type-name">
+                        <span id="chalet_name_edit_error" class="hidden text-85080C">{% trans 'Chalet Type(English) required' %}</span>
+                        <span id="name_exist_edit_error" data-error-msg="{% trans 'This Chalet type (English) already exists.' %}" class="hidden text-85080C"></span>
+                       
+                    </div>
+                    <div class="input-item">
+                        <label for="edit-chalet-type-name-arabic">{% trans "Chalet Type (Arabic)" %}</label>
+                        <input type="text" id="edit-chalet-type-name-arabic">
+                        <span id="chalet_name_edit_arabic_error" class="hidden text-85080C">{% trans 'Chalet Type(Arabic) required' %}</span>
+                        <span id="arab_exist_edit_error" class="hidden text-85080C" data-error-msg="{% trans 'This Chalet type (Arabic) already exists.' %}"></span>
+                        
+                       
+                    </div>
+                    <div class="input-item">
+                        <label for="edit-chalet-type-icon-file">{% trans "Chalet Type Icon" %}</label>
+                        <label for="edit-chalet-type-icon-file" class="image-placeholder-icon">
+                            <img src="{% static 'icons/img-placeholder.svg' %}" id="chalet-type-icon" alt="chalet-type-icon">
+                            <input type="file" id="edit-chalet-type-icon-file" name="chalet-type-icon-file" hidden>
+                            <span id="chalet_type_edit_icon_error " class="hidden text-85080C">{% trans 'Chalet Type icon required' %}</span>
+
+                        </label>
+                    </div>
+                    <div class="input-item">
+                        <label for="#">{% trans "Status" %}</label>
+                        <div class="edit-chalet-type-radio-group">
+                            <input type="radio" name="edit-chalet-type-status" id="edit-active-status" value="active" checked>
+                            <label for="edit-active-status" class="edit-active-label">{% trans "Active" %}</label>
+                            <input type="radio" name="edit-chalet-type-status" id="edit-inactive-status" value="inactive">
+                            <label for="edit-inactive-status" class="edit-inactive-label">{% trans "Inactive" %}</label>
+
+                        </div>
+                    </div>
+                    <div class="edit_id hidden">
+                        <input type="number" name="chalet_id" id="chalet_type_id">
+                    </div>
+                </div>
+                <div class="edit-modal-footer">
+                    <button class="edit-modal-cancel">{% trans "Cancel" %}</button>
+                    <button class="modal-edit">{% trans "Save" %}</button>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+    <!-- preview image showing -->
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+
+    <script>
+         function loadershow(){
+            $('.loader-container').css('display','flex');
+            $('.table-container').addClass('blurred');
+        }
+        function loaderhide(){
+            $('.loader-container').hide();
+            $('.table-container').removeClass('blurred');
+        }
+            document.querySelectorAll('#chalet-type-icon-file, #edit-chalet-type-icon-file').forEach(fileInput => {
+                fileInput.addEventListener('change', function(event) {
+                    const modalContainer = event.target.closest('.add-chalet-type-modal-container, .edit-chalet-type-modal-container');
+                    const iconElement = modalContainer.querySelector('img[id*="chalet-type-icon"]');
+                    
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                iconElement.src = e.target.result;
+                            };
+
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert('Please select an image file (JPEG/PNG)');
+                            event.target.value = '';
+                        }
+                    }
+                });
+            });
+        
+
+            const addModalOpenButton = document.querySelector('.add-new-chalet-type-btn')
+            const addCloseModalButton = document.querySelector('.add-modal-close');
+            const addCancelButton = document.querySelector('.add-modal-cancel');
+            const addModal = document.querySelector('.add-chalet-type-modal-container');
+            const form = document.getElementById("priceform");
+
+
+            addModalOpenButton.addEventListener('click',()=>{
+                addModal.style.display="flex"
+            })
+            addCancelButton.addEventListener('click',()=>{
+                addModal.style.display="none"
+                form.reset();
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-add").attr("disabled", false);
+
+                });
+
+            })
+            addCloseModalButton.addEventListener('click',()=>{
+                addModal.style.display="none"
+                form.reset();
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-add").attr("disabled", false);
+                });
+
+            })
+
+
+
+            const editModalOpenButton = document.querySelector('.edit-chalet-type-button')
+            const editCloseModalButton = document.querySelector('.edit-modal-close');
+            const editCancelButton = document.querySelector('.edit-modal-cancel');
+            const editModal = document.querySelector('.edit-chalet-type-modal-container');
+
+            editModalOpenButton.addEventListener('click',()=>{
+                console.log("edit button clicked")
+                editModal.style.display="flex"
+            })
+            editCancelButton.addEventListener('click',()=>{
+                editModal.style.display="none"
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-edit").attr("disabled", false);
+
+                });
+
+            })
+            editCloseModalButton.addEventListener('click',()=>{
+                editModal.style.display="none"
+                document.querySelectorAll("[id$='_error']").forEach(error => {
+                error.style.display = "none";
+                $(".modal-edit").attr("disabled", false);
+                });
+
+            })
+
+    </script>
+
+    <script>
+        
+        // Script to open and close sidebar
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        } 
+        // function updatePagination(data) {
+        //     const rows = $(data).find('table tbody tr');
+        //     const totalRows = rows.length;
+
+        //     const currentPage = parseInt($('.current-page').text(), 10) || 1;
+
+        //     if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 10)) {
+        //         $('.pagination').hide();
+        //     } else {
+        //         $('.pagination').html($(data).find('.pagination').html()).show();
+        //     }         
+        // }
+$(document).ready(function () {
+    var typingTimer;
+    var doneTypingInterval = 300; // 0.3 seconds delay
+
+    function checkAddChaletType() {
+        var name = $('#chalet-type-name').val().trim();
+        var arabicName = $('#chalet-type-name-arabic').val().trim();
+        console.log(arabicName)
+        if (name || arabicName) {
+            $.ajax({
+                url: "{% url 'chalet_type_check_name' %}",
+                data: { 
+                    name: name, 
+                    arabic_name: encodeURIComponent(arabicName) 
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:", data); // Debug response
+                    
+                    if (data.english_exists) {
+                        // $('#name_exist_error').text("This hotel type (English) already exists.").show();
+                        $('#name_exist_error').text($('#name_exist_error').data('error-msg')).show();
+
+                    } else {
+                        $('#name_exist_error').text("").hide();
+                    }
+
+                    if (data.arabic_exists) {
+                        $('#arab_exist_error').text($('#arab_exist_error').data('error-msg')).show();
+
+                    } else {
+                        $('#arab_exist_error').text("").hide();
+                    }
+
+
+                    if (data.english_exists || data.arabic_exists) {
+                        $(".modal-add").attr("disabled", true);  // Alternative method
+                    } else {
+                        $(".modal-add").attr("disabled", false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX Error:", error); // Debug errors
+                }
+            });
+        } else {
+            $('#name_exist_error, #arab_exist_error').text("").hide();
+        }
+    }
+
+    $('#chalet-type-name, #chalet-type-name-arabic').on('input keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(checkAddChaletType, doneTypingInterval);
+        console.log("trigger function worked")
+    });
+});
+
+$(document).ready(function () {
+    var typingTimer;
+    var doneTypingInterval = 300; // 0.3 seconds delay
+
+    function checkEditChaletType() {
+        var name = $('#edit-chalet-type-name').val().trim();
+        var arabicName = $('#edit-chalet-type-name-arabic').val().trim();
+        var chaletTypeId = $('#chalet_type_id').val();
+        console.log(chaletTypeId )
+
+        if (name || arabicName) {
+            $.ajax({
+                url: "{% url 'chalet_type_check_name' %}",
+                data: { 
+                    name: name, 
+                    arabic_name: encodeURIComponent(arabicName) ,
+                    chalet_type_id:chaletTypeId
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:", data); // Debug response
+                    
+                    if (data.english_exists) {
+                        $('#name_exist_edit_error').text($('#name_exist_edit_error').data('error-msg')).show();
+                    } else {
+                        $('#name_exist_edit_error').text("").hide();
+                    }
+
+                    if (data.arabic_exists) {
+                        $('#arab_exist_edit_error').text($('#arab_exist_edit_error').data('error-msg')).show();
+                    } else {
+                        $('#arab_exist_edit_error').text("").hide();
+                    }
+
+
+                    if (data.english_exists || data.arabic_exists) {
+                        $(".modal-edit").attr("disabled", true);  // Alternative method
+                    } else {
+                        $(".modal-edit").attr("disabled", false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX Error:", error); // Debug errors
+                }
+            });
+        } else {
+            $('#name_exist_edit_error, #arab_exist_edit_error').text("").hide();
+        }
+    }
+
+    $('#edit-chalet-type-name, #edit-chalet-type-name-arabic').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(checkEditChaletType, doneTypingInterval);
+        console.log("trigger function worked")
+    });
+});
+
+
+$(document).ready(function () {
+    $(document).on('click', '.modal-add', function (event) {
+        event.preventDefault(); // Prevent default form submission
+        //error messages id
+        let chalet_error=document.getElementById('chalet_name_error')
+        let chalet_ar_error=document.getElementById('chalet_name_arabic_error')
+        // values fetch
+        let name = $("#chalet-type-name").val().trim();
+        let arabicName = $("#chalet-type-name-arabic").val().trim();
+        let status = $("input[name='chalet-type-status']:checked").val();
+        let iconFile = $("#chalet-type-icon-file")[0].files[0]; // Get file input
+
+        //validation regex
+        let name_regex = /^[A-Za-z\s]+$/;
+        let arabic_regex=/^[\u0600-\u06FF\s]+$/;
+
+        // validate name
+        if (!name) {
+            chalet_error.style.display='block';
+            return;
+        }
+        
+        else if (!name_regex.test(name)) {
+            chalet_error.textContent = "{% trans 'Chalet Type (English) should contain only English alphabets' %}";
+            chalet_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (name.length <2 || name.length > 50) {
+            chalet_error.textContent = "{% trans 'Chalet Type (English) length should be between 2 and 50' %}";
+            chalet_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            chalet_error.style.display = "none"; 
+        }
+
+       // validate Arabic name
+
+        if (!arabicName) {
+            chalet_ar_error.style.display='block';
+            return;
+        }
+       
+        else if (!arabic_regex.test(arabicName)) {
+            chalet_ar_error.textContent = "{% trans 'Chalet Type (Arabic) should contain only Arabic' %}";
+            chalet_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (arabicName.length <2 || arabicName.length > 50) {
+            chalet_ar_error.textContent = "{% trans 'Chalet Type (Arabic) length should be between 2 and 50' %}";
+            chalet_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            chalet_ar_error.style.display = "none"; 
+        }
+
+        if (!status) {
+            alert("Please select a status.");
+            return;
+        }
+        if(!iconFile){
+            chalet_type_icon_error.style.display='block';
+            return;
+
+        }
+
+        let formData = new FormData();
+        formData.append("name", name);
+        formData.append("arabic_name", arabicName);
+        formData.append("status", status);
+        if (iconFile) {
+            formData.append("icon", iconFile);
+        }
+
+        // CSRF Token setup
+        let csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+        loadershow();
+        $('.add-chalet-type-modal-container').hide();
+        $.ajax({
+            url: "{% url 'chalet_type' %}",  
+            type: "POST",
+            data: formData,
+            processData: false, 
+            contentType: false, 
+            headers: { "X-CSRFToken": csrfToken },  
+            beforeSend: function () {
+                $(".modal-add").text("Adding...").prop("disabled", true);
+            },
+            success: function (response) {
+                var successMessage = "{% trans 'Chalet Type added successfully!' %}";
+
+                alert(successMessage);
+
+                // Reset form fields
+                $("#chalet-type-name").val("");
+                $("#chalet-type-name-arabic").val("");
+                $("#chalet-type-icon-file").val("");
+                $("input[name='chalet-type-status'][value='active']").prop("checked", true);
+
+                // Reset image preview
+                $("#chalet-type-icon").attr("src", "{% static 'icons/img-placeholder.svg' %}");
+
+                // Close the modal
+                $(".add-chalet-type-modal-container").hide();
+                loaderhide();
+
+                // Optionally reload the page
+                location.reload();
+            },
+            error: function (xhr) {
+                let errorMsg = xhr.responseJSON?.error || "Something went wrong!";
+                alert(errorMsg);
+                // Reset form fields
+                $("#chalet-type-name").val("");
+                $("#chalet-type-name-arabic").val("");
+                $("#chalet-type-icon-file").val("");
+                $("input[name='chalet-type-status'][value='active']").prop("checked", true);
+
+                // Reset image preview
+                $("#chalet-type-icon").attr("src", "{% static 'icons/img-placeholder.svg' %}");
+
+                // Close the modal
+                $(".add-chalet-type-modal-container").hide();
+                location.reload();
+            },
+            complete: function () {
+                $(".modal-add").text("Add").prop("disabled", false);
+            }
+        });
+    });
+});
+
+const edit_Modal = document.querySelector('.edit-chalet-type-modal-container');
+$(document).ready(function () {
+$(document).on('click', '.edit-chalet-type-button', function (e) {
+    e.preventDefault();
+    let chaletTypeId = $(this).data("id"); 
+    console.log("edit")
+    loadershow();
+    $.ajax({
+        url: `/super_user/chalet_type/${chaletTypeId}/`, 
+        type: "GET",
+        success: function (data) {
+            $("#edit-chalet-type-name").val(data.name);
+            $("#edit-chalet-type-name-arabic").val(data.arabic_name);
+            $("#chalet_type_id").val(chaletTypeId);
+            const imgElement = $(".edit-chalet-type-modal-container img[id='chalet-type-icon']");
+            if (imgElement.length) {
+                console.log(" Loading new image...");
+                const newImg = new Image();
+                const imageURL = data.icon + "?t=" + new Date().getTime(); 
+                newImg.src = imageURL;
+                newImg.onload = function () {
+                    imgElement.attr("src", newImg.src);
+                    console.log("Image updated successfully!");
+                };
+                newImg.onerror = function () {
+                    console.error(" Failed to load image:", newImg.src);
+                };
+            } else {
+                console.error("Image element not found.");
+            }
+           
+            if (data.status === "active") {
+                $("#edit-active-status").prop("checked", true);
+            } else {
+                $("#edit-inactive-status").prop("checked", true);
+            }
+            edit_Modal.style.display="flex"
+            loaderhide();
+        },
+        error: function (xhr, status, error) {
+            console.error("Failed to fetch Data:", error);
+            loaderhide();
+
+        },
+    });
+});
+});
+
+
+//edit chalet types
+let chalet_error=document.getElementById('chalet_name_edit_error')
+let chalet_ar_error=document.getElementById('chalet_name_edit_arabic_error')
+$(document).ready(function() {
+    $('.modal-edit').on('click', function() {
+        // Get the form data
+        var chaletTypeName = $('#edit-chalet-type-name').val();
+        var chaletTypeNameArabic = $('#edit-chalet-type-name-arabic').val();
+        var chaletTypeIconFile = $('#edit-chalet-type-icon-file')[0].files[0];
+        var chaletTypeStatus = $('input[name="edit-chalet-type-status"]:checked').val();
+        var chaletTypeId = $("#chalet_type_id").val();
+        //validation regex
+        let name_regex = /^[A-Za-z\s]+$/;
+        let arabic_regex=/^[\u0600-\u06FF\s]+$/;
+        console.log(chaletTypeIconFile)
+
+        // validate name
+        if (!chaletTypeName) {
+            chalet_error.style.display='block';
+            return;
+        }
+        
+        else if (!name_regex.test(chaletTypeName)) {
+            chalet_error.textContent = "{% trans 'Chalet Type (English) should contain only English alphabets' %}";
+            chalet_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (chaletTypeName.length <2 || chaletTypeName.length > 50) {
+            chalet_error.textContent = "{% trans 'Chalet Type (English) length should be between 2 and 50' %}";
+            chalet_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            chalet_error.style.display = "none"; 
+        }
+
+       // validate Arabic name
+
+        if (!chaletTypeNameArabic) {
+            chalet_ar_error.style.display='block';
+            return;
+        }
+       
+        else if (!arabic_regex.test(chaletTypeNameArabic)) {
+            chalet_ar_error.textContent = "{% trans 'Chalet Type (Arabic) should contain only Arabic' %}";
+            chalet_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else if (chaletTypeNameArabic.length <2 || chaletTypeNameArabic.length > 50) {
+            chalet_ar_error.textContent = "{% trans 'Chalet Type (Arabic) length should be between 2 and 50' %}";
+            chalet_ar_error.style.display = "block";
+            event.preventDefault();
+            return;
+        }
+        else{
+            chalet_ar_error.style.display = "none"; 
+        }
+
+        if (!chaletTypeStatus) {
+            alert("Please select a status.");
+            return;
+        }
+     
+        var formData = new FormData();
+        formData.append("name", chaletTypeName);
+        formData.append("name_arabic", chaletTypeNameArabic);
+        formData.append("status", chaletTypeStatus);
+        if (chaletTypeIconFile) {
+            formData.append("icon", chaletTypeIconFile);
+        }
+        loadershow();
+        $('.edit-chalet-type-modal-container').addClass('blurred');
+        $.ajax({
+            url: `/super_user/chalet_type/${chaletTypeId}/`,  // URL to your Django view
+            type: 'POST',
+            data: formData,
+            processData: false,  
+            contentType: false,
+            headers: {
+                'X-CSRFToken': window.CSRF_TOKEN
+            },
+            success: function(response) {
+                var successMessage = "{% trans 'Chalet Type edited successfully!' %}";
+                alert(successMessage);
+                console.log('Chalet type updated successfully:', response);
+                location.reload();
+                loaderhide();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating chalet type:', error);
+                var errorMessage = "{% trans 'An error occured' %}";
+                alert(errorMessage)
+                loaderhide();
+            }
+        });
+    });
+
+});
+
+$(document).ready(function() {
+    $(document).on('click', '.delete-btn', function (e) {
+        e.preventDefault();
+        let chaletTypeId = $(this).data("id"); 
+        console.log(chaletTypeId)
+        var confirmMessage = "{% trans 'Are you sure you want to delete this Chalet Type?' %}";
+        if (confirm(confirmMessage)) {
+            loadershow();
+            $.ajax({
+                url: `/super_user/chalet_type/${chaletTypeId}/`,  // URL to your Django view
+                type: 'DELETE',
+                headers: {
+                    'X-CSRFToken': window.CSRF_TOKEN
+                },
+                success: function(data) {
+                    
+                    $(e.target).closest('tr').remove();
+                    loaderhide();
+                    $('table tbody').html($(data).find('tbody').html());
+                    $('table tbody').html($(data).find('tbody').html());
+                    $('.pagination').html($(data).find('.pagination').html());
+                    const rows = $(data).find('table tbody tr');
+                    const totalRows = rows.length;
+
+                    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                    if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                        $('.pagination-container').hide();
+                    } else {
+                        $('.pagination-container').show();
+                        $('.pagination').html($(data).find('.pagination').html()).show();
+                    }   
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error deleting offer:', error);
+                    var errorMessage = "{% trans 'An error occured' %}";
+                    alert(errorMessage);
+                    loaderhide();
+
+                }
+            });
+        }
+    });
+});
+
+
+$(document).ready(function () {
+    $(document).on('click', '.search-btn', function (e) {
+        e.preventDefault();
+        var searchName = $(".search-input").val().trim();
+        var selectedStatus = $("#status-select").val();
+        var page =1;
+        console.log(selectedStatus)
+        console.log('clicked')
+        loadershow();
+        $.ajax({
+            url: "/super_user/search_chalet_types/",  
+            type: "GET",
+            data: {
+                name: searchName,
+                status: selectedStatus,
+                page: page
+            },
+            success: function (data) {
+                loaderhide();
+                $('table tbody').html($(data).find('tbody').html());
+                $('table tbody').html($(data).find('tbody').html());
+                $('.pagination').html($(data).find('.pagination').html());
+                const rows = $(data).find('table tbody tr');
+                const totalRows = rows.length;
+
+                const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+                if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+                    $('.pagination-container').hide();
+                } else {
+                    $('.pagination-container').show();
+                    $('.pagination').html($(data).find('.pagination').html()).show();
+                }      
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching hotel types:", error);
+                loaderhide();
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+$(document).on('click', '.pagination-link', function (e) {
+    e.preventDefault(); 
+    var searchName = $(".search-input").val().trim();
+    var selectedStatus = $("#status-select").val();
+    var page = $(this).data('page');
+    console.log(selectedStatus)
+    console.log('clicked')
+    loadershow();
+    $.ajax({
+        url: "/super_user/search_chalet_types/",  
+        type: 'GET',
+        headers: {
+            'X-CSRFToken': window.CSRF_TOKEN
+        },
+        data: {
+            name: searchName,
+            status: selectedStatus,
+            page: page
+        },
+        success: function (data) {
+            loaderhide();
+            $('table thead').html($(data).find('thead').html());
+            $('table tbody').html($(data).find('tbody').html());
+            $('.pagination').html($(data).find('.pagination').html());
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching data:', error);
+            var errorMessage = "{% trans 'Error fetching pagination data. Please try again later.' %}";
+            alert(errorMessage);
+            loaderhide();
+
+        }
+    });
+});
+});
+
+function updatePagination(data) {
+    const rows = $(data).find('table tbody tr');
+    const totalRows = rows.length;
+
+    const currentPage = parseInt($('.current-page').text(), 15) || 1;
+
+    if ((totalRows === 1 && rows.find('td[colspan]').length > 0) || (currentPage === 1 && totalRows < 15)) {
+        $('.pagination-container').hide();
+    } else {
+        $('.pagination-container').show();
+        $('.pagination').html($(data).find('.pagination').html()).show();
+    }         
+}
+
+$(document).ready(function () {
+    updatePagination(document);
+
+    $.ajax({
+        url: '/super_user/chalet-type/',
+        method: 'GET',
+        success: function (data) {
+            console.log(data)
+            $('table tbody').html($(data).find('table tbody').html());
+            updatePagination(data);
+        }
+    });
+});
+
+
+
+
+    </script>
+</body>
+</html>

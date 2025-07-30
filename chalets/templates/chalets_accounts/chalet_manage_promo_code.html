@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/1929_dev_fevicon2.jpg' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/6c3486d068.js" crossorigin="anonymous"></script>
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Include Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="{% static 'css/fontstyle.css' %}">
+
+
+    <script type="text/javascript">
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+
+    <style>
+        body {
+            font-size:16px;
+            background-color: #F4F4F4;        
+        }
+        .w3-sidebar{
+            background-color: #85080C;
+            color: white;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #FFD6D6;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 10px;
+            border: none;
+        }
+
+
+        thead:first-child th:first-child {
+            border-top-left-radius: 15px;
+        }
+
+        tr:first-child th:last-child {
+            border-top-right-radius: 15px;
+        }
+
+        tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+
+        tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+
+
+        /* Borders */
+        .user-brd {
+            border: 1px solid #D2D2D2;
+        }
+        .table-body-brd {
+            border-left: 1px solid #D2D2D2;
+            border-right: 1px solid #D2D2D2;
+            border-bottom: 1px solid #D2D2D2;
+        }
+
+
+        .col-md-4 {
+        display: inline-block;
+        margin-right: 20px;
+        }
+
+        .btn{
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            background-color: white;
+        }
+
+        .active{
+            background-color: #85080C;
+            color: white;
+        }
+        
+        .table-body-color{
+            background-color: #FFF6F6;
+
+        }
+        .container-box{
+            margin-top:20px;
+            padding: 20px;
+        }
+        .row-main{
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+        .form-select{
+            padding: 10px;
+            border-radius: 10px;
+            border-color: #FFD6D6;
+            background-color: white;
+        }
+        .btn-blue{
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 32px;
+            border-color: #85080C;
+            background-color: white;
+            color: #85080C;
+            width: 200px;
+        }
+        .border-right{
+            border-right: 1px solid #BCBCBC;
+            
+        }
+        .color-grey{
+            color: #717171;
+        }
+        .btn-search{
+            padding: 10px;
+            border-radius: 32px;
+            width: 200px;
+            border: none;
+            margin-left: 30px;
+            text-align: left;
+            background-color: #F4F4F4
+        }
+        .brown{
+            background-color: #85080C;
+        }
+        .box_container_input{
+            background-color: #EDF0F9; 
+            width: 250px; 
+            border: none;  
+            margin-right: 40px;
+        }
+        #loader {
+            color: #85080C;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-indent: -9999em;
+            animation: mulShdSpin 1.3s infinite linear;
+            z-index: 9999; /* Ensure loader is above other content */
+        }
+
+
+            @keyframes mulShdSpin {
+            0%,
+            100% {
+                box-shadow: 0 -3em 0 0.2em, 
+                2em -2em 0 0em, 3em 0 0 -1em, 
+                2em 2em 0 -1em, 0 3em 0 -1em, 
+                -2em 2em 0 -1em, -3em 0 0 -1em, 
+                -2em -2em 0 0;
+            }
+            12.5% {
+                box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
+                3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
+                -2em 2em 0 -1em, -3em 0 0 -1em, 
+                -2em -2em 0 -1em;
+            }
+            25% {
+                box-shadow: 0 -3em 0 -0.5em, 
+                2em -2em 0 0, 3em 0 0 0.2em, 
+                2em 2em 0 0, 0 3em 0 -1em, 
+                -2em 2em 0 -1em, -3em 0 0 -1em, 
+                -2em -2em 0 -1em;
+            }
+            37.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
+                -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+            50% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
+                -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+            }
+            62.5% {
+                box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+                3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
+                -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+            }
+            75% {
+                box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
+                3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+                -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+            }
+            87.5% {
+                box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
+                3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+                -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+            }
+            }
+        @media (max-width: 1440px) {
+            .container-box{
+                width: 1300px;
+            }
+            .row-main{
+                width: 1300px;
+            }
+            .table-container {
+                width: 1260px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 1260px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .container-box{
+                width: 900px;
+            }
+           .row-main{
+               width: 900px;
+           }
+           .table-container {
+               width: 860px;
+               overflow-x: auto;
+           }
+
+           .responsive-table {
+               width: 860px;
+           }
+           .col-md-4{
+                padding-bottom: 5px;
+            }
+            
+       }
+       @media (max-width: 768px) {
+            .container-box{
+                width: 730px;
+            }
+            .row-main{
+                width: 730px;
+            }
+            .table-container {
+                width: 690px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 690px;
+            }
+            .box_container{
+                display: flex;
+                margin-bottom: 10px;
+            }
+        }
+        @media (max-width: 425px) {
+            .container-box{
+                width: 380px;
+            }
+            .btn-search{
+                width: 150px;
+            }
+            .row-main{
+                width: 380px;
+            }
+            .table-container {
+                width: 350px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 350px;
+            }
+            
+            .box_container_input{
+                width: 150px;
+            }
+        }
+        @media (max-width: 375px) {
+            .container-box{
+                width: 345px;
+            }
+            .btn-search{
+                width: 120px;
+                
+            }
+            .input-size{
+                width: 40px;
+            }
+            .row-main{
+                width: 345px;
+            }
+            .table-container {
+                width: 310px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 310px;
+            }
+           
+            
+        }
+        @media (max-width: 320px) {
+            .container-box{
+                width: 270px;
+            }
+            .btn-search{
+                width: 118px;
+                margin-left: 4px;
+                
+            }
+            .profile-btn{
+                padding: 10px;
+              
+            }
+            .search-btn{
+                margin-right: auto;
+            }
+            .input-size{
+                width: 20px;
+            }
+            .empty-container{
+                width: 1px;
+            }
+            .row-main{
+                width: 270px;
+            }
+            .table-container {
+                width: 240px;
+                overflow-x: auto;
+            }
+
+            .responsive-table {
+                width: 240px;
+            }
+            .box_container_input{
+                width: 100px;
+            }
+        }
+        .blurred {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Sidebar/menu -->
+    {% include 'chalets_accounts/chalat_logo.html' %}
+    {% include 'accounts/search_navbar.html' %} 
+
+    <div class="" style="margin-left: 25%;margin-top: 1%;">  
+        <button class="w3-badge w3-xlarge  w3-white" style="border: none;"><a href="{% url 'dashboard_overviews' %}?chalet_id={{ selected_chalet.id }}" style="text-decoration: none;"><i class="fa-solid fa-arrow-left fa-lg " ></i></a></button>
+    </div> 
+    <div id="loader" style="display: none;"></div>
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        <div class="w3-main" style="margin-left:340px;margin-right:40px; margin-top:auto">
+                <div class="container container-box">
+                    
+                    <div class="row justify-content-center">
+                        <br>
+                        <div class="row-main" id="hotelTable">
+                            <div class="row ">
+                                <h4>{% trans 'Promo Code Management' %}</h4>
+                                <div class="col-md-4">
+                                
+                                    <form >
+        
+                                        <input type="text" ondblclick="resetDate('datePicker')" id="datePicker" class="form-select select_fromdate fs12 text-black"  style="width: 180px;" name="date" placeholder="{% trans 'From: Sep 8, 2023' %}">
+                                        
+                                    </form>
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <form >
+        
+                                        <input type="text" ondblclick="resetDate('datePicker1')" id="datePicker1" class="form-select select_todate fs12 text-black"  style="width: 180px;" name="date" placeholder="{% trans 'To: Sep 8, 2023' %}">
+                                        
+                                    </form>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <select aria-label="Default select example" class="form-select select_discount select fs12 text-black">
+                                        <option value="">{% trans 'Discount Percentage' %}</option>
+                                        {%for promo in discount_data%}
+                                        <option value="{{promo.discount_percentage}}">{{promo.discount_percentage}}</option>
+                                        {%endfor%}
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <button class=" btn-blue px-3 f search_button" type="button">
+                                        <i class="fa-solid fa-magnifying-glass "></i> {% trans 'Search' %}
+                                    </button>
+                                </div>
+                                <div class="col-md-4" style="float: right;">
+                                    <button class=" btn active px-3 f" type="button"  onclick="document.getElementById('id01').style.display='block'" style="border-radius: 32px;">
+                                        {% trans 'Create New Promo Code' %}
+                                    </button>
+                                </div>
+                            </div>
+
+                                          
+                                <div id="id01" class="w3-modal">
+                                    <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:80%">
+                                
+                                      <div class="w3-center"><br>
+                                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                                        
+                                       </div>
+                                      
+                                        <div class="w3-margin-left">
+                                            <h3 class="w3-margin">{% trans 'Create New Promo Code' %} </h3>
+                                            <form class="w3-container" action="{%url 'chalet_promo_code'%}" method="post" onsubmit="return validateForm();">
+                                              {%csrf_token%}
+                                              <div class="w3-section w3-margin-left">
+                                                    <div class="w3-cell box_container">
+                                                        <div>
+                                                            <label for="code_name">{% trans 'Code name' %}</label>
+                                                        </div>
+                                                        <div>
+                                                            <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="code_name"  name="code_name" required ></textarea> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="w3-cell box_container">
+                                                        <div>
+                                                            <label for="discount_percentage">{% trans 'Discount percentage' %}</label>
+                                                        </div>
+                                                        <div>
+                                                            <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="discount_percentage"  name="discount_percentage" required > </textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="w3-cell box_container">
+                                                        <div>
+                                                            <label for="validity_from">{% trans 'Validity From' %}</label>
+                                                        </div>
+                                                        <div>
+                                                            <input class=" w3-padding  w3-round-large box_container_input" type="date" id="validity_from"  name="validity_from" required > 
+                                                            
+                                                        </div>
+                                                        <div id="validity_from_error" class="error-message" style="color: red;"></div>
+                                                        
+
+                                                    </div>
+                                                    <div class="w3-margin-top ">
+                                                        <div class="w3-cell box_container">
+                                                            <div>
+                                                                <label for="validity_to">{% trans 'Validity To' %}</label>
+                                                            </div>
+                                                            <div>
+                                                                <input class=" w3-padding  w3-round-large box_container_input" type="date" id="validity_to"  name="validity_to" required > 
+                                                            </div>
+                                                            <div id="validity_to_error" class="error-message" style="color: red;"></div>
+                                                        </div>
+                                                        <div class="w3-cell box_container">
+                                                            <div>
+                                                                <label for="usage_limits">{% trans 'Usage limits' %}</label>
+                                                            </div>
+                                                            <div>
+                                                                <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="usage_limits"  name="usage_limits" required > </textarea>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="w3-cell box_container">
+                                                            <div>
+                                                                <label for="applicable">{% trans 'Applicable conditions' %}</label>
+                                                            </div>
+                                                            <div>
+                                                                <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="applicable"  name="applicable" required > </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="w3-center w3-container">
+                                                        <button class=" w3-round-large w3-margin-right  btn  w3-padding-large" onclick="document.getElementById('id01').style.display='none'" style="border: 1px solid #85080C; color: #85080C;" type="submit">{% trans 'cancel' %}</button>
+                                                        <button class=" w3-round-large  active btn w3-section w3-padding-large" type="submit">{% trans 'Save' %}</button>
+                                                    </div>
+                                              </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                            <br>
+                            <div class="col-md-12">
+                                <div class="table-container">
+                                    <table class="w3-table responsive-table">
+                                        <thead class=" bg-table-head">
+                                            <tr>
+                                                <th class="border-right">{%trans 'Sl.No.'%}</th>
+                                                <th  class="border-right">{% trans 'Code name' %}</th>
+                                                <th class="border-right">{% trans 'Discount percentage' %}</th>
+                                                <th  class="border-right">{% trans 'Validity period' %}</th>
+                                                <th  class="border-right">{% trans 'Usage limits' %}</th>
+                                                <th  class="border-right">{% trans 'Applicable conditions' %}</th>
+                                                <th colspan="3"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fs12 table-body-color">
+                                            {%if promo_data%}
+                                            {%for promo in promo_data%}
+                                            <tr class="">
+                                                <td class="border-right">{{ forloop.counter }}</td>
+                                                <td class="border-right ">{{promo.code_name}}</td>
+                                                <td class="border-right">{{promo.discount_percentage}}</td>
+                                                <td class="border-right">{{promo.validity_from|date:"Y-m-d"}} to {{promo.validity_to|date:"Y-m-d"}}</td>
+                                                <td class="border-right">{{promo.usage_limits}}</td>
+                                                <td class="border-right">{{promo.applicable|capfirst}}</td>
+                                                <td class="color-grey"><a href="#" promo_id="{{promo.id}}" onclick="fetch_data(this.getAttribute('promo_id')); document.getElementById('id02').style.display='block'" style="text-decoration: none;"><i class="fa-solid fa-pen"></i>{% trans 'Edit' %} </a></td>
+                                                <td class="color-grey"><a href="#" class="delete-promocode" data-delete-id="{{ promo.id }}" style="text-decoration: none;"><i class="fa-solid fa-trash" ></i>{% trans 'Delete' %} </a></td>
+                                            </tr>
+                                            {%endfor%}
+                                            {%else%} 
+                                            <tr>
+                                                <td colspan="7" style="text-align: center;">{% trans 'No data found' %}</td>
+                                            </tr>
+                                            {%endif%} 
+                                                       
+                                            <div id="id02" class="w3-modal">
+                                                <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:80%">
+                                            
+                                                  <div class="w3-center"><br>
+                                                    <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                                                    
+                                                   </div>
+                                                  
+                                                    <div class="w3-margin-left">
+                                                        <h3 class="w3-margin"> <i class="fa-solid fa-pen"></i> {% trans 'Edit' %}</h3>
+                                                        <form class="w3-container" id="promo_form" action="" method="post">
+                                                          {%csrf_token%}
+                                                         
+                                                          <div class="w3-section w3-margin-left">
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="code_name">{% trans 'Code name' %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="code_name1"  name="code_name" required > </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="discount_percentage">{% trans 'Discount percentage' %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="discount_percentage1"  name="discount_percentage" required > </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="w3-cell box_container">
+                                                                    <div>
+                                                                        <label for="validity_from">{% trans 'Validity From' %}</label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class=" w3-padding  w3-round-large box_container_input" type="date" id="validity_from1"  name="validity_from" required > 
+                                                                       
+                                                                    </div>
+                                                                    <div id="validity_from_error" class="error-message" style="color: red;"></div>
+                                                                </div>
+                                                                <div class="w3-margin-top ">
+                                                                    <div class="w3-cell box_container">
+                                                                        <div>
+                                                                            <label for="validity_to">{% trans 'Validity To' %}</label>
+                                                                        </div>
+                                                                        <div>
+                                                                            <input class=" w3-padding  w3-round-large box_container_input" type="date" id="validity_to1"  name="validity_to" required > 
+                                                                            
+                                                                        </div>
+                                                                        <div id="validity_to_error" class="error-message" style="color: red;"></div>
+                                                                    </div>
+                                                                
+                                                                    <div class="w3-cell box_container">
+                                                                        
+                                                                        <div>
+                                                                            <label for="usage_limits">{% trans 'Usage limits' %}</label>
+                                                                        </div>
+                                                                        <div>
+                                                                            <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="usage_limits1"  name="usage_limits" required > </textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="w3-cell box_container">
+                                                                        <div>
+                                                                            <label for="applicable">{% trans 'Applicable conditions' %}</label>
+                                                                        </div>
+                                                                        <div>
+                                                                            <textarea class=" w3-padding  w3-round-large box_container_input" type="text" id="applicable1"  name="applicable" required > </textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="w3-center w3-container">
+                                                                    <span class=" w3-round-large w3-margin-right w3-button btn  w3-padding-large" onclick="document.getElementById('id02').style.display='none'" style="border: 1px solid #85080C; color: #85080C;" >{% trans 'cancel' %}</span>
+                                                                    <button class=" w3-round-large  active btn w3-section w3-padding-large" type="submit">{% trans 'Save' %}</button>
+                                                                </div>
+                                                          </div>
+                                                         
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                                          
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+
+        </div>
+
+
+
+    <script>
+
+        function validateForm() {
+            let isValid = true;
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+            const validityFromInput = document.getElementById('validity_from');
+            const validityToInput = document.getElementById('validity_to');
+            const validityFromError = document.getElementById('validity_from_error');
+            const validityToError = document.getElementById('validity_to_error');
+
+            // Clear previous errors
+            validityFromError.textContent = '';
+            validityToError.textContent = '';
+
+            // Validate "Validity From" date
+            if (validityFromInput.value < today) {
+                validityFromError.textContent = 'From date must be today or in the future.';
+                isValid = false;
+            }
+
+            // Validate "Validity To" date
+            if (validityToInput.value < today) {
+                validityToError.textContent = 'To date must be today or in the future.';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+        // Script to open and close sidebar
+
+        
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+        
+        function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+        }
+
+        function fetch_data(id){
+            $.ajax({
+                url : '/chalets/chalet_promo_code/edit/' + id +'/',
+                method : "GET",
+                success : function(data){
+                    $("#promo_form").attr('action', '/chalets/chalet_promo_code/edit/' + id + '/');
+                    $("#code_name1").val(data.code_name)
+                    $("#discount_percentage1").val(data.discount_percentage)
+                    $("#validity_from1").val(data.validity_from)
+                    $("#validity_to1").val(data.validity_to)
+                    $("#usage_limits1").val(data.usage_limits)
+                    $("#applicable1").val(data.applicable)
+                    console.log(data.code_name);
+                },
+                error: function() {
+                    alert('Failed to fetch promo code details.');
+                }
+            })
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#datePicker", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+            flatpickr("#datePicker1", {
+                enableTime: false,  
+                dateFormat: "Y-m-d"
+
+            });
+        });
+        
+        function resetDate(dateId) {
+            document.getElementById(dateId).value = '';
+        }
+        $(document).ready(function() {
+            $('.delete-promocode').click(function(e) {
+                e.preventDefault();
+                
+                var promoId = $(this).data('delete-id');
+                
+                if (confirm('Are you sure you want to delete this promocode?')) {
+                    $.ajax({
+                        url: '/chalets/chalet_promo_code/delete/' + promoId + '/',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        success: function(data) {
+                            $(e.target).closest('tr').remove();
+                            window.location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error deleting offer:', error);
+                            alert('Error deleting offer. Please try again later.');
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).ready(function(){
+            $('.search_button').click(function(event){
+                event.preventDefault();
+                $('#loader').show();
+                $('#hotelTable').addClass('blurred');
+
+                var loaderTimeout = setTimeout(function() {
+                    $('#loader').hide();
+                    $('#hotelTable').removeClass('blurred');
+                }, 1000);
+
+                
+                var from_date = $('.select_fromdate').val();
+                var to_date = $('.select_todate').val();
+                var discount = $('.select_discount').val();
+                console.log(from_date,to_date);
+                setTimeout(function() {
+                    $.ajax({
+                        url:'{%url "chalet_promo_code_filter" %}',
+                        type:'POST',
+                        headers: {
+                            'X-CSRFToken': window.CSRF_TOKEN
+                        },
+                        data:{
+                            
+                            from_date:from_date,
+                            to_date:to_date,
+                            discount:discount
+                            
+                        },
+                        
+                        success:function(data){
+                            $('table tbody').html($(data).find('table tbody').html());
+                            console.log(data);
+                            
+                        },
+                        error:function(xhr,status,error){
+                            console.error('error :',error);
+                        }
+                    });
+                }, 500);
+             
+            })
+            
+        });
+        
+
+    </script>
+    
+</body>
+</html>

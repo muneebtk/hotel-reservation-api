@@ -1,0 +1,212 @@
+.w3-bar-item img {
+    transition: filter 0.3s ease;
+}
+
+.w3-bar-item:hover img {
+    filter: grayscale(100%) invert(1);
+}
+
+.chalet-name {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Distributes space between name and arrow */
+    white-space: nowrap;
+    /* Prevents text from wrapping */
+    overflow: hidden;
+    /* Hides overflowed content */
+    text-overflow: ellipsis;
+    /* Adds ellipsis for overflowed text */
+    max-width: 330px;
+    /* Adjust this value based on your layout */
+    width: 100%;
+    /* Ensure it takes full width of parent */
+    padding: 0 10px;
+    /* Optional: Adds padding for aesthetics */
+
+    @media (max-width:992px){
+        margin-top: 30px;
+    }
+}
+
+.chalet-name select {
+    flex-grow: 1;
+    /* Allows the dropdown to take available space */
+    min-width: 100px;
+    /* Ensure the dropdown has a minimum width */
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 5px;
+    /* Optional: Adds padding for better appearance */
+    margin-bottom: .5rem;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    white-space: nowrap;
+
+    &:focus-visible{
+        outline: none;
+    }
+}
+
+
+.chalet-dropdown-arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    font-size: 1.5em;
+}
+
+.chalet-dropdown {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    color: inherit;
+}
+
+.chalet-dropdown option {
+    background-color: white;
+    color: black;
+}
+
+.w3-bar-item.active {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: black;
+}
+
+.w3-bar-item.active img {
+    filter: grayscale(100%) invert(1);
+}
+
+.dashboard-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+        width: 70px;
+        height: 70px;
+        border-radius: 100px;
+        margin-bottom: 16px;
+        object-fit: fill;
+    }
+
+    p{
+            margin: 0;
+            font-size: 1em;
+            color: white;
+        }
+}
+
+#mySidebar{
+    height: 100vh;
+    z-index: 3;
+    width: 250px;
+    font-weight: bold;
+    scrollbar-width: thin;
+}
+.nav-close-btn{
+    font-size: 20px;
+    color: #85080c;
+    border-radius: 9px;
+    top: 5px;
+    right: 5px;
+}
+.nav-items{
+    a{
+        font-size: 13px;
+
+        img{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.hotel-id{
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+}
+.hotel-name {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Distributes space between name and arrow */
+    white-space: nowrap;
+    /* Prevents text from wrapping */
+    overflow: hidden;
+    /* Hides overflowed content */
+    text-overflow: ellipsis;
+    /* Adds ellipsis for overflowed text */
+    max-width: 330px;
+    /* Adjust this value based on your layout */
+    width: 100%;
+    /* Ensure it takes full width of parent */
+    padding: 0 10px;
+    /* Optional: Adds padding for aesthetics */
+
+    @media (max-width:992px){
+        margin-top: 30px;
+    }
+}
+.hotel-name select {
+    flex-grow: 1;
+    /* Allows the dropdown to take available space */
+    min-width: 100px;
+    /* Ensure the dropdown has a minimum width */
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 5px;
+    /* Optional: Adds padding for better appearance */
+    margin-bottom: .5rem;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    white-space: nowrap;
+
+    &:focus-visible{
+        outline: none;
+    }
+}
+.hotel-dropdown-arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    font-size: 1.5em;
+}
+
+.hotel-dropdown {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    color: inherit;
+}
+
+.hotel-dropdown option {
+    background-color: white;
+    color: black;
+}
+
+.nav-items{
+    a.w3-bar-item{
+        display: flex;
+
+        span{
+            display: block;
+            /* word-break: break-all; */
+            /* white-space: break-spaces; */
+        }
+    }
+}

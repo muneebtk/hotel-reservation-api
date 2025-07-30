@@ -1,0 +1,12 @@
+[
+{ "relation": [
+    "delegate_permission/common.handle_all_urls"
+],
+"target": {
+"namespace": "android_app",
+"package_name": "com.digitcom.e_concierge_tourism",
+"sha256_cert_fingerprints":[
+"D5:16:39:C3:85:16:4F:A5:88:89:36:0C:9A:58:18:5A:DC:9A:3A:62:4F:6E:18:C5:85:4F:B9:CA:7F:C7:EE:EC"]
+}
+}
+]

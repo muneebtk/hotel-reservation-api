@@ -1,0 +1,3561 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-12 15:52+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:16 models.py:35 templates/accounts/offer_promotion.html:94
+msgid "Active"
+msgstr ""
+
+#: models.py:17 models.py:36
+msgid "Inactive"
+msgstr ""
+
+#: models.py:18 models.py:37
+msgid "Deleted"
+msgstr ""
+
+#: models.py:182
+msgid "No meals"
+msgstr ""
+
+#: models.py:183 templates/accounts/price.html:47
+msgid "Breakfast"
+msgstr ""
+
+#: models.py:184 templates/accounts/price.html:58
+msgid "Lunch"
+msgstr ""
+
+#: models.py:185 templates/accounts/price.html:69
+msgid "Dinner"
+msgstr ""
+
+#: templates/accounts/ad_page.html:20
+msgid "Want To Register Chalet"
+msgstr ""
+
+#: templates/accounts/ad_page.html:21
+msgid "Thank you for your interest in registering your chalet with us!"
+msgstr ""
+
+#: templates/accounts/ad_page.html:22 templates/accounts/ad_page_hotel.html:23
+#: templates/accounts/chalet_register.html:290
+#: templates/accounts/registration_form.html:355
+msgid "Register"
+msgstr ""
+
+#: templates/accounts/ad_page.html:23 templates/accounts/ad_page_hotel.html:24
+#: templates/accounts/amenties.html:90
+#: templates/accounts/dashboard_overview.html:403
+#: templates/accounts/dashboard_overview.html:463
+#: templates/accounts/final_step.html:121
+#: templates/accounts/pending_approval.html:21
+#: templates/accounts/price.html:169
+msgid "Back"
+msgstr ""
+
+#: templates/accounts/ad_page_hotel.html:21
+msgid "Want To Register Hotel"
+msgstr ""
+
+#: templates/accounts/ad_page_hotel.html:22
+msgid "Thank you for your interest in registering your hotel with us!"
+msgstr ""
+
+#: templates/accounts/amenties.html:30
+msgid "Let's finish things up"
+msgstr ""
+
+#: templates/accounts/amenties.html:34 templates/accounts/amenties.html:50
+#: templates/accounts/booking_view.html:524
+#: templates/accounts/final_step.html:23 templates/accounts/price.html:24
+#: templates/accounts/room_management.html:144
+#: templates/accounts/room_management.html:439
+#: templates/accounts/room_management_view.html:227
+msgid "Amenities"
+msgstr ""
+
+#: templates/accounts/amenties.html:39 templates/accounts/final_step.html:28
+#: templates/accounts/price.html:29 templates/accounts/price.html:39
+msgid "Prices"
+msgstr ""
+
+#: templates/accounts/amenties.html:44
+#: templates/accounts/edit_hotel_policy.html:90
+#: templates/accounts/edit_hotel_policy.html:122
+#: templates/accounts/final_step.html:33 templates/accounts/final_step.html:40
+#: templates/accounts/price.html:34
+msgid "Policies"
+msgstr ""
+
+#: templates/accounts/amenties.html:51
+msgid "Please list all amenities available at your property"
+msgstr ""
+
+#: templates/accounts/amenties.html:80
+msgid "Request amenity"
+msgstr ""
+
+#: templates/accounts/amenties.html:86
+#: templates/accounts/edit_amentity_detail.html:191
+msgid "Please select at least one amenity to proceed."
+msgstr ""
+
+#: templates/accounts/amenties.html:87
+msgid "Please wait for the requested amenity to be added before proceeding."
+msgstr ""
+
+#: templates/accounts/amenties.html:91 templates/accounts/price.html:170
+msgid "Next"
+msgstr ""
+
+#: templates/accounts/amenties.html:212
+msgid "Amenity Name is required and must contain only letters"
+msgstr ""
+
+#: templates/accounts/amenties.html:235
+msgid "Request sent successfully!"
+msgstr ""
+
+#: templates/accounts/amenties.html:246
+msgid "Failed to send request."
+msgstr ""
+
+#: templates/accounts/booking_management.html:39
+msgid "Upcoming Bookings"
+msgstr ""
+
+#: templates/accounts/booking_management.html:44
+msgid "Past Bookings"
+msgstr ""
+
+#: templates/accounts/booking_management.html:50
+#: templates/accounts/dashboard_overview.html:356
+msgid "Cancelled Bookings"
+msgstr ""
+
+#: templates/accounts/booking_management.html:63
+#: templates/accounts/manage_promo_code.html:406
+#: templates/accounts/refund_and_cancellation.html:40
+#: templates/accounts/review_rating.html:41
+#: templates/accounts/transaction_detail.html:41
+msgid "From: Sep 8, 2023"
+msgstr ""
+
+#: templates/accounts/booking_management.html:67
+#: templates/accounts/manage_promo_code.html:411
+#: templates/accounts/refund_and_cancellation.html:44
+#: templates/accounts/review_rating.html:45
+#: templates/accounts/transaction_detail.html:45
+msgid "To: Sep 8, 2023"
+msgstr ""
+
+#: templates/accounts/booking_management.html:71
+#: templates/accounts/booking_management.html:105
+#: templates/accounts/booking_management.html:246
+#: templates/accounts/dashboard_overview.html:123
+#: templates/accounts/register_view_table.html:516
+#: templates/accounts/room_management.html:64
+#: templates/accounts/room_management.html:98
+#: templates/accounts/room_management.html:314
+#: templates/accounts/room_management.html:390
+#: templates/accounts/room_management_view.html:180
+msgid "Room Type"
+msgstr ""
+
+#: templates/accounts/booking_management.html:79
+msgid "Status Type"
+msgstr ""
+
+#: templates/accounts/booking_management.html:80
+msgid "Pending"
+msgstr ""
+
+#: templates/accounts/booking_management.html:81
+msgid "Booked"
+msgstr ""
+
+#: templates/accounts/booking_management.html:82
+msgid "Confirmed"
+msgstr ""
+
+#: templates/accounts/booking_management.html:83
+msgid "Rejected"
+msgstr ""
+
+#: templates/accounts/booking_management.html:84
+msgid "Cancelled"
+msgstr ""
+
+#: templates/accounts/booking_management.html:85
+msgid "Completed"
+msgstr ""
+
+#: templates/accounts/booking_management.html:91
+#: templates/accounts/manage_promo_code.html:426
+#: templates/accounts/offer_promotion.html:54
+#: templates/accounts/register_view_table.html:490
+#: templates/accounts/review_rating.html:66
+#: templates/accounts/room_management.html:72
+#: templates/accounts/search_navbar.html:17
+#: templates/accounts/transaction_detail.html:59
+msgid "Search"
+msgstr ""
+
+#: templates/accounts/booking_management.html:102
+#: templates/accounts/dashboard_overview.html:119
+#: templates/accounts/manage_promo_code.html:520
+#: templates/accounts/offer_promotion.html:75
+#: templates/accounts/refund_and_cancellation.html:88
+#: templates/accounts/review_rating.html:77
+#: templates/accounts/room_management.html:313
+#: templates/accounts/transaction_detail.html:69
+msgid "Sl. No."
+msgstr ""
+
+#: templates/accounts/booking_management.html:103
+#: templates/accounts/booking_management.html:226
+#: templates/accounts/dashboard_overview.html:120
+#: templates/accounts/refund_and_cancellation.html:91
+msgid "Guest Name"
+msgstr ""
+
+#: templates/accounts/booking_management.html:104
+#: templates/accounts/booking_management.html:236
+#: templates/accounts/dashboard_overview.html:121
+msgid "Contact Number"
+msgstr ""
+
+#: templates/accounts/booking_management.html:106
+#: templates/accounts/dashboard_overview.html:125
+msgid "Check-In"
+msgstr ""
+
+#: templates/accounts/booking_management.html:107
+#: templates/accounts/dashboard_overview.html:126
+msgid "Check-Out"
+msgstr ""
+
+#: templates/accounts/booking_management.html:108
+#: templates/accounts/booking_management.html:276
+#: templates/accounts/dashboard_overview.html:124
+msgid "Status"
+msgstr ""
+
+#: templates/accounts/booking_management.html:109
+#: templates/accounts/room_management.html:321
+msgid "Action"
+msgstr ""
+
+#: templates/accounts/booking_management.html:125
+#: templates/accounts/register_view_table.html:544
+#: templates/accounts/register_view_table.html:593
+#: templates/accounts/room_management.html:346
+#: templates/accounts/room_management.html:1251
+msgid "View"
+msgstr ""
+
+#: templates/accounts/booking_management.html:133
+#: templates/accounts/booking_management.html:220
+#: templates/accounts/manage_promo_code.html:539
+#: templates/accounts/manage_promo_code.html:558
+#: templates/accounts/offer_promotion.html:125
+#: templates/accounts/offer_promotion.html:211
+#: templates/accounts/review_rating.html:104
+#: templates/accounts/review_rating.html:116
+#: templates/accounts/room_management.html:383
+#: templates/accounts/room_management_view.html:170
+msgid "Edit"
+msgstr ""
+
+#: templates/accounts/booking_management.html:143
+#: templates/accounts/dashboard_overview.html:147
+#: templates/accounts/manage_promo_code.html:545
+#: templates/accounts/offer_promotion.html:137
+#: templates/accounts/refund_and_cancellation.html:118
+#: templates/accounts/review_rating.html:133
+#: templates/accounts/room_management.html:361
+#: templates/accounts/transaction_detail.html:103
+msgid "No data found"
+msgstr ""
+
+#: templates/accounts/booking_management.html:256
+#: templates/accounts/final_step.html:50
+msgid "Check in"
+msgstr ""
+
+#: templates/accounts/booking_management.html:266
+#: templates/accounts/final_step.html:54
+msgid "Check out"
+msgstr ""
+
+#: templates/accounts/booking_management.html:293
+#: templates/accounts/manage_promo_code.html:504
+#: templates/accounts/manage_promo_code.html:619
+msgid "cancel"
+msgstr ""
+
+#: templates/accounts/booking_management.html:295
+#: templates/accounts/edit_hotel_detail.html:537
+#: templates/accounts/edit_hotel_policy.html:101
+#: templates/accounts/edit_hotel_policy.html:129
+#: templates/accounts/final_step.html:122
+#: templates/accounts/manage_promo_code.html:505
+#: templates/accounts/manage_promo_code.html:620
+#: templates/accounts/offer_promotion.html:409
+#: templates/accounts/offer_promotion.html:637
+#: templates/accounts/room_management.html:477
+#: templates/accounts/room_management_view.html:394
+msgid "Save"
+msgstr ""
+
+#: templates/accounts/booking_view.html:438
+msgid "User Management"
+msgstr ""
+
+#: templates/accounts/booking_view.html:449
+msgid "Booking ID:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:473
+msgid "Customer Details"
+msgstr ""
+
+#: templates/accounts/booking_view.html:474
+msgid "Name:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:475
+msgid "Email Id:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:476
+msgid "Contact Number:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:480
+msgid "Booking Info"
+msgstr ""
+
+#: templates/accounts/booking_view.html:481
+msgid "Booking Date:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:482
+msgid "Check In:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:483
+msgid "Check Out:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:484
+msgid "Room Types:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:492
+msgid "Room & Members:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:492
+msgid "Room"
+msgstr ""
+
+#: templates/accounts/booking_view.html:492
+msgid "Adult"
+msgstr ""
+
+#: templates/accounts/booking_view.html:498
+msgid "Pricing Structure"
+msgstr ""
+
+#: templates/accounts/booking_view.html:499
+msgid "Base Price:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:500
+msgid "Tax Fees:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:501
+msgid "Meal Price:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:502
+msgid "Meal Tax:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:503
+msgid "Discount Price"
+msgstr ""
+
+#: templates/accounts/booking_view.html:504
+msgid "Service Fees:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:506
+msgid "Payment Method:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:507
+msgid "Admin commission:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:508
+msgid "Payment gateway fee:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:509
+msgid "Status:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:513
+msgid "Total Amount:"
+msgstr ""
+
+#: templates/accounts/booking_view.html:543
+msgid "Cancel "
+msgstr ""
+
+#: templates/accounts/booking_view.html:543
+#: templates/accounts/booking_view.html:546
+msgid " Booking"
+msgstr ""
+
+#: templates/accounts/booking_view.html:546
+msgid "Approve "
+msgstr ""
+
+#: templates/accounts/booking_view.html:550
+msgid "Send "
+msgstr ""
+
+#: templates/accounts/booking_view.html:550
+msgid "Booking"
+msgstr ""
+
+#: templates/accounts/booking_view.html:550
+msgid " Reminder"
+msgstr ""
+
+#: templates/accounts/booking_view.html:591
+msgid "Are you sure you want to cancel this booking?"
+msgstr ""
+
+#: templates/accounts/booking_view.html:604
+msgid "Booking is cancelled"
+msgstr ""
+
+#: templates/accounts/booking_view.html:624
+msgid "Are you sure you want to approve this booking?"
+msgstr ""
+
+#: templates/accounts/booking_view.html:637
+msgid "Booking is approved"
+msgstr ""
+
+#: templates/accounts/booking_view.html:640
+msgid "Failed to approve this booking"
+msgstr ""
+
+#: templates/accounts/booking_view.html:666
+msgid "Reminder email sent"
+msgstr ""
+
+#: templates/accounts/booking_view.html:697
+msgid "You can only upload a total of "
+msgstr ""
+
+#: templates/accounts/booking_view.html:697
+msgid "files."
+msgstr ""
+
+#: templates/accounts/booking_view.html:703
+msgid "One or more files exceed the maximum size of 500 KB."
+msgstr ""
+
+#: templates/accounts/booking_view.html:707
+#: templates/accounts/edit_hotel_detail.html:1348 views.py:4333
+msgid "Only JPEG and PNG files are allowed."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:42
+msgid "Chalet Owner Registration Form"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:46
+msgid "Chalet Name In English"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:47
+msgid "Enter chalet name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:50
+msgid "Chalet Name in Arabic"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:57
+msgid " Owner Name In English "
+msgstr ""
+
+#: templates/accounts/chalet_register.html:58
+msgid "Enter owner name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:63
+msgid "Owner Name In Arabic"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:72
+#: templates/accounts/edit_hotel_detail.html:100
+#: templates/accounts/edit_hotel_detail.html:103
+#: templates/accounts/register_view_table.html:508
+#: templates/accounts/register_view_table.html:560
+#: templates/accounts/registration_form.html:77
+msgid "Office Number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:73
+#: templates/accounts/registration_form.html:78
+msgid "Ex-22555555"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:79
+#: templates/accounts/edit_hotel_detail.html:225
+#: templates/accounts/edit_hotel_detail.html:228
+#: templates/accounts/register_view_table.html:518
+#: templates/accounts/register_view_table.html:568
+#: templates/accounts/registration_form.html:234
+msgid "CR Number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:80
+#: templates/accounts/registration_form.html:235
+msgid "Enter CR number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:92
+#: templates/accounts/register_view_table.html:562
+msgid "Chalet Address"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:95
+#: templates/accounts/registration_form.html:116
+msgid "Search here"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:96
+#: templates/accounts/chalet_register.html:97
+#: templates/accounts/chalet_register.html:1203
+#: templates/accounts/registration_form.html:117
+#: templates/accounts/registration_form.html:118
+#: templates/accounts/registration_form.html:1300
+msgid "Choose my current location"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:104
+msgid "Governorate\\State"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:106
+msgid "Enter your Governorate\\state Name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:110
+#: templates/accounts/edit_hotel_detail.html:165
+#: templates/accounts/edit_hotel_detail.html:167
+#: templates/accounts/register_view_table.html:513
+#: templates/accounts/register_view_table.html:565
+#: templates/accounts/registration_form.html:131
+msgid "City"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:112
+#: templates/accounts/registration_form.html:133
+msgid "Enter your city name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:116
+#: templates/accounts/edit_hotel_detail.html:173
+#: templates/accounts/edit_hotel_detail.html:175
+#: templates/accounts/register_view_table.html:511
+#: templates/accounts/register_view_table.html:563
+#: templates/accounts/registration_form.html:137
+msgid "Country"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:118
+#: templates/accounts/registration_form.html:139
+msgid "Enter your country name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:131
+#: templates/accounts/edit_hotel_detail.html:135
+#: templates/accounts/registration_form.html:159
+msgid "Account Number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:132
+#: templates/accounts/edit_hotel_detail.html:137
+#: templates/accounts/registration_form.html:160
+msgid "Enter your Account Number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:136
+#: templates/accounts/edit_hotel_detail.html:126
+#: templates/accounts/edit_hotel_detail.html:129
+#: templates/accounts/registration_form.html:164
+msgid "Locality"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:137
+#: templates/accounts/registration_form.html:165
+msgid "Enter your locality"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:138
+#: templates/accounts/registration_form.html:166
+msgid "Locality not found"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:146
+#: templates/accounts/edit_hotel_detail.html:143
+#: templates/accounts/registration_form.html:173
+msgid "Bank Name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:147
+#: templates/accounts/edit_hotel_detail.html:145
+#: templates/accounts/registration_form.html:174
+msgid "Enter your Bank Name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:153
+#: templates/accounts/edit_hotel_detail.html:152
+#: templates/accounts/registration_form.html:180
+msgid "Account Holder Name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:154
+#: templates/accounts/edit_hotel_detail.html:154
+#: templates/accounts/registration_form.html:181
+msgid "Enter your Account Holder Name"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:162
+#: templates/accounts/edit_hotel_detail.html:241
+#: templates/accounts/edit_hotel_detail.html:244
+#: templates/accounts/register_view_table.html:520
+#: templates/accounts/register_view_table.html:570
+#: templates/accounts/registration_form.html:227
+msgid "VAT Number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:163
+#: templates/accounts/registration_form.html:228
+msgid "Enter VAT number"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:181
+msgid "Chalet Description in English"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:182
+msgid "Enter a few words about your chalet"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:189
+msgid "Chalet Description in Arabic"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:199
+msgid "Chalet Policies In English"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:200
+msgid "Enter your chalet policies"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:207
+msgid "Chalet Policies In Arabic"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:215
+msgid "Chalet Type"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:217
+msgid "Choose your Chalet Type"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:233
+msgid "Chalet Logo"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:240
+#: templates/accounts/chalet_register.html:263
+#: templates/accounts/edit_hotel_detail.html:407
+#: templates/accounts/edit_hotel_detail.html:434
+#: templates/accounts/registration_form.html:287
+#: templates/accounts/registration_form.html:310
+msgid "(Upload JPEG/PNG files)"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:245
+msgid "Chalet Images"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:272
+msgid "The size of a single chalet image file should not exceed 30 MB"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:273
+#: templates/accounts/registration_form.html:338
+msgid "Always take the picture in bright natural light"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:274
+#: templates/accounts/registration_form.html:339
+msgid "Upload minimum 5 images"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:275
+#: templates/accounts/registration_form.html:340
+msgid "Attach proofs of Address, CR, and VAT"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:281
+msgid "I agree to the "
+msgstr ""
+
+#: templates/accounts/chalet_register.html:283
+msgid "Terms"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:283
+msgid "And"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:283
+msgid "Conditions"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:793
+msgid "Chalet with same email already exist"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:835
+#: templates/accounts/vendor_login.html:194
+msgid "Registration successful"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:836
+#: templates/accounts/vendor_login.html:195
+msgid "You have successfully registered."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:921
+#: templates/accounts/registration_form.html:984
+#: templates/accounts/room_management.html:610
+#: templates/accounts/room_management.html:668
+msgid "images remaining to upload."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1054
+#: templates/accounts/registration_form.html:1106
+msgid "Could not retrieve current address"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1058
+#: templates/accounts/registration_form.html:1110
+msgid "Error fetching current address"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1063
+#: templates/accounts/registration_form.html:1115
+msgid "Error getting current location"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1066
+#: templates/accounts/registration_form.html:1118
+msgid "Geolocation is not supported by this browser"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1105
+#: templates/accounts/registration_form.html:1160
+msgid "Address not found"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1249
+#: templates/accounts/registration_form.html:1346
+msgid "This email already exists."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1269
+#: templates/accounts/registration_form.html:1366
+msgid "The date must be today or future."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1328
+msgid "Please enter Chalet Name."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1331
+#, python-brace-format
+msgid "Chalet Name should be at least ${chaletNameMinLength} characters long."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1334
+#, python-brace-format
+msgid "Chalet Name should not exceed ${chaletNameMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1343
+msgid "Please enter chalet Name in Arabic."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1346
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should be at least ${NameArabicMinLength} characters "
+"long."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1349
+#, python-brace-format
+msgid ""
+"Chalet Name in Arabic should not exceed ${NameArabicMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1357
+msgid "Please enter Chalet Owner Name."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1360
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should be at least ${chaletOwnerNameMinLength} characters "
+"long."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1363
+#, python-brace-format
+msgid ""
+"Chalet Owner Name should not exceed ${chaletOwnerNameMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1367
+msgid "Chalet Owner Name must contain letters only."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1375
+msgid "Please enter Chalet Owner Name in Arabic."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1378
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should be at least "
+"${chaletOwnerNameArabicMinLength} characters long."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1381
+#, python-brace-format
+msgid ""
+"Chalet Owner Name in Arabic should not exceed "
+"${chaletOwnerNameArabicMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1385
+msgid "Chalet Owner Name in Arabic must contain Arabic letters only."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1399
+#: templates/accounts/registration_form.html:1628
+msgid "Invalid office number."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1401
+#: templates/accounts/edit_hotel_detail.html:1031
+#: templates/accounts/registration_form.html:1630
+msgid "Office Number should be 15 digits or less."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1416
+#: templates/accounts/registration_form.html:1645
+msgid "Please enter Hotel Address."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1419
+msgid "Chalet Address should not exceed 300 characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1427
+msgid "Please select a State/Province."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1430
+msgid "State/Province name should not exceed 50 characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1440
+#: templates/accounts/edit_hotel_detail.html:1070
+#: templates/accounts/registration_form.html:1528
+msgid "City cannot be empty."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1443
+#: templates/accounts/registration_form.html:1531
+#, python-brace-format
+msgid "City should not exceed ${stmaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1450
+#: templates/accounts/edit_hotel_detail.html:1086
+#: templates/accounts/registration_form.html:1538
+msgid "Country cannot be empty."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1453
+#: templates/accounts/registration_form.html:1542
+#, python-brace-format
+msgid "Country should not exceed ${stmaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1461
+#: templates/accounts/edit_hotel_detail.html:1121
+#: templates/accounts/registration_form.html:1694
+msgid "Please enter the account number."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1465
+msgid "Account Number should not exceed 20 digits."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1469
+#: templates/accounts/edit_hotel_detail.html:1127
+#: templates/accounts/registration_form.html:1700
+msgid "Account Number must contain only numeric digits."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1476
+#: templates/accounts/edit_hotel_detail.html:1141
+#: templates/accounts/registration_form.html:1711
+msgid "Please enter the account holder name."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1481
+msgid "Account Holder should not exceed 50 characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1485
+msgid "Account Holder name should only contain alphabets."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1491
+#: templates/accounts/edit_hotel_detail.html:1158
+#: templates/accounts/registration_form.html:1725
+msgid "Please enter the Bank Name."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1496
+#: templates/accounts/edit_hotel_detail.html:1161
+#: templates/accounts/registration_form.html:1728
+msgid "Bank Name should not exceed 50 characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1510
+#, python-brace-format
+msgid "Account Number should not exceed ${localityMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1525
+#: templates/accounts/registration_form.html:1908
+#, python-brace-format
+msgid "Locality should not exceed ${localityArabicMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1543
+#: templates/accounts/registration_form.html:1746
+msgid "Please enter CR Number."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1546
+#: templates/accounts/registration_form.html:1749
+#, python-brace-format
+msgid "CR Number should not exceed ${crMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1556
+#, python-brace-format
+msgid ""
+"VAT Number should be between ${vatMinLength} and ${vatMaxLength} digits."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1573
+#, python-brace-format
+msgid "Post Office/Postal Box should not exceed ${maxLength} characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1590
+#, python-brace-format
+msgid ""
+"House/Building/Apartment number should not exceed ${buildingNumberMaxLength} "
+"characters."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1594
+msgid "House/Building/Apartment number should not be empty"
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1608
+#: templates/accounts/registration_form.html:1842
+msgid "Please agree to the terms and conditions."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1616
+#: templates/accounts/chalet_register.html:1619
+#: templates/accounts/registration_form.html:1850
+#: templates/accounts/registration_form.html:1853
+msgid "Please upload a minimum of 5 images."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1628
+msgid "Please upload only JPEG or PNG images for chalet images."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1638
+msgid "Please upload a Chalet Logo."
+msgstr ""
+
+#: templates/accounts/chalet_register.html:1646
+msgid "Please upload only JPEG or PNG images for the chalet logo."
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:65
+msgid "Bookings Rates"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:73
+msgid "Cancellation Rates"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:81
+msgid "Average Daily Rates"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:89
+msgid "Review Rates"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:104
+msgid "Latest Bookings"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:108
+msgid "View All"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:122
+#: templates/accounts/room_management.html:120
+#: templates/accounts/room_management.html:315
+#: templates/accounts/room_management.html:402
+#: templates/accounts/room_management_view.html:87
+#: templates/accounts/room_management_view.html:203
+msgid "Room Number"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:254
+msgid "Visitor Statistics"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:287
+msgid "Visitors"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:316
+msgid "Reservation Statistics"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:348
+msgid "Confirmed Bookings"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:352
+msgid "Pending Bookings"
+msgstr ""
+
+#: templates/accounts/dashboard_overview.html:481
+#: templates/accounts/offer_promotion.html:1493
+msgid "Error fetching data. Please try again later."
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:174
+msgid "Add Amenities"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:178
+#: templates/accounts/room_management.html:147
+#: templates/accounts/room_management.html:442
+#: templates/accounts/room_management_view.html:231
+msgid "Select Amenities"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:195
+msgid "Amenity with this name already exists"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:197
+#: templates/accounts/edit_hotel_policy.html:100
+#: templates/accounts/edit_hotel_policy.html:128
+#: templates/accounts/edit_hotel_policy.html:140
+#: templates/accounts/forgot_password_email.html:46
+#: templates/accounts/logout_button.html:20
+#: templates/accounts/offer_promotion.html:407
+#: templates/accounts/offer_promotion.html:636
+#: templates/accounts/password_rest.html:49
+#: templates/accounts/request_amenity.html:21
+#: templates/accounts/review_rating.html:232
+#: templates/accounts/review_rating.html:272
+#: templates/accounts/review_rating.html:341
+#: templates/accounts/room_management.html:295
+#: templates/accounts/room_management.html:476
+#: templates/accounts/room_management_view.html:393
+msgid "Cancel"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:198
+#: templates/accounts/room_management.html:296
+msgid "Add"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:211
+msgid "Search and select amenities"
+msgstr ""
+
+#: templates/accounts/edit_amentity_detail.html:249
+#: templates/accounts/room_management.html:880
+msgid "Please select at least one amenity."
+msgstr ""
+
+#: templates/accounts/edit_hotel.html:47
+#: templates/accounts/edit_hotel_detail.html:43
+msgid "Edit Hotel Details"
+msgstr ""
+
+#: templates/accounts/edit_hotel.html:55
+#: templates/accounts/edit_hotel_policy.html:35
+msgid "Edit Hotel Policies"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:50
+#: templates/accounts/edit_hotel_detail.html:53
+#: templates/accounts/register_view_table.html:505
+msgid "Hotel Name"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:59
+msgid "Hotel Name/اسم الفندق"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:62
+msgid "Arabic Name"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:69
+#: templates/accounts/edit_hotel_detail.html:72
+#: templates/accounts/register_view_table.html:506
+msgid "Hotel Owner Name"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:78
+msgid "Hotel Owner Name/اسم مالك الفندق"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:81
+msgid "Hotel Owner Name In Arabic"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:92
+#: templates/accounts/register_view_table.html:507
+msgid "Hotel Owner Email"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:95
+msgid "Owner Mail"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:108
+#: templates/accounts/edit_hotel_detail.html:111
+#: templates/accounts/register_view_table.html:510
+#: templates/accounts/registration_form.html:113
+msgid "Hotel Address"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:116
+#: templates/accounts/registration_form.html:125
+msgid "Governorate/State"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:118
+#: templates/accounts/register_view_table.html:512
+msgid "State/Province"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:181
+#: templates/accounts/edit_hotel_detail.html:184
+#: templates/accounts/register_view_table.html:509
+#: templates/accounts/register_view_table.html:561
+#: templates/accounts/registration_form.html:143
+msgid "GSM Number"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:189
+#: templates/accounts/registration_form.html:189
+msgid "Hotel Type"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:192
+#: templates/accounts/registration_form.html:191
+msgid "Choose your Hotel Type"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:208
+#: templates/accounts/register_view_table.html:517
+#: templates/accounts/registration_form.html:206
+msgid "Hotel Rating"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:211
+#: templates/accounts/registration_form.html:208
+msgid "Select hotel rating"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:233
+msgid "Date Of Expiry"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:236
+#: templates/accounts/register_view_table.html:519
+#: templates/accounts/register_view_table.html:569
+#: templates/accounts/registration_form.html:221
+msgid "Date of Expiry"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:250
+#: templates/accounts/price.html:121
+msgid "Payments Accepted"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:258
+#: templates/accounts/price.html:131
+msgid "All"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:287
+msgid "Meal Price"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:294
+#: templates/accounts/edit_hotel_detail.html:302
+#: templates/accounts/edit_hotel_detail.html:311
+msgid "Enter price"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:322
+msgid "Hotel Description"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:324
+#: templates/accounts/edit_hotel_detail.html:332
+msgid "Enter a few words about your hotel"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:330
+msgid "Hotel Description/وصف الفندق"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:343
+msgid "Hotel Policies"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:346
+#: templates/accounts/edit_hotel_detail.html:355
+msgid "Enter a few words about your hotel policies"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:352
+msgid "Hotel Policies/سياسات الفندق"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:366
+#: templates/accounts/registration_form.html:292
+msgid "Hotel Images"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:415
+#: templates/accounts/registration_form.html:280
+msgid "Hotel Logo"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:443
+msgid "Property Amenities"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:467
+#: templates/accounts/room_management_view.html:149
+msgid "No amenities available."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:479
+msgid "Supporting Documents"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:505
+msgid "Hotel Taxes"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:523
+msgid "Enter percentage"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:624
+msgid "You can upload up to 3 documents. You have already uploaded 3."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:631
+#, python-brace-format
+msgid ""
+"You can upload up to 3 documents. You can only upload ${remaining} more."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:698
+#: templates/accounts/edit_hotel_detail.html:1372
+msgid "Please upload exactly 3 documents."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:700
+msgid "You can upload a maximum of 3 documents."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:751
+#: templates/accounts/edit_hotel_detail.html:827
+msgid "Please upload at least 5 images."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:757
+#: templates/accounts/edit_hotel_detail.html:1305
+msgid "Hotel logo is required. Please upload a logo."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:841
+#, python-brace-format
+msgid ""
+"${imageLabel} is in an invalid format. Please upload a JPEG, PNG, or GIF "
+"image."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:919
+msgid "Hotel Name cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:923
+msgid "Hotel Name must be between 3 and 100 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:967
+msgid "Hotel Arabic Name cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:971
+msgid "Hotel Arabic Name must be between 3 and 100 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:981
+msgid "Hotel Owner Name cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:984
+msgid "Hotel Owner Name must be between 3 and 100 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:987
+#: templates/accounts/registration_form.html:1597
+msgid "Hotel Owner Name must contain letters only."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:996
+msgid "Hotel Owner Name Arabic cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:999
+msgid "Hotel Owner Name Arabic must be between 3 and 100 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1002
+msgid "Hotel Owner Name Arabic must contain Arabic letters only."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1012
+msgid "Hotel Owner Email cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1015
+#: templates/accounts/registration_form.html:1618
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1024
+msgid "Office Number cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1028
+msgid "invalid office number."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1041
+msgid "Hotel Address cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1044
+msgid "Hotel Address must be between 1 and 300 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1055
+msgid "State/Province cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1059
+msgid "State/Province should not exceed 50 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1073
+msgid "City must be between 2 and 50 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1090
+msgid "Country must be 50 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1100
+msgid "GSM Number cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1104
+#: templates/accounts/registration_form.html:1660
+msgid "Invalid GSM number."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1109
+msgid "GSM Number must be between 3 and 15 digits."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1124
+msgid "Account Number should be between 9 and 20 digits."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1130
+#: templates/accounts/registration_form.html:1703
+msgid "Account Number cannot contain only zeros."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1144
+#: templates/accounts/registration_form.html:1714
+msgid "Account Holder name should not exceed 50 characters."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1147
+#: templates/accounts/registration_form.html:1717
+msgid ""
+"Account Holder name should only contain alphabets, spaces, hyphens, and "
+"apostrophes."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1164
+#: templates/accounts/registration_form.html:1731
+msgid "Bank Name should only contain alphabets, spaces, and &."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1177
+msgid "Locality must be between 3 and 50 characters long."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1191
+msgid "CR Number is required."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1195
+#, python-brace-format
+msgid "CR Number must not exceed ${crMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1208
+msgid "Date of Expiry cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1212
+msgid "Please enter a valid date in YYYY-MM-DD format."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1216
+msgid "Date of Expiry must be a future date."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1227
+msgid "VAT Number must be between 2 to 12 digits"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1244
+#: templates/accounts/price.html:158
+msgid "Please select your accepted payment methods."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1256
+msgid "Hotel Rating must be selected."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1278
+#: templates/accounts/registration_form.html:1685
+msgid "Please Select Hotel Rating."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1290
+msgid "At least one amenity must be selected."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1313
+msgid "Invalid file type. Please upload a JPEG, PNG, or GIF image."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1335
+#, python-brace-format
+msgid ""
+"Please upload at least ${requiredTotalImages} images (1 main and 4 "
+"additional)."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1339
+#, python-brace-format
+msgid "You can only upload up to ${requiredTotalImages} images."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1355
+msgid "Each image must be less than 1MB."
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1397
+#: templates/accounts/room_management.html:135
+msgid "Please enter a price"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1404
+#: templates/accounts/price.html:360
+msgid "Please enter a valid price"
+msgstr ""
+
+#: templates/accounts/edit_hotel_detail.html:1418
+msgid ""
+"Please enter a valid number greater than or equal to 0. Characters are not "
+"allowed."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:37
+#: templates/accounts/edit_hotel_policy.html:75
+#: templates/accounts/edit_hotel_policy.html:97
+msgid "Add New Policy"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:46
+#: templates/accounts/edit_hotel_policy.html:112
+msgid "Edit Policy"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:49
+#: templates/accounts/edit_hotel_policy.html:136
+msgid "Delete Policy"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:66
+msgid "No policies available."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:80
+#: templates/accounts/edit_hotel_policy.html:117
+#: templates/accounts/offer_promotion.html:252
+#: templates/accounts/offer_promotion.html:465
+msgid "Category"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:81
+msgid "Enter or select the policy category"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:92
+#: templates/accounts/edit_hotel_policy.html:171
+#: templates/accounts/edit_hotel_policy.html:356
+#: templates/accounts/edit_hotel_policy.html:430
+msgid "Enter the policy"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:118
+msgid "Enter the policy category"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:125
+msgid "Add new policy"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:137
+msgid "Are you sure you want to delete this policy?"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:137
+msgid "This action cannot be undone."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:139
+msgid "Yes, Delete"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:236
+msgid "Category cannot be empty."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:240
+#: templates/accounts/edit_hotel_policy.html:470
+msgid "Category name must be 50 characters or less."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:243
+#: templates/accounts/edit_hotel_policy.html:475
+msgid "Category name must contain only alphabetic characters and spaces."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:248
+#: templates/accounts/edit_hotel_policy.html:497
+msgid "At least one policy must be provided."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:302
+msgid "An error occurred while saving policies."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:305
+msgid "Please enter a category and at least one policy."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:468
+msgid "Category name cannot be empty or contain only spaces."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:480
+msgid "Category name cannot be only spaces."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:489
+msgid "Policy "
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:489
+msgid " cannot be empty or contain only spaces."
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:579
+msgid "Policy has been deleted"
+msgstr ""
+
+#: templates/accounts/edit_hotel_policy.html:583 views.py:3979
+msgid "Something went wrong"
+msgstr ""
+
+#: templates/accounts/final_step.html:19 templates/accounts/price.html:20
+msgid "Almost finished!"
+msgstr ""
+
+#: templates/accounts/final_step.html:41
+msgid "Please list all policies applicable at your property"
+msgstr ""
+
+#: templates/accounts/final_step.html:45
+msgid "Check-In & Check-Out"
+msgstr ""
+
+#: templates/accounts/final_step.html:46
+msgid "Please ensure to mention both your check-in and check-out dates"
+msgstr ""
+
+#: templates/accounts/final_step.html:65
+msgid "Acceptable Identity Proofs"
+msgstr ""
+
+#: templates/accounts/final_step.html:96
+msgid "Select a Highlight Image for Your Hotel"
+msgstr ""
+
+#: templates/accounts/final_step.html:114
+msgid "The chosen check-out time is considered for the next day."
+msgstr ""
+
+#: templates/accounts/final_step.html:115
+msgid "Please provide both check-in and check-out times."
+msgstr ""
+
+#: templates/accounts/final_step.html:116
+msgid "Please select at least one acceptable identity proof."
+msgstr ""
+
+#: templates/accounts/final_step.html:117
+msgid "Please select a highlight image."
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:36
+#: templates/accounts/forgot_password_email.html:38
+#: templates/accounts/registration_form.html:70
+#: templates/accounts/registration_form.html:71
+#: templates/accounts/vendor_login.html:44
+#: templates/accounts/vendor_login.html:45
+msgid "Email"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:41
+msgid "Email address not found"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:45
+msgid "Send Link"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:50
+#: templates/accounts/forgot_password_email.html:81
+msgid "Please click on the link sent to your email"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:56
+msgid "Didn't get the link?"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:59
+msgid "Resend"
+msgstr ""
+
+#: templates/accounts/forgot_password_email.html:80
+msgid "Link sent successfully"
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:27
+msgid "Dashboard "
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:30
+msgid " Bookings "
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:33
+msgid "Rooms "
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:36
+msgid "Transactions "
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:39
+msgid "Offers & Promo"
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:42
+msgid "Refund"
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:46
+msgid "Review & Rating"
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:50
+msgid "Edit Details"
+msgstr ""
+
+#: templates/accounts/hotel_logo_navbar.html:53
+msgid "Hotel Management"
+msgstr ""
+
+#: templates/accounts/logout_button.html:11
+#: templates/accounts/search_navbar.html:58
+msgid "Logout"
+msgstr ""
+
+#: templates/accounts/logout_button.html:18
+msgid "Logout From Dashboard?"
+msgstr ""
+
+#: templates/accounts/logout_button.html:19
+msgid "Yes"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:403
+msgid "Promo Code Management"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:417
+#: templates/accounts/offer_promotion.html:78
+#: templates/accounts/offer_promotion.html:264
+#: templates/accounts/offer_promotion.html:483
+msgid "Discount Percentage"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:431
+#: templates/accounts/manage_promo_code.html:444
+msgid "Create New Promo Code"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:450
+#: templates/accounts/manage_promo_code.html:521
+#: templates/accounts/manage_promo_code.html:565
+msgid "Code name"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:458
+#: templates/accounts/manage_promo_code.html:522
+#: templates/accounts/manage_promo_code.html:573
+msgid "Discount percentage"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:467
+#: templates/accounts/manage_promo_code.html:582
+msgid "Validity From"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:477
+#: templates/accounts/manage_promo_code.html:591
+msgid "Validity To"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:486
+#: templates/accounts/manage_promo_code.html:524
+#: templates/accounts/manage_promo_code.html:601
+msgid "Usage limits"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:495
+#: templates/accounts/manage_promo_code.html:525
+#: templates/accounts/manage_promo_code.html:610
+msgid "Applicable conditions"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:523
+msgid "Validity period"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:540
+#: templates/accounts/offer_promotion.html:128
+#: templates/accounts/review_rating.html:107
+#: templates/accounts/review_rating.html:119
+#: templates/accounts/room_management.html:352
+#: templates/accounts/room_management.html:1256
+msgid "Delete"
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:656
+msgid "Validity From date must be today or in the future."
+msgstr ""
+
+#: templates/accounts/manage_promo_code.html:662
+msgid "Validity To date must be today or in the future."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:36
+msgid "Offer Creation And Management"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:44
+#: templates/accounts/offer_promotion.html:470
+msgid "Common Promotion"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:45
+#: templates/accounts/offer_promotion.html:471
+msgid "Promo Code Specific"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:60
+msgid "Create New Offer"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:76
+#: templates/accounts/offer_promotion.html:228
+#: templates/accounts/offer_promotion.html:439
+msgid "Offer Name"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:77
+#: templates/accounts/offer_promotion.html:238
+#: templates/accounts/offer_promotion.html:451
+msgid "Description"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:81
+#: templates/accounts/offer_promotion.html:315
+#: templates/accounts/offer_promotion.html:540
+msgid "Promo Code"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:82
+#: templates/accounts/offer_promotion.html:326
+#: templates/accounts/offer_promotion.html:552
+msgid "Max Uses"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:83
+#: templates/accounts/offer_promotion.html:92
+msgid "Validity Period"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:85
+#: templates/accounts/offer_promotion.html:363
+#: templates/accounts/offer_promotion.html:591
+msgid "Targeted Offer Type"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:87
+#: templates/accounts/offer_promotion.html:380
+#: templates/accounts/offer_promotion.html:608
+msgid "Occasion Name"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:89
+#: templates/accounts/offer_promotion.html:393
+#: templates/accounts/offer_promotion.html:622
+msgid "Points Required"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:91
+#: templates/accounts/offer_promotion.html:280
+#: templates/accounts/offer_promotion.html:501
+msgid "Minimum Spend"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:120
+msgid "Created by"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:291
+#: templates/accounts/offer_promotion.html:338
+#: templates/accounts/offer_promotion.html:513
+#: templates/accounts/offer_promotion.html:564
+msgid "Valid From"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:301
+#: templates/accounts/offer_promotion.html:348
+#: templates/accounts/offer_promotion.html:525
+#: templates/accounts/offer_promotion.html:576
+msgid "Valid To"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:367
+#: templates/accounts/offer_promotion.html:595
+msgid "Early Bird"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:368
+#: templates/accounts/offer_promotion.html:596
+msgid "Last Minute"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:369
+#: templates/accounts/offer_promotion.html:597
+msgid "Family Package"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:426
+msgid "Add New Offer"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:443
+msgid "Enter offer name"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:455
+msgid "Enter offer description here..."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:488
+msgid "Enter discount percentage"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:505
+msgid "Enter minimum spend"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:698
+#: templates/accounts/offer_promotion.html:1151
+msgid "Offer Name is required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:703
+#: templates/accounts/offer_promotion.html:1155
+msgid "Offer Name cannot exceed 30 characters."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:709
+#: templates/accounts/offer_promotion.html:1160
+msgid "Description is required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:714
+#: templates/accounts/offer_promotion.html:1164
+msgid "Description cannot exceed 100 characters."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:720
+#: templates/accounts/offer_promotion.html:1169
+msgid "You need to enter discount percentage to proceed."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:725
+#: templates/accounts/offer_promotion.html:1174
+msgid "Please enter a valid discount percentage (between 0 and 100)."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:739
+msgid "Minimum spend must be a whole number (no decimals)."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:744
+msgid "Please enter a valid minimum spend."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:749
+msgid "Please specify a valid start date."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:754
+msgid "Please specify a valid end date."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:766
+#: templates/accounts/offer_promotion.html:818
+#: templates/accounts/offer_promotion.html:1211
+#: templates/accounts/offer_promotion.html:1277
+msgid "Valid From date cannot be in the past."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:770
+#: templates/accounts/offer_promotion.html:822
+#: templates/accounts/offer_promotion.html:1214
+#: templates/accounts/offer_promotion.html:1281
+msgid "Validity To date cannot be in the past."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:774
+msgid "Start date cannot be later than the end date."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:787
+#: templates/accounts/offer_promotion.html:1228
+msgid "Promo code is required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:792
+msgid "Promo code cannot exceed 50 characters."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:798
+#: templates/accounts/offer_promotion.html:1258
+msgid "Please specify a valid number of max uses below 1999999999."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:803
+#: templates/accounts/offer_promotion.html:808
+#: templates/accounts/offer_promotion.html:1195
+#: templates/accounts/offer_promotion.html:1199
+#: templates/accounts/offer_promotion.html:1262
+#: templates/accounts/offer_promotion.html:1267
+msgid "Please specify a valid date."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:827
+#: templates/accounts/offer_promotion.html:1217
+#: templates/accounts/offer_promotion.html:1286
+msgid "Start date cannot be later than end date."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:835
+#: templates/accounts/offer_promotion.html:1295
+msgid "Please select a targeted offer type."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:844
+#: templates/accounts/offer_promotion.html:1303
+msgid "Occasion name is required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:849
+#: templates/accounts/offer_promotion.html:1307
+msgid "Occasion name cannot be a number."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:854
+msgid "Occasion name cannot exceed 100 characters."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:864
+#: templates/accounts/offer_promotion.html:1315
+msgid "Please specify the points required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:919
+#: templates/accounts/offer_promotion.html:1033
+#: templates/accounts/review_rating.html:306
+msgid "Error fetching pagination data. Please try again later."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:958
+msgid "Error submitting the form. Please try again later."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1186
+msgid "Minimum spend is required."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1188
+msgid "Minimum spend must be a whole number without decimal points."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1190
+msgid "Please enter a valid minimum spend greater than zero."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1246
+msgid "Promo code already exists."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1351
+msgid "Error updating offer. Please try again later."
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1364
+msgid "Are you sure you want to delete this offer?"
+msgstr ""
+
+#: templates/accounts/offer_promotion.html:1377
+msgid "Error deleting offer. Please try again later."
+msgstr ""
+
+#: templates/accounts/password_rest.html:29
+#: templates/accounts/password_rest.html:31
+#: templates/accounts/registration_form.html:87
+#: templates/accounts/vendor_login.html:49
+#: templates/accounts/vendor_login.html:51
+msgid "Password"
+msgstr ""
+
+#: templates/accounts/password_rest.html:34
+#: templates/accounts/registration_form.html:1791
+msgid ""
+"Password must be at least 8 characters long and include a mix of letters "
+"(lower-case & upper-case), numbers, and symbols."
+msgstr ""
+
+#: templates/accounts/password_rest.html:38
+#: templates/accounts/password_rest.html:40
+#: templates/accounts/registration_form.html:99
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/accounts/password_rest.html:43
+msgid "Passwords do not match"
+msgstr ""
+
+#: templates/accounts/password_rest.html:48
+msgid "Confirm"
+msgstr ""
+
+#: templates/accounts/password_rest.html:54
+msgid "You can now log in with your new password."
+msgstr ""
+
+#: templates/accounts/password_rest.html:55
+msgid "Go to Login"
+msgstr ""
+
+#: templates/accounts/password_rest.html:99
+msgid "Password changed"
+msgstr ""
+
+#: templates/accounts/password_rest.html:100
+msgid "Your password has been changed successfully"
+msgstr ""
+
+#: templates/accounts/password_rest.html:136
+msgid "Link expired.Request for new link again"
+msgstr ""
+
+#: templates/accounts/pending.html:20
+#: templates/accounts/pending_approval.html:19
+msgid "Awaiting Approval"
+msgstr ""
+
+#: templates/accounts/pending.html:21
+#: templates/accounts/pending_approval.html:20
+msgid ""
+"Thanks for registering with us! We have sent your request to the "
+"administrator and once approved you will be notified through email. Please "
+"try again after some time."
+msgstr ""
+
+#: templates/accounts/pending.html:22
+msgid "Try Again"
+msgstr ""
+
+#: templates/accounts/price.html:40
+msgid "Please enter the price details"
+msgstr ""
+
+#: templates/accounts/price.html:50 templates/accounts/price.html:61
+#: templates/accounts/price.html:72
+msgid "OMR Enter"
+msgstr ""
+
+#: templates/accounts/price.html:82
+msgid "Tax Information"
+msgstr ""
+
+#: templates/accounts/price.html:86
+msgid "If Applicable"
+msgstr ""
+
+#: templates/accounts/price.html:106
+msgid "أدخل النسبة المئوية (مثال: 5٪)"
+msgstr ""
+
+#: templates/accounts/price.html:106
+#, python-format
+msgid "Enter percentage (e.g. 5%%)"
+msgstr ""
+
+#: templates/accounts/price.html:154
+msgid "Please check the corresponding checkbox for the entered price."
+msgstr ""
+
+#: templates/accounts/price.html:155
+msgid "Please enter a price value."
+msgstr ""
+
+#: templates/accounts/price.html:156
+msgid "The amount must be zero or greater."
+msgstr ""
+
+#: templates/accounts/price.html:157
+msgid ""
+"Invalid tax value. Please enter a valid amount between 0.00 and 99.99 (e.g., "
+"5 or 12.5)."
+msgstr ""
+
+#: templates/accounts/price.html:162
+msgid "Please enable 'If applicable' toggle if entering tax."
+msgstr ""
+
+#: templates/accounts/price.html:165
+msgid "Invalid tax value. Please enter a valid amount (e.g., 5 or 12.5)."
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:49
+#: templates/accounts/refund_and_cancellation.html:93
+msgid "Booking Source"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:66
+#: templates/accounts/refund_and_cancellation.html:95
+msgid "Cancelation Status"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:77
+msgid " Search"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:89
+msgid "Transaction ID"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:90
+msgid "Booking ID"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:92
+msgid "Refund Date"
+msgstr ""
+
+#: templates/accounts/refund_and_cancellation.html:94
+msgid "Refund Amount"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:514
+#: templates/accounts/register_view_table.html:566
+msgid "Postal/ZIP Code"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:515
+msgid "Number of Rooms"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:557
+msgid "Chalet Name"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:558
+msgid "Chalet Owner Name"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:559
+msgid "Chalet Owner Email"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:564
+msgid "State/ Province"
+msgstr ""
+
+#: templates/accounts/register_view_table.html:567
+msgid "Propert Type"
+msgstr ""
+
+#: templates/accounts/registration_form.html:39
+msgid "Hotel Owner Registration Form\\استمارة تسجيل مالك الفندق"
+msgstr ""
+
+#: templates/accounts/registration_form.html:43
+#: templates/accounts/registration_form.html:44
+msgid "Hotel Name(English)"
+msgstr ""
+
+#: templates/accounts/registration_form.html:55
+#: templates/accounts/registration_form.html:56
+msgid "Owner Name(English)"
+msgstr ""
+
+#: templates/accounts/registration_form.html:89
+msgid "Enter Your Password"
+msgstr ""
+
+#: templates/accounts/registration_form.html:101
+msgid "Re-enter your password"
+msgstr ""
+
+#: templates/accounts/registration_form.html:127
+msgid "Governorate/state"
+msgstr ""
+
+#: templates/accounts/registration_form.html:144
+msgid "Enter your GSM number"
+msgstr ""
+
+#: templates/accounts/registration_form.html:242
+#: templates/accounts/registration_form.html:243
+msgid "Hotel Description(English)"
+msgstr ""
+
+#: templates/accounts/registration_form.html:261
+#: templates/accounts/registration_form.html:262
+msgid "Hotel Policies(English)"
+msgstr ""
+
+#: templates/accounts/registration_form.html:317
+msgid "Required Documents"
+msgstr ""
+
+#: templates/accounts/registration_form.html:321
+msgid "Supported file formats: PDF, PNG, JPEG"
+msgstr ""
+
+#: templates/accounts/registration_form.html:323
+msgid "Each File size should be less than 5MB"
+msgstr ""
+
+#: templates/accounts/registration_form.html:337
+msgid "The size of a single hotel image file should not exceed 30 MB"
+msgstr ""
+
+#: templates/accounts/registration_form.html:347
+msgid "I Agree to the Terms and Conditions"
+msgstr ""
+
+#: templates/accounts/registration_form.html:864
+msgid "Hotel with same email already exist"
+msgstr ""
+
+#: templates/accounts/registration_form.html:948
+msgid "Only JPEG/PNG files are allowed."
+msgstr ""
+
+#: templates/accounts/registration_form.html:967
+msgid "This image already exists."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1225
+msgid "Select Room Types"
+msgstr ""
+
+#: templates/accounts/registration_form.html:1505
+msgid "State/Province should only contain alphabetic characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1515
+msgid "State cannot be empty."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1521
+#, python-brace-format
+msgid "State should not exceed ${stmaxLength} characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1562
+msgid "Please enter Hotel Name."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1565
+#, python-brace-format
+msgid "Hotel Name should be at least ${hotelNameMinLength} characters long."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1568
+#, python-brace-format
+msgid "Hotel Name should not exceed ${hotelNameMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1575
+msgid "Please enter Hotel Name in Arabic."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1578
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should be at least ${hotelNameArabicMinLength} "
+"characters long."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1581
+#, python-brace-format
+msgid ""
+"Hotel Name in Arabic should not exceed ${hotelNameArabicMaxLength} "
+"characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1588
+msgid "Please enter Hotel Owner Name."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1591
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should be at least ${hotelOwnerNameMinLength} characters "
+"long."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1594
+#, python-brace-format
+msgid ""
+"Hotel Owner Name should not exceed ${hotelOwnerNameMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1603
+msgid "Please enter Hotel Owner Name in Arabic."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1606
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should be at least "
+"${hotelOwnerNameArabicMinLength} characters long."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1609
+#, python-brace-format
+msgid ""
+"Hotel Owner Name in Arabic should not exceed "
+"${hotelOwnerNameArabicMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1612
+msgid "Hotel Owner Name in Arabic must contain Arabic letters only."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1649
+msgid "Hotel Address should not exceed 300 characters."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1662
+msgid "GSM Number should be 15 digits or less."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1697
+msgid "Account Number should be between 9 and 16 digits."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1759
+#, python-brace-format
+msgid ""
+"VAT Number should consist of only digits and be between ${vatMinLength} and "
+"${vatMaxLength} digits long."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1797
+msgid "Please confirm Password."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1802
+msgid "Passwords do not match. Please re-enter."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1811
+msgid "Please upload a minimum of 3 supporting documents."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1812
+msgid "Maximum 3 files allowed for Supporting Documents."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1830
+msgid "Only PDF, JPEG, and PNG files are allowed."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1862
+msgid "Please upload only JPEG or PNG images for hotel images."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1872
+msgid "Please upload a Hotel Logo."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1880
+msgid "Please upload only JPEG or PNG images for the hotel logo."
+msgstr ""
+
+#: templates/accounts/registration_form.html:1892
+#, python-brace-format
+msgid "Locality should not exceed ${localityMaxLength} characters."
+msgstr ""
+
+#: templates/accounts/request_amenity.html:8
+msgid "Request Amenity"
+msgstr ""
+
+#: templates/accounts/request_amenity.html:11
+msgid "Amenity Name"
+msgstr ""
+
+#: templates/accounts/request_amenity.html:12
+msgid "Enter the amenity name"
+msgstr ""
+
+#: templates/accounts/request_amenity.html:17
+msgid "Purpose of the Request"
+msgstr ""
+
+#: templates/accounts/request_amenity.html:18
+msgid "Explain the reason for requesting this amenity"
+msgstr ""
+
+#: templates/accounts/request_amenity.html:22
+msgid "Request"
+msgstr ""
+
+#: templates/accounts/review_rating.html:50
+#: templates/accounts/review_rating.html:79
+msgid "Rating"
+msgstr ""
+
+#: templates/accounts/review_rating.html:59
+#: templates/accounts/review_rating.html:80
+msgid "Date"
+msgstr ""
+
+#: templates/accounts/review_rating.html:78
+msgid "User Name"
+msgstr ""
+
+#: templates/accounts/review_rating.html:81
+msgid "Review Text"
+msgstr ""
+
+#: templates/accounts/review_rating.html:82
+msgid "Response"
+msgstr ""
+
+#: templates/accounts/review_rating.html:99
+msgid "See more"
+msgstr ""
+
+#: templates/accounts/review_rating.html:126
+msgid "Respond"
+msgstr ""
+
+#: templates/accounts/review_rating.html:209
+msgid "Write Respond Review"
+msgstr ""
+
+#: templates/accounts/review_rating.html:218
+#: templates/accounts/review_rating.html:258
+msgid "Review"
+msgstr ""
+
+#: templates/accounts/review_rating.html:224
+#: templates/accounts/review_rating.html:265
+msgid "Response cannot be empty"
+msgstr ""
+
+#: templates/accounts/review_rating.html:225
+#: templates/accounts/review_rating.html:266
+msgid "Response should be between 5 - 250 characters."
+msgstr ""
+
+#: templates/accounts/review_rating.html:234
+#: templates/accounts/review_rating.html:274
+msgid "Post"
+msgstr ""
+
+#: templates/accounts/review_rating.html:250
+msgid "Edit Respond Review"
+msgstr ""
+
+#: templates/accounts/review_rating.html:305
+msgid "Error Fetching Reviews. Please try again later."
+msgstr ""
+
+#: templates/accounts/review_rating.html:307
+msgid "Failed to submit the response. Please try again."
+msgstr ""
+
+#: templates/accounts/review_rating.html:308
+msgid "Response submitted successfully!"
+msgstr ""
+
+#: templates/accounts/review_rating.html:309
+msgid "Error deleting response. Please try again later."
+msgstr ""
+
+#: templates/accounts/review_rating.html:310
+#: templates/accounts/review_rating.html:333
+msgid "Are you sure you want to delete this response?"
+msgstr ""
+
+#: templates/accounts/review_rating.html:311
+msgid "Response deleted successfully!"
+msgstr ""
+
+#: templates/accounts/review_rating.html:312 views.py:2111 views.py:2203
+#: views.py:2253 views.py:2349 views.py:2384 views.py:2432 views.py:2479
+#: views.py:3737
+msgid "An unexpected error occurred. Please try again."
+msgstr ""
+
+#: templates/accounts/review_rating.html:318
+#: templates/accounts/review_rating.html:338
+msgid "OK"
+msgstr ""
+
+#: templates/accounts/room_management.html:48
+msgid "Available Rooms"
+msgstr ""
+
+#: templates/accounts/room_management.html:54
+msgid "Booked Rooms"
+msgstr ""
+
+#: templates/accounts/room_management.html:79
+msgid "Add Rooms"
+msgstr ""
+
+#: templates/accounts/room_management.html:88
+msgid "ADD"
+msgstr ""
+
+#: templates/accounts/room_management.html:103
+msgid "Select a room type"
+msgstr ""
+
+#: templates/accounts/room_management.html:123
+msgid "Please enter a room number"
+msgstr ""
+
+#: templates/accounts/room_management.html:132
+#: templates/accounts/room_management.html:317
+#: templates/accounts/room_management_view.html:94
+msgid "Price-Per-Night"
+msgstr ""
+
+#: templates/accounts/room_management.html:174
+#: templates/accounts/room_management_view.html:255
+msgid "Meals"
+msgstr ""
+
+#: templates/accounts/room_management.html:177
+#: templates/accounts/room_management_view.html:258
+msgid "Select meal options"
+msgstr ""
+
+#: templates/accounts/room_management.html:196
+#: templates/accounts/room_management_view.html:107
+#: templates/accounts/room_management_view.html:303
+msgid "Tax for Meals"
+msgstr ""
+
+#: templates/accounts/room_management.html:206
+#: templates/accounts/room_management_view.html:316
+msgid "Enter meal tax"
+msgstr ""
+
+#: templates/accounts/room_management.html:221
+#: templates/accounts/room_management_view.html:274
+msgid "Adults"
+msgstr ""
+
+#: templates/accounts/room_management.html:234
+#: templates/accounts/room_management_view.html:288
+msgid "Weekend Price (Optional)"
+msgstr ""
+
+#: templates/accounts/room_management.html:237
+#: templates/accounts/room_management_view.html:292
+msgid "Enter weekend price"
+msgstr ""
+
+#: templates/accounts/room_management.html:246
+#: templates/accounts/room_management_view.html:328
+msgid "Children"
+msgstr ""
+
+#: templates/accounts/room_management.html:257
+#: templates/accounts/room_management_view.html:340
+msgid "Refund and Cancellation"
+msgstr ""
+
+#: templates/accounts/room_management.html:282
+#: templates/accounts/room_management.html:465
+msgid "Add Images"
+msgstr ""
+
+#: templates/accounts/room_management.html:316
+#: templates/accounts/room_management.html:414
+#: templates/accounts/room_management_view.html:91
+msgid "Occupancy"
+msgstr ""
+
+#: templates/accounts/room_management.html:318
+msgid "Commission Amount"
+msgstr ""
+
+#: templates/accounts/room_management.html:320
+msgid "Weekend Price"
+msgstr ""
+
+#: templates/accounts/room_management.html:339
+msgid "Not specified"
+msgstr ""
+
+#: templates/accounts/room_management.html:350
+#: templates/accounts/room_management.html:1255
+msgid "Are you sure you want to delete this room?"
+msgstr ""
+
+#: templates/accounts/room_management.html:427
+#: templates/accounts/room_management_view.html:214
+msgid "Price-per night"
+msgstr ""
+
+#: templates/accounts/room_management.html:581
+msgid "Only PNG and JPEG images are allowed."
+msgstr ""
+
+#: templates/accounts/room_management.html:607
+#: templates/accounts/room_management.html:663
+msgid "image(s) uploaded."
+msgstr ""
+
+#: templates/accounts/room_management.html:720
+#: templates/accounts/room_management_view.html:909
+msgid "You must select a refund category"
+msgstr ""
+
+#: templates/accounts/room_management.html:743
+#: templates/accounts/room_management_view.html:929
+msgid "You must select one refund policy"
+msgstr ""
+
+#: templates/accounts/room_management.html:755
+msgid "You must provide a value for validity-specific policies."
+msgstr ""
+
+#: templates/accounts/room_management.html:779
+msgid "Please enter a valid meal tax greater than 0."
+msgstr ""
+
+#: templates/accounts/room_management.html:782
+msgid "Meal tax must be a number or decimal value."
+msgstr ""
+
+#: templates/accounts/room_management.html:785
+msgid "Meal tax must be a valid number (up to two decimal places)."
+msgstr ""
+
+#: templates/accounts/room_management.html:788
+msgid "Meal tax cannot exceed 99.99."
+msgstr ""
+
+#: templates/accounts/room_management.html:798
+msgid "Please select a roomtype from the dropdown to add this room"
+msgstr ""
+
+#: templates/accounts/room_management.html:803
+#: templates/accounts/room_management_view.html:733
+msgid "Room number must be a number."
+msgstr ""
+
+#: templates/accounts/room_management.html:810
+msgid "Please enter room number between 1 to 6 characters."
+msgstr ""
+
+#: templates/accounts/room_management.html:825
+#: templates/accounts/room_management.html:979
+#: templates/accounts/room_management.html:1154
+#: templates/accounts/room_management_view.html:753
+msgid "Room number already exists."
+msgstr ""
+
+#: templates/accounts/room_management.html:839
+#: templates/accounts/room_management.html:860
+#: templates/accounts/room_management_view.html:817
+msgid "Please enter a valid amount greater than 0."
+msgstr ""
+
+#: templates/accounts/room_management.html:844
+msgid "Price must be a number or decimal value."
+msgstr ""
+
+#: templates/accounts/room_management.html:848
+#: templates/accounts/room_management_view.html:795
+msgid ""
+"Price per night must be a valid <br> number (up to two decimal <br> places)."
+msgstr ""
+
+#: templates/accounts/room_management.html:851
+#: templates/accounts/room_management_view.html:804
+msgid "Price per night cannot exceed 99999999.99."
+msgstr ""
+
+#: templates/accounts/room_management.html:872
+msgid "You must upload 5 images"
+msgstr ""
+
+#: templates/accounts/room_management.html:890
+msgid "Please select at least one meal option."
+msgstr ""
+
+#: templates/accounts/room_management.html:893
+msgid "You cannot select other meal options <br> when No meals is selected."
+msgstr ""
+
+#: templates/accounts/room_management.html:903
+msgid "Adults field cannot be empty and must have at least 1 adult."
+msgstr ""
+
+#: templates/accounts/room_management.html:907
+msgid "A room cannot have more than 4 adults."
+msgstr ""
+
+#: templates/accounts/room_management.html:920
+msgid "Children field cannot be empty and must be 0 or a positive number."
+msgstr ""
+
+#: templates/accounts/room_management.html:924
+#: templates/accounts/room_management_view.html:898
+msgid "A room cannot have more than 4 children."
+msgstr ""
+
+#: templates/accounts/room_management.html:933
+msgid "Are you sure you want to add this room?"
+msgstr ""
+
+#: templates/accounts/room_management.html:968
+msgid "Room number must be digits only."
+msgstr ""
+
+#: templates/accounts/room_management.html:991
+msgid "Price per night must be a positive number."
+msgstr ""
+
+#: templates/accounts/room_management.html:1001
+msgid "You must upload 5 images."
+msgstr ""
+
+#: templates/accounts/room_management.html:1400
+msgid "Enter hours for refund eligibility"
+msgstr ""
+
+#: templates/accounts/room_management.html:1454
+msgid "Enter a valid number between 0 and 100"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:33
+msgid "Room Management"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:38
+#: templates/accounts/room_management_view.html:42
+msgid "Room Types Images"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:66
+msgid "Upload New Photo"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:77
+msgid "Room Types"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:97
+msgid "Commission"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:100
+msgid "Total Price"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:103
+msgid "Meals available"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:111
+msgid "Refund "
+msgstr ""
+
+#: templates/accounts/room_management_view.html:117
+msgid "Refund Option"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:123
+msgid "Hours"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:135
+msgid "Room Amenities"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:189
+msgid "Select or type a room type"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:375
+msgid "Enter hours for refund policy"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:688
+msgid "Please select atleast one amenities."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:699
+msgid "Select atleast One meals"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:704
+msgid "You cannot select other meal options when No Meals is selected."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:714
+msgid ""
+"Please enter a valid room type with only letters and between 3 to 50 "
+"characters."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:720
+msgid ""
+"Please add your new room type or select a roomtype from the dropdown to add "
+"this room"
+msgstr ""
+
+#: templates/accounts/room_management_view.html:738
+msgid "Room number cannot be empty."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:768
+msgid "Please enter room number  between 1 to 6 characters."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:774
+msgid "Room number must be a valid number."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:789
+msgid "Price per night cannot be empty."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:823
+msgid ""
+"Weekend price must be a valid <br> number (up to two decimal <br> places)."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:831
+msgid "Weekend Price  cannot exceed 99999999.99."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:853
+msgid ""
+"Meal tax must be a valid percentage (up to two decimal places) between 00.00 "
+"and 99.99."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:861
+msgid "Meal tax must be between 00.00 and 99.99."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:866
+msgid "Meal tax is required when the toggle is enabled."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:877
+msgid "Please select at least 1 adult."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:881
+msgid "A room cannot have more than 4 adult."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:894
+msgid "Please select a valid number of children (0 or more)."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:942
+msgid "Please enter a valid number between 0 and 100."
+msgstr ""
+
+#: templates/accounts/room_management_view.html:948
+msgid "Please enter a number."
+msgstr ""
+
+#: templates/accounts/search_navbar.html:46
+#: templates/accounts/search_navbar.html:67
+msgid "Admin"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:50
+msgid "Payment Method"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:70
+msgid "Transaction <br>ID"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:71
+msgid "Booking <br>ID"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:72
+msgid "Guest <br>Name"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:73
+msgid "Transaction <br>Date"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:74
+msgid "Payment <br> Method"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:75
+msgid "Transaction <br> Type"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:76
+msgid "Transaction <br> Amount"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:77
+msgid "Transaction <br> Status"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:78
+msgid "Transaction <br> Reference No:"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:79
+msgid "Payment <br> Status"
+msgstr ""
+
+#: templates/accounts/transaction_detail.html:80
+msgid "Payment <br> Gateway"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:58
+#: templates/accounts/vendor_login.html:60
+msgid "Email or Password is incorrect"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:63
+#: templates/accounts/vendor_login.html:68
+#: templates/accounts/vendor_login.html:72
+msgid "Forgot Password?"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:77
+msgid "Log in"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:78
+#: templates/accounts/vendor_login.html:139
+msgid "Join With Us"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:84
+msgid "or continue with"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:100
+msgid "Privacy Policy"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:102
+msgid "Terms & Conditions"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:104
+msgid "About Us"
+msgstr ""
+
+#: templates/accounts/vendor_login.html:147
+#: templates/accounts/vendor_login.html:155
+#: templates/accounts/vendor_login.html:163
+#: templates/accounts/vendor_login.html:165
+msgid "More Info"
+msgstr ""
+
+#: views.py:68
+msgid "Invalid language code"
+msgstr ""
+
+#: views.py:103
+msgid "Invalid email format!"
+msgstr ""
+
+#: views.py:116
+msgid "No user found with this email."
+msgstr ""
+
+#: views.py:134
+msgid "Welcome Super Admin!"
+msgstr ""
+
+#: views.py:138
+msgid "Invalid credentials for Super Admin!"
+msgstr ""
+
+#: views.py:155
+msgid "Your account has been deactivated. Please contact the administrator."
+msgstr ""
+
+#: views.py:168
+msgid "Welcome Admin!"
+msgstr ""
+
+#: views.py:172 views.py:176
+msgid "Invalid credentials for Admin!"
+msgstr ""
+
+#: views.py:195
+msgid "Email or Password is incorrect!"
+msgstr ""
+
+#: views.py:203
+msgid "Multiple vendor profiles found with this email. Please contact support."
+msgstr ""
+
+#: views.py:231 views.py:234 views.py:237 views.py:242 views.py:245
+msgid "Login successful!"
+msgstr ""
+
+#: views.py:251
+msgid "Your hotel is not approved!"
+msgstr ""
+
+#: views.py:253
+msgid "Your chalet is not approved!"
+msgstr ""
+
+#: views.py:255
+msgid "Neither hotel nor chalet is approved!"
+msgstr ""
+
+#: views.py:263
+msgid "Invalid E-mail or Password"
+msgstr ""
+
+#: views.py:388
+msgid "Hotel image is required."
+msgstr ""
+
+#: views.py:390
+msgid "Supporting document is required."
+msgstr ""
+
+#: views.py:396
+#, python-format
+msgid "Hotel rating is required when hotel type is '%(hotel_type)s'."
+msgstr ""
+
+#: views.py:497
+msgid "There was an error processing your request."
+msgstr ""
+
+#: views.py:500
+msgid "An unexpected error occurred, please try again."
+msgstr ""
+
+#: views.py:505 views.py:515 views.py:569 views.py:576
+msgid "This field is required."
+msgstr ""
+
+#: views.py:507
+msgid "Enter a valid email address."
+msgstr ""
+
+#: views.py:510 views.py:578
+msgid "Enter a valid phone number."
+msgstr ""
+
+#: views.py:521 views.py:1267
+msgid "Passwords do not match."
+msgstr ""
+
+#: views.py:523
+msgid "Password must be at least 8 characters long."
+msgstr ""
+
+#: views.py:685 views.py:774 views.py:927 views.py:992 views.py:1412
+#: views.py:2100 views.py:2496 views.py:2607 views.py:2787 views.py:3444
+#: views.py:3725 views.py:4373 views.py:4399 views.py:4485 views.py:4830
+#: views.py:4954 views.py:5114 views.py:5259
+msgid "Hotel was rejected."
+msgstr ""
+
+#: views.py:692 views.py:787 views.py:933
+msgid "Hotel post approval already completed. Redirecting to the dashboard."
+msgstr ""
+
+#: views.py:701 views.py:796 views.py:942 views.py:1010
+msgid "Chalet was rejected."
+msgstr ""
+
+#: views.py:1228
+msgid "Email address not found."
+msgstr ""
+
+#: views.py:1278
+msgid "link expired.Request for new link again"
+msgstr ""
+
+#: views.py:1289
+msgid "Invalid token or user ID."
+msgstr ""
+
+#: views.py:1381
+msgid "Hotel status updated successfully."
+msgstr ""
+
+#: views.py:1516
+msgid "An error occurred while processing booking data."
+msgstr ""
+
+#: views.py:1809 views.py:2036
+msgid "Booking updated successfully"
+msgstr ""
+
+#: views.py:1865
+msgid "You do not have permission to view this booking."
+msgstr ""
+
+#: views.py:1925
+msgid "Your Hotel was rejected."
+msgstr ""
+
+#: views.py:1928
+msgid "Your Hotel is pending approval."
+msgstr ""
+
+#: views.py:1938 views.py:3812 views.py:3847 views.py:3878 views.py:3911
+#: views.py:3942 views.py:4360 views.py:5211
+msgid "An unexpected error occurred."
+msgstr ""
+
+#: views.py:2103
+msgid "Your Hotel is  in pending approval."
+msgstr ""
+
+#: views.py:2107 views.py:3733
+msgid "Hotel Not Found."
+msgstr ""
+
+#: views.py:2340 views.py:3838
+msgid "Offer updated successfully"
+msgstr ""
+
+#: views.py:2343
+msgid " Offerpromotion ID doesn't exist."
+msgstr ""
+
+#: views.py:2374
+msgid "Offer deleted successfully"
+msgstr ""
+
+#: views.py:2377 views.py:2426 views.py:2473
+msgid "Promotion Not exist."
+msgstr ""
+
+#: views.py:2381
+msgid " Offerpromotion ID needed."
+msgstr ""
+
+#: views.py:2429 views.py:2476
+msgid "Discount Needed."
+msgstr ""
+
+#: views.py:2955
+msgid "An error occurred. Please try again later."
+msgstr ""
+
+#: views.py:2969
+msgid "Invalid category ID"
+msgstr ""
+
+#: views.py:3809
+msgid "Review not found."
+msgstr ""
+
+#: views.py:3841 views.py:3875 views.py:3905 views.py:3936
+msgid " RecentReview not found."
+msgstr ""
+
+#: views.py:3844 views.py:3908 views.py:3939
+msgid " RecentReview ID not found."
+msgstr ""
+
+#: views.py:3933
+msgid "Review response deleted successfully"
+msgstr ""
+
+#: views.py:3953
+msgid "Invalid data"
+msgstr ""
+
+#: views.py:3958
+msgid "Booking not found"
+msgstr ""
+
+#: views.py:4004
+msgid "Booking is already cancelled"
+msgstr ""
+
+#: views.py:4021
+msgid "No email found for this booking"
+msgstr ""
+
+#: views.py:4075
+msgid "Vendor Transaction creation failed"
+msgstr ""
+
+#: views.py:4078
+msgid "Transaction creation failed"
+msgstr ""
+
+#: views.py:4084
+msgid "Only Pending status can be approved"
+msgstr ""
+
+#: views.py:4085
+msgid "Invalid action"
+msgstr ""
+
+#: views.py:4108
+msgid "Images uploaded successfully"
+msgstr ""
+
+#: views.py:4110
+msgid "No images provided"
+msgstr ""
+
+#: views.py:4264
+msgid "No files provided."
+msgstr ""
+
+#: views.py:4271
+#, python-format
+msgid "'%(file_name)s' exceeds the maximum size of 500 KB."
+msgstr ""
+
+#: views.py:4274
+#, python-format
+msgid "'%(file_name)s' is not a valid file type."
+msgstr ""
+
+#: views.py:4290
+msgid "Files uploaded successfully."
+msgstr ""
+
+#: views.py:4309
+msgid "Room not found"
+msgstr ""
+
+#: views.py:4323
+msgid "No file provided."
+msgstr ""
+
+#: views.py:4328
+msgid "File exceeds the maximum size of 500 KB."
+msgstr ""
+
+#: views.py:4348
+msgid "Image uploaded successfully."
+msgstr ""
+
+#: views.py:4352
+msgid "Room not found."
+msgstr ""
+
+#: views.py:4356
+msgid "Room type image not found."
+msgstr ""
+
+#: views.py:4487
+msgid "Hotel is not approved. You need to log out."
+msgstr ""
+
+#: views.py:4659
+msgid "Email already exists"
+msgstr ""
+
+#: views.py:4805
+msgid "Hotel details saved successfully."
+msgstr ""
+
+#: views.py:4908
+msgid "Policy category not found"
+msgstr ""
+
+#: views.py:4915
+msgid "Vendor profile not found"
+msgstr ""
+
+#: views.py:4922
+msgid "Hotel not found"
+msgstr ""
+
+#: views.py:4937
+msgid "An unexpected error occurred"
+msgstr ""
+
+#: views.py:4950
+msgid "Hotel not found."
+msgstr ""
+
+#: views.py:4961 views.py:5117
+msgid "Vendor or hotel not found."
+msgstr ""
+
+#: views.py:4980 views.py:5013
+#, python-format
+msgid "Successfully added new policy to %(category)s."
+msgstr ""
+
+#: views.py:4984 views.py:5017
+#, python-format
+msgid "Successfully added policy to %(category)s."
+msgstr ""
+
+#: views.py:4987 views.py:5020
+msgid "Policy already exists in this category."
+msgstr ""
+
+#: views.py:5053
+msgid "Policies Created Successfully"
+msgstr ""
+
+#: views.py:5056
+msgid "Invalid request method"
+msgstr ""
+
+#: views.py:5077
+msgid "Invalid amenity IDs. IDs must be integers."
+msgstr ""
+
+#: views.py:5088
+msgid "An error occurred while adding amenity."
+msgstr ""
+
+#: views.py:5092
+msgid "Amenities added successfully"
+msgstr ""
+
+#: views.py:5096
+msgid "An unexpected error occurred. Please try again later."
+msgstr ""
+
+#: views.py:5098
+msgid "Invalid request"
+msgstr ""
+
+#: views.py:5205
+msgid "Policy already exists for this category."
+msgstr ""
+
+#: views.py:5207
+msgid "Policies updated successfully."
+msgstr ""
+
+#: views.py:5223
+msgid "Notification marked as read"
+msgstr ""
+
+#: views.py:5225
+msgid "Notification not found"
+msgstr ""
+
+#: views.py:5266
+msgid "PolicyCategory has been delete successfully"
+msgstr ""
+
+#: views.py:5277
+msgid "Booking not found."
+msgstr ""
+
+#: views.py:5282
+msgid "The booking's checkout date has already passed."
+msgstr ""
+
+#: views.py:5292
+msgid "The page you are looking for is not found!"
+msgstr ""
+
+#: views.py:5299
+msgid "Internal Server Error"
+msgstr ""
+
+#: views.py:5306
+msgid "access to the requested resource is forbidden"
+msgstr ""
+
+#: views.py:5313
+msgid "server was unable to process a request due to a client error"
+msgstr ""
